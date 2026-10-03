@@ -23,7 +23,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | Nr. | Kapitel | Stand |
 |---:|---|---|
 | 1 | Geodaten als Funktion statt als Raster | fertig |
-| 2 | Overfitting als Ziel | geplant |
+| 2 | Training des neuronalen Netzes | Entwurf |
 | 3 | Das einfachste Modell | geplant |
 | 4 | Koordinaten gehören auf die Kugel | geplant |
 | 5 | Räumliche Frequenzen und Fourier-Features | geplant |
@@ -44,13 +44,13 @@ Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
 - **In der App:** *Idea & Budget*, Regler *Grid resolution*, Vorlagen vergleichen.
 - **Chester:** packt die gepixelte Erde in eine leuchtende Eichel.
 
-### 2 · Overfitting als Ziel
+### 2 · Training des neuronalen Netzes — Entwurf
 
-- **Lernziel:** Verstehen, wie das Netz trainiert wird, warum es hier keine Testdaten gibt und was Erfolg stattdessen heißt.
+- **Lernziel:** Verstehen, wie das Netz trainiert wird, warum es hier keine Testdaten gibt und was Erfolg stattdessen heißt. Den Begriff Overfitting erst im Kapitel einführen, nicht im Titel.
 - **Inhalt:** Training in Schritten: zufällige Gitterzellen ziehen, Fehler messen, Gewichte ein wenig verbessern. Fehlermaße RMSE, MAE und R² in Worten. Warum Zellen am Pol kleiner sind als am Äquator und deshalb mit cos(Breite) gewichtet werden; gewichteter RMSE. Fehlerkurve lesen.
 - **In der App:** *Training*, einmal mit und einmal ohne *Area-weighted sampling*.
 - **Ideen:** Schritte und Lernrate variieren; beobachten, wann die Fehlerkurve abflacht.
-- **Chester:** übt mit Karteikarten, bis er jede Höhe auswendig kann.
+- **Chester:** als Trainer mit Klemmbrett; die leuchtende Netz-Eichel aus Kapitel 1 (mit Ärmchen und Beinchen) stemmt eine Hantel.
 
 ### 3 · Das einfachste Modell
 

@@ -171,4 +171,4 @@ Bereits die Wahl der Netzwerk-Architektur legt die Kompressionsrate fest. Das Tr
 
 ---
 
-[Übersicht](README.md) · Weiter: Kapitel 2 · Overfitting als Ziel *(in Arbeit)*
+[Übersicht](README.md) · Weiter: [Kapitel 2 · Training des neuronalen Netzes](02-training.md)
