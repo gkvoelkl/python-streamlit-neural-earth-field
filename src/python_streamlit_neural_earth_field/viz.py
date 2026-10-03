@@ -168,15 +168,35 @@ def error_map(
     return fig
 
 
+def log_ticks(lo: float, hi: float) -> list[float]:
+    """1-2-3-5 steps between lo and hi, for log axes with full labels.
+
+    Plotly's own log ticks label the minor steps with a single digit ("2", "3"),
+    which reads as 2 m and 3 m instead of 2000 m and 3000 m.
+    """
+    if not (lo > 0 and hi > 0):
+        return []
+    ticks = [m * 10.0**e for e in range(-2, 8) for m in (1, 2, 3, 5)]
+    inside = [t for t in ticks if lo / 1.2 <= t <= hi * 1.2]
+    return inside if len(inside) >= 2 else [t for t in ticks if lo / 10 <= t <= hi * 10]
+
+
 def loss_curve(steps: list[int], rmse: list[float], height: int = 300) -> go.Figure:
     fig = go.Figure(
-        go.Scatter(x=steps, y=rmse, mode="lines", line=dict(width=2, color="#2a86b0"))
+        go.Scatter(
+            x=steps, y=rmse, mode="lines", line=dict(width=2, color="#2a86b0"),
+            hovertemplate="step %{x}<br>RMSE %{y:,.1f} m<extra></extra>",
+        )
     )
+    ticks = log_ticks(min(rmse), max(rmse)) if rmse else []
     fig.update_layout(
         height=height,
-        margin=dict(l=50, r=10, t=10, b=40),
+        margin=dict(l=60, r=10, t=10, b=40),
         xaxis=dict(title="Training step"),
-        yaxis=dict(title="RMSE on the evaluation sample [m]", type="log"),
+        yaxis=dict(
+            title="RMSE on the evaluation sample [m]", type="log",
+            tickvals=ticks, ticktext=[f"{t:,.0f}" if t >= 1 else f"{t:g}" for t in ticks],
+        ),
     )
     return fig
 

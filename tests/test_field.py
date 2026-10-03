@@ -154,3 +154,11 @@ def test_zero_hidden_layers_is_a_linear_model():
     features = field.encoding(field.transform(lonlat))
     expected = features @ field.head.weight[0] + field.head.bias
     assert torch.allclose(field(lonlat), expected, atol=1e-5)
+
+
+def test_log_ticks_label_the_whole_range():
+    from python_streamlit_neural_earth_field.viz import log_ticks
+
+    assert log_ticks(230, 2600) == [200, 300, 500, 1000, 2000, 3000]
+    assert log_ticks(1000, 1000) == [100, 200, 300, 500, 1000, 2000, 3000, 5000, 10000]
+    assert log_ticks(0, 10) == []
