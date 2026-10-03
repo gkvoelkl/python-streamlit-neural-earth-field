@@ -1,0 +1,113 @@
+# The Earth as a Neural Field
+
+A small learning project on **Implicit Neural Representations (INR)** as a
+compression method: instead of storing elevations at grid points, you train a
+network `f(lon, lat) → elevation` deliberately on *exactly this one* dataset --
+and **the weights then are the file**.
+
+The inspiration is Huang & Hoefler, *Compressing multidimensional weather and climate
+data into neural networks* (ICLR 2023). Here the target field is the Earth's
+topography and bathymetry (ETOPO 2022), and the result can be viewed as a 3D globe.
+
+```
+uv sync
+uv run streamlit run app.py
+```
+
+## Data
+
+Download the global elevation grid once (ETOPO 2022, 1 arc-minute, 456 MB):
+
+```bash
+mkdir -p data
+curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
+  https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/60s_surface_elev_netcdf/ETOPO_2022_v1_60s_N90W180_surface.nc
+```
+
+The app averages it down to the chosen working resolution (180 × 360 to 2160 × 4320)
+and caches it under `data/cache/`. Without the file, everything still runs on a
+synthetic test Earth.
+
+## What the app shows
+
+| Tab | Content |
+|---|---|
+| **Idea & Budget** | Raw data size, parameter count and compression ratio -- before training |
+| **Training** | Live error curve, RMSE / weighted RMSE / MAE / R² |
+| **Globe 3D** | Original and reconstruction as two rotatable spheres |
+| **Maps & Error** | Elevation maps, error map, error histogram |
+| **Super-Resolution** | Query the field at arbitrarily fine coordinates |
+| **Rate & Error** | Rate-distortion curve across several network sizes |
+| **Export** | Weights as `.pt` in float32 / float16, with a loading example |
+
+## The three tricks
+
+1. **Coordinates on the sphere.** `(lon, lat)` has a seam at ±180° and two
+   degenerate poles. `(x, y, z)` on the unit sphere doesn't. Switchable in the
+   app -- the difference is directly visible on the error map.
+2. **Fourier features.** A ReLU/GELU MLP has a strong *spectral bias* and
+   practically never learns high frequencies. So the network doesn't get `x`, but
+   `[sin(2π B x), cos(2π B x)]` with a fixed `B ~ N(0, σ²)`. `B` itself is not
+   stored -- the seed (4 bytes) is enough.
+3. **Context field** (*context-aware INR*). A very coarse elevation grid is passed
+   in as an additional input, and the network only predicts the residual. The
+   bytes of this grid are honestly counted in the compression ratio.
+
+## Results
+
+Measured at 2160 × 4320 (17.8 MB raw data), each with only 1500 training steps
+on an Apple M chip -- so not yet fully converged:
+
+| Variant | File | Ratio | weighted RMSE | PSNR |
+|---|---:|---:|---:|---:|
+| Fourier MLP, σ = 8 | 322 KB | 57× | 311 m | 35.3 dB |
+| + context field 90 × 180 | 355 KB | 51× | 257 m | 36.9 dB |
+| + context field 180 × 360 | 450 KB | 41× | 233 m | 37.8 dB |
+| SIREN | 305 KB | 60× | 539 m | 30.3 dB |
+
+The context field costs bytes and is still the clearer win -- especially at
+high compression ratios, where the network alone lacks the capacity for the
+large-scale structure.
+
+## Tests
+
+```bash
+uv run pytest
+```
+
+They check the things that would otherwise break silently: that the loading snippet
+from the Export tab really yields the same field, that the spherical coordinates
+have no seam at ±180°, that the context field hits the grid value at its nodes,
+and that its bytes end up in the compression ratio.
+
+## Context
+
+The ratios of 300× to over 3000× from the paper apply to **climate fields**:
+spatially smooth, and as time series with enormous redundancy between time
+steps. Topography is the harder case -- coastlines and mountain ridges are
+nearly fractal, and there is no time axis to exploit. The *Rate & Error* tab
+shows what you actually get here. That is exactly what makes the example useful
+for learning: the trade-off is visible, not hidden.
+
+## Structure
+
+```
+src/python_streamlit_neural_earth_field/
+  data.py       ETOPO loading, block-mean downsampling, area weights
+  encoding.py   lon/lat → unit sphere, Fourier features
+  model.py      NeuralField (MLP / SIREN / context field), size bookkeeping
+  training.py   overfitting loop as a generator, area-weighted sampling
+  metrics.py    RMSE, weighted RMSE, MAE, PSNR, R², compression ratio
+  viz.py        3D globe, maps, error plots, rate-distortion
+  app.py        Streamlit interface
+```
+
+## References
+
+- Huang & Hoefler, *Compressing multidimensional weather and climate data into
+  neural networks*, ICLR 2023
+- Tancik et al., *Fourier Features Let Networks Learn High Frequency Functions in
+  Low Dimensional Domains*, NeurIPS 2020
+- Sitzmann et al., *Implicit Neural Representations with Periodic Activation
+  Functions* (SIREN), NeurIPS 2020
+- NOAA NCEI, *ETOPO 2022 Global Relief Model*
