@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" width="960" height="430" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Ein Höhenraster ist eine Tabelle: Zeilen sind Breitengrade, Spalten Längengrade">
+<rect width="960" height="430" rx="12" fill="#ffffff"/>
+<text x="28" y="40" font-size="19" font-weight="600" fill="#1f2933">Ein Höhenraster ist eine Tabelle – Zeilen sind Breiten, Spalten sind Längen</text>
+<text x="28" y="64" font-size="13.5" fill="#5f6b7a">Ausschnitt Alpen und Ligurisches Meer aus ETOPO 2022, auf 1° × 1° gemittelt, Höhen in Metern</text>
+<text x="28" y="98" font-size="13" font-weight="600" fill="#1f2933">Als Zahlen gespeichert</text>
+<text x="127.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">5,5° O</text>
+<text x="181.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">6,5° O</text>
+<text x="235.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">7,5° O</text>
+<text x="289.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">8,5° O</text>
+<text x="343.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">9,5° O</text>
+<text x="397.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">10,5° O</text>
+<text x="451.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">11,5° O</text>
+<text x="505.0" y="122" font-size="12" fill="#5f6b7a" text-anchor="middle">12,5° O</text>
+<text x="88" y="153" font-size="12" fill="#5f6b7a" text-anchor="end">48,5° N</text>
+<rect x="100" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="146" y="153" font-size="13" fill="#1f2933" text-anchor="end">317</text>
+<rect x="154" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="200" y="153" font-size="13" fill="#1f2933" text-anchor="end">336</text>
+<rect x="208" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="254" y="153" font-size="13" fill="#1f2933" text-anchor="end">307</text>
+<rect x="262" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="308" y="153" font-size="13" fill="#1f2933" text-anchor="end">537</text>
+<rect x="316" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="362" y="153" font-size="13" fill="#1f2933" text-anchor="end">541</text>
+<rect x="370" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="416" y="153" font-size="13" fill="#1f2933" text-anchor="end">515</text>
+<rect x="424" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="470" y="153" font-size="13" fill="#1f2933" text-anchor="end">477</text>
+<rect x="478" y="132" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="524" y="153" font-size="13" fill="#1f2933" text-anchor="end">437</text>
+<text x="88" y="185" font-size="12" fill="#5f6b7a" text-anchor="end">47,5° N</text>
+<rect x="100" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="146" y="185" font-size="13" fill="#1f2933" text-anchor="end">281</text>
+<rect x="154" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="200" y="185" font-size="13" fill="#1f2933" text-anchor="end">516</text>
+<rect x="208" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="254" y="185" font-size="13" fill="#1f2933" text-anchor="end">538</text>
+<rect x="262" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="308" y="185" font-size="13" fill="#1f2933" text-anchor="end">646</text>
+<rect x="316" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="362" y="185" font-size="13" fill="#1f2933" text-anchor="end">804</text>
+<rect x="370" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="416" y="185" font-size="13" fill="#1f2933" text-anchor="end">1 262</text>
+<rect x="424" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="470" y="185" font-size="13" fill="#1f2933" text-anchor="end">1 237</text>
+<rect x="478" y="164" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="524" y="185" font-size="13" fill="#1f2933" text-anchor="end">1 268</text>
+<text x="88" y="217" font-size="12" fill="#5f6b7a" text-anchor="end">46,5° N</text>
+<rect x="100" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="146" y="217" font-size="13" fill="#1f2933" text-anchor="end">442</text>
+<rect x="154" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="200" y="217" font-size="13" fill="#1f2933" text-anchor="end">877</text>
+<rect x="208" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="254" y="217" font-size="13" fill="#1f2933" text-anchor="end">1 525</text>
+<rect x="262" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="308" y="217" font-size="13" fill="#1f2933" text-anchor="end">1 679</text>
+<rect x="316" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="362" y="217" font-size="13" fill="#1f2933" text-anchor="end">1 784</text>
+<rect x="370" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="416" y="217" font-size="13" fill="#1f2933" text-anchor="end">2 082</text>
+<rect x="424" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="470" y="217" font-size="13" fill="#1f2933" text-anchor="end">1 499</text>
+<rect x="478" y="196" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="524" y="217" font-size="13" fill="#1f2933" text-anchor="end">1 378</text>
+<text x="88" y="249" font-size="12" fill="#5f6b7a" text-anchor="end">45,5° N</text>
+<rect x="100" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="146" y="249" font-size="13" fill="#1f2933" text-anchor="end">540</text>
+<rect x="154" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="200" y="249" font-size="13" fill="#1f2933" text-anchor="end">1 697</text>
+<rect x="208" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="254" y="249" font-size="13" fill="#1f2933" text-anchor="end">1 575</text>
+<rect x="262" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="308" y="249" font-size="13" fill="#1f2933" text-anchor="end">352</text>
+<rect x="316" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="362" y="249" font-size="13" fill="#1f2933" text-anchor="end">308</text>
+<rect x="370" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="416" y="249" font-size="13" fill="#1f2933" text-anchor="end">419</text>
+<rect x="424" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="470" y="249" font-size="13" fill="#1f2933" text-anchor="end">317</text>
+<rect x="478" y="228" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="524" y="249" font-size="13" fill="#1f2933" text-anchor="end">18</text>
+<text x="88" y="281" font-size="12" fill="#5f6b7a" text-anchor="end">44,5° N</text>
+<rect x="100" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="146" y="281" font-size="13" fill="#1f2933" text-anchor="end">873</text>
+<rect x="154" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="200" y="281" font-size="13" fill="#1f2933" text-anchor="end">1 765</text>
+<rect x="208" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="254" y="281" font-size="13" fill="#1f2933" text-anchor="end">1 004</text>
+<rect x="262" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="308" y="281" font-size="13" fill="#1f2933" text-anchor="end">54</text>
+<rect x="316" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="362" y="281" font-size="13" fill="#1f2933" text-anchor="end">347</text>
+<rect x="370" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="416" y="281" font-size="13" fill="#1f2933" text-anchor="end">465</text>
+<rect x="424" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="470" y="281" font-size="13" fill="#1f2933" text-anchor="end">188</text>
+<rect x="478" y="260" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="524" y="281" font-size="13" fill="#1f2933" text-anchor="end">−5</text>
+<text x="88" y="313" font-size="12" fill="#5f6b7a" text-anchor="end">43,5° N</text>
+<rect x="100" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="146" y="313" font-size="13" fill="#1f2933" text-anchor="end">207</text>
+<rect x="154" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="200" y="313" font-size="13" fill="#1f2933" text-anchor="end">263</text>
+<rect x="208" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="254" y="313" font-size="13" fill="#1f2933" text-anchor="end">−1 261</text>
+<rect x="262" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="308" y="313" font-size="13" fill="#1f2933" text-anchor="end">−2 117</text>
+<rect x="316" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="362" y="313" font-size="13" fill="#1f2933" text-anchor="end">−685</text>
+<rect x="370" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="416" y="313" font-size="13" fill="#1f2933" text-anchor="end">85</text>
+<rect x="424" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="470" y="313" font-size="13" fill="#1f2933" text-anchor="end">394</text>
+<rect x="478" y="292" width="54" height="32" fill="#ffffff" stroke="#d5dbe1"/>
+<text x="524" y="313" font-size="13" fill="#1f2933" text-anchor="end">454</text>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8a96a3"/></marker></defs>
+<line x1="546" y1="228" x2="590" y2="228" stroke="#8a96a3" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="604" y="98" font-size="13" font-weight="600" fill="#1f2933">Als Farben dargestellt</text>
+<rect x="604" y="132" width="36" height="32" fill="#76af4f" stroke="#ffffff" stroke-width="1"/>
+<rect x="640" y="132" width="36" height="32" fill="#79b14f" stroke="#ffffff" stroke-width="1"/>
+<rect x="676" y="132" width="36" height="32" fill="#75af4e" stroke="#ffffff" stroke-width="1"/>
+<rect x="712" y="132" width="36" height="32" fill="#94bb57" stroke="#ffffff" stroke-width="1"/>
+<rect x="748" y="132" width="36" height="32" fill="#94bb57" stroke="#ffffff" stroke-width="1"/>
+<rect x="784" y="132" width="36" height="32" fill="#91bb55" stroke="#ffffff" stroke-width="1"/>
+<rect x="820" y="132" width="36" height="32" fill="#8cba53" stroke="#ffffff" stroke-width="1"/>
+<rect x="856" y="132" width="36" height="32" fill="#86b752" stroke="#ffffff" stroke-width="1"/>
+<rect x="604" y="164" width="36" height="32" fill="#71ad4d" stroke="#ffffff" stroke-width="1"/>
+<rect x="640" y="164" width="36" height="32" fill="#91bb55" stroke="#ffffff" stroke-width="1"/>
+<rect x="676" y="164" width="36" height="32" fill="#94bb57" stroke="#ffffff" stroke-width="1"/>
+<rect x="712" y="164" width="36" height="32" fill="#a1bc5f" stroke="#ffffff" stroke-width="1"/>
+<rect x="748" y="164" width="36" height="32" fill="#b5be6b" stroke="#ffffff" stroke-width="1"/>
+<rect x="784" y="164" width="36" height="32" fill="#c0a86c" stroke="#ffffff" stroke-width="1"/>
+<rect x="820" y="164" width="36" height="32" fill="#c2ab6d" stroke="#ffffff" stroke-width="1"/>
+<rect x="856" y="164" width="36" height="32" fill="#c0a86c" stroke="#ffffff" stroke-width="1"/>
+<rect x="604" y="196" width="36" height="32" fill="#87b752" stroke="#ffffff" stroke-width="1"/>
+<rect x="640" y="196" width="36" height="32" fill="#bebf71" stroke="#ffffff" stroke-width="1"/>
+<rect x="676" y="196" width="36" height="32" fill="#b4915e" stroke="#ffffff" stroke-width="1"/>
+<rect x="712" y="196" width="36" height="32" fill="#aa8559" stroke="#ffffff" stroke-width="1"/>
+<rect x="748" y="196" width="36" height="32" fill="#a27e57" stroke="#ffffff" stroke-width="1"/>
+<rect x="784" y="196" width="36" height="32" fill="#8b6b53" stroke="#ffffff" stroke-width="1"/>
+<rect x="820" y="196" width="36" height="32" fill="#b5935f" stroke="#ffffff" stroke-width="1"/>
+<rect x="856" y="196" width="36" height="32" fill="#bb9e66" stroke="#ffffff" stroke-width="1"/>
+<rect x="604" y="228" width="36" height="32" fill="#94bb57" stroke="#ffffff" stroke-width="1"/>
+<rect x="640" y="228" width="36" height="32" fill="#a98459" stroke="#ffffff" stroke-width="1"/>
+<rect x="676" y="228" width="36" height="32" fill="#b18c5b" stroke="#ffffff" stroke-width="1"/>
+<rect x="712" y="228" width="36" height="32" fill="#7bb250" stroke="#ffffff" stroke-width="1"/>
+<rect x="748" y="228" width="36" height="32" fill="#75af4e" stroke="#ffffff" stroke-width="1"/>
+<rect x="784" y="228" width="36" height="32" fill="#84b652" stroke="#ffffff" stroke-width="1"/>
+<rect x="820" y="228" width="36" height="32" fill="#76af4f" stroke="#ffffff" stroke-width="1"/>
+<rect x="856" y="228" width="36" height="32" fill="#4d9c46" stroke="#ffffff" stroke-width="1"/>
+<rect x="604" y="260" width="36" height="32" fill="#bdbf70" stroke="#ffffff" stroke-width="1"/>
+<rect x="640" y="260" width="36" height="32" fill="#a37f58" stroke="#ffffff" stroke-width="1"/>
+<rect x="676" y="260" width="36" height="32" fill="#cdc07a" stroke="#ffffff" stroke-width="1"/>
+<rect x="712" y="260" width="36" height="32" fill="#529e47" stroke="#ffffff" stroke-width="1"/>
+<rect x="748" y="260" width="36" height="32" fill="#7ab14f" stroke="#ffffff" stroke-width="1"/>
+<rect x="784" y="260" width="36" height="32" fill="#8ab953" stroke="#ffffff" stroke-width="1"/>
+<rect x="820" y="260" width="36" height="32" fill="#65a74b" stroke="#ffffff" stroke-width="1"/>
+<rect x="856" y="260" width="36" height="32" fill="#5fb0cc" stroke="#ffffff" stroke-width="1"/>
+<rect x="604" y="292" width="36" height="32" fill="#67a84b" stroke="#ffffff" stroke-width="1"/>
+<rect x="640" y="292" width="36" height="32" fill="#6fac4d" stroke="#ffffff" stroke-width="1"/>
+<rect x="676" y="292" width="36" height="32" fill="#135684" stroke="#ffffff" stroke-width="1"/>
+<rect x="712" y="292" width="36" height="32" fill="#0c3c69" stroke="#ffffff" stroke-width="1"/>
+<rect x="748" y="292" width="36" height="32" fill="#2c78a0" stroke="#ffffff" stroke-width="1"/>
+<rect x="784" y="292" width="36" height="32" fill="#57a048" stroke="#ffffff" stroke-width="1"/>
+<rect x="820" y="292" width="36" height="32" fill="#81b451" stroke="#ffffff" stroke-width="1"/>
+<rect x="856" y="292" width="36" height="32" fill="#89b853" stroke="#ffffff" stroke-width="1"/>
+<text x="802.0" y="217" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="600">Alpen</text>
+<text x="730.0" y="313" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="600">Meer</text>
+<text x="784" y="249" font-size="11.5" fill="#1f2933" text-anchor="middle">Po-Ebene</text>
+<text x="604" y="346" font-size="12" fill="#5f6b7a">Höhe in m</text>
+<rect x="604" y="354" width="46" height="12" fill="#0d406c"/>
+<text x="627" y="382" font-size="11.5" fill="#5f6b7a" text-anchor="middle">−2 000</text>
+<rect x="650" y="354" width="46" height="12" fill="#155e8c"/>
+<text x="673" y="382" font-size="11.5" fill="#5f6b7a" text-anchor="middle">−1 000</text>
+<rect x="696" y="354" width="46" height="12" fill="#4b9b45"/>
+<text x="719" y="382" font-size="11.5" fill="#5f6b7a" text-anchor="middle">0</text>
+<rect x="742" y="354" width="46" height="12" fill="#8fbb54"/>
+<text x="765" y="382" font-size="11.5" fill="#5f6b7a" text-anchor="middle">500</text>
+<rect x="788" y="354" width="46" height="12" fill="#cdc07a"/>
+<text x="811" y="382" font-size="11.5" fill="#5f6b7a" text-anchor="middle">1 000</text>
+<rect x="834" y="354" width="46" height="12" fill="#b5935f"/>
+<text x="857" y="382" font-size="11.5" fill="#5f6b7a" text-anchor="middle">1 500</text>
+<rect x="880" y="354" width="46" height="12" fill="#927054"/>
+<text x="903" y="382" font-size="11.5" fill="#5f6b7a" text-anchor="middle">2 000</text>
+<text x="28" y="408" font-size="12.5" fill="#5f6b7a">Jede Zelle ist ein Wert: die mittlere Höhe eines Feldes von 1° × 1°. Negative Werte liegen unter dem Meeresspiegel.</text>
+</svg>
