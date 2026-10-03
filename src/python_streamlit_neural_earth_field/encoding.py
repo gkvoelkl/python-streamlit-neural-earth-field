@@ -104,51 +104,66 @@ class SphericalHarmonics(nn.Module):
         self.register_buffer("diag", diag, persistent=False)
         self.register_buffer("m", torch.arange(L + 1, dtype=torch.float32), persistent=False)
 
-        ls, ms = torch.tril_indices(L + 1, L + 1)  # all (l, m) with m <= l
-        self.register_buffer("l_zonal", torch.arange(L + 1), persistent=False)
-        self.register_buffer("l_sect", ls[ms > 0], persistent=False)
-        self.register_buffer("m_sect", ms[ms > 0], persistent=False)
-
-    def legendre(self, z: torch.Tensor, c: torch.Tensor) -> torch.Tensor:
-        """P̄_l^m(z) for z = sin(lat), c = cos(lat). Shape (N, L+1, L+1) as [l, m]."""
-        L = self.degree
-        n = z.shape[0]
-        # P̄_m^m = diag_m · c · P̄_{m-1}^{m-1}: the sectoral values all at once
-        sectoral = torch.cumprod(self.diag.to(z.dtype) * torch.cat(
-            [torch.ones_like(c)[:, None], c[:, None].expand(n, L)], dim=1), dim=1)
-
-        rows = []
-        prev2 = torch.zeros(n, L + 1, dtype=z.dtype, device=z.device)
-        prev = torch.zeros_like(prev2)
+        # Order m and phase of each feature: per degree l first Y_l0, then the cos terms
+        # m = 1..l, then the sin terms, written as cos(mφ - π/2).
+        order, phase = [], []
         for l in range(L + 1):
-            row = self.a[l] * (z[:, None] * prev - self.b[l] * prev2)
-            row = row.clone()
-            if l >= 1:
-                row[:, l - 1] = math.sqrt(2 * l + 1) * z * prev[:, l - 1]
-            row[:, l] = sectoral[:, l]
-            rows.append(row)
-            prev2, prev = prev, row
-        return torch.stack(rows, dim=1)
+            order += [0] + list(range(1, l + 1)) * 2
+            phase += [0.0] * (l + 1) + [-math.pi / 2] * l
+        self.register_buffer("feature_m", torch.tensor(order, dtype=torch.float32), persistent=False)
+        self.register_buffer("feature_phase", torch.tensor(phase), persistent=False)
 
     def forward(self, xyz: torch.Tensor) -> torch.Tensor:
-        shape = xyz.shape[:-1]
-        xyz = xyz.reshape(-1, 3)
-        x, y, z = xyz.unbind(-1)
-        c = torch.sqrt(x * x + y * y)
-        lon = torch.atan2(y, x)
+        """Y_lm = P̄_l^m(sin lat) · {1, √2 cos mφ, √2 sin mφ}, grouped by degree l.
 
-        P = self.legendre(z, c)
-        angle = lon[:, None] * self.m
-        P_sect = P[:, self.l_sect, self.m_sect] * math.sqrt(2.0)
-        features = torch.cat(
-            [
-                P[:, self.l_zonal, 0],
-                P_sect * torch.cos(angle[:, self.m_sect]),
-                P_sect * torch.sin(angle[:, self.m_sect]),
-            ],
-            dim=-1,
+        The Legendre part only depends on the latitude.  Points on a grid share few
+        latitudes -- a training batch of 32 k points has at most one per grid row --
+        so the expensive recurrence runs once per distinct latitude and the result
+        is spread to the points with a single gather.  On MPS this is the difference
+        of several times per batch at L = 40.
+        """
+        shape = xyz.shape[:-1]
+        x, y, z = xyz.reshape(-1, 3).unbind(-1)
+        z_unique, inverse = torch.unique(z, return_inverse=True)
+        # cos(lat) from x, y is more accurate near the poles than sqrt(1 - z²)
+        c_unique = torch.zeros_like(z_unique).scatter_(0, inverse, torch.sqrt(x * x + y * y))
+
+        # Everything below is (point, feature) and contiguous -- transposing or
+        # gathering columns of the ~(L+1)² wide result is what makes this slow.
+        trig = torch.cos(torch.atan2(y, x)[:, None] * self.feature_m + self.feature_phase)
+        legendre = self.legendre_table(z_unique, c_unique).T.contiguous()  # (distinct lat, feature)
+        return (legendre[inverse] * trig).reshape(*shape, self.out_dim)
+
+    def legendre_table(self, z: torch.Tensor, c: torch.Tensor) -> torch.Tensor:
+        """Normalised P̄_l^m(z) for z = sin(lat), c = cos(lat), one row per feature.
+
+        Shape (out_dim, len(z)); rows with m > 0 already carry the factor √2 and
+        appear twice (for the cos and the sin term).
+        """
+        L = self.degree
+        n = z.shape[0]
+        # P̄_m^m = diag_m · c · P̄_{m-1}^{m-1}: all sectoral values at once
+        sectoral = torch.cumprod(
+            self.diag.to(z.dtype)[:, None] * torch.cat([torch.ones_like(c)[None], c.expand(L, n)]),
+            dim=0,
         )
-        return features.reshape(*shape, self.out_dim)
+
+        table = torch.empty(self.out_dim, n, dtype=z.dtype, device=z.device)
+        prev2 = torch.zeros(L + 1, n, dtype=z.dtype, device=z.device)
+        prev = torch.zeros_like(prev2)
+        col = 0
+        for l in range(L + 1):
+            row = self.a[l, :, None] * (z * prev - self.b[l, :, None] * prev2)
+            if l >= 1:
+                row[l - 1] = math.sqrt(2 * l + 1) * z * prev[l - 1]
+            row[l] = sectoral[l]
+
+            table[col] = row[0]
+            table[col + 1 : col + 1 + l] = row[1 : l + 1] * math.sqrt(2.0)
+            table[col + 1 + l : col + 1 + 2 * l] = row[1 : l + 1] * math.sqrt(2.0)
+            col += 2 * l + 1
+            prev2, prev = prev, row
+        return table
 
 
 class Identity(nn.Module):

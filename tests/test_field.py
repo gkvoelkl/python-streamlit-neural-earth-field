@@ -144,3 +144,13 @@ def test_spherical_harmonics_store_nothing():
 def test_spherical_harmonics_require_xyz_input():
     with pytest.raises(ValueError):
         build_field(FieldConfig(encoding="spherical", input_mode="lonlat"), 0.0, 1.0)
+
+
+def test_zero_hidden_layers_is_a_linear_model():
+    """Without hidden layers only the head remains: elevation = w · features + b."""
+    field = build_field(FieldConfig(encoding="spherical", sh_degree=6, layers=0), 0.0, 1.0)
+    assert field.n_parameters() == 7**2 + 1
+    lonlat = torch.tensor([[10.0, 20.0], [-120.0, -45.0]])
+    features = field.encoding(field.transform(lonlat))
+    expected = features @ field.head.weight[0] + field.head.bias
+    assert torch.allclose(field(lonlat), expected, atol=1e-5)

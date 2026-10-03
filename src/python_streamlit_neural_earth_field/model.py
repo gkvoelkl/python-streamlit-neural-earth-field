@@ -26,7 +26,7 @@ class FieldConfig:
     fourier_seed: int = 0
     sh_degree: int = 16  # maximum degree L of the spherical harmonics
     hidden: int = 128
-    layers: int = 4  # number of hidden layers
+    layers: int = 4  # number of hidden layers; 0 = linear model on the encoding
     activation: str = "gelu"  # "gelu" | "relu" | "siren"
     siren_w0: float = 30.0
     use_context: bool = False  # coarse elevation field as extra input
@@ -51,6 +51,9 @@ PRESETS: dict[str, FieldConfig] = {
     "Spherical harmonics (L = 16)": FieldConfig(
         input_mode="xyz", encoding="spherical", sh_degree=16,
         hidden=128, layers=4, activation="relu",
+    ),
+    "Spherical harmonic expansion (L = 40, linear)": FieldConfig(
+        input_mode="xyz", encoding="spherical", sh_degree=40, layers=0,
     ),
     "Plain MLP (fails on purpose)": FieldConfig(
         input_mode="xyz", encoding="none", hidden=128, layers=4, activation="relu",
@@ -168,7 +171,10 @@ class NeuralField(nn.Module):
             blocks += [linear, act]
 
         self.body = nn.Sequential(*blocks)
-        self.head = nn.Linear(cfg.hidden, 1)
+        # Without hidden layers the head sits directly on the encoding: a plain
+        # weighted sum of basis functions (with spherical harmonics, exactly the
+        # classic spherical harmonic expansion of geodesy).
+        self.head = nn.Linear(dims[-1], 1)
         if cfg.activation == "siren":
             _siren_init(self.head, cfg.siren_w0, first=False)
 
@@ -214,7 +220,9 @@ class NeuralField(nn.Module):
         lon = np.ascontiguousarray(lon_deg, dtype=np.float32)
         lat = np.ascontiguousarray(lat_deg, dtype=np.float32)
         ny, nx = len(lat), len(lon)
-        chunk_rows = chunk_rows or max(1, 400_000 // max(nx, 1))
+        # ~100 M floats per encoded chunk, however wide the encoding is
+        points = max(1, 100_000_000 // max(self.encoding.out_dim, 256))
+        chunk_rows = chunk_rows or max(1, points // max(nx, 1))
 
         lon_t = torch.from_numpy(lon).to(device)
         was_training = self.training

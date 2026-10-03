@@ -110,12 +110,18 @@ def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
                 "σ (bandwidth)", 0.5, 20.0, cfg.sigma, 0.5,
                 help="Small = blurry, large = grainy noise.",
             )
-        cfg.activation = st.selectbox(
-            "Activation", ["gelu", "relu", "siren"],
-            index=["gelu", "relu", "siren"].index(cfg.activation),
+        cfg.layers = st.slider(
+            "Hidden layers", 0, 8, cfg.layers,
+            help="0 = no MLP at all: a linear model, i.e. a weighted sum of the encoded features.",
         )
-        cfg.hidden = st.slider("Neurons per layer", 8, 512, cfg.hidden, 8)
-        cfg.layers = st.slider("Hidden layers", 1, 8, cfg.layers)
+        if cfg.layers > 0:
+            cfg.activation = st.selectbox(
+                "Activation", ["gelu", "relu", "siren"],
+                index=["gelu", "relu", "siren"].index(cfg.activation),
+            )
+            cfg.hidden = st.slider("Neurons per layer", 8, 512, cfg.hidden, 8)
+        else:
+            st.caption("Linear model: elevation = weighted sum of the encoded features.")
         cfg.use_context = st.checkbox(
             "Provide coarse context field", value=cfg.use_context,
             help="The network then only learns the residual. The bytes of the coarse "

@@ -131,8 +131,10 @@ def train(
 
         if step % cfg.eval_every == 0 or step == cfg.steps - 1:
             field.eval()
-            with torch.no_grad():
-                eval_pred = field(eval_lonlat).cpu().numpy()
+            with torch.no_grad():  # in chunks: wide encodings get large at 200 k points
+                eval_pred = torch.cat(
+                    [field(part) for part in eval_lonlat.split(cfg.batch_size)]
+                ).cpu().numpy()
             field.train()
             yield Progress(
                 step=step + 1,
