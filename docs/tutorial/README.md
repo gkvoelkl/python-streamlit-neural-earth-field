@@ -1,0 +1,35 @@
+# Tutorial: Geodaten in neuronalen Netzen speichern
+
+Dieses Tutorial zeigt Schritt für Schritt, wie man das Höhenmodell der ganzen Erde in die Gewichte eines kleinen neuronalen Netzes packt – und warum die Gewichte dann die Datei sind. Jedes Kapitel verbindet eine Idee mit einem Experiment in der Begleit-App aus diesem Repo und den Code-Stellen, auf die es ankommt.
+
+**Zielgruppe:** Leute mit soliden Python-Kenntnissen und etwas numpy. Neuronale Netze muss man höchstens aus Einführungen kennen, Erfahrung mit Geodaten ist nicht nötig.
+
+## Vorbereitung
+
+```bash
+uv sync
+uv run streamlit run app.py
+```
+
+Optional, aber empfohlen: das globale Höhenmodell ETOPO 2022 (456 MB) nach `data/` laden, wie in der [README des Repos](../../README.md#data) beschrieben. Ohne die Datei läuft alles mit einer synthetischen Erde.
+
+Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Original und kursiv, etwa *Idea & Budget*.
+
+## Inhalt
+
+1. [Geodaten als Funktion statt als Raster](01-geodaten-als-funktion.md)
+2. Overfitting als Ziel *(in Arbeit)*
+3. Das einfachste Modell *(in Arbeit)*
+4. Koordinaten gehören auf die Kugel *(in Arbeit)*
+5. Räumliche Frequenzen und Fourier-Features *(in Arbeit)*
+6. Vertiefung: Kugelflächenfunktionen *(in Arbeit)*
+7. Vertiefung: SIREN *(in Arbeit)*
+8. Das Kontextfeld *(in Arbeit)*
+9. Rate und Fehler messen *(in Arbeit)*
+10. Abfragen, exportieren, laden *(in Arbeit)*
+11. Einordnung und Ausblick *(in Arbeit)*
+
+**Anhang**
+
+- Messungen *(in Arbeit)*
+- [Lösungen](anhang-loesungen.md)

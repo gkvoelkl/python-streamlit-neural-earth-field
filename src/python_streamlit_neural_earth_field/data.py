@@ -1,6 +1,6 @@
 """Loading and preparing the Earth's elevation grid (ETOPO 2022).
 
-The raw data is a regular grid of int16 elevations in metres.  This grid is
+The raw data is a regular grid of elevations in metres.  This grid is
 exactly what the neural field is meant to replace -- which is why
 ``ElevationGrid`` also computes how many bytes it occupies uncompressed.
 """
@@ -17,7 +17,7 @@ ETOPO_URL = (
     "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/"
     "60s_surface_elev_netcdf/ETOPO_2022_v1_60s_N90W180_surface.nc"
 )
-BYTES_PER_SAMPLE = 2  # ETOPO stores int16
+BYTES_PER_SAMPLE = 2  # whole metres fit int16; ETOPO itself stores float32, so this is conservative
 
 
 def project_root() -> Path:

@@ -14,6 +14,8 @@ uv sync
 uv run streamlit run app.py
 ```
 
+A step-by-step tutorial in German lives in [`docs/tutorial/`](docs/tutorial/README.md).
+
 ## Data
 
 Download the global elevation grid once (ETOPO 2022, 1 arc-minute, 456 MB):
