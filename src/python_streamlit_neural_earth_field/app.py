@@ -87,9 +87,23 @@ def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
             help="xyz = point on the unit sphere: no seam at ±180°, no pole distortion.",
         )
         cfg.encoding = st.selectbox(
-            "Positional encoding", ["fourier", "none"],
-            index=["fourier", "none"].index(cfg.encoding),
+            "Positional encoding", ["fourier", "spherical", "none"],
+            index=["fourier", "spherical", "none"].index(cfg.encoding),
+            help="fourier = random plane waves, spherical = spherical harmonics "
+                 "(the Fourier basis of the sphere).",
         )
+        if cfg.encoding == "spherical":
+            cfg.sh_degree = st.slider(
+                "Maximum degree L", 2, 40, cfg.sh_degree,
+                help="(L+1)² features. The finest wavelength is roughly 40,000 km / L.",
+            )
+            st.caption(
+                f"{(cfg.sh_degree + 1) ** 2} features · finest wavelength "
+                f"≈ {40_000 / cfg.sh_degree:,.0f} km"
+            )
+            if cfg.input_mode != "xyz":
+                cfg.input_mode = "xyz"
+                st.caption("Spherical harmonics live on the sphere – using `xyz` input.")
         if cfg.encoding == "fourier":
             cfg.n_features = st.slider("Fourier frequencies", 16, 512, cfg.n_features, 16)
             cfg.sigma = st.slider(
@@ -202,6 +216,22 @@ The *Plain MLP* preset omits both and visibly fails.
 
 `B` does **not** need to be stored – the seed is enough (4 bytes) to reproduce
 `B`. Otherwise the encoding would be larger than the whole network.
+            """
+        )
+    with st.expander("Spherical harmonics instead of random Fourier features"):
+        st.markdown(
+            """
+Random plane waves are a makeshift on the sphere. The Fourier basis that actually
+belongs to it are the **spherical harmonics** `Y_lm` – the same functions geodesy
+uses for gravity and topography models. The encoding `spherical` feeds all of them
+up to degree `L` into the network: complete, orthogonal, no seed needed.
+
+The catch is the price: degree `L` needs **(L+1)²** features, and every one of
+them costs a full row of weights in the first layer. `L = 16` gives 289 features
+but only resolves wavelengths of about 2,500 km directly – everything finer has
+to be built by the network from products of these functions. Fourier features
+reach high frequencies with far fewer inputs because they don't have to cover
+every direction systematically. Compare both on the error map.
             """
         )
     with st.expander("Context field (context-aware INR)"):

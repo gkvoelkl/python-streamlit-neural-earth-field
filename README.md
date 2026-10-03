@@ -49,6 +49,10 @@ synthetic test Earth.
    practically never learns high frequencies. So the network doesn't get `x`, but
    `[sin(2π B x), cos(2π B x)]` with a fixed `B ~ N(0, σ²)`. `B` itself is not
    stored -- the seed (4 bytes) is enough.
+   Alternatively, the encoding `spherical` uses **spherical harmonics** up to
+   degree `L` -- the Fourier basis that actually belongs to the sphere. Complete
+   and orthogonal, but `(L+1)²` features, so fine detail gets expensive in the
+   first layer.
 3. **Context field** (*context-aware INR*). A very coarse elevation grid is passed
    in as an additional input, and the network only predicts the residual. The
    bytes of this grid are honestly counted in the compression ratio.
@@ -94,7 +98,7 @@ for learning: the trade-off is visible, not hidden.
 ```
 src/python_streamlit_neural_earth_field/
   data.py       ETOPO loading, block-mean downsampling, area weights
-  encoding.py   lon/lat → unit sphere, Fourier features
+  encoding.py   lon/lat → unit sphere, Fourier features, spherical harmonics
   model.py      NeuralField (MLP / SIREN / context field), size bookkeeping
   training.py   overfitting loop as a generator, area-weighted sampling
   metrics.py    RMSE, weighted RMSE, MAE, PSNR, R², compression ratio
@@ -110,4 +114,6 @@ src/python_streamlit_neural_earth_field/
   Low Dimensional Domains*, NeurIPS 2020
 - Sitzmann et al., *Implicit Neural Representations with Periodic Activation
   Functions* (SIREN), NeurIPS 2020
+- Rußwurm et al., *Geographic Location Encoding with Spherical Harmonics and
+  Sinusoidal Representation Networks*, ICLR 2024
 - NOAA NCEI, *ETOPO 2022 Global Relief Model*

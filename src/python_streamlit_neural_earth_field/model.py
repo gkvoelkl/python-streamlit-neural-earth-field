@@ -14,16 +14,17 @@ import numpy as np
 import torch
 from torch import nn
 
-from .encoding import FourierFeatures, Identity, InputTransform
+from .encoding import FourierFeatures, Identity, InputTransform, SphericalHarmonics
 
 
 @dataclass
 class FieldConfig:
     input_mode: str = "xyz"  # "xyz" | "lonlat"
-    encoding: str = "fourier"  # "fourier" | "none"
+    encoding: str = "fourier"  # "fourier" | "spherical" | "none"
     n_features: int = 128  # number of Fourier frequencies
     sigma: float = 4.0  # bandwidth of the Fourier features
     fourier_seed: int = 0
+    sh_degree: int = 16  # maximum degree L of the spherical harmonics
     hidden: int = 128
     layers: int = 4  # number of hidden layers
     activation: str = "gelu"  # "gelu" | "relu" | "siren"
@@ -46,6 +47,10 @@ PRESETS: dict[str, FieldConfig] = {
     ),
     "SIREN (sine activation)": FieldConfig(
         input_mode="xyz", encoding="none", hidden=160, layers=4, activation="siren",
+    ),
+    "Spherical harmonics (L = 16)": FieldConfig(
+        input_mode="xyz", encoding="spherical", sh_degree=16,
+        hidden=128, layers=4, activation="relu",
     ),
     "Plain MLP (fails on purpose)": FieldConfig(
         input_mode="xyz", encoding="none", hidden=128, layers=4, activation="relu",
@@ -134,6 +139,10 @@ class NeuralField(nn.Module):
             self.encoding: nn.Module = FourierFeatures(
                 self.transform.out_dim, cfg.n_features, cfg.sigma, cfg.fourier_seed
             )
+        elif cfg.encoding == "spherical":
+            if cfg.input_mode != "xyz":
+                raise ValueError("encoding='spherical' requires input_mode='xyz'")
+            self.encoding = SphericalHarmonics(self.transform.out_dim, cfg.sh_degree)
         else:
             self.encoding = Identity(self.transform.out_dim)
 

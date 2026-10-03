@@ -9,6 +9,7 @@ import pytest
 import torch
 
 from python_streamlit_neural_earth_field.data import synthetic_grid
+from python_streamlit_neural_earth_field.encoding import SphericalHarmonics, lonlat_to_xyz
 from python_streamlit_neural_earth_field.model import (
     PRESETS,
     CoarseContext,
@@ -31,7 +32,13 @@ def _field(preset: str, grid) -> NeuralField:
 
 
 @pytest.mark.parametrize(
-    "preset", ["Fourier MLP (recommended)", "Fourier MLP + context field", "SIREN (sine activation)"]
+    "preset",
+    [
+        "Fourier MLP (recommended)",
+        "Fourier MLP + context field",
+        "SIREN (sine activation)",
+        "Spherical harmonics (L = 16)",
+    ],
 )
 def test_export_reload_is_exact_in_float32(preset, grid):
     """The loading snippet from the Export tab must yield the same field."""
@@ -105,3 +112,35 @@ def test_area_weighted_sampling_prefers_the_equator(grid):
     uniform = Sampler(grid, torch.device("cpu"), False, 0)(20000)[0].numpy()
     equator = grid.ny / 2
     assert np.abs(weighted - equator).mean() < np.abs(uniform - equator).mean()
+
+
+def test_spherical_harmonics_are_orthonormal():
+    """Area-weighted mean of Y_i · Y_j over the sphere must be the identity matrix."""
+    sh = SphericalHarmonics(3, 8)
+    ny, nx = 200, 400
+    lat = torch.linspace(-90 + 90 / ny, 90 - 90 / ny, ny, dtype=torch.float64)
+    lon = torch.linspace(-180 + 180 / nx, 180 - 180 / nx, nx, dtype=torch.float64)
+    lat2d, lon2d = torch.meshgrid(lat, lon, indexing="ij")
+    Y = sh(lonlat_to_xyz(lon2d.reshape(-1), lat2d.reshape(-1)))
+    w = torch.cos(torch.deg2rad(lat2d.reshape(-1)))
+    gram = (Y * (w / w.sum())[:, None]).T @ Y
+    assert Y.shape[1] == 81
+    assert (gram - torch.eye(81, dtype=gram.dtype)).abs().max() < 1e-3
+
+
+def test_spherical_harmonics_have_no_seam_and_no_pole_problem():
+    sh = SphericalHarmonics(3, 20)
+    west = sh(lonlat_to_xyz(torch.tensor([179.9999]), torch.tensor([33.0])))
+    east = sh(lonlat_to_xyz(torch.tensor([-179.9999]), torch.tensor([33.0])))
+    assert (west - east).abs().max() < 1e-3
+    assert torch.isfinite(sh(torch.tensor([[0.0, 0.0, 1.0], [0.0, 0.0, -1.0]]))).all()
+
+
+def test_spherical_harmonics_store_nothing():
+    field = build_field(FieldConfig(encoding="spherical", sh_degree=10), 0.0, 1.0)
+    assert not any(k.startswith("encoding.") for k in field.state_dict())
+
+
+def test_spherical_harmonics_require_xyz_input():
+    with pytest.raises(ValueError):
+        build_field(FieldConfig(encoding="spherical", input_mode="lonlat"), 0.0, 1.0)
