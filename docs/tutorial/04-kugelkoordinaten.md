@@ -1,4 +1,4 @@
-# Kapitel 4 · Koordinaten gehören auf die Kugel
+# Kapitel 4 · Die Erde ist eine Kugel
 
 ![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Die leuchtende Eichel steht links auf dem Tisch und hält den Faden.](img/kapitel-04-chester.jpg)
 
@@ -6,31 +6,53 @@
 
 ## Ausgangspunkt
 
-In Kapitel 3 bekam das Netz Länge und Breite als Eingabe – so, wie man Orte auf einer Weltkarte angibt. Für Menschen ist das praktisch. Für das Netz hat es zwei Haken, denn die Weltkarte ist ein Rechteck, die Erde aber eine Kugel.
+In Kapitel 3 bekam das neuronale Netz Länge und Breite als Eingabe – so, wie man Orte auf einer Weltkarte angibt. Für Menschen ist das praktisch. Für das neuronale Netz ist das nicht so einfach.
 
-## Zwei Haken an Länge und Breite
+## Zwei Haken bei Länge und Breite
 
 ![Links eine Kugel mit zwei benachbarten Punkten A und B an der Datumsgrenze, 22 km voneinander entfernt, und dem Nordpol als einzelnem Punkt. Rechts eine rechteckige Weltkarte, auf der A ganz rechts bei +179,9° und B ganz links bei −179,9° liegt; die obere Kante der Karte ist der Nordpol.](img/naht-und-pole.svg)
 
-**Die Naht.** Die Länge läuft von −180° bis +180°. Ein Punkt bei 179,9° Ost und einer bei 179,9° West liegen auf der Erde nur 22 km auseinander – beide im Pazifik, ganz in der Nähe der Datumsgrenze, die ungefähr dem 180. Längengrad folgt. Für das Netz sind es aber die Zahlen +179,9 und −179,9: so verschieden, wie zwei Längen nur sein können. Das Netz müsste lernen, dass zwei völlig verschiedene Eingaben fast dieselbe Höhe haben. Mit der Methode aus Kapitel 3, die aus vielen geraden Rampen eine Fläche baut, ist genau das schwer.
+**Die Naht.** Die Länge läuft von −180° bis +180°. Ein Punkt bei 179,9° Ost und einer bei 179,9° West liegen auf der Erde nur 22 km auseinander – beide im Pazifik, ganz in der Nähe der Datumsgrenze, die ungefähr dem 180. Längengrad folgt. 
 
-**Die Pole.** Am Nordpol hat die Länge keine Bedeutung: Jede Länge zwischen −180° und +180° beschreibt denselben Punkt. Im Raster ist die oberste Zeile trotzdem eine ganze Reihe von 2 160 Zellen mit verschiedenen Längen. Für das Netz sind das 2 160 verschiedene Eingaben für einen einzigen Ort. Am Südpol ist es genauso.
+Für das neuronale Netz sind es aber die Zahlen +179,9 und −179,9: so verschieden, wie zwei Längen nur sein können. Das Netz müsste lernen, dass zwei völlig verschiedene Eingaben fast dieselbe Höhe haben. Mit der Methode aus Kapitel 3, die aus vielen geraden Rampen eine Fläche baut, ist das schwer.
 
-Beides liegt nicht an der Erde, sondern an der Art, wie wir sie beschreiben: Das Rechteck der Weltkarte hat Ränder, die Kugel hat keine.
+**Die Pole.** Am Nordpol hat die Länge keine Bedeutung: Jede Länge zwischen −180° und +180° beschreibt denselben Punkt. Im Raster ist die oberste Zeile trotzdem eine ganze Reihe von 2 160 Zellen mit verschiedenen Längen. 
+
+Für das neuronale Netz sind das 2 160 verschiedene Eingaben für einen einzigen Ort. Am Südpol ist es genauso.
+
+Das liegt an der Art, wie wir sie beschreiben: Das Rechteck der Weltkarte hat Ränder, die Erdkugel hat keine.
 
 ## Der Punkt auf der Kugel
 
-Die Lösung: Man beschreibt einen Ort nicht durch zwei Winkel, sondern durch seine Lage im Raum. Dazu stellt man sich die Erde als Kugel mit dem Radius 1 vor, mit dem Erdmittelpunkt als Ursprung. Jeder Ort ist dann ein Punkt auf dieser Kugel und hat drei Koordinaten *x*, *y* und *z*.
+Die Lösung: Man beschreibt einen Ort nicht durch zwei Winkel (Länge, Breite), sondern durch seine Lage im Raum. 
+
+Dazu stellt man sich die Erde als Kugel mit dem Radius 1 vor, mit dem Erdmittelpunkt als Ursprung. Jeder Ort ist dann ein Punkt auf dieser Kugel und hat drei Koordinaten *x*, *y* und *z*.
 
 ![Eine Kugel mit drei Achsen: x zeigt zum Punkt 0° Ost, 0° Nord, y zu 90° Ost, 0° Nord, z zum Nordpol. Regensburg ist als Punkt auf der Kugel markiert. Rechts die Umrechnungsformeln und die Werte für Regensburg: x = 0,64, y = 0,14, z = 0,75.](img/kugel-xyz.svg)
 
 Aus Länge und Breite rechnet man sie so aus:
 
 ```math
-x = \cos(\text{Breite}) \cdot \cos(\text{Länge}) \qquad
-y = \cos(\text{Breite}) \cdot \sin(\text{Länge}) \qquad
+x = \cos(\text{Breite}) \cdot \cos(\text{Länge})
+```
+
+```math
+y = \cos(\text{Breite}) \cdot \sin(\text{Länge})
+```
+
+```math
 z = \sin(\text{Breite})
 ```
+
+Was die drei Formeln bedeuten, zeigt das Beispiel Regensburg Schritt für Schritt:
+
+![Drei Abschnitte. 1: In der Seitenansicht liegt Regensburg 49° über dem Äquator; daraus folgen die Höhe z = sin(49°) = 0,75 und der Abstand zur Erdachse r = cos(49°) = 0,66. 2: Von oben auf den Nordpol gesehen liegt Regensburg auf einem Kreis mit Radius 0,66, um 12,1° gegen die Richtung 0° Ost gedreht; der Anteil in Richtung 0° Ost ist x = 0,66 · cos(12,1°) = 0,64. 3: Der Anteil in Richtung 90° Ost ist y = 0,66 · sin(12,1°) = 0,14.](img/xyz-schritte.svg)
+
+1. **Die Breite bestimmt die Höhe.** Je weiter nördlich ein Ort liegt, desto höher liegt er über der Ebene des Äquators: z = sin(Breite). Gleichzeitig rückt er näher an die Erdachse heran; der Abstand zur Achse ist r = cos(Breite).
+2. **Die Länge verteilt diesen Abstand auf zwei Richtungen.** Von oben auf den Nordpol gesehen liegen alle Orte gleicher Breite auf einem Kreis mit dem Radius r. Die Länge ist der Winkel auf diesem Kreis. Der Anteil in Richtung 0° Ost ist x = r · cos(Länge).
+3. **Der Rest zeigt in Richtung 90° Ost:** y = r · sin(Länge).
+
+Setzt man r = cos(Breite) ein, ergeben sich genau die drei Formeln oben.
 
 Ein paar Beispiele:
 
@@ -51,13 +73,15 @@ Der Preis ist gering. Statt zwei Eingaben hat das Netz drei, und jedes Neuron de
 
 ## Was das ausmacht
 
-Wie groß der Unterschied ist, zeigt ein Vergleich: dieselbe Vorlage *Plain MLP* mit 4 versteckten Schichten, dasselbe Raster, dasselbe Training – einmal mit Länge und Breite, einmal mit Kugelkoordinaten. Das Bild zeigt den Pazifik zu beiden Seiten des 180. Längengrades.
+Wie groß der Unterschied ist, zeigt ein Vergleich: dieselbe Architektur, ein einfaches MLP (Vorlage *Plain MLP*) mit 4 versteckten Schichten, dasselbe Raster, dasselbe Training – einmal mit Länge und Breite, einmal mit Kugelkoordinaten als Eingabeformat. 
+
+Das Bild zeigt den Pazifik zu beiden Seiten des 180. Längengrades.
 
 ![Drei Karten des Pazifiks zwischen 160° Ost und 160° West, von 50° Süd bis 10° Nord, mit dem 180. Längengrad als gestrichelter Linie. Links das Original mit Tiefseegräben und Neuseeland. In der Mitte das mit Länge und Breite gelernte Netz: An der gestrichelten Linie verläuft eine senkrechte Kante, links davon ist es heller als rechts. Rechts das mit Kugelkoordinaten gelernte Netz: keine Kante an der Linie.](img/naht-pazifik.png)
 
 Mit Länge und Breite hat das Netz an der 180°-Linie eine sichtbare **Naht**: Die Höhe springt dort, obwohl das Gelände auf beiden Seiten weitergeht. Entlang der ganzen Linie vom Süd- zum Nordpol beträgt der Sprung im Mittel 675 m. Mit Kugelkoordinaten verschwindet er fast vollständig: im Mittel 2 m.
 
-Beide Netze haben dieselbe Größe und sind gleich lange trainiert. Feine Einzelheiten wie die Tiefseegräben fehlen beiden noch – das ist das Thema von Kapitel 5.
+Beide Netze haben dieselbe Größe und sind gleich lange trainiert.
 
 ## Ausprobieren
 
@@ -83,4 +107,4 @@ Beide Netze haben dieselbe Größe und sind gleich lange trainiert. Feine Einzel
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 3 · Architektur eines neuronalen Netzes](03-architektur.md) · Weiter: Kapitel 5 · Räumliche Frequenzen und Fourier-Features *(in Arbeit)*
+[Übersicht](README.md) · Zurück: [Kapitel 3 · Architektur eines neuronalen Netzes](03-architektur.md) · Weiter: [Kapitel 5 · Räumliche Frequenzen und Fourier-Features](05-fourier-features.md)
