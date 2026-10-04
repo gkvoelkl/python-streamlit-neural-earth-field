@@ -160,5 +160,6 @@ def test_log_ticks_label_the_whole_range():
     from python_streamlit_neural_earth_field.viz import log_ticks
 
     assert log_ticks(230, 2600) == [200, 300, 500, 1000, 2000, 3000]
-    assert log_ticks(1000, 1000) == [100, 200, 300, 500, 1000, 2000, 3000, 5000, 10000]
+    assert log_ticks(2600, 2800) == []  # well under a decade: Plotly's own labels
+    assert log_ticks(1, 120_000)[:3] == [1, 2, 3]
     assert log_ticks(0, 10) == []

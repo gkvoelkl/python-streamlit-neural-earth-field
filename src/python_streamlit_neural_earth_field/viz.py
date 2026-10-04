@@ -173,12 +173,24 @@ def log_ticks(lo: float, hi: float) -> list[float]:
 
     Plotly's own log ticks label the minor steps with a single digit ("2", "3"),
     which reads as 2 m and 3 m instead of 2000 m and 3000 m.
+    Returns an empty list when fewer than two such steps fall inside the range:
+    then the range spans well under a decade and Plotly's own labels are fine.
     """
     if not (lo > 0 and hi > 0):
         return []
     ticks = [m * 10.0**e for e in range(-2, 8) for m in (1, 2, 3, 5)]
-    inside = [t for t in ticks if lo / 1.2 <= t <= hi * 1.2]
-    return inside if len(inside) >= 2 else [t for t in ticks if lo / 10 <= t <= hi * 10]
+    if sum(lo <= t <= hi for t in ticks) < 2:
+        return []
+    return [t for t in ticks if lo / 1.5 <= t <= hi * 1.5]
+
+
+def log_axis(title: str, lo: float, hi: float) -> dict:
+    """Layout for a log axis with full tick labels (see ``log_ticks``)."""
+    axis = dict(title=title, type="log")
+    ticks = log_ticks(lo, hi)
+    if ticks:
+        axis.update(tickvals=ticks, ticktext=[f"{t:,.0f}" if t >= 1 else f"{t:g}" for t in ticks])
+    return axis
 
 
 def loss_curve(steps: list[int], rmse: list[float], height: int = 300) -> go.Figure:
@@ -188,15 +200,11 @@ def loss_curve(steps: list[int], rmse: list[float], height: int = 300) -> go.Fig
             hovertemplate="step %{x}<br>RMSE %{y:,.1f} m<extra></extra>",
         )
     )
-    ticks = log_ticks(min(rmse), max(rmse)) if rmse else []
     fig.update_layout(
         height=height,
         margin=dict(l=60, r=10, t=10, b=40),
         xaxis=dict(title="Training step"),
-        yaxis=dict(
-            title="RMSE on the evaluation sample [m]", type="log",
-            tickvals=ticks, ticktext=[f"{t:,.0f}" if t >= 1 else f"{t:g}" for t in ticks],
-        ),
+        yaxis=log_axis("RMSE on the evaluation sample [m]", min(rmse, default=0), max(rmse, default=0)),
     )
     return fig
 
@@ -205,12 +213,21 @@ def error_histogram(err: np.ndarray, height: int = 300) -> go.Figure:
     sample = err.ravel()
     if sample.size > 400_000:
         sample = np.random.default_rng(0).choice(sample, 400_000, replace=False)
-    fig = go.Figure(go.Histogram(x=sample, nbinsx=120, marker_color="#2a86b0"))
+    # Binned here rather than by Plotly, so the count range is known for the log axis.
+    counts, edges = np.histogram(sample, bins=120)
+    centres = (edges[:-1] + edges[1:]) / 2
+    fig = go.Figure(
+        go.Bar(
+            x=centres, y=counts, width=np.diff(edges), marker_color="#2a86b0",
+            hovertemplate="%{x:,.0f} m: %{y:,} grid points<extra></extra>",
+        )
+    )
+    positive = counts[counts > 0]
     fig.update_layout(
         height=height,
-        margin=dict(l=50, r=10, t=10, b=40),
+        margin=dict(l=60, r=10, t=10, b=40),
         xaxis=dict(title="Error [m]"),
-        yaxis=dict(title="Number of grid points", type="log"),
+        yaxis=log_axis("Number of grid points", float(positive.min(initial=1)), float(positive.max(initial=1))),
         bargap=0.02,
     )
     return fig
