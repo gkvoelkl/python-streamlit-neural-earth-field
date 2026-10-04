@@ -25,17 +25,17 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 1 | 1 | Geodaten als Funktion statt als Raster | fertig |
 | 2 | 1 | Training des neuronalen Netzes | fertig |
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
-| 4 | | Koordinaten gehören auf die Kugel | geplant |
-| 5 | | Räumliche Frequenzen und Fourier-Features | geplant |
-| 6 | | Vertiefung: Kugelflächenfunktionen | geplant |
-| 7 | | Vertiefung: SIREN | geplant |
-| 8 | | Das Kontextfeld | geplant |
-| 9 | | Rate und Fehler messen | geplant |
-| 10 | | Abfragen und exportieren | geplant |
-| 11 | | Einordnung und Ausblick | geplant |
+| 4 | 2 | Koordinaten gehören auf die Kugel | geplant |
+| 5 | 2 | Räumliche Frequenzen und Fourier-Features | geplant |
+| 6 | 2 | Vertiefung: Kugelflächenfunktionen | geplant |
+| 7 | 2 | Vertiefung: SIREN | geplant |
+| 8 | 2 | Das Kontextfeld | geplant |
+| 9 | 3 | Rate und Fehler messen | geplant |
+| 10 | 3 | Abfragen und exportieren | geplant |
+| 11 | 3 | Einordnung und Ausblick | geplant |
 | Anhang | | Messungen | geplant |
 
-**Teil 1 · Grundlagen** umfasst die Kapitel 1 bis 3. Die Einteilung der übrigen Kapitel in Teile steht noch aus. Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
+**Teil 1 · Grundlagen:** Kapitel 1 bis 3. **Teil 2 · Bessere Netze für Geodaten:** Kapitel 4 bis 8. **Teil 3 · Messen, nutzen, einordnen:** Kapitel 9 bis 11. Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
 
 ### 1 · Geodaten als Funktion statt als Raster — fertig
 
