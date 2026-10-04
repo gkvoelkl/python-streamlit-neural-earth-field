@@ -1,6 +1,6 @@
 # Kapitel 5 · Räumliche Frequenzen und Fourier-Features
 
-![Chester mit blauer Kappe sitzt mit geschlossenen Augen an einer Harfe. Von der Harfe ziehen viele leuchtende Wellen über eine Erdkugel hinweg zu Aiko, der leuchtenden Eichel, die sie mit offenen Armen auffängt.](img/kapitel-05-chester.jpg)
+![Chester mit blauer Kappe sitzt mit geschlossenen Augen an einer Harfe. Von der Harfe ziehen viele leuchtende Wellen über eine Erdkugel hinweg zur leuchtenden Eichel, die sie mit offenen Armen auffängt.](img/kapitel-05-chester.jpg)
 
 **Inhalt:** Warum ein Höhenmodell aus Wellen besteht, warum ein einfaches Netz die kurzen Wellen kaum lernt und wie Fourier-Features das ändern – mit dem Regler σ als wichtigster Stellschraube.
 
