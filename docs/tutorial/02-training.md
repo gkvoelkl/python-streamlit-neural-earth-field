@@ -1,6 +1,6 @@
 # Kapitel 2 · Training des neuronalen Netzes
 
-![Chester mit blauer Kappe und Klemmbrett als Trainer. Vor ihm stemmt eine leuchtende Eichel mit dünnen Ärmchen, Beinchen und Turnschuhen eine Langhantel über den Kopf; im Körper der Eichel leuchten feine Netzlinien. Im Hintergrund schwebt eine Erdkugel aus Pixeln.](img/kapitel-02-chester.jpg)
+![Chester mit blauer Kappe und Klemmbrett als Trainer. Vor ihm stemmt Aiko, ein leuchtendes neuronales Netz mit dünnen Ärmchen, Beinchen und Turnschuhen, eine Langhantel über den Kopf; in Aikos Körper leuchten feine Netzlinien. Im Hintergrund schwebt eine Erdkugel aus Pixeln.](img/kapitel-02-chester.jpg)
 
 **Inhalt:** Wie das Netz seine Parameter (Gewichte) lernt, warum es hier alles auswendig lernen soll, warum die Pole einen Ausgleich brauchen und woran man sieht, wie gut das Training läuft.
 

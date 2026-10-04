@@ -1,10 +1,10 @@
 # Chester-Bilder: Prompts
 
-Jedes Kapitel beginnt mit einem eigenen Bild von Chester. Erzeugt mit Kling AI (*Image 3.0*, 2K HD, 16:9) und [`chester-referenz.png`](chester-referenz.png) als Referenzbild. Im Repo liegt jeweils eine auf 1600 px Breite verkleinerte JPG-Fassung.
+Jedes Kapitel beginnt mit einem eigenen Bild von Chester. Zweite Figur ist Aiko, ein leuchtendes neuronales Netz. In den englischen Prompts heißt Aiko „acorn“, weil Kling die Form so zuverlässig trifft; in deutschen Texten wird das Wort „Eichel“ nicht verwendet. Erzeugt mit Kling AI (*Image 3.0*, 2K HD, 16:9) und [`chester-referenz.png`](chester-referenz.png) als Referenzbild. Im Repo liegt jeweils eine auf 1600 px Breite verkleinerte JPG-Fassung.
 
 ## Kapitel 1 · `kapitel-01-chester.jpg`
 
-Idee: Chester packt die ganze, aus Pixeln bestehende Erde in eine einzige Eichel – das Raster wird zu etwas Kleinem.
+Idee: Chester packt die ganze, aus Pixeln bestehende Erde in Aiko, ein kleines leuchtendes Netz – das Raster wird zu etwas Kleinem.
 
 ```
 Use the squirrel from the reference image as the main character: Chester, a fox squirrel
@@ -27,7 +27,7 @@ Ausgewählt: Bild 4 von 4 der zweiten Runde.
 
 ## Kapitel 2 · `kapitel-02-chester.jpg`
 
-Idee: Das Bild steht vor dem Text, die Leser kennen nur den Titel. Es zeigt deshalb „Training“ und „neuronales Netz“ direkt: Chester trainiert die leuchtende Netz-Eichel aus Kapitel 1. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-01-chester.jpg` (Bild 2, für die Eichel).
+Idee: Das Bild steht vor dem Text, die Leser kennen nur den Titel. Es zeigt deshalb „Training“ und „neuronales Netz“ direkt: Chester trainiert Aiko, das leuchtende Netz aus Kapitel 1. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-01-chester.jpg` (Bild 2, für Aiko).
 
 ```
 Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
@@ -49,13 +49,13 @@ motivating mood. Wide composition: the acorn in the center-left, Chester on the 
 both in sharp focus. No other text or logos.
 ```
 
-Ausgewählt: Bild 2 von 4 der zweiten Runde. Erste Runde ohne zweites Referenzbild verworfen: Die Eichel sah anders aus als in Kapitel 1 (teils mit Brille), und die Kappe stimmte nicht.
+Ausgewählt: Bild 2 von 4 der zweiten Runde. Erste Runde ohne zweites Referenzbild verworfen: Aiko sah anders aus als in Kapitel 1 (teils mit Brille), und die Kappe stimmte nicht.
 
-**Erkenntnis:** Für wiederkehrende Figuren wie die Eichel das Bild des Vorkapitels als zusätzliches Referenzbild mitgeben und die Kappe ausdrücklich beschreiben.
+**Erkenntnis:** Für wiederkehrende Figuren wie Aiko das Bild des Vorkapitels als zusätzliches Referenzbild mitgeben und die Kappe ausdrücklich beschreiben.
 
 ## Kapitel 3 · `kapitel-03-chester.jpg`
 
-Idee: Titel „Architektur eines neuronalen Netzes“. Links das einfachste Modell als einzelnes Brett, in der Mitte ein Gebirge, das die Eichel aus vielen geraden Stäben und Knoten gebaut hat – viele einfache Stücke ergeben eine Form, wie die Knicke der Neuronen. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-02-chester.jpg` (Bild 2, Eichel mit Ärmchen).
+Idee: Titel „Architektur eines neuronalen Netzes“. Links das einfachste Modell als einzelnes Brett, in der Mitte ein Gebirge, das Aiko aus vielen geraden Stäben und Knoten gebaut hat – viele einfache Stücke ergeben eine Form, wie die Knicke der Neuronen. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-02-chester.jpg` (Bild 2, Aiko mit Ärmchen).
 
 ```
 Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
@@ -79,11 +79,11 @@ Wide composition: plank on the far left, acorn and mountain model in the center,
 fully visible on the right, all in sharp focus. No other text or logos.
 ```
 
-Ausgewählt: Bild 4 von 4 der zweiten Runde. Die erste Runde (Werkstatt im Kontrollraum, Eichel mit letztem Leuchtstab) zeigte entweder das Netz gut oder den Gesamtaufbau gut, nicht beides; der Prompt oben verbindet beides.
+Ausgewählt: Bild 4 von 4 der zweiten Runde. Die erste Runde (Werkstatt im Kontrollraum, Aiko mit letztem Leuchtstab) zeigte entweder das Netz gut oder den Gesamtaufbau gut, nicht beides; der Prompt oben verbindet beides.
 
 ## Kapitel 4 · `kapitel-04-chester.jpg`
 
-Idee: Titel „Koordinaten gehören auf die Kugel“. Chester als Schneider macht aus der flachen Weltkarte eine Kugel und näht die Kante zusammen; die Eichel hält den Faden. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-03-chester.jpg` (Bild 2, Eichel).
+Idee: Titel „Koordinaten gehören auf die Kugel“. Chester als Schneider macht aus der flachen Weltkarte eine Kugel und näht die Kante zusammen; Aiko hält den Faden. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-03-chester.jpg` (Bild 2, Aiko).
 
 ```
 Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
@@ -110,7 +110,7 @@ Ausgewählt: Bild 1 von 4 der ersten Runde. Eine zweite Runde mit einer dicken r
 
 ## Kapitel 5 · `kapitel-05-chester.jpg`
 
-Die Eichel heißt ab jetzt **Aiko**. Idee: Titel „Räumliche Frequenzen und Fourier-Features“. Chester erzeugt die Wellen mit einer Harfe, Aiko fängt sie auf – die Wellen sind die Eingabe, Aiko ist das Netz. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-03-chester.jpg` (Bild 2, Aiko).
+Die Figur heißt ab jetzt **Aiko**. Idee: Titel „Räumliche Frequenzen und Fourier-Features“. Chester erzeugt die Wellen mit einer Harfe, Aiko fängt sie auf – die Wellen sind die Eingabe, Aiko ist das Netz. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-03-chester.jpg` (Bild 2, Aiko).
 
 ```
 Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a

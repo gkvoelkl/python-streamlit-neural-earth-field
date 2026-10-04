@@ -1,6 +1,6 @@
 # Kapitel 3 · Architektur eines neuronalen Netzes
 
-![In einer dunklen Holzwerkstatt lehnt links ein einfaches Brett an der Wand. Daneben steht die leuchtende Eichel mit Ärmchen und Turnschuhen vor einem großen Gebirgsmodell, das aus vielen geraden Leuchtstäben und hellen Knoten wie ein Netz gebaut ist. Rechts betrachtet Chester mit blauer Kappe, Notizblock und Stift das Modell.](img/kapitel-03-chester.jpg)
+![In einer dunklen Holzwerkstatt lehnt links ein einfaches Brett an der Wand. Daneben steht Aiko, ein leuchtendes neuronales Netz mit Ärmchen und Turnschuhen, vor einem großen Gebirgsmodell, das aus vielen geraden Leuchtstäben und hellen Knoten wie ein Netz gebaut ist. Rechts betrachtet Chester mit blauer Kappe, Notizblock und Stift das Modell.](img/kapitel-03-chester.jpg)
 
 **Inhalt:** Was in einem neuronalen Netz eigentlich gerechnet wird – vom einfachsten Modell, einer gewichteten Summe, über ein einzelnes Neuron bis zum Netz mit mehreren Schichten.
 

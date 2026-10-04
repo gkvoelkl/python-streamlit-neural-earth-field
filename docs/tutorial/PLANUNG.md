@@ -12,7 +12,7 @@ Arbeitsdokument für die Autoren, nicht Teil des Tutorials. Stand: 3. Oktober 20
 - **Chester:** Jedes Kapitel beginnt mit einem eigenen Bild von Chester, erzeugt mit Kling AI und `img/chester-referenz.png` als Referenz. Prompts stehen in [`img/chester-prompts.md`](img/chester-prompts.md).
 - **Zahlen erklären, bevor sie auftauchen.** Bezugsgröße ist das Standardbeispiel: ETOPO 2022 auf 1080 × 2160 gemittelt, Vorlage *Fourier MLP (recommended)*, 82 561 Gewichte.
 - **Quellen** im Text als [1], [2] …, am Kapitelende „Weiterführende Links“. Jede Quelle vorher prüfen.
-- **Figuren:** Chester (Eichhörnchen mit blauer Kappe) und Aiko, die leuchtende Eichel – Aiko steht für das neuronale Netz.
+- **Figuren:** Chester (Eichhörnchen mit blauer Kappe) und Aiko, ein leuchtendes neuronales Netz mit Ärmchen und Beinchen. Beide Namen dürfen im Text vorkommen, wo es passt. Das Wort „Eichel“ wird nicht verwendet (Doppeldeutigkeit im Deutschen).
 - **Sprache:** Tutorial auf Deutsch, Begriffe aus der englischen App im Original und kursiv.
 
 ## Zielgruppe
@@ -43,7 +43,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Lernziel:** Ein Höhenraster als Funktion begreifen, seine Rohgröße ausrechnen und die Kompressionsrate ehrlich bestimmen.
 - **Inhalt:** ETOPO 2022 und seine Zeilen und Spalten; vom Raster zur Funktion; was Gewichte sind (Straßenbeispiel); das Standardbeispiel; Lernen andersherum; Rohgröße und Netzgröße; Verkleinern auf die Arbeitsauflösung.
 - **In der App:** *Idea & Budget*, Regler *Grid resolution*, Vorlagen vergleichen.
-- **Chester:** packt die gepixelte Erde in eine leuchtende Eichel.
+- **Chester:** packt die gepixelte Erde in Aiko, ein kleines leuchtendes neuronales Netz.
 
 ### 2 · Training des neuronalen Netzes — fertig
 
@@ -51,7 +51,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Inhalt:** Training in Schritten: zufällige Gitterzellen ziehen, Fehler messen, Gewichte ein wenig verbessern. Fehlermaße RMSE, MAE und R² in Worten. Warum Zellen am Pol kleiner sind als am Äquator und deshalb mit cos(Breite) gewichtet werden; gewichteter RMSE. Fehlerkurve lesen.
 - **In der App:** *Training*, einmal mit und einmal ohne *Area-weighted sampling*.
 - **Ideen:** Schritte und Lernrate variieren; beobachten, wann die Fehlerkurve abflacht.
-- **Chester:** als Trainer mit Klemmbrett; die leuchtende Netz-Eichel aus Kapitel 1 (mit Ärmchen und Beinchen) stemmt eine Hantel.
+- **Chester:** als Trainer mit Klemmbrett; Aiko (mit Ärmchen und Beinchen) stemmt eine Hantel.
 
 ### 3 · Architektur eines neuronalen Netzes — fertig
 
@@ -59,7 +59,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Inhalt:** 0 versteckte Schichten = gewichtete Summe der Eingaben; ohne Kodierung eine schräge Ebene durch die Erde. Der Knick zwischen den Schichten macht daraus ein MLP. Anknüpfung an das Straßenbeispiel aus Kapitel 1.
 - **In der App:** *Hidden layers* auf 0, Kodierung `none`, dann mehr Schichten.
 - **Ideen:** Parameterzahl bei 0, 1 und 4 Schichten vergleichen; Ergebnis auf der Karte ansehen.
-- **Chester:** als Baumeister in der Werkstatt; links ein einfaches Brett, in der Mitte ein Gebirge, das die Eichel aus Leuchtstäben und Knoten wie ein Netz gebaut hat.
+- **Chester:** als Baumeister in der Werkstatt; links ein einfaches Brett, in der Mitte ein Gebirge, das Aiko aus Leuchtstäben und Knoten wie ein Netz gebaut hat.
 
 ### 4 · Die Erde ist eine Kugel — Entwurf
 
@@ -67,7 +67,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Inhalt:** (lon, lat) liegt auf einem Rechteck, die Erde ist eine Kugel. Der Punkt (x, y, z) auf der Einheitskugel hat weder Naht noch entartete Pole.
 - **In der App:** Eingabe `lonlat` gegen `xyz`, Fehlerkarte an der Datumsgrenze vergleichen.
 - **Ideen:** Gezielt den Pazifik bei 180° auf der Fehlerkarte ansehen.
-- **Chester:** als Schneider; er wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen, die Eichel hält den Faden.
+- **Chester:** als Schneider; er wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen, Aiko hält den Faden.
 
 ### 5 · Räumliche Frequenzen und Fourier-Features — Entwurf
 
@@ -107,7 +107,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Inhalt:** Mehrere Netzbreiten auf demselben Gitter; Kompressionsrate gegen Fehler. Unten rechts wäre ideal. PSNR in Worten.
 - **In der App:** *Rate & Error*, mit und ohne Kontextfeld.
 - **Ideen:** Welche Rate erreicht man bei einem bestimmten Fehler?
-- **Chester:** wiegt Eicheln gegen Kartenstapel auf einer Waage.
+- **Chester:** wiegt Aiko gegen einen Kartenstapel auf einer Waage.
 
 ### 10 · Abfragen und exportieren
 
@@ -115,7 +115,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Inhalt:** Abfrage an beliebigen Koordinaten – ehrlich: keine echte Super-Resolution, nur glatte Interpolation. Export in float32 und float16 und was float16 kostet. Die App zeigt ein Ladebeispiel; das Tutorial verweist darauf, ohne Code abzudrucken.
 - **In der App:** *Super-Resolution* und *Export*.
 - **Ideen:** Einen kleinen Ausschnitt sehr fein abfragen und mit dem Trainingsgitter vergleichen.
-- **Chester:** verschickt seine Eichel als Päckchen.
+- **Chester:** verschickt Aiko als Päckchen.
 
 ### 11 · Einordnung und Ausblick
 

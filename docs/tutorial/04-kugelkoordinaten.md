@@ -1,6 +1,6 @@
 # Kapitel 4 · Die Erde ist eine Kugel
 
-![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Die leuchtende Eichel steht links auf dem Tisch und hält den Faden.](img/kapitel-04-chester.jpg)
+![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Aiko, ein leuchtendes neuronales Netz, steht links auf dem Tisch und hält den Faden.](img/kapitel-04-chester.jpg)
 
 **Inhalt:** Warum Länge und Breite eine schlechte Eingabe für das Netz sind, wie man einen Ort stattdessen als Punkt auf einer Kugel beschreibt und was das an der Datumsgrenze und an den Polen ändert.
 

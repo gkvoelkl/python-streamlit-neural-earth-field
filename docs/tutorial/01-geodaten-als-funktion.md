@@ -1,6 +1,6 @@
 # Kapitel 1 · Geodaten als Funktion statt als Raster
 
-![Chester, das Eichhörnchen mit der blauen Kappe, hält eine leuchtende Eichel. Aus einer Erdkugel, die aus kleinen Pixel-Quadraten besteht, fließt eine Spirale in die Eichel.](img/kapitel-01-chester.jpg)
+![Chester, das Eichhörnchen mit der blauen Kappe, hält Aiko in den Pfoten, ein kleines leuchtendes neuronales Netz. Aus einer Erdkugel, die aus kleinen Pixel-Quadraten besteht, fließt eine Spirale in Aiko hinein.](img/kapitel-01-chester.jpg)
 
 ![Das Netz ersetzt das Raster und ist 14-mal kleiner: Höhenraster mit 2 332 800 Werten wird trainiert zu einem neuronalen Feld mit 82 561 Gewichten, das an jeder Koordinate abgefragt werden kann. Gespeichert werden 323 KB statt 4,4 MB.](img/geodaten-zu-netz.svg)
 
