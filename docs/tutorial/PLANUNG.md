@@ -12,6 +12,7 @@ Arbeitsdokument für die Autoren, nicht Teil des Tutorials. Stand: 3. Oktober 20
 - **Chester:** Jedes Kapitel beginnt mit einem eigenen Bild von Chester, erzeugt mit Kling AI und `img/chester-referenz.png` als Referenz. Prompts stehen in [`img/chester-prompts.md`](img/chester-prompts.md).
 - **Zahlen erklären, bevor sie auftauchen.** Bezugsgröße ist das Standardbeispiel: ETOPO 2022 auf 1080 × 2160 gemittelt, Vorlage *Fourier MLP (recommended)*, 82 561 Gewichte.
 - **Quellen** im Text als [1], [2] …, am Kapitelende „Weiterführende Links“. Jede Quelle vorher prüfen.
+- **Figuren:** Chester (Eichhörnchen mit blauer Kappe) und Aiko, die leuchtende Eichel – Aiko steht für das neuronale Netz.
 - **Sprache:** Tutorial auf Deutsch, Begriffe aus der englischen App im Original und kursiv.
 
 ## Zielgruppe
@@ -25,8 +26,8 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 1 | 1 | Geodaten als Funktion statt als Raster | fertig |
 | 2 | 1 | Training des neuronalen Netzes | fertig |
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
-| 4 | 2 | Koordinaten gehören auf die Kugel | Entwurf |
-| 5 | 2 | Räumliche Frequenzen und Fourier-Features | geplant |
+| 4 | 2 | Die Erde ist eine Kugel | Entwurf |
+| 5 | 2 | Räumliche Frequenzen und Fourier-Features | Entwurf |
 | 6 | 2 | Vertiefung: Kugelflächenfunktionen | geplant |
 | 7 | 2 | Vertiefung: SIREN | geplant |
 | 8 | 2 | Das Kontextfeld | geplant |
@@ -60,7 +61,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Parameterzahl bei 0, 1 und 4 Schichten vergleichen; Ergebnis auf der Karte ansehen.
 - **Chester:** als Baumeister in der Werkstatt; links ein einfaches Brett, in der Mitte ein Gebirge, das die Eichel aus Leuchtstäben und Knoten wie ein Netz gebaut hat.
 
-### 4 · Koordinaten gehören auf die Kugel — Entwurf
+### 4 · Die Erde ist eine Kugel — Entwurf
 
 - **Lernziel:** Die Naht bei ±180° und die Pole als Problem der Eingabe erkennen.
 - **Inhalt:** (lon, lat) liegt auf einem Rechteck, die Erde ist eine Kugel. Der Punkt (x, y, z) auf der Einheitskugel hat weder Naht noch entartete Pole.
@@ -68,13 +69,13 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Gezielt den Pazifik bei 180° auf der Fehlerkarte ansehen.
 - **Chester:** als Schneider; er wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen, die Eichel hält den Faden.
 
-### 5 · Räumliche Frequenzen und Fourier-Features
+### 5 · Räumliche Frequenzen und Fourier-Features — Entwurf
 
 - **Lernziel:** Räumliche Frequenz und *spectral bias* verstehen, σ bewusst wählen.
 - **Inhalt:** Auch Höhen haben Frequenzen: Wellen pro Strecke, von Kontinenten bis zu Graten. Ein einfaches Netz lernt lange Wellen schnell, kurze kaum. Fourier-Features liefern die Wellen fertig; die Zufallsmatrix entsteht aus einem Startwert und wird nicht gespeichert.
 - **In der App:** *Plain MLP* gegen *Fourier MLP*; σ auf 1, 6 und 20.
 - **Ideen:** Bei welchem σ wird die Fehlerkarte körnig?
-- **Chester:** zupft an Saiten, die über die Erdkugel gespannt sind.
+- **Chester:** spielt Harfe; die Wellen ziehen über die Erde zu Aiko, die sie auffängt (Chester erzeugt die Wellen, Aiko bekommt sie).
 
 ### 6 · Vertiefung: Kugelflächenfunktionen
 

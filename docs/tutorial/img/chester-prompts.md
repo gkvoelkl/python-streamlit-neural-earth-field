@@ -107,3 +107,31 @@ seam, the acorn on the left, all in sharp focus. No text or logos except on the 
 ```
 
 Ausgewählt: Bild 1 von 4 der ersten Runde. Eine zweite Runde mit einer dicken roten Naht über eine ganze Kugel brachte deutlichere Nähte; ausgewählt wurde trotzdem das Bild der ersten Runde.
+
+## Kapitel 5 · `kapitel-05-chester.jpg`
+
+Die Eichel heißt ab jetzt **Aiko**. Idee: Titel „Räumliche Frequenzen und Fourier-Features“. Chester erzeugt die Wellen mit einer Harfe, Aiko fängt sie auf – die Wellen sind die Eingabe, Aiko ist das Netz. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-03-chester.jpg` (Bild 2, Aiko).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the glowing acorn with
+thin cartoon arms and legs and small sneakers: a glossy brown scaly acorn cap with a short
+stem on a translucent, warm amber-glowing body with fine luminous lines inside, and a
+simple friendly face. The acorn must look exactly like in image 2, no glasses, no other
+accessories. Scene: a magical music room at night. In the center stands a large harp whose
+frame is shaped around a glowing globe of the Earth; its strings are stretched across the
+globe, from very thick strings on one side to very thin strings on the other. Chester sits
+on the left and plays the harp with both paws, eyes half closed, enjoying the music. From
+the strings, glowing waves of light flow through the air to the right: long, slow, gentle
+waves from the thick strings and short, fast, tightly packed waves from the thin strings,
+in warm gold and soft blue. On the right, the glowing acorn stands with open arms and
+catches the waves; where the waves reach it, its body glows brighter and the luminous
+lines inside light up. The acorn looks delighted. Wide composition: Chester with the harp
+on the left and center, the flowing waves in the middle, the acorn on the right, all in
+sharp focus. No text, no musical notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 1 von 4 der ersten Runde. Eine zweite Runde (Chester mit beiden Pfoten an den Saiten, ausdrücklich ohne Noten) wurde erzeugt, ausgewählt blieb das Bild der ersten Runde.
