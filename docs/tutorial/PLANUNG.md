@@ -23,8 +23,8 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | Nr. | Kapitel | Stand |
 |---:|---|---|
 | 1 | Geodaten als Funktion statt als Raster | fertig |
-| 2 | Training des neuronalen Netzes | Entwurf |
-| 3 | Das einfachste Modell | geplant |
+| 2 | Training des neuronalen Netzes | fertig |
+| 3 | Architektur eines neuronalen Netzes | Entwurf |
 | 4 | Koordinaten gehören auf die Kugel | geplant |
 | 5 | Räumliche Frequenzen und Fourier-Features | geplant |
 | 6 | Vertiefung: Kugelflächenfunktionen | geplant |
@@ -44,7 +44,7 @@ Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
 - **In der App:** *Idea & Budget*, Regler *Grid resolution*, Vorlagen vergleichen.
 - **Chester:** packt die gepixelte Erde in eine leuchtende Eichel.
 
-### 2 · Training des neuronalen Netzes — Entwurf
+### 2 · Training des neuronalen Netzes — fertig
 
 - **Lernziel:** Verstehen, wie das Netz trainiert wird, warum es hier keine Testdaten gibt und was Erfolg stattdessen heißt. Den Begriff Overfitting erst im Kapitel einführen, nicht im Titel.
 - **Inhalt:** Training in Schritten: zufällige Gitterzellen ziehen, Fehler messen, Gewichte ein wenig verbessern. Fehlermaße RMSE, MAE und R² in Worten. Warum Zellen am Pol kleiner sind als am Äquator und deshalb mit cos(Breite) gewichtet werden; gewichteter RMSE. Fehlerkurve lesen.
@@ -52,13 +52,13 @@ Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
 - **Ideen:** Schritte und Lernrate variieren; beobachten, wann die Fehlerkurve abflacht.
 - **Chester:** als Trainer mit Klemmbrett; die leuchtende Netz-Eichel aus Kapitel 1 (mit Ärmchen und Beinchen) stemmt eine Hantel.
 
-### 3 · Das einfachste Modell
+### 3 · Architektur eines neuronalen Netzes — Entwurf
 
 - **Lernziel:** Sehen, was ein lineares Modell kann und warum ein Netz versteckte Schichten braucht.
 - **Inhalt:** 0 versteckte Schichten = gewichtete Summe der Eingaben; ohne Kodierung eine schräge Ebene durch die Erde. Der Knick zwischen den Schichten macht daraus ein MLP. Anknüpfung an das Straßenbeispiel aus Kapitel 1.
 - **In der App:** *Hidden layers* auf 0, Kodierung `none`, dann mehr Schichten.
 - **Ideen:** Parameterzahl bei 0, 1 und 4 Schichten vergleichen; Ergebnis auf der Karte ansehen.
-- **Chester:** versucht, ein Gebirge mit einem einzigen Lineal nachzubauen.
+- **Chester:** als Baumeister in der Werkstatt; links ein einfaches Brett, in der Mitte ein Gebirge, das die Eichel aus Leuchtstäben und Knoten wie ein Netz gebaut hat.
 
 ### 4 · Koordinaten gehören auf die Kugel
 

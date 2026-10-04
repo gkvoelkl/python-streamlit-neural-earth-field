@@ -52,3 +52,31 @@ both in sharp focus. No other text or logos.
 Ausgewählt: Bild 2 von 4 der zweiten Runde. Erste Runde ohne zweites Referenzbild verworfen: Die Eichel sah anders aus als in Kapitel 1 (teils mit Brille), und die Kappe stimmte nicht.
 
 **Erkenntnis:** Für wiederkehrende Figuren wie die Eichel das Bild des Vorkapitels als zusätzliches Referenzbild mitgeben und die Kappe ausdrücklich beschreiben.
+
+## Kapitel 3 · `kapitel-03-chester.jpg`
+
+Idee: Titel „Architektur eines neuronalen Netzes“. Links das einfachste Modell als einzelnes Brett, in der Mitte ein Gebirge, das die Eichel aus vielen geraden Stäben und Knoten gebaut hat – viele einfache Stücke ergeben eine Form, wie die Knicke der Neuronen. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-02-chester.jpg` (Bild 2, Eichel mit Ärmchen).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the glowing acorn with
+thin cartoon arms and legs and small sneakers: a glossy brown scaly acorn cap with a short
+stem on a translucent, warm amber-glowing body with fine luminous lines inside, and a
+simple friendly face. The acorn must look exactly like in image 2, no glasses, no other
+accessories. Scene: a dark, cozy wooden workshop at night. On the far left, a single plain
+straight wooden plank leans clearly visible against the wall: the simplest possible model.
+In the center stands a large model of a mountain range that the acorn has built like an
+architect: it is made of many thin straight glowing rods joined at small bright glowing
+nodes, forming a clear triangular network, like a wireframe or a neural network. The rods
+and nodes are clearly visible, with warm orange light, and together they form several
+peaks and valleys. The acorn stands at the foot of the mountain model on the left, smiling
+proudly. On the right, Chester stands upright as the master architect, holding a small
+notepad and a pencil, looking at the model with an approving smile. Warm, playful mood.
+Wide composition: plank on the far left, acorn and mountain model in the center, Chester
+fully visible on the right, all in sharp focus. No other text or logos.
+```
+
+Ausgewählt: Bild 4 von 4 der zweiten Runde. Die erste Runde (Werkstatt im Kontrollraum, Eichel mit letztem Leuchtstab) zeigte entweder das Netz gut oder den Gesamtaufbau gut, nicht beides; der Prompt oben verbindet beides.

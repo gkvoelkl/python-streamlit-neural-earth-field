@@ -19,7 +19,7 @@ Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Ori
 
 1. [Geodaten als Funktion statt als Raster](01-geodaten-als-funktion.md)
 2. [Training des neuronalen Netzes](02-training.md)
-3. Das einfachste Modell *(in Arbeit)*
+3. [Architektur eines neuronalen Netzes](03-architektur.md)
 4. Koordinaten gehören auf die Kugel *(in Arbeit)*
 5. Räumliche Frequenzen und Fourier-Features *(in Arbeit)*
 6. Vertiefung: Kugelflächenfunktionen *(in Arbeit)*
