@@ -20,22 +20,22 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 
 ## Kapitel
 
-| Nr. | Kapitel | Stand |
-|---:|---|---|
-| 1 | Geodaten als Funktion statt als Raster | fertig |
-| 2 | Training des neuronalen Netzes | fertig |
-| 3 | Architektur eines neuronalen Netzes | Entwurf |
-| 4 | Koordinaten gehören auf die Kugel | geplant |
-| 5 | Räumliche Frequenzen und Fourier-Features | geplant |
-| 6 | Vertiefung: Kugelflächenfunktionen | geplant |
-| 7 | Vertiefung: SIREN | geplant |
-| 8 | Das Kontextfeld | geplant |
-| 9 | Rate und Fehler messen | geplant |
-| 10 | Abfragen und exportieren | geplant |
-| 11 | Einordnung und Ausblick | geplant |
-| Anhang | Messungen | geplant |
+| Nr. | Teil | Kapitel | Stand |
+|---:|---:|---|---|
+| 1 | 1 | Geodaten als Funktion statt als Raster | fertig |
+| 2 | 1 | Training des neuronalen Netzes | fertig |
+| 3 | 1 | Architektur eines neuronalen Netzes | fertig |
+| 4 | | Koordinaten gehören auf die Kugel | geplant |
+| 5 | | Räumliche Frequenzen und Fourier-Features | geplant |
+| 6 | | Vertiefung: Kugelflächenfunktionen | geplant |
+| 7 | | Vertiefung: SIREN | geplant |
+| 8 | | Das Kontextfeld | geplant |
+| 9 | | Rate und Fehler messen | geplant |
+| 10 | | Abfragen und exportieren | geplant |
+| 11 | | Einordnung und Ausblick | geplant |
+| Anhang | | Messungen | geplant |
 
-Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
+**Teil 1 · Grundlagen** umfasst die Kapitel 1 bis 3. Die Einteilung der übrigen Kapitel in Teile steht noch aus. Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
 
 ### 1 · Geodaten als Funktion statt als Raster — fertig
 
@@ -52,7 +52,7 @@ Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
 - **Ideen:** Schritte und Lernrate variieren; beobachten, wann die Fehlerkurve abflacht.
 - **Chester:** als Trainer mit Klemmbrett; die leuchtende Netz-Eichel aus Kapitel 1 (mit Ärmchen und Beinchen) stemmt eine Hantel.
 
-### 3 · Architektur eines neuronalen Netzes — Entwurf
+### 3 · Architektur eines neuronalen Netzes — fertig
 
 - **Lernziel:** Sehen, was ein lineares Modell kann und warum ein Netz versteckte Schichten braucht.
 - **Inhalt:** 0 versteckte Schichten = gewichtete Summe der Eingaben; ohne Kodierung eine schräge Ebene durch die Erde. Der Knick zwischen den Schichten macht daraus ein MLP. Anknüpfung an das Straßenbeispiel aus Kapitel 1.

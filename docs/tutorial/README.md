@@ -17,16 +17,21 @@ Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Ori
 
 ## Inhalt
 
+### Teil 1 · Grundlagen
+
 1. [Geodaten als Funktion statt als Raster](01-geodaten-als-funktion.md)
 2. [Training des neuronalen Netzes](02-training.md)
 3. [Architektur eines neuronalen Netzes](03-architektur.md)
+
+### Weitere Kapitel *(in Arbeit)*
+
 4. Koordinaten gehören auf die Kugel *(in Arbeit)*
 5. Räumliche Frequenzen und Fourier-Features *(in Arbeit)*
 6. Vertiefung: Kugelflächenfunktionen *(in Arbeit)*
 7. Vertiefung: SIREN *(in Arbeit)*
 8. Das Kontextfeld *(in Arbeit)*
 9. Rate und Fehler messen *(in Arbeit)*
-10. Abfragen, exportieren, laden *(in Arbeit)*
+10. Abfragen und exportieren *(in Arbeit)*
 11. Einordnung und Ausblick *(in Arbeit)*
 
 **Anhang**
