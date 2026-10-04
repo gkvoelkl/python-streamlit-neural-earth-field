@@ -1,0 +1,86 @@
+# Kapitel 4 · Koordinaten gehören auf die Kugel
+
+![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Die leuchtende Eichel steht links auf dem Tisch und hält den Faden.](img/kapitel-04-chester.jpg)
+
+**Inhalt:** Warum Länge und Breite eine schlechte Eingabe für das Netz sind, wie man einen Ort stattdessen als Punkt auf einer Kugel beschreibt und was das an der Datumsgrenze und an den Polen ändert.
+
+## Ausgangspunkt
+
+In Kapitel 3 bekam das Netz Länge und Breite als Eingabe – so, wie man Orte auf einer Weltkarte angibt. Für Menschen ist das praktisch. Für das Netz hat es zwei Haken, denn die Weltkarte ist ein Rechteck, die Erde aber eine Kugel.
+
+## Zwei Haken an Länge und Breite
+
+![Links eine Kugel mit zwei benachbarten Punkten A und B an der Datumsgrenze, 22 km voneinander entfernt, und dem Nordpol als einzelnem Punkt. Rechts eine rechteckige Weltkarte, auf der A ganz rechts bei +179,9° und B ganz links bei −179,9° liegt; die obere Kante der Karte ist der Nordpol.](img/naht-und-pole.svg)
+
+**Die Naht.** Die Länge läuft von −180° bis +180°. Ein Punkt bei 179,9° Ost und einer bei 179,9° West liegen auf der Erde nur 22 km auseinander – beide im Pazifik, ganz in der Nähe der Datumsgrenze, die ungefähr dem 180. Längengrad folgt. Für das Netz sind es aber die Zahlen +179,9 und −179,9: so verschieden, wie zwei Längen nur sein können. Das Netz müsste lernen, dass zwei völlig verschiedene Eingaben fast dieselbe Höhe haben. Mit der Methode aus Kapitel 3, die aus vielen geraden Rampen eine Fläche baut, ist genau das schwer.
+
+**Die Pole.** Am Nordpol hat die Länge keine Bedeutung: Jede Länge zwischen −180° und +180° beschreibt denselben Punkt. Im Raster ist die oberste Zeile trotzdem eine ganze Reihe von 2 160 Zellen mit verschiedenen Längen. Für das Netz sind das 2 160 verschiedene Eingaben für einen einzigen Ort. Am Südpol ist es genauso.
+
+Beides liegt nicht an der Erde, sondern an der Art, wie wir sie beschreiben: Das Rechteck der Weltkarte hat Ränder, die Kugel hat keine.
+
+## Der Punkt auf der Kugel
+
+Die Lösung: Man beschreibt einen Ort nicht durch zwei Winkel, sondern durch seine Lage im Raum. Dazu stellt man sich die Erde als Kugel mit dem Radius 1 vor, mit dem Erdmittelpunkt als Ursprung. Jeder Ort ist dann ein Punkt auf dieser Kugel und hat drei Koordinaten *x*, *y* und *z*.
+
+![Eine Kugel mit drei Achsen: x zeigt zum Punkt 0° Ost, 0° Nord, y zu 90° Ost, 0° Nord, z zum Nordpol. Regensburg ist als Punkt auf der Kugel markiert. Rechts die Umrechnungsformeln und die Werte für Regensburg: x = 0,64, y = 0,14, z = 0,75.](img/kugel-xyz.svg)
+
+Aus Länge und Breite rechnet man sie so aus:
+
+```math
+x = \cos(\text{Breite}) \cdot \cos(\text{Länge}) \qquad
+y = \cos(\text{Breite}) \cdot \sin(\text{Länge}) \qquad
+z = \sin(\text{Breite})
+```
+
+Ein paar Beispiele:
+
+| Ort | Länge | Breite | x | y | z |
+|---|---:|---:|---:|---:|---:|
+| Golf von Guinea | 0° | 0° | 1 | 0 | 0 |
+| Indischer Ozean | 90° O | 0° | 0 | 1 | 0 |
+| Nordpol | beliebig | 90° N | 0 | 0 | 1 |
+| Regensburg | 12,1° O | 49,0° N | 0,64 | 0,14 | 0,75 |
+| Pazifik, Punkt A | 179,9° O | 0° | −1,000 | +0,002 | 0 |
+| Pazifik, Punkt B | 179,9° W | 0° | −1,000 | −0,002 | 0 |
+
+Die beiden Punkte an der Datumsgrenze haben jetzt fast dieselben Zahlen, genau wie es ihrer Lage auf der Erde entspricht. Und am Nordpol ist es egal, welche Länge man einsetzt: Weil cos(90°) = 0 ist, kommt immer (0, 0, 1) heraus – ein Ort, eine Beschreibung.
+
+Kurz gesagt: **Wer auf der Erde nah beieinander liegt, hat jetzt auch ähnliche Zahlen.** Es gibt keine Ränder und keine Naht mehr, über die das Netz stolpern könnte.
+
+Der Preis ist gering. Statt zwei Eingaben hat das Netz drei, und jedes Neuron der ersten Schicht braucht ein Gewicht mehr – bei 128 Neuronen sind das 128 zusätzliche Gewichte. Deshalb zeigte die App in Kapitel 3 zum Beispiel 4 statt 3 Gewichte für das einfachste Modell.
+
+## Was das ausmacht
+
+Wie groß der Unterschied ist, zeigt ein Vergleich: dieselbe Vorlage *Plain MLP* mit 4 versteckten Schichten, dasselbe Raster, dasselbe Training – einmal mit Länge und Breite, einmal mit Kugelkoordinaten. Das Bild zeigt den Pazifik zu beiden Seiten des 180. Längengrades.
+
+![Drei Karten des Pazifiks zwischen 160° Ost und 160° West, von 50° Süd bis 10° Nord, mit dem 180. Längengrad als gestrichelter Linie. Links das Original mit Tiefseegräben und Neuseeland. In der Mitte das mit Länge und Breite gelernte Netz: An der gestrichelten Linie verläuft eine senkrechte Kante, links davon ist es heller als rechts. Rechts das mit Kugelkoordinaten gelernte Netz: keine Kante an der Linie.](img/naht-pazifik.png)
+
+Mit Länge und Breite hat das Netz an der 180°-Linie eine sichtbare **Naht**: Die Höhe springt dort, obwohl das Gelände auf beiden Seiten weitergeht. Entlang der ganzen Linie vom Süd- zum Nordpol beträgt der Sprung im Mittel 675 m. Mit Kugelkoordinaten verschwindet er fast vollständig: im Mittel 2 m.
+
+Beide Netze haben dieselbe Größe und sind gleich lange trainiert. Feine Einzelheiten wie die Tiefseegräben fehlen beiden noch – das ist das Thema von Kapitel 5.
+
+## Ausprobieren
+
+1. In der Seitenleiste unter *2 · Network* die Vorlage *Plain MLP (fails on purpose)* wählen und *Architecture details* aufklappen.
+2. Ganz oben steht *Coordinate input*. Voreingestellt ist `xyz` – die Kugelkoordinaten aus diesem Kapitel. Die Alternative `lonlat` gibt Länge und Breite direkt ins Netz.
+
+   <img src="img/app-koordinaten-eingabe.png" alt="Seitenleiste mit aufgeklappten Architecture details: Die Auswahl Coordinate input ist geöffnet und zeigt die beiden Möglichkeiten xyz und lonlat." width="300">
+
+3. Mit `lonlat` trainieren und im Reiter *Maps & Error* die Fehlerkarte am rechten und linken Rand ansehen. Dann mit `xyz` trainieren und vergleichen.
+4. Im Reiter *Globe 3D* lässt sich die Erde drehen. Den Regler *View direction (longitude)* auf 180 stellen: Dann schaut man direkt auf die Naht.
+
+## Ideen zum Weiterprobieren
+
+- Auf der Fehlerkarte nicht nur auf die Naht achten, sondern auch auf die Polargebiete: Wie sieht die Antarktis mit `lonlat` und mit `xyz` aus?
+- Unter *1 · Data* die *Grid resolution* klein stellen (180 × 360), damit das Training schnell geht, und mehrmals zwischen `lonlat` und `xyz` wechseln.
+- Einen bekannten Ort in Kugelkoordinaten umrechnen, zum Beispiel mit dem Taschenrechner und den Formeln oben. Bei welchen Orten ist *x* negativ, wo *y*, wo *z*?
+
+## Weiterführende Links
+
+- Wikipedia: [Kugelkoordinaten](https://de.wikipedia.org/wiki/Kugelkoordinaten) – Umrechnung zwischen Winkeln und *x*, *y*, *z*; dort mit dem Winkel vom Nordpol aus statt mit der geografischen Breite
+- Wikipedia: [Datumsgrenze](https://de.wikipedia.org/wiki/Datumsgrenze) – verläuft im Pazifik ungefähr entlang des 180. Längengrades
+- Rußwurm et al.: [Geographic Location Encoding with Spherical Harmonics and Sinusoidal Representation Networks](https://arxiv.org/abs/2310.06743), ICLR 2024 – zeigt, dass Verfahren, die die Erde als Rechteck behandeln, vor allem an den Polen Fehler erzeugen (Englisch)
+
+---
+
+[Übersicht](README.md) · Zurück: [Kapitel 3 · Architektur eines neuronalen Netzes](03-architektur.md) · Weiter: Kapitel 5 · Räumliche Frequenzen und Fourier-Features *(in Arbeit)*

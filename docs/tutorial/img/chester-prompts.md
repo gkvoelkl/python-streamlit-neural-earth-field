@@ -80,3 +80,30 @@ fully visible on the right, all in sharp focus. No other text or logos.
 ```
 
 Ausgewählt: Bild 4 von 4 der zweiten Runde. Die erste Runde (Werkstatt im Kontrollraum, Eichel mit letztem Leuchtstab) zeigte entweder das Netz gut oder den Gesamtaufbau gut, nicht beides; der Prompt oben verbindet beides.
+
+## Kapitel 4 · `kapitel-04-chester.jpg`
+
+Idee: Titel „Koordinaten gehören auf die Kugel“. Chester als Schneider macht aus der flachen Weltkarte eine Kugel und näht die Kante zusammen; die Eichel hält den Faden. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-03-chester.jpg` (Bild 2, Eichel).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the glowing acorn with
+thin cartoon arms and legs and small sneakers: a glossy brown scaly acorn cap with a short
+stem on a translucent, warm amber-glowing body with fine luminous lines inside, and a
+simple friendly face. The acorn must look exactly like in image 2, no glasses, no other
+accessories. Scene: a cozy tailor's workshop at night. On a large wooden work table lies
+a big ball. Chester, as a tailor with a measuring tape around his neck, is wrapping a flat
+rectangular paper world map around the ball like fabric: the left and right edges of the
+map meet in a vertical seam, and Chester is stitching this seam closed with a large
+needle. At the top of the ball, the upper edge of the map is gathered and pinched together
+into one single point, the North Pole. The glowing acorn stands on the table next to the
+ball and holds the end of the thread for Chester, smiling. The map shows clearly
+recognizable continents in green and brown and oceans in blue. Warm, playful mood. Wide
+composition: the ball with the map in the center, Chester on the right working on the
+seam, the acorn on the left, all in sharp focus. No text or logos except on the cap.
+```
+
+Ausgewählt: Bild 1 von 4 der ersten Runde. Eine zweite Runde mit einer dicken roten Naht über eine ganze Kugel brachte deutlichere Nähte; ausgewählt wurde trotzdem das Bild der ersten Runde.

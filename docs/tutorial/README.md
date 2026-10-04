@@ -25,7 +25,7 @@ Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Ori
 
 ### Teil 2 · Bessere Netze für Geodaten *(in Arbeit)*
 
-4. Koordinaten gehören auf die Kugel *(in Arbeit)*
+4. [Koordinaten gehören auf die Kugel](04-kugelkoordinaten.md)
 5. Räumliche Frequenzen und Fourier-Features *(in Arbeit)*
 6. Vertiefung: Kugelflächenfunktionen *(in Arbeit)*
 7. Vertiefung: SIREN *(in Arbeit)*

@@ -25,7 +25,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 1 | 1 | Geodaten als Funktion statt als Raster | fertig |
 | 2 | 1 | Training des neuronalen Netzes | fertig |
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
-| 4 | 2 | Koordinaten gehören auf die Kugel | geplant |
+| 4 | 2 | Koordinaten gehören auf die Kugel | Entwurf |
 | 5 | 2 | Räumliche Frequenzen und Fourier-Features | geplant |
 | 6 | 2 | Vertiefung: Kugelflächenfunktionen | geplant |
 | 7 | 2 | Vertiefung: SIREN | geplant |
@@ -60,13 +60,13 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Parameterzahl bei 0, 1 und 4 Schichten vergleichen; Ergebnis auf der Karte ansehen.
 - **Chester:** als Baumeister in der Werkstatt; links ein einfaches Brett, in der Mitte ein Gebirge, das die Eichel aus Leuchtstäben und Knoten wie ein Netz gebaut hat.
 
-### 4 · Koordinaten gehören auf die Kugel
+### 4 · Koordinaten gehören auf die Kugel — Entwurf
 
 - **Lernziel:** Die Naht bei ±180° und die Pole als Problem der Eingabe erkennen.
 - **Inhalt:** (lon, lat) liegt auf einem Rechteck, die Erde ist eine Kugel. Der Punkt (x, y, z) auf der Einheitskugel hat weder Naht noch entartete Pole.
 - **In der App:** Eingabe `lonlat` gegen `xyz`, Fehlerkarte an der Datumsgrenze vergleichen.
 - **Ideen:** Gezielt den Pazifik bei 180° auf der Fehlerkarte ansehen.
-- **Chester:** näht eine flache Weltkarte zu einem Ball zusammen.
+- **Chester:** als Schneider; er wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen, die Eichel hält den Faden.
 
 ### 5 · Räumliche Frequenzen und Fourier-Features
 

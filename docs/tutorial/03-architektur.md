@@ -150,4 +150,4 @@ Die Kontinente sind runder und besser zu erkennen. Feine Einzelheiten fehlen abe
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 2 · Training des neuronalen Netzes](02-training.md) · Weiter: Kapitel 4 · Koordinaten gehören auf die Kugel *(in Arbeit)*
+[Übersicht](README.md) · Zurück: [Kapitel 2 · Training des neuronalen Netzes](02-training.md) · Weiter: [Kapitel 4 · Koordinaten gehören auf die Kugel](04-kugelkoordinaten.md)
