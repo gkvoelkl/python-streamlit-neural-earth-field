@@ -107,4 +107,4 @@ Beide Netze haben dieselbe Größe und sind gleich lange trainiert.
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 3 · Architektur eines neuronalen Netzes](03-architektur.md) · Weiter: [Kapitel 5 · Räumliche Frequenzen und Fourier-Features](05-fourier-features.md)
+[Übersicht](README.md) · Zurück: [Kapitel 3 · Architektur eines neuronalen Netzes](03-architektur.md) · Weiter: [Kapitel 5 · Höhen als Wellen](05-fourier-features.md)

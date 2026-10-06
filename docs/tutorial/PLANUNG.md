@@ -27,7 +27,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 2 | 1 | Training des neuronalen Netzes | fertig |
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
 | 4 | 2 | Die Erde ist eine Kugel | Entwurf |
-| 5 | 2 | Räumliche Frequenzen und Fourier-Features | Entwurf |
+| 5 | 2 | Höhen als Wellen | Entwurf |
 | 6 | 2 | Vertiefung: Kugelflächenfunktionen | geplant |
 | 7 | 2 | Vertiefung: SIREN | geplant |
 | 8 | 2 | Das Kontextfeld | geplant |
@@ -69,7 +69,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Gezielt den Pazifik bei 180° auf der Fehlerkarte ansehen.
 - **Chester:** als Schneider; er wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen, Aiko hält den Faden.
 
-### 5 · Räumliche Frequenzen und Fourier-Features — Entwurf
+### 5 · Höhen als Wellen — Entwurf
 
 - **Lernziel:** Räumliche Frequenz und *spectral bias* verstehen, σ bewusst wählen.
 - **Inhalt:** Auch Höhen haben Frequenzen: Wellen pro Strecke, von Kontinenten bis zu Graten. Ein einfaches Netz lernt lange Wellen schnell, kurze kaum. Fourier-Features liefern die Wellen fertig; die Zufallsmatrix entsteht aus einem Startwert und wird nicht gespeichert.

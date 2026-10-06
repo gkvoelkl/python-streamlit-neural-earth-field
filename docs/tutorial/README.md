@@ -26,7 +26,7 @@ Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Ori
 ### Teil 2 · Bessere Netze für Geodaten *(in Arbeit)*
 
 4. [Die Erde ist eine Kugel](04-kugelkoordinaten.md)
-5. [Räumliche Frequenzen und Fourier-Features](05-fourier-features.md)
+5. [Höhen als Wellen](05-fourier-features.md)
 6. Vertiefung: Kugelflächenfunktionen *(in Arbeit)*
 7. Vertiefung: SIREN *(in Arbeit)*
 8. Das Kontextfeld *(in Arbeit)*
