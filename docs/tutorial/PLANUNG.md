@@ -29,7 +29,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 4 | 2 | Die Erde ist eine Kugel | fertig |
 | 5 | 2 | Höhen als Wellen | fertig |
 | 6 | 2 | Vertiefung: Kugelflächenfunktionen | fertig |
-| 7 | 2 | Vertiefung: SIREN | geplant |
+| 7 | 2 | Vertiefung: SIREN | Entwurf, Chester-Bild fehlt |
 | 8 | 2 | Das Kontextfeld | geplant |
 | 9 | 3 | Rate und Fehler messen | geplant |
 | 10 | 3 | Abfragen und exportieren | geplant |
@@ -85,10 +85,10 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** L variieren und auf Parameterzahl und Trainingsdauer achten.
 - **Chester:** setzt als Mosaikkünstler eine Erdkugel aus Kacheln zusammen, Aiko steht mit dem Sortierkasten daneben.
 
-### 7 · Vertiefung: SIREN
+### 7 · Vertiefung: SIREN — Entwurf
 
 - **Lernziel:** Sinus als Aktivierung als Alternative zur Kodierung kennen.
-- **Inhalt:** Sinus statt Knick in jeder Schicht, ohne Fourier-Features. Funktioniert nur mit passender Startbelegung der Gewichte; empfindlich beim Speichern in float16.
+- **Inhalt:** Sinus statt Knick in jeder Schicht, ohne Fourier-Features. Ohne passende Startbelegung lernt das Netz die Trainingspunkte auswendig und rauscht dazwischen; empfindlich beim Speichern in float16.
 - **In der App:** *SIREN (sine activation)* gegen *Fourier MLP*.
 - **Ideen:** Beide Vorlagen gleich lange trainieren und die Fehlerkarten vergleichen.
 - **Chester:** surft auf Sinuswellen.

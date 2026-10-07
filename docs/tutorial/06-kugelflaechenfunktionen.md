@@ -107,4 +107,4 @@ Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Gra
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 5 · Höhen als Wellen](05-fourier-features.md) · Weiter: Kapitel 7 · Vertiefung: SIREN *(in Arbeit)*
+[Übersicht](README.md) · Zurück: [Kapitel 5 · Höhen als Wellen](05-fourier-features.md) · Weiter: [Kapitel 7 · Vertiefung: SIREN](07-siren.md)
