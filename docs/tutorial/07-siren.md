@@ -2,25 +2,50 @@
 
 ![Chester mit blauer Kappe und Aiko, ein leuchtendes neuronales Netz, surfen nachts auf einem Meer über leuchtende Wellen; am Horizont geht die Erdkugel auf.](img/kapitel-07-chester.jpg)
 
-**Inhalt:** Ein zweiter Weg zu den kurzen Wellen: Statt die Eingabe in Wellen zu verwandeln (Kapitel 5), rechnet jedes Neuron selbst mit einem Sinus. Dieses Kapitel ist eine Vertiefung und lässt sich überspringen.
+**Inhalt:** Ein weiterer Weg zur Arbeit mit Wellen: Statt die Eingabe in Wellen zu verwandeln (Kapitel 5), rechnet jedes Neuron selbst mit einer Sinus-Kurve.
 
 ## Ausgangspunkt
 
-In Kapitel 5 bekam das Netz Wellen schon als Eingabe mit, die Fourier-Features. Die Neuronen selbst blieben dabei, wie sie in Kapitel 3 waren: gewichtete Summe und Knick.
+In Kapitel 5 bekam das neuronale Netz Wellen als Eingabe, die Fourier-Features. Die Neuronen selbst blieben dabei, wie sie in Kapitel 3 waren: gewichtete Summe und Knick.
 
-2020 haben Sitzmann und Kollegen einen anderen Weg vorgeschlagen [1]: Die Eingabe bleibt, wie sie ist – hier die drei Zahlen *x*, *y*, *z* aus Kapitel 4 –, aber jedes Neuron gibt seine Summe nicht mit einem Knick, sondern durch einen **Sinus** weiter. Ein solches Netz heißt **SIREN**, kurz für *Sinusoidal Representation Network*.
+2020 haben Sitzmann und Kollegen einen anderen Weg vorgeschlagen [1]: Die Eingabe bleibt, wie sie ist – hier die drei Zahlen *x*, *y*, *z* aus Kapitel 4 –, aber jedes Neuron gibt seine Summe nicht mit einem Knick, sondern durch einen **Sinus** (als Aktivierungsfunktion) weiter. Ein solches Netz heißt **SIREN**, kurz für *Sinusoidal Representation Network*.
 
 ## Sinus statt Knick
 
 ![Zwei Diagramme nebeneinander. Links der Knick (ReLU): Für negative Summen ist die Ausgabe 0, für positive steigt sie gerade an. Rechts der Sinus: Die Ausgabe schwingt gleichmäßig auf und ab.](img/knick-sinus.svg)
 
-Ein Neuron in einem SIREN rechnet:
+Ein Neuron rechnet in einem SIREN in drei Schritten. Als Beispiel dient Regensburg aus Kapitel 4 mit *x* = 0,64, *y* = 0,14 und *z* = 0,75; die Gewichte sind ausgedacht: *w₁* = 0,2, *w₂* = −0,5, *w₃* = 0,1 und der Grundwert *b* = −0,1.
+
+**1. Die gewichtete Summe** – genau wie in Kapitel 3: jede Eingabe mal ihr Gewicht, alles addieren, den Grundwert dazu.
 
 ```math
-\text{Ergebnis} = \sin\!\big(\omega_0 \cdot (w_1 \cdot x + w_2 \cdot y + w_3 \cdot z + b)\big)
+s = w_1 \cdot x + w_2 \cdot y + w_3 \cdot z + b
 ```
 
-Bis zur Summe ist alles wie in Kapitel 3. Neu ist nur der letzte Schritt: Statt negative Werte abzuschneiden, schwingt das Ergebnis zwischen −1 und +1. Der Faktor ω₀ (Omega null) macht die Schwingung schneller; Sitzmann und Kollegen empfehlen ω₀ = 30, und so ist es auch in der App eingestellt.
+Für Regensburg: *s* = 0,2 · 0,64 − 0,5 · 0,14 + 0,1 · 0,75 − 0,1 = 0,128 − 0,070 + 0,075 − 0,100 = 0,033.
+
+**2. Bisher: der Knick.** Ein gewöhnliches Neuron gibt die Summe mit ReLU weiter – negative Werte werden 0, positive bleiben:
+
+```math
+\text{Ergebnis} = \text{ReLU}(s) = \max(0,\, s)
+```
+
+Für Regensburg: ReLU(0,033) = 0,033.
+
+**3. Neu im SIREN: der Sinus.** Statt des Knicks wird die Summe mit einem festen Faktor ω₀ (Omega null) multipliziert und in einen Sinus gesteckt:
+
+```math
+\text{Ergebnis} = \sin(\omega_0 \cdot s)
+```
+
+Sitzmann und Kollegen empfehlen ω₀ = 30, und so ist es auch in der App eingestellt. Für Regensburg: sin(30 · 0,033) = sin(0,99) ≈ 0,84.
+
+Das Ergebnis schneidet nichts mehr ab, sondern schwingt zwischen −1 und +1. Und weil ω₀ = 30 die Summe stark vergrößert, schwingt es schnell. Schon kleine Änderungen der Summe reichen für einen ganzen Ausschlag:
+
+| Summe *s* | −0,1 | −0,05 | 0 | 0,02 | 0,05 | 0,1 |
+|---|---:|---:|---:|---:|---:|---:|
+| ReLU(*s*) | 0 | 0 | 0 | 0,02 | 0,05 | 0,1 |
+| sin(30 · *s*) | −0,14 | −1,00 | 0 | 0,56 | 1,00 | 0,14 |
 
 Was das bewirkt: Mit dem Knick setzt das Netz seine Form aus geraden Stücken zusammen. Mit dem Sinus besteht jedes Neuron selbst aus Wellen – und jede weitere Schicht verknüpft die Wellen der Schicht davor zu neuen, feineren Wellen. Das Netz kann kurze Wellen also direkt bilden, ganz ohne Fourier-Features.
 

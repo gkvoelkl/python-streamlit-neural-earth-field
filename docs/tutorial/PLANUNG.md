@@ -29,7 +29,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 4 | 2 | Die Erde ist eine Kugel | fertig |
 | 5 | 2 | Höhen als Wellen | fertig |
 | 6 | E | Vertiefung: Kugelflächenfunktionen | fertig |
-| 7 | E | Vertiefung: SIREN | Entwurf |
+| 7 | E | Vertiefung: SIREN | fertig |
 | 8 | E | Das Kontextfeld | geplant |
 | 9 | E | Rate und Fehler messen | geplant |
 | 10 | E | Abfragen und exportieren | geplant |
@@ -85,7 +85,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** L variieren und auf Parameterzahl und Trainingsdauer achten.
 - **Chester:** setzt als Mosaikkünstler eine Erdkugel aus Kacheln zusammen, Aiko steht mit dem Sortierkasten daneben.
 
-### 7 · Vertiefung: SIREN — Entwurf
+### 7 · Vertiefung: SIREN — fertig
 
 - **Lernziel:** Sinus als Aktivierung als Alternative zur Kodierung kennen.
 - **Inhalt:** Sinus statt Knick in jeder Schicht, ohne Fourier-Features. Ohne passende Startbelegung lernt das Netz die Trainingspunkte auswendig und rauscht dazwischen; empfindlich beim Speichern in float16.
