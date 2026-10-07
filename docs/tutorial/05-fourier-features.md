@@ -72,7 +72,9 @@ Im Standardbeispiel gibt es **128 solcher Muster**. Für einen einzelnen Ort sch
 
 ![Links Regensburg mit seinen drei Zahlen x = 0,64, y = 0,14, z = 0,75. Rechts ein Balkendiagramm mit 256 Balken zwischen −1 und +1: die ersten 128 aus den Sinus-Mustern, die nächsten 128 aus den Kosinus-Mustern. Sie sind die Eingabe für das neuronale Netz.](img/fourier-eingabe-256.png)
 
-Die Eingabe für das neuronale Netz sind also **256 Zahlen statt 3**. Sie beschreiben nicht mehr, *wo* der Ort liegt, sondern *in welchem Streifen jedes Musters* er liegt. Diese Umwandlung heißt **Fourier-Features** [2]. Danach geht es weiter wie in Kapitel 3: Die 256 Zahlen gehen in die erste Schicht, die Schichten rechnen, am Ende steht die Höhe.
+Die Eingabe für das neuronale Netz sind also **256 Zahlen statt 3**. Sie beschreiben nicht mehr, *wo* der Ort liegt, sondern *in welchem Streifen jedes Musters* er liegt. Diese Umwandlung heißt **Fourier-Features** [2]: Jede solche Welle heißt in der Fachsprache **Basisfunktion**; ihr Wert an einem Ort ist ein **Merkmal** (englisch *feature*) – daher der Name Fourier-Features.
+
+Danach geht es weiter wie in Kapitel 3: Die 256 Zahlen gehen in die erste Schicht, die Schichten rechnen, am Ende steht die Höhe.
 
 ### Warum das hilft
 
