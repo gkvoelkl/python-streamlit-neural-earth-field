@@ -28,7 +28,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
 | 4 | 2 | Die Erde ist eine Kugel | fertig |
 | 5 | 2 | Höhen als Wellen | fertig |
-| 6 | 2 | Vertiefung: Kugelflächenfunktionen | Entwurf |
+| 6 | 2 | Vertiefung: Kugelflächenfunktionen | fertig |
 | 7 | 2 | Vertiefung: SIREN | geplant |
 | 8 | 2 | Das Kontextfeld | geplant |
 | 9 | 3 | Rate und Fehler messen | geplant |
@@ -77,7 +77,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Bei welchem σ wird die Fehlerkarte körnig?
 - **Chester:** spielt Harfe; die Wellen ziehen über die Erde zu Aiko, die sie auffängt (Chester erzeugt die Wellen, Aiko bekommt sie).
 
-### 6 · Vertiefung: Kugelflächenfunktionen — Entwurf
+### 6 · Vertiefung: Kugelflächenfunktionen — fertig
 
 - **Lernziel:** Die „echte“ Fourier-Basis der Kugel kennen und ihren Preis abschätzen.
 - **Inhalt:** Kugelflächenfunktionen bis Grad L, vollständig und orthogonal, aber (L+1)² Eingaben. Mit 0 Schichten ist das genau die klassische Kugelfunktionsentwicklung der Geodäsie; das Training findet dabei die exakte Lösung.

@@ -2,26 +2,32 @@
 
 ![Chester mit blauer Kappe setzt mit einer Pinzette Mosaiksteine in eine Erdkugel aus vielen blauen, grünen und ockerfarbenen Kacheln. Links steht Aiko, ein leuchtendes neuronales Netz, vor einem Sortierkasten; auf dem Tisch liegen weitere Mosaiksteine.](img/kapitel-06-chester.jpg)
 
-**Inhalt:** Die Streifenmuster aus Kapitel 5 sind zufällig gewählt. Es gibt aber auch einen festen, geordneten Satz von Mustern, der genau zur Kugel passt: die Kugelflächenfunktionen. Dieses Kapitel ist eine Vertiefung und lässt sich überspringen.
+**Inhalt:** Die Streifenmuster aus Kapitel 5 sind zufällig gewählt. Es gibt aber auch einen festen, geordneten Satz von Mustern, der genau zur Kugel passt: die sogenannte Kugelflächenfunktionen. Dieses Kapitel ist eine Vertiefung. Sie können es gerne überspringen.
 
 ## Ausgangspunkt
 
-In Kapitel 5 wurden 128 Streifenmuster mit zufälliger Richtung und zufälligem Abstand über die Erde gelegt. Das funktioniert gut, ist aber ein Notbehelf: Gerade Streifen passen nicht genau auf eine Kugel, und welche Muster dabei sind, entscheidet der Zufall.
+In Kapitel 5 wurden 128 Streifenmuster mit zufälliger Richtung und zufälligem Abstand über die Erde gelegt. Das funktioniert gut, ist aber ein Notbehelf: Gerade Streifen passen nicht genau auf eine Kugel.
 
-Mathematiker kennen seit langem einen geordneten Satz von Mustern, der genau für die Kugel gemacht ist. Er heißt **Kugelflächenfunktionen** (englisch *spherical harmonics*) und ist das Gegenstück zur Fourier-Analyse aus Kapitel 5, nur auf der Kugel.
+Mathematiker kennen seit langem einen geordneten Satz von solchen Mustern, der genau für die Kugel gemacht ist. Diese heißen **Kugelflächenfunktionen** (englisch *spherical harmonics*). Sie sind das Gegenstück zur Fourier-Analyse aus Kapitel 5.
 
-## Die Grundmuster der Kugel
+## Kugelflächenfunktionen
 
-Die Kugelflächenfunktionen sind nach ihrem **Grad** geordnet. Jeder Grad bringt neue Muster, jedes feiner als die davor:
+Die Kugelflächenfunktionen sind nach ihrem **Grad** geordnet. Jeder Grad bringt andere Muster, jedes feiner als die davor:
 
 ![Kugelflächenfunktionen der Grade 0 bis 3 auf Erdkugeln, als Pyramide angeordnet. Grad 0: ein einziges Muster, die ganze Kugel gleich. Grad 1: drei Muster, jeweils eine Hälfte positiv, eine negativ. Grad 2: fünf Muster mit vier Feldern oder Bändern. Grad 3: sieben noch feinere Muster. Bis Grad 3 sind es zusammen 16 Muster.](img/kugelflaechen-grad0-3.png)
+
+Wie bei den Streifenmustern in Kapitel 5 ergibt sich auch hier eine Welle, wenn man quer über die Kugel geht und die Werte aufträgt:
+
+![Zwei Kugelflächenfunktionen vom Grad 3 auf Erdkugeln. Links ein Muster aus Bändern mit einer Linie von Süd nach Nord; darunter der Verlauf entlang der Linie: eine Welle, die zum Nordpol hin auf den Höchstwert steigt. Rechts ein Muster aus Sektoren mit einer Linie entlang des Äquators; darunter eine gleichmäßige Welle mit einem Gipfel bei 0° und Tälern bei 60° West und 60° Ost – rund um die Erde genau drei Wellen.](img/kugelflaeche-grad3-schnitt.png)
+
+Anders als die geraden Streifen aus Kapitel 5 passen diese Wellen genau auf die Kugel: Entlang des Äquators geht beim Sektoren-Muster eine ganze Zahl von Wellen auf – beim Grad 3 genau drei.
 
 - **Grad 0:** ein einziges Muster, überall gleich. Es steht für die mittlere Höhe.
 - **Grad 1:** drei Muster. Jedes teilt die Kugel in eine positive und eine negative Hälfte – eines nach Nord und Süd, zwei nach Ost und West.
 - **Grad 2:** fünf Muster, die Kugel ist in vier Felder oder in Bänder geteilt.
-- **Jeder weitere Grad** bringt 2 · Grad + 1 neue Muster, und die Felder werden kleiner.
+- **Jeder weitere Grad** bringt **2 · Grad + 1** neue Muster, und die Felder werden kleiner.
 
-Bis zu einem Grad *L* gibt es also (*L* + 1)² Muster. Die feinste Welle hat ungefähr eine Länge von 40 000 km geteilt durch *L* – dem Erdumfang geteilt durch den Grad:
+Bis zu einem **Grad *L*** gibt es also **(*L* + 1)²** Muster. Die feinste Welle hat ungefähr eine Länge von 40 000 km geteilt durch *L* – dem Erdumfang geteilt durch den Grad:
 
 | höchster Grad *L* | Muster insgesamt | kürzeste Welle |
 |---:|---:|---:|
