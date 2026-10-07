@@ -2,17 +2,29 @@
 
 ![Chester mit blauer Kappe malt mit einem feinen Pinsel Einzelheiten auf eine große Erdkugel in einem hellen Atelier; daneben hält Aiko, ein leuchtendes neuronales Netz, die Farbpalette.](img/kapitel-08-chester.jpg)
 
-**Inhalt:** Statt die ganze Erde aus dem Nichts zu lernen, bekommt das Netz eine sehr grobe Höhenkarte mit und lernt nur noch, was ihr fehlt. Diese grobe Karte kostet Speicher – und gehört deshalb ehrlich mit in die Datei. Dieses Kapitel ist eine Ergänzung.
+**Inhalt:** Statt die ganze Erde aus dem Nichts zu lernen, bekommt das neuronal Netz eine sehr grobe Höhenkarte mit und lernt dazu, was noch fehlt. 
+
+Diese grobe Karte kostet zusätzlichen Speicher.
 
 ## Ausgangspunkt
 
-Bisher muss das Netz alles selbst lernen: die Kontinente und Ozeanbecken genauso wie die Gebirge und Täler. Die Höhen der Erde schwanken dabei gewaltig, vom Marianengraben bis zum Himalaya. Im Standardbeispiel weichen sie im Mittel um rund 2 500 m vom Durchschnitt ab.
+Bisher muss das Netz alle Höhen der Erde komplett lernen: die Kontinente und Ozeanbecken genauso wie die Gebirge und Täler. Die Höhen der Erde schwanken dabei gewaltig, vom Marianengraben bis zum Himalaya ist eine große Höhendiffernz.
 
-Ein großer Teil dieser Schwankung ist aber leicht zu beschreiben: Hier liegt ein Kontinent, dort ein tiefes Becken. Dafür braucht man keine feine Auflösung. Die Idee dieses Kapitels: Diese Großform liefert man dem Netz fertig mit, und das Netz kümmert sich nur noch um den Rest.
+Ein großer Teil dieser Schwankung ist aber leicht zu beschreiben: Hier liegt ein Kontinent, dort ein tiefes Becken im Meer. Dafür braucht man keine feine Auflösung. 
+
+Die Idee dieses Kapitels: Diese groben Formen liefert man dem neuronalen Netz fertig mit, und diese kümmert sich nur noch um den Rest.
 
 ## Das Kontextfeld
 
 Das **Kontextfeld** ist eine sehr grobe Höhenkarte der Erde. In der Vorlage der App hat sie 90 × 180 Gitterpunkte, also alle 2° einen Wert – am Äquator etwa alle 220 km. Jeder Wert ist der Mittelwert der Höhen in seiner Zelle. Zwischen den Gitterpunkten werden die Werte geradlinig verbunden.
+
+![Drei Karten des Alpenraums von 2° bis 18° Ost und 40° bis 52° Nord, jeweils mit weißen Gitterlinien alle 2° und einem Punkt in jeder Zellmitte. Links das Original mit Alpenbogen, Po-Ebene und Mittelmeer. In der Mitte das Kontextfeld: jede Zelle einfarbig mit ihrer gespeicherten Höhe, zum Beispiel 1 520 m in der Zelle mit dem Alpenhauptkamm und −2 650 m im Mittelmeer. Rechts dieselben Werte, zwischen den Gitterpunkten geradlinig verbunden: eine weiche Karte, auf der die Alpen nur als heller Rücken zu sehen sind.](img/kontextfeld-gitter.png)
+
+Die Abbildung zeigt das am Beispiel der Alpen:
+
+1. **Original:** die Höhen des Standardbeispiels. Die weißen Gitterlinien teilen die Karte in Zellen von 2° × 2°.
+2. **Kontextfeld:** Für jede Zelle wird nur eine Zahl gespeichert, der Mittelwert aller Höhen in der Zelle. Er gehört zum Gitterpunkt in der Zellmitte. Die Zelle mit dem Alpenhauptkamm bekommt so 1 520 m, obwohl ihr höchster Gipfel, der Ortler, 3 905 m hoch ist – Täler und Gipfel gleichen sich im Mittel aus.
+3. **Dazwischen verbunden:** Für einen Ort zwischen den Gitterpunkten werden die Werte der vier nächsten Gitterpunkte gemischt, je näher, desto stärker. So entstehen keine Stufen an den Zellgrenzen, sondern eine weiche Fläche.
 
 Damit lässt sich jede Höhe in zwei Teile zerlegen:
 

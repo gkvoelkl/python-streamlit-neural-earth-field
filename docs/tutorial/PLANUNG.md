@@ -30,7 +30,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 5 | 2 | Höhen als Wellen | fertig |
 | 6 | E | Vertiefung: Kugelflächenfunktionen | fertig |
 | 7 | E | Vertiefung: SIREN | fertig |
-| 8 | E | Das Kontextfeld | Entwurf |
+| 8 | E | Das Kontextfeld | fertig |
 | 9 | E | Rate und Fehler messen | geplant |
 | 10 | E | Abfragen und exportieren | geplant |
 | 11 | E | Einordnung und Ausblick | geplant |
@@ -93,7 +93,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Beide Vorlagen gleich lange trainieren und die Fehlerkarten vergleichen.
 - **Chester:** surft auf Sinuswellen.
 
-### 8 · Das Kontextfeld — Entwurf
+### 8 · Das Kontextfeld — fertig
 
 - **Lernziel:** Nur den Rest lernen statt alles – und die Bytes dafür ehrlich mitzählen.
 - **Inhalt:** Ein grobes 90 × 180-Gitter (31,6 KB) liefert Kontinente und Ozeanbecken; das Netz lernt nur die Abweichung. Kostet Bytes, gewinnt aber bei gleicher Dateigröße bei allen drei Netzgrößen (Messung 4 000 Schritte, je ein Lauf); der Gewinn ist beim großen Netz am größten.
