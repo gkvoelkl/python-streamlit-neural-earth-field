@@ -69,11 +69,12 @@ on an Apple M chip -- so not yet fully converged:
 | Fourier MLP, σ = 8 | 322 KB | 57× | 311 m | 35.3 dB |
 | + context field 90 × 180 | 355 KB | 51× | 257 m | 36.9 dB |
 | + context field 180 × 360 | 450 KB | 41× | 233 m | 37.8 dB |
-| SIREN | 305 KB | 60× | 539 m | 30.3 dB |
+| SIREN | 305 KB | 60× | 258 m | 36.8 dB |
 
-The context field costs bytes and is still the clearer win -- especially at
-high compression ratios, where the network alone lacks the capacity for the
-large-scale structure.
+The context field costs bytes and still pays off -- especially at high
+compression ratios, where the network alone lacks the capacity for the
+large-scale structure. SIREN reaches about the same error as the Fourier MLP
+with a 90 × 180 context field, without the extra bytes (single runs each).
 
 ## Tests
 

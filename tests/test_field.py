@@ -163,3 +163,12 @@ def test_log_ticks_label_the_whole_range():
     assert log_ticks(2600, 2800) == []  # well under a decade: Plotly's own labels
     assert log_ticks(1, 120_000)[:3] == [1, 2, 3]
     assert log_ticks(0, 10) == []
+
+
+def test_siren_hidden_layers_get_unit_spread_before_the_sine():
+    """Sitzmann et al. 2020: the input to every sine has a spread of about 1."""
+    torch.manual_seed(0)
+    field = build_field(FieldConfig(encoding="none", activation="siren", hidden=256, layers=3), 0.0, 1.0)
+    h = field.body[1](field.body[0](field.transform(torch.rand(4096, 2) * torch.tensor([360.0, 180.0]) - torch.tensor([180.0, 90.0]))))
+    pre = field.body[3].w0 * field.body[2](h)
+    assert 0.4 < float(pre.detach().std()) < 2.5

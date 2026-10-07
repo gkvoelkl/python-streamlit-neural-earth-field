@@ -79,7 +79,11 @@ class Sine(nn.Module):
 
 
 def _siren_init(linear: nn.Linear, w0: float, first: bool) -> None:
-    """Initialisation from Sitzmann et al. 2020 -- without it a SIREN learns nothing."""
+    """Initialisation from Sitzmann et al. 2020.
+
+    Without it the sines start far too fast: the network still hits every
+    training point, but between the points it produces noise.
+    """
     fan_in = linear.in_features
     bound = 1.0 / fan_in if first else math.sqrt(6.0 / fan_in) / w0
     with torch.no_grad():
@@ -162,8 +166,11 @@ class NeuralField(nn.Module):
         for i in range(cfg.layers):
             linear = nn.Linear(dims[i], dims[i + 1])
             if cfg.activation == "siren":
+                # Every layer is sin(w0 · (Wx + b)). The hidden weights are drawn from
+                # ±sqrt(6/n)/w0, so w0 · Wx has a spread of about 1 as in the paper;
+                # sin(1 · …) on these weights would leave the inner layers nearly linear.
                 _siren_init(linear, cfg.siren_w0, first=(i == 0))
-                act: nn.Module = Sine(cfg.siren_w0 if i == 0 else 1.0)
+                act: nn.Module = Sine(cfg.siren_w0)
             elif cfg.activation == "relu":
                 act = nn.ReLU()
             else:
