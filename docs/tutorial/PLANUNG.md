@@ -26,7 +26,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 1 | 1 | Geodaten als Funktion statt als Raster | fertig |
 | 2 | 1 | Training des neuronalen Netzes | fertig |
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
-| 4 | 2 | Die Erde ist eine Kugel | Entwurf |
+| 4 | 2 | Die Erde ist eine Kugel | fertig |
 | 5 | 2 | Höhen als Wellen | fertig |
 | 6 | 2 | Vertiefung: Kugelflächenfunktionen | Entwurf |
 | 7 | 2 | Vertiefung: SIREN | geplant |
@@ -61,7 +61,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Parameterzahl bei 0, 1 und 4 Schichten vergleichen; Ergebnis auf der Karte ansehen.
 - **Chester:** als Baumeister in der Werkstatt; links ein einfaches Brett, in der Mitte ein Gebirge, das Aiko aus Leuchtstäben und Knoten wie ein Netz gebaut hat.
 
-### 4 · Die Erde ist eine Kugel — Entwurf
+### 4 · Die Erde ist eine Kugel — fertig
 
 - **Lernziel:** Die Naht bei ±180° und die Pole als Problem der Eingabe erkennen.
 - **Inhalt:** (lon, lat) liegt auf einem Rechteck, die Erde ist eine Kugel. Der Punkt (x, y, z) auf der Einheitskugel hat weder Naht noch entartete Pole.
