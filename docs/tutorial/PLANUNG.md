@@ -30,7 +30,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 5 | 2 | Höhen als Wellen | fertig |
 | 6 | E | Vertiefung: Kugelflächenfunktionen | fertig |
 | 7 | E | Vertiefung: SIREN | fertig |
-| 8 | E | Das Kontextfeld | Entwurf, Chester-Bild fehlt |
+| 8 | E | Das Kontextfeld | Entwurf |
 | 9 | E | Rate und Fehler messen | geplant |
 | 10 | E | Abfragen und exportieren | geplant |
 | 11 | E | Einordnung und Ausblick | geplant |

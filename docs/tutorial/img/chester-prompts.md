@@ -218,3 +218,35 @@ music notes, no logos except on the cap.
 
 Ausgewählt: Bild 3 von 4. In zwei Varianten wurde aus der Erde eine Sonnenscheibe.
 
+## Kapitel 8 · `kapitel-08-chester.jpg`
+
+Idee: Titel „Das Kontextfeld“ – eine grob vorgemalte Grundlage, in die nur noch die Einzelheiten gemalt werden. Chester malt mit feinem Pinsel auf einer Erdkugel, Aiko hält die Palette. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-05-chester.jpg` (Bild 2, Aiko).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a cozy painter's studio with warm daylight from
+a large window. In the center stands a large globe of the Earth on an easel stand. The
+globe is only roughly pre-painted: the continents are soft, blurry patches of green and
+ochre on a smooth blue ocean, without any details, like a first rough underpainting.
+Chester stands next to the globe as a painter and, with a very fine brush, carefully
+paints sharp details onto one continent: thin mountain ridges, a crisp coastline and small
+winding rivers. The part he has already painted is sharp and detailed, the rest is still
+blurry. He is concentrated and pleased. On the right, the glowing character holds up a
+wooden painter's palette with small dabs of paint for him, smiling. Wide composition:
+Chester on the left, the globe in the center, the glowing character on the right, all in
+sharp focus. No text, no numbers, no music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 4 von 4 der ersten Runde, trotz Musiknoten. Den Gegensatz grob/fein zeigte keine Variante deutlich.
+
+Zweite Runde mit `kapitel-06-chester.jpg` als Bild 2 (darin keine Musiknoten) und dem Wunsch nach einer grob und einer fein gemalten Kugelhälfte: keine Musiknoten mehr, der Gegensatz grob/fein in einer Variante gut sichtbar; nicht ausgewählt.
+
+**Hinweis Kling:** Die Musiknoten kommen aus `kapitel-05-chester.jpg`. Wer sie nicht will, nimmt `kapitel-06-chester.jpg` als Aiko-Vorlage.
+

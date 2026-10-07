@@ -1,6 +1,6 @@
 # Kapitel 8 · Das Kontextfeld
 
-<!-- Chester-Bild für Kapitel 8 folgt: img/kapitel-08-chester.jpg -->
+![Chester mit blauer Kappe malt mit einem feinen Pinsel Einzelheiten auf eine große Erdkugel in einem hellen Atelier; daneben hält Aiko, ein leuchtendes neuronales Netz, die Farbpalette.](img/kapitel-08-chester.jpg)
 
 **Inhalt:** Statt die ganze Erde aus dem Nichts zu lernen, bekommt das Netz eine sehr grobe Höhenkarte mit und lernt nur noch, was ihr fehlt. Diese grobe Karte kostet Speicher – und gehört deshalb ehrlich mit in die Datei. Dieses Kapitel ist eine Ergänzung.
 
