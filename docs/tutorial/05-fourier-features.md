@@ -165,6 +165,30 @@ Das passende σ hängt von der Gitterauflösung und der Netzgröße ab. Für das
 - [2] Tancik et al.: [Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains](https://arxiv.org/abs/2006.10739), NeurIPS 2020 – führt die Fourier-Features für Koordinaten-Netze ein (Englisch)
 - 3Blue1Brown: [But what is the Fourier Transform? A visual introduction](https://www.3blue1brown.com/lessons/fourier-transforms) – anschauliche Einführung in die Zerlegung in Wellen (Englisch)
 
+## Sie haben es geschafft!
+
+![Chester mit blauer Kappe und Aiko, ein leuchtendes neuronales Netz, laufen jubelnd durch ein rotes Zielband; links ein schwarz-weiß karierter Zielbogen, dazu Konfetti, im Hintergrund die Erdkugel.](img/kapitel-05-ziel.jpg)
+
+Mit diesem Kapitel ist der Kern des Tutorials abgeschlossen. Sie wissen jetzt, wie die Höhen der ganzen Erde in die Gewichte eines kleinen Netzes kommen:
+
+- Die Höhen werden zu einer Funktion: Koordinaten hinein, Höhe heraus (Kapitel 1).
+- Das Training stellt die Gewichte so ein, dass das Netz die Höhen trifft (Kapitel 2).
+- Schichten und Neuronen bestimmen, wie viele Gewichte die Datei hat (Kapitel 3).
+- Die Koordinaten liegen auf einer Kugel, ohne Naht und ohne Pole als Sonderfall (Kapitel 4).
+- Streifenmuster als Eingabe bringen die feinen Einzelheiten (Kapitel 5).
+
+Genau das steckt in der Vorlage *Fourier MLP (recommended)* der App.
+
+Alles Weitere sind **Ergänzungen und Vertiefungen**. Sie bauen auf den Kapiteln 1 bis 5 auf, lassen sich aber je nach Interesse einzeln lesen oder überspringen:
+
+- [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) – ein geordneter Satz von Mustern, der genau auf die Kugel passt
+- [Kapitel 7 · Vertiefung: SIREN](07-siren.md) – Neuronen, die selbst mit einem Sinus rechnen
+- Kapitel 8 · Das Kontextfeld – ein grobes Gitter liefert die Kontinente, das Netz lernt nur noch die Einzelheiten *(in Arbeit)*
+- Kapitel 9 · Rate und Fehler messen – Dateigröße und Genauigkeit verschiedener Netze fair vergleichen *(in Arbeit)*
+- Kapitel 10 · Abfragen und exportieren – Höhen an beliebigen Orten abfragen und das Netz als Datei weitergeben *(in Arbeit)*
+- Kapitel 11 · Einordnung und Ausblick – wo das Verfahren in der Forschung steht *(in Arbeit)*
+- Anhang · Messungen – alle Ergebnisse an einer Stelle *(in Arbeit)*
+
 ---
 
 [Übersicht](README.md) · Zurück: [Kapitel 4 · Die Erde ist eine Kugel](04-kugelkoordinaten.md) · Weiter: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)

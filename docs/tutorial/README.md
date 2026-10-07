@@ -23,16 +23,20 @@ Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Ori
 2. [Training des neuronalen Netzes](02-training.md)
 3. [Architektur eines neuronalen Netzes](03-architektur.md)
 
-### Teil 2 · Bessere Netze für Geodaten *(in Arbeit)*
+### Teil 2 · Bessere Netze für Geodaten
 
 4. [Die Erde ist eine Kugel](04-kugelkoordinaten.md)
 5. [Höhen als Wellen](05-fourier-features.md)
+
+Mit Kapitel 5 ist der Kern des Tutorials abgeschlossen.
+
+### Ergänzungen und Vertiefungen *(in Arbeit)*
+
+Die folgenden Kapitel bauen auf den Kapiteln 1 bis 5 auf. Sie lassen sich je nach Interesse einzeln lesen oder überspringen.
+
 6. [Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
 7. [Vertiefung: SIREN](07-siren.md)
 8. Das Kontextfeld *(in Arbeit)*
-
-### Teil 3 · Messen, nutzen, einordnen *(in Arbeit)*
-
 9. Rate und Fehler messen *(in Arbeit)*
 10. Abfragen und exportieren *(in Arbeit)*
 11. Einordnung und Ausblick *(in Arbeit)*

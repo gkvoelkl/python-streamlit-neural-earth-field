@@ -28,15 +28,15 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
 | 4 | 2 | Die Erde ist eine Kugel | fertig |
 | 5 | 2 | Höhen als Wellen | fertig |
-| 6 | 2 | Vertiefung: Kugelflächenfunktionen | fertig |
-| 7 | 2 | Vertiefung: SIREN | Entwurf |
-| 8 | 2 | Das Kontextfeld | geplant |
-| 9 | 3 | Rate und Fehler messen | geplant |
-| 10 | 3 | Abfragen und exportieren | geplant |
-| 11 | 3 | Einordnung und Ausblick | geplant |
+| 6 | E | Vertiefung: Kugelflächenfunktionen | fertig |
+| 7 | E | Vertiefung: SIREN | Entwurf |
+| 8 | E | Das Kontextfeld | geplant |
+| 9 | E | Rate und Fehler messen | geplant |
+| 10 | E | Abfragen und exportieren | geplant |
+| 11 | E | Einordnung und Ausblick | geplant |
 | Anhang | | Messungen | geplant |
 
-**Teil 1 · Grundlagen:** Kapitel 1 bis 3. **Teil 2 · Bessere Netze für Geodaten:** Kapitel 4 bis 8. **Teil 3 · Messen, nutzen, einordnen:** Kapitel 9 bis 11. Kapitel 6 und 7 sind Vertiefungen und lassen sich überspringen.
+**Teil 1 · Grundlagen:** Kapitel 1 bis 3. **Teil 2 · Bessere Netze für Geodaten:** Kapitel 4 und 5. Kapitel 1 bis 5 sind der Kern des Tutorials; Kapitel 5 endet mit „Sie haben es geschafft!“, einem Bild von Chester und Aiko im Ziel (`img/kapitel-05-ziel.jpg`) und einer Liste der Ergänzungen. **E · Ergänzungen und Vertiefungen:** Kapitel 6 bis 11, einzeln lesbar; die Nummern bleiben.
 
 ### 1 · Geodaten als Funktion statt als Raster — fertig
 

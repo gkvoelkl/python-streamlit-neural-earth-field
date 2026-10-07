@@ -192,3 +192,29 @@ except on the cap.
 
 Ausgewählt: Bild 3 von 4. Gleichmäßige Sinuswellen zeigte keine Variante; die Musiknoten stammen aus Bild 2 – für ein weiteres Mal „no music notes“ ergänzen.
 
+## Kapitel 5, Abschluss · `kapitel-05-ziel.jpg`
+
+Idee: Ende des Kerns – „Sie haben es geschafft!“. Chester und Aiko laufen durchs Ziel, im Hintergrund die Erde. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-05-chester.jpg` (Bild 2, Aiko).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: the finish of a race. Chester and the glowing
+character run side by side through a finish line, breaking a red finish tape with their
+chests at the same moment, both arms raised in triumph, laughing and overjoyed. Above them
+a simple finish arch with a checkered black-and-white pattern, without any lettering.
+Colorful confetti flies through the air. In the background, a large glowing globe of the
+Earth rises over the horizon in a warm evening sky. Joyful, triumphant mood. Wide
+composition: Chester on the left, the glowing character on the right, the finish tape
+between them, the Earth in the background, all in sharp focus. No text, no numbers, no
+music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 3 von 4. In zwei Varianten wurde aus der Erde eine Sonnenscheibe.
+
