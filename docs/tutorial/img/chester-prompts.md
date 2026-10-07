@@ -165,3 +165,30 @@ No text, no logos except on the cap.
 Ausgewählt: Bild 1 von 4. Die Abstufung der Steingrößen und der geordnete Sortierkasten kamen in keiner Variante deutlich heraus.
 
 **Hinweis Kling:** Das Ausgabemenü schließt sich oft sofort wieder; die Anzahl „4“ ließ sich zuverlässig nur per Skript im geöffneten Menü auswählen. Vor dem Start prüfen, dass der Knopf „4 Generate“ zeigt.
+
+## Kapitel 7 · `kapitel-07-chester.jpg`
+
+Idee: Titel „Vertiefung: SIREN“ – Sinuswellen. Chester und Aiko surfen nachts auf leuchtenden Wellen, am Horizont geht die Erde auf. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-05-chester.jpg` (Bild 2, Aiko).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a calm sea at night. The water forms perfectly
+regular, smooth sine waves of glowing light, evenly spaced crests and troughs in warm gold
+and soft blue, stretching to the horizon. Chester rides a small surfboard on the crest of
+one wave, arms out for balance, joyful and focused. Right behind him, the glowing character
+rides its own tiny surfboard on the next wave crest, laughing. At the horizon, a large
+glowing globe of the Earth rises like a moon. Dynamic, cheerful mood, sea spray as small
+glowing particles. Wide composition: Chester in the center-left, the glowing character
+center-right, the rising Earth in the background, all in sharp focus. No text, no logos
+except on the cap.
+```
+
+Ausgewählt: Bild 3 von 4. Gleichmäßige Sinuswellen zeigte keine Variante; die Musiknoten stammen aus Bild 2 – für ein weiteres Mal „no music notes“ ergänzen.
+

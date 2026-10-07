@@ -29,7 +29,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 4 | 2 | Die Erde ist eine Kugel | fertig |
 | 5 | 2 | Höhen als Wellen | fertig |
 | 6 | 2 | Vertiefung: Kugelflächenfunktionen | fertig |
-| 7 | 2 | Vertiefung: SIREN | Entwurf, Chester-Bild fehlt |
+| 7 | 2 | Vertiefung: SIREN | Entwurf |
 | 8 | 2 | Das Kontextfeld | geplant |
 | 9 | 3 | Rate und Fehler messen | geplant |
 | 10 | 3 | Abfragen und exportieren | geplant |

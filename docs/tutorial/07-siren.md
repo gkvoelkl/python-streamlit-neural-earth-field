@@ -1,6 +1,6 @@
 # Kapitel 7 · Vertiefung: SIREN
 
-<!-- Chester-Bild für Kapitel 7 folgt: img/kapitel-07-chester.jpg -->
+![Chester mit blauer Kappe und Aiko, ein leuchtendes neuronales Netz, surfen nachts auf einem Meer über leuchtende Wellen; am Horizont geht die Erdkugel auf.](img/kapitel-07-chester.jpg)
 
 **Inhalt:** Ein zweiter Weg zu den kurzen Wellen: Statt die Eingabe in Wellen zu verwandeln (Kapitel 5), rechnet jedes Neuron selbst mit einem Sinus. Dieses Kapitel ist eine Vertiefung und lässt sich überspringen.
 
