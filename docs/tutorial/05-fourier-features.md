@@ -183,7 +183,7 @@ Alles Weitere sind **Ergänzungen und Vertiefungen**. Sie bauen auf den Kapiteln
 
 - [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) – ein geordneter Satz von Mustern, der genau auf die Kugel passt
 - [Kapitel 7 · Vertiefung: SIREN](07-siren.md) – Neuronen, die selbst mit einem Sinus rechnen
-- Kapitel 8 · Das Kontextfeld – ein grobes Gitter liefert die Kontinente, das Netz lernt nur noch die Einzelheiten *(in Arbeit)*
+- [Kapitel 8 · Das Kontextfeld](08-kontextfeld.md) – ein grobes Gitter liefert die Kontinente, das Netz lernt nur noch die Einzelheiten
 - Kapitel 9 · Rate und Fehler messen – Dateigröße und Genauigkeit verschiedener Netze fair vergleichen *(in Arbeit)*
 - Kapitel 10 · Abfragen und exportieren – Höhen an beliebigen Orten abfragen und das Netz als Datei weitergeben *(in Arbeit)*
 - Kapitel 11 · Einordnung und Ausblick – wo das Verfahren in der Forschung steht *(in Arbeit)*

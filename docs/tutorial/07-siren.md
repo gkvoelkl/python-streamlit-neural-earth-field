@@ -114,4 +114,4 @@ Der SIREN hat nur drei Eingaben und kann deshalb bei gleicher Dateigröße mehr 
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) · Weiter: Kapitel 8 · Das Kontextfeld *(in Arbeit)*
+[Übersicht](README.md) · Zurück: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) · Weiter: [Kapitel 8 · Das Kontextfeld](08-kontextfeld.md)

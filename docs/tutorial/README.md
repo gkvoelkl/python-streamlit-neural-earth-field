@@ -36,7 +36,7 @@ Die folgenden Kapitel bauen auf den Kapiteln 1 bis 5 auf. Sie lassen sich je nac
 
 6. [Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
 7. [Vertiefung: SIREN](07-siren.md)
-8. Das Kontextfeld *(in Arbeit)*
+8. [Das Kontextfeld](08-kontextfeld.md)
 9. Rate und Fehler messen *(in Arbeit)*
 10. Abfragen und exportieren *(in Arbeit)*
 11. Einordnung und Ausblick *(in Arbeit)*
