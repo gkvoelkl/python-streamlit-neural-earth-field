@@ -27,7 +27,7 @@ Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Ori
 
 4. [Die Erde ist eine Kugel](04-kugelkoordinaten.md)
 5. [Höhen als Wellen](05-fourier-features.md)
-6. Vertiefung: Kugelflächenfunktionen *(in Arbeit)*
+6. [Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
 7. Vertiefung: SIREN *(in Arbeit)*
 8. Das Kontextfeld *(in Arbeit)*
 

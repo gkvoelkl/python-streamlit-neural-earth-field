@@ -135,3 +135,33 @@ sharp focus. No text, no musical notes, no logos except on the cap.
 ```
 
 Ausgewählt: Bild 1 von 4 der ersten Runde. Eine zweite Runde (Chester mit beiden Pfoten an den Saiten, ausdrücklich ohne Noten) wurde erzeugt, ausgewählt blieb das Bild der ersten Runde.
+
+## Kapitel 6 · `kapitel-06-chester.jpg`
+
+Idee: Titel „Vertiefung: Kugelflächenfunktionen“ – geordnete Grundmuster vom Groben zum Feinen. Chester setzt als Mosaikkünstler eine Erdkugel aus Kacheln zusammen, Aiko reicht Steine aus einem Sortierkasten. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-05-chester.jpg` (Bild 2, Aiko).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a cozy craft workshop at night with warm lamp
+light. On a workbench stands a large globe of the Earth that Chester, as a mosaic artist,
+is assembling from many colorful mosaic tiles in blue, green, ochre and brown. At the top
+of the globe the tiles are few and very large, further down they become smaller and
+smaller, and near the bottom they are tiny and very detailed. Chester carefully places one
+more tile with tweezers, concentrated and pleased. On the left, the glowing character
+stands next to a neat wooden sorting box with compartments: a few large compartments at
+the top with big tiles, many small compartments at the bottom with tiny tiles, and it hands
+Chester the next tile, smiling. Wide composition: the glowing character with the sorting
+box on the left, the mosaic globe in the center, Chester on the right, all in sharp focus.
+No text, no logos except on the cap.
+```
+
+Ausgewählt: Bild 1 von 4. Die Abstufung der Steingrößen und der geordnete Sortierkasten kamen in keiner Variante deutlich heraus.
+
+**Hinweis Kling:** Das Ausgabemenü schließt sich oft sofort wieder; die Anzahl „4“ ließ sich zuverlässig nur per Skript im geöffneten Menü auswählen. Vor dem Start prüfen, dass der Knopf „4 Generate“ zeigt.

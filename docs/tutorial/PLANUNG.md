@@ -28,7 +28,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 3 | 1 | Architektur eines neuronalen Netzes | fertig |
 | 4 | 2 | Die Erde ist eine Kugel | Entwurf |
 | 5 | 2 | Höhen als Wellen | fertig |
-| 6 | 2 | Vertiefung: Kugelflächenfunktionen | geplant |
+| 6 | 2 | Vertiefung: Kugelflächenfunktionen | Entwurf |
 | 7 | 2 | Vertiefung: SIREN | geplant |
 | 8 | 2 | Das Kontextfeld | geplant |
 | 9 | 3 | Rate und Fehler messen | geplant |
@@ -77,13 +77,13 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Bei welchem σ wird die Fehlerkarte körnig?
 - **Chester:** spielt Harfe; die Wellen ziehen über die Erde zu Aiko, die sie auffängt (Chester erzeugt die Wellen, Aiko bekommt sie).
 
-### 6 · Vertiefung: Kugelflächenfunktionen
+### 6 · Vertiefung: Kugelflächenfunktionen — Entwurf
 
 - **Lernziel:** Die „echte“ Fourier-Basis der Kugel kennen und ihren Preis abschätzen.
 - **Inhalt:** Kugelflächenfunktionen bis Grad L, vollständig und orthogonal, aber (L+1)² Eingaben. Mit 0 Schichten ist das genau die klassische Kugelfunktionsentwicklung der Geodäsie; das Training findet dabei die exakte Lösung.
 - **In der App:** *Spherical harmonics (L = 16)* und *Spherical harmonic expansion (L = 40, linear)*.
 - **Ideen:** L variieren und auf Parameterzahl und Trainingsdauer achten.
-- **Chester:** sortiert Muster auf einer Kugel wie Kacheln eines Mosaiks.
+- **Chester:** setzt als Mosaikkünstler eine Erdkugel aus Kacheln zusammen, Aiko steht mit dem Sortierkasten daneben.
 
 ### 7 · Vertiefung: SIREN
 

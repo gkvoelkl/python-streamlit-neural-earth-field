@@ -165,4 +165,4 @@ Das passende σ hängt von der Gitterauflösung und der Netzgröße ab. Für das
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 4 · Die Erde ist eine Kugel](04-kugelkoordinaten.md) · Weiter: Kapitel 6 · Vertiefung: Kugelflächenfunktionen *(in Arbeit)*
+[Übersicht](README.md) · Zurück: [Kapitel 4 · Die Erde ist eine Kugel](04-kugelkoordinaten.md) · Weiter: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
