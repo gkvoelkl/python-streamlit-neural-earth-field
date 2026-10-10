@@ -250,3 +250,82 @@ Zweite Runde mit `kapitel-06-chester.jpg` als Bild 2 (darin keine Musiknoten) un
 
 **Hinweis Kling:** Die Musiknoten kommen aus `kapitel-05-chester.jpg`. Wer sie nicht will, nimmt `kapitel-06-chester.jpg` als Aiko-Vorlage.
 
+
+## Kapitel 9 · `kapitel-09-chester.jpg`
+
+Idee: Titel „Rate und Fehler messen“ – Dateigröße gegen Genauigkeit abwägen. Chester wiegt Aiko auf einer alten Balkenwaage gegen einen hohen Stapel Landkarten. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-06-chester.jpg` (Bild 2, Aiko; ohne Musiknoten, siehe Hinweis bei Kapitel 8).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: an old cartographer's office with wooden
+shelves, rolled-up maps and warm lamp light. In the center stands a large antique brass
+balance scale with two pans. On the left pan sits the small glowing character, waving
+cheerfully. On the right pan lies a tall, slightly wobbly stack of folded paper maps and
+atlases, much bigger than the character. The beam of the scale is perfectly level.
+Chester stands behind the scale, leaning forward with a magnifying glass in one paw and
+looking at the pointer of the scale with a curious, concentrated face. Wide composition:
+the glowing character on the left, the scale in the center, the stack of maps on the
+right, Chester behind, all in sharp focus. No text, no numbers, no music notes, no logos
+except on the cap.
+```
+
+Ausgewählt: das einzige gelieferte Bild. Abweichungen vom Prompt: Der Kartenstapel ist klein statt hoch, der Waagebalken steht nicht waagerecht, Chester steht neben statt hinter der Waage, und es sind wieder zwei Musiknoten zu sehen, obwohl `kapitel-06-chester.jpg` als Referenz diente.
+
+## Kapitel 10 · `kapitel-10-chester.jpg`
+
+Idee: Titel „Abfragen und exportieren“ – das fertige Netz wird zur Datei, die man verschicken kann. Chester packt Aiko als Päckchen ein und gibt es auf. Zwei Referenzbilder: `chester-referenz.png` (Bild 1) und `kapitel-06-chester.jpg` (Bild 2, Aiko).
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a small, cozy post office counter in warm
+morning light. On the counter stands an open cardboard parcel box, lined with soft
+packing paper. The glowing character sits happily inside the box and waves; only its
+upper body and cap look out over the edge. Chester stands next to the box and is just
+pressing a large shipping label onto the side of the parcel with both paws. Behind the
+counter, a shelf with more parcels and a big globe of the Earth. Wide composition:
+Chester on the left, the parcel with the glowing character in the center, the globe in
+the background on the right, all in sharp focus. No text on the label, no numbers, no
+music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 1 von 4 (Image 3.0, 2K HD, 16:9). Kling hat die Referenzbilder in umgekehrter Reihenfolge eingereiht – Bild 1 war `kapitel-06-chester.jpg`, Bild 2 `chester-referenz.png` –, deshalb sind im tatsächlich verwendeten Prompt die Nummern 1 und 2 vertauscht. Keine Musiknoten. Chester steht rechts statt links, die Erdkugel ist aus Mosaiksteinen wie in Kapitel 6, der Raum ist dunkler als eine Poststelle am Morgen. In den anderen drei Varianten hielt Chester ein großes Blatt statt eines Etiketts.
+
+## Kapitel 11 · `kapitel-11-chester.jpg`
+
+Idee: Titel „Einordnung und Ausblick“ – der Blick vom Ast über eine weite Landschaft. Neu dazu der Ausblick auf Vektordaten: In der Landschaft leuchten Punkte, Wege und eingezäunte Flächen. Zwei Referenzbilder; Kling reiht sie beim gleichzeitigen Hochladen um, deshalb hier gleich in der Reihenfolge, wie Kling sie anzeigt: `kapitel-06-chester.jpg` (Bild 1, Aiko) und `chester-referenz.png` (Bild 2, Chester).
+
+```
+Two reference images. Image 2 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 2:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 2, cinematic lighting. Image 1 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 1,
+no glasses, no other accessories. Scene: golden evening light. Chester and the glowing
+character sit side by side on a thick branch of a big old tree at the edge of a hill and
+look out over a wide, peaceful valley. In the valley stand many small trees whose leaves
+glow softly like fine luminous networks. Across the valley, glowing dots mark single
+places, thin glowing paths wind like rivers and roads between them, and a few fields are
+outlined with softly glowing borders. Chester points into the distance with one paw, the
+glowing character looks where he points with curiosity. Wide composition seen slightly
+from behind and to the side, both characters in sharp focus, the valley stretching far
+into the distance. No text, no numbers, no music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 3 von 4 (Image 3.0, 2K HD, 16:9). Keine Musiknoten. Im Tal Lichtpunkte, leuchtende Wege und Felder mit Rändern – das passt zu Punkten, Linien und Flächen. Aiko steht statt zu sitzen; Bäume mit Blättern wie leuchtende Netze hat keine Variante gezeigt. In Variante 2 standen im Tal Laternen in Aikos Form.

@@ -14,6 +14,7 @@ Arbeitsdokument für die Autoren, nicht Teil des Tutorials. Stand: 3. Oktober 20
 - **Quellen** im Text als [1], [2] …, am Kapitelende „Weiterführende Links“. Jede Quelle vorher prüfen.
 - **Figuren:** Chester (Eichhörnchen mit blauer Kappe) und Aiko, ein leuchtendes neuronales Netz mit Ärmchen und Beinchen. Beide Namen dürfen im Text vorkommen, wo es passt. Das Wort „Eichel“ wird nicht verwendet (Doppeldeutigkeit im Deutschen).
 - **Sprache:** Tutorial auf Deutsch, Begriffe aus der englischen App im Original und kursiv.
+- **Disclaimer:** Jedes Kapitel endet unter der Navigation mit dem kursiven Satz „Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. …“ (Wortlaut wie in Kapitel 1).
 
 ## Zielgruppe
 
@@ -31,10 +32,10 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 | 6 | E | Vertiefung: Kugelflächenfunktionen | fertig |
 | 7 | E | Vertiefung: SIREN | fertig |
 | 8 | E | Das Kontextfeld | fertig |
-| 9 | E | Rate und Fehler messen | geplant |
-| 10 | E | Abfragen und exportieren | geplant |
-| 11 | E | Einordnung und Ausblick | geplant |
-| Anhang | | Messungen | geplant |
+| 9 | E | Rate und Fehler messen | Entwurf |
+| 10 | E | Abfragen und exportieren | Entwurf |
+| 11 | E | Einordnung und Ausblick | Entwurf |
+| Anhang | | Messungen | Entwurf |
 
 **Teil 1 · Grundlagen:** Kapitel 1 bis 3. **Teil 2 · Bessere Netze für Geodaten:** Kapitel 4 und 5. Kapitel 1 bis 5 sind der Kern des Tutorials; Kapitel 5 endet mit „Sie haben es geschafft!“, einem Bild von Chester und Aiko im Ziel (`img/kapitel-05-ziel.jpg`) und einer Liste der Ergänzungen. **E · Ergänzungen und Vertiefungen:** Kapitel 6 bis 11, einzeln lesbar; die Nummern bleiben.
 
@@ -101,37 +102,41 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Ideen:** Ab welcher Netzgröße lohnt sich das Kontextfeld nicht mehr?
 - **Chester:** malt nur noch die Details in eine grob vorgezeichnete Karte.
 
-### 9 · Rate und Fehler messen
+### 9 · Rate und Fehler messen — Entwurf
 
 - **Lernziel:** Eine Rate-Distortion-Kurve erzeugen und lesen.
 - **Inhalt:** Mehrere Netzbreiten auf demselben Gitter; Kompressionsrate gegen Fehler. Unten rechts wäre ideal. PSNR in Worten.
 - **In der App:** *Rate & Error*, mit und ohne Kontextfeld.
 - **Ideen:** Welche Rate erreicht man bei einem bestimmten Fehler?
-- **Chester:** wiegt Aiko gegen einen Kartenstapel auf einer Waage.
+- **Chester:** wiegt Aiko gegen einen Kartenstapel auf einer Waage (Prompt in `img/chester-prompts.md`).
+- **Messung:** neun Netzbreiten 16–256, je 2 000 Schritte, ohne und mit Kontextfeld 90 × 180, je ein Lauf, Gitter 1080 × 2160, Mac mit MPS. Zum Vergleich die App-Voreinstellung mit 600 Schritten.
 
-### 10 · Abfragen und exportieren
+### 10 · Abfragen und exportieren — Entwurf
 
 - **Lernziel:** Das Feld als kontinuierliche Funktion nutzen und als Datei weitergeben.
 - **Inhalt:** Abfrage an beliebigen Koordinaten – ehrlich: keine echte Super-Resolution, nur glatte Interpolation. Export in float32 und float16 und was float16 kostet. Die App zeigt ein Ladebeispiel; das Tutorial verweist darauf, ohne Code abzudrucken.
 - **In der App:** *Super-Resolution* und *Export*.
 - **Ideen:** Einen kleinen Ausschnitt sehr fein abfragen und mit dem Trainingsgitter vergleichen.
-- **Chester:** verschickt Aiko als Päckchen.
+- **Chester:** verschickt Aiko als Päckchen (Prompt in `img/chester-prompts.md`).
+- **Messung:** Standardbeispiel, *Fourier MLP + context field* und *SIREN*, je 4 000 Schritte, ein Lauf, Gitter 1080 × 2160, Mac mit MPS. float16-Abweichung auf dem ganzen Gitter; Super-Resolution-Test gegen das Gitter 2160 × 4320.
 
-### 11 · Einordnung und Ausblick
+### 11 · Einordnung und Ausblick — Entwurf
 
 - **Lernziel:** Die Ergebnisse gegen die Literatur einordnen.
 - **Inhalt:** Huang und Hoefler erreichen 300- bis über 3000-fache Kompression auf glatten Klimafeldern mit Zeitachse; Topographie ist zerklüftet und hat keine. Weiterführend: Hash-Gitter, Quantisierung schon beim Training, Zeitreihen f(lon, lat, t).
+- **Ausblick Vektordaten** (Wunsch vom 10. Oktober 2026): Punkte, Linien, Flächen. Weg 1: als Feld (Dichte, Abstand, vorzeichenbehafteter Abstand; SINR, DeepSDF, Geo2Vec), Küste als 0-m-Linie des Netzes. Weg 2: Encoder für Machine Learning (Space2Vec, SatCLIP, Polygon-Encoder, Poly2Vec).
 - **Ideen:** Welches eigene Geodatenset würde sich gut eignen, welches schlecht?
-- **Chester:** blickt vom Ast über eine Landschaft mit vielen Datenbäumen.
+- **Chester:** blickt vom Ast über eine Landschaft mit vielen Datenbäumen; im Tal leuchten Punkte, Wege und eingezäunte Flächen als Bild für Vektordaten (Prompt in `img/chester-prompts.md`).
 
-### Anhang · Messungen
+### Anhang · Messungen — Entwurf
 
 - Alle Trainingsergebnisse an einer Stelle: Varianten, Dateigröße, Kompressionsrate, gewichteter RMSE, PSNR, Trainingsdauer.
 - Vorhanden aus der Entwicklung: Vergleich Fourier-MLP, Kugelflächenfunktionen, SIREN und lineare Modelle auf 1080 × 2160 (je ein Lauf) sowie die Tabelle aus der README auf 2160 × 4320.
 - Rechner und Einstellungen für jede Messung angeben.
+- **Messung (10. Oktober 2026):** alle Vorlagen plus die Netze aus Kapitel 3, 1080 × 2160, 4 000 Schritte, je 3 Läufe (Startwerte 0–2; L = 40 nur 1 Lauf), Auswertung auf dem ganzen Gitter, Apple M4, MPS. Dazu float16 und eine Übersicht der Messungen aus den Kapiteln.
 
 ## Offene Punkte
 
-- [ ] Messungen mit mehreren Startwerten wiederholen (z. B. 3 Läufe je Variante) und Mittelwerte angeben?
+- [x] Messungen mit mehreren Startwerten wiederholen: im Anhang 3 Läufe je Variante, Mittelwert und Spanne.
 - [ ] Eine kleinere Variante der Experimente für Rechner ohne GPU beschreiben (Gitter 360 × 720, 1000 Schritte)?
 - [ ] Kapitel 6: Training mit L = 40 dauert etwa 0,2 s pro Schritt. Für ein Experiment zu langsam?
