@@ -75,8 +75,11 @@ The context field costs bytes and still pays off. On the 1080 × 2160 grid
 (4000 steps, single runs) it beats a slightly wider network of the same file
 size for the very small, the recommended and the large Fourier MLP alike,
 with the largest gain for the large one; see chapter 8 of the tutorial.
-SIREN reaches about the same error as the Fourier MLP with a 90 × 180 context
-field, without the extra bytes (single runs each).
+In this short run on the fine grid, SIREN comes close to the Fourier MLP with a
+90 × 180 context field without the extra bytes. On the 1080 × 2160 grid with
+4000 steps (three runs each) the context field is clearly ahead: 186 m versus
+233 m weighted RMSE, with SIREN varying most from run to run (215–246 m). All
+measurements are collected in the appendix of the tutorial.
 
 ## Tests
 

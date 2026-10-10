@@ -585,10 +585,12 @@ def tab_export(grid: ElevationGrid) -> None:
         "counts the payload."
     )
     st.info(
-        "**float16 halves the file almost for free** – for a Fourier MLP it typically "
-        "costs one to two metres of maximum deviation. For a **SIREN** it is noticeably "
-        "more expensive: the sine activation with `w0 = 30` amplifies every rounding error "
-        "in the weights. If you want to quantise there, do it during training."
+        "**float16 halves the file almost for free** – for a Fourier MLP the elevations "
+        "typically shift by well under a metre on average and by up to about ten metres "
+        "in single cells; the weighted RMSE does not change. For a **SIREN** it is "
+        "noticeably more expensive: the sine activation with `w0 = 30` amplifies every "
+        "rounding error in the weights, so single cells can move by a hundred metres or "
+        "more. If you want to quantise there, do it during training."
     )
     st.code(
         "import torch\n"
