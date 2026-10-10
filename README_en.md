@@ -1,5 +1,7 @@
 # The Earth as a Neural Field
 
+*English · [Deutsch](README_de.md) · [Start page](README.md)*
+
 A small learning project on **Implicit Neural Representations (INR)** as a
 compression method: instead of storing elevations at grid points, you train a
 network `f(lon, lat) → elevation` deliberately on *exactly this one* dataset --
@@ -14,7 +16,10 @@ uv sync
 uv run streamlit run app.py
 ```
 
-A step-by-step tutorial in German lives in [`docs/tutorial/`](docs/tutorial/README.md).
+**Tutorial:** a step-by-step tutorial without program code, written in German and
+being translated into English: [Deutsch](docs/tutorial/de/README.md) ·
+[English](docs/tutorial/en/README.md). It is also published as a website:
+<https://gkvoelkl.github.io/python-streamlit-neural-earth-field/>.
 
 ## Data
 
@@ -81,6 +86,21 @@ In this short run on the fine grid, SIREN comes close to the Fourier MLP with a
 233 m weighted RMSE, with SIREN varying most from run to run (215–246 m). All
 measurements are collected in the appendix of the tutorial.
 
+## Tutorial website
+
+The tutorial in `docs/tutorial/` is built into a bilingual website with
+[MkDocs Material](https://squidfunk.github.io/mkdocs-material/) and
+`mkdocs-static-i18n` (German at the root, English under `en/`):
+
+```bash
+uv run --group docs mkdocs serve    # preview at http://127.0.0.1:8000
+uv run --group docs mkdocs build --strict
+```
+
+The workflow `.github/workflows/docs.yml` publishes it on GitHub Pages on every
+push to `main`. English versions of the diagrams are generated from the German
+SVGs with `uv run python docs/tutorial/tools/translate_svg.py`.
+
 ## Tests
 
 ```bash
@@ -125,3 +145,9 @@ src/python_streamlit_neural_earth_field/
 - Rußwurm et al., *Geographic Location Encoding with Spherical Harmonics and
   Sinusoidal Representation Networks*, ICLR 2024
 - NOAA NCEI, *ETOPO 2022 Global Relief Model*
+
+## License
+
+MIT, see [LICENSE](LICENSE). The ETOPO 2022 data are provided by NOAA NCEI
+(DOI [10.25921/fd45-gt74](https://doi.org/10.25921/fd45-gt74)) and are not part of
+this repository.
