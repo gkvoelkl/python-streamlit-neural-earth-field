@@ -1,8 +1,13 @@
+# Geodaten in neuronalen Netzen speichern
 # Kapitel 4 · Die Erde ist eine Kugel
 
 ![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Aiko, ein leuchtendes neuronales Netz, steht links auf dem Tisch und hält den Faden.](img/kapitel-04-chester.jpg)
 
-**Inhalt:** Warum Länge und Breite eine schlechte Eingabe für das Netz sind, wie man einen Ort stattdessen als Punkt auf einer Kugel beschreibt und was das an der Datumsgrenze und an den Polen ändert.
+**Inhalt:** 
+
+* Warum sind Länge und Breite eine schlechte Eingabe für ein neuronales Netz?
+* Wie beschreibt man einen Ort stattdessen als Punkt auf einer Kugel?
+* Was ändert das an der Datumsgrenze und an den Polen?
 
 ## Ausgangspunkt
 
@@ -67,13 +72,13 @@ Ein paar Beispiele:
 
 Die beiden Punkte an der Datumsgrenze haben jetzt fast dieselben Zahlen, genau wie es ihrer Lage auf der Erde entspricht. Und am Nordpol ist es egal, welche Länge man einsetzt: Weil cos(90°) = 0 ist, kommt immer (0, 0, 1) heraus – ein Ort, eine Beschreibung.
 
-Kurz gesagt: **Wer auf der Erde nah beieinander liegt, hat jetzt auch ähnliche Zahlen.** Es gibt keine Ränder und keine Naht mehr, über die das Netz stolpern könnte.
+Kurz gesagt: **Wer auf der Erde nah beieinander liegt, hat jetzt auch ähnliche Koordinaten.** Es gibt keine Ränder und keine Naht mehr, über die das Netz stolpern könnte.
 
-Der Preis ist gering. Statt zwei Eingaben hat das Netz drei, und jedes Neuron der ersten Schicht braucht ein Gewicht mehr – bei 128 Neuronen sind das 128 zusätzliche Gewichte. Deshalb zeigte die App in Kapitel 3 zum Beispiel 4 statt 3 Gewichte für das einfachste Modell.
+Der Preis ist gering. Statt zwei Eingaben hat das Netz drei, und jedes Neuron der ersten Schicht braucht ein Gewicht mehr – bei 128 Neuronen sind das 128 zusätzliche Gewichte.
 
 ## Was das ausmacht
 
-Wie groß der Unterschied ist, zeigt ein Vergleich: dieselbe Architektur, ein einfaches MLP (Vorlage *Plain MLP*) mit 4 versteckten Schichten, dasselbe Raster, dasselbe Training – einmal mit Länge und Breite, einmal mit Kugelkoordinaten als Eingabeformat. 
+Wie groß der Unterschied ist, zeigt ein Vergleich: ein neuronales Netz mit derselben Architektur, ein einfaches MLP (Vorlage *Plain MLP*) mit 4 versteckten Schichten, dasselbe Raster, dasselbe Training – einmal mit Länge und Breite, einmal mit Kugelkoordinaten als Eingabeformat. 
 
 Das Bild zeigt den Pazifik zu beiden Seiten des 180. Längengrades.
 
@@ -108,3 +113,5 @@ Beide Netze haben dieselbe Größe und sind gleich lange trainiert.
 ---
 
 [Übersicht](README.md) · Zurück: [Kapitel 3 · Architektur eines neuronalen Netzes](03-architektur.md) · Weiter: [Kapitel 5 · Höhen als Wellen](05-fourier-features.md)
+
+*Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

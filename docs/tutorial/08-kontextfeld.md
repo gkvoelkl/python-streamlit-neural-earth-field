@@ -111,7 +111,7 @@ Die App bietet drei Auflösungen. Je feiner das Kontextfeld, desto mehr Einzelhe
 | 90 × 180 | 2° | 31,6 KB | 355 KB | 12,8 | 185 m |
 | 180 × 360 | 1° | 126,6 KB | 450 KB | 10,1 | 167 m |
 
-Schon das sehr grobe Kontextfeld 45 × 90 mit nur 7,9 KB senkt den Fehler um ein Sechstel. Jede Verdopplung der Auflösung vervierfacht die Größe des Kontextfelds, bringt aber immer weniger. Wie man solche Abwägungen zwischen Dateigröße und Fehler systematisch darstellt, zeigt Kapitel 9.
+Schon das sehr grobe Kontextfeld 45 × 90 mit nur 7,9 KB senkt den Fehler um ein Sechstel. Jede Verdopplung der Auflösung vervierfacht die Größe des Kontextfelds, bringt aber immer weniger. Wie man solche Abwägungen zwischen Dateigröße und Fehler systematisch darstellt, zeigt [Kapitel 9](09-rate-und-fehler.md).
 
 ## Ausprobieren
 
@@ -127,7 +127,7 @@ Schon das sehr grobe Kontextfeld 45 × 90 mit nur 7,9 KB senkt den Fehler um ein
 
 - Die Auflösung des Kontextfelds auf 45 und auf 180 stellen. Wie viel größer wird die Datei, und wie viel genauer die Karte?
 - Bei der Vorlage *Fourier MLP, very small* das Kontextfeld 180 × 360 einschalten. Das Kontextfeld ist dann fast dreimal so groß wie das Netz. Wer liefert jetzt die meisten Einzelheiten?
-- Im Reiter *Rate & Error* den Vergleich *Also with context field (90 × 180)* einschalten – mehr dazu in Kapitel 9.
+- Im Reiter *Rate & Error* den Vergleich *Also with context field (90 × 180)* einschalten – mehr dazu in [Kapitel 9](09-rate-und-fehler.md).
 
 ## Weiterführende Links
 
@@ -136,4 +136,6 @@ Schon das sehr grobe Kontextfeld 45 × 90 mit nur 7,9 KB senkt den Fehler um ein
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 7 · Vertiefung: SIREN](07-siren.md) · Weiter: Kapitel 9 · Rate und Fehler messen *(in Arbeit)*
+[Übersicht](README.md) · Zurück: [Kapitel 7 · Vertiefung: SIREN](07-siren.md) · Weiter: [Kapitel 9 · Rate und Fehler messen](09-rate-und-fehler.md)
+
+*Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

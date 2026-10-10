@@ -1,8 +1,17 @@
+# Geodaten in neuronalen Netzen speichern
 # Kapitel 2 · Training des neuronalen Netzes
 
 ![Chester mit blauer Kappe und Klemmbrett als Trainer. Vor ihm stemmt Aiko, ein leuchtendes neuronales Netz mit dünnen Ärmchen, Beinchen und Turnschuhen, eine Langhantel über den Kopf; in Aikos Körper leuchten feine Netzlinien. Im Hintergrund schwebt eine Erdkugel aus Pixeln.](img/kapitel-02-chester.jpg)
 
-**Inhalt:** Wie das Netz seine Parameter (Gewichte) lernt, warum es hier alles auswendig lernen soll, warum die Pole einen Ausgleich brauchen und woran man sieht, wie gut das Training läuft.
+**Inhalt:** 
+
+* Wie lernt das neuronale Netz seine Parameter (Gewichte)?
+
+* Warum soll es hier alles auswendig lernen?
+
+* Warum brauchen die Pole einen Ausgleich?
+
+* Woran sieht man, wie gut das Training läuft?
 
 ## Ausgangspunkt
 
@@ -17,19 +26,21 @@ Aus Kapitel 1 haben wir zwei Dinge: ein Höhenraster mit 2 332 800 Werten und ei
 Ein Trainingsschritt besteht aus vier Teilen:
 
 1. **Stichprobe ziehen.** Die App wählt zufällig 32 768 Zellen aus dem Raster aus. Von jeder kennt sie Länge, Breite und die echte Höhe.
-2. **Das Netz rechnet.** Für jede dieser Zellen setzt die App Länge und Breite in das Netz ein. Das Netz liefert eine Höhe – am Anfang eine ziemlich falsche.
-3. **Fehler messen.** Die App vergleicht die Höhen des Netzes mit den echten und fasst alle Abweichungen zu einer einzigen Zahl zusammen, dem Fehler. Wie das genau geht, steht weiter unten unter [Den Fehler messen](#den-fehler-messen).
-4. **Gewichte nachstellen.** Jedes der 82 561 Gewichte wird ein kleines Stück verändert, und zwar so, dass der Fehler kleiner wird. Woher die App weiß, in welche Richtung, erklärt der Abschnitt [Was beim Nachstellen der Gewichte passiert](#was-beim-nachstellen-der-gewichte-passiert).
+2. **Das Netz rechnet.** Für jede dieser Zellen verwendet die App Länge und Breite als Input für das neuronale Netz. Das Netz liefert eine Höhe – am Anfang eine ziemlich falsche.
+3. **Fehler messen.** Die App vergleicht die Höhen des Netzes mit den echten und fasst alle Abweichungen zu einer einzigen Zahl zusammen, dem Fehler. Mehr dazu im Abschnitt [Den Fehler messen](#den-fehler-messen).
+4. **Gewichte nachjustieren.** Jedes der 82 561 Gewichte wird ein kleines Stück verändert, und zwar so, dass der Fehler kleiner wird. Woher die App weiß, in welche Richtung, erklärt der Abschnitt [Was beim Nachstellen der Gewichte passiert](#was-beim-nachstellen-der-gewichte-passiert).
 
 Nach einem solchen Schritt ist das Netz ein wenig besser als vorher – aber noch lange nicht gut.
 
 ## Das Training: viele Schritte hintereinander
 
-Training heißt, diesen Schritt immer wieder auszuführen, im Standardbeispiel 4 000-mal. Jeder Schritt zieht neue Zellen, und jeder verbessert die Gewichte nur ein kleines Stück. Erst die vielen kleinen Verbesserungen zusammen machen aus dem zufälligen Netz eines, das die Erde wiedergibt.
+Training heißt, diese Schritte immer wieder auszuführen, im Standardbeispiel 4 000-mal. Jedes Mal wählt die App neue Zellen als Input aus, und jedes Mal verbessern sich die Gewichte um ein kleines Stück. Erst die vielen kleinen Verbesserungen zusammen machen aus dem zufälligen Netz eines, das die Erde wiedergibt.
 
-Warum nicht in jedem Schritt alle 2,3 Millionen Zellen? Das wäre viel langsamer, und es ist nicht nötig: Um zu erkennen, in welche Richtung die Gewichte wandern sollen, genügt eine Stichprobe dieser Größe. Über das ganze Training kommen trotzdem alle Zellen an die Reihe – 4 000 Schritte × 32 768 Zellen ergeben gut 131 Millionen Ziehungen, im Mittel rund 56 pro Zelle.
+Warum nicht in jedem Schritt alle 2,3 Millionen Zellen? Das wäre viel langsamer, und es ist nicht nötig: Um zu erkennen, in welche Richtung die Gewichte wandern sollen, genügt eine Stichprobe.
 
-Am Anfang sinkt der Fehler schnell, weil das Netz zunächst die großen Formen lernt: wo Land ist und wo Meer. Danach geht es langsamer voran, denn jetzt kommen die Einzelheiten dran – Gebirge, Küsten, Tiefseegräben.
+Über das ganze Training kommen trotzdem alle Zellen an die Reihe – 4 000 Schritte × 32 768 Zellen ergeben gut 131 Millionen Ziehungen, im Mittel rund 56 pro Zelle.
+
+Am Anfang sinkt der Fehler schnell, weil das Netz zunächst die großen Formen lernt: wo ist Land und wo ist Meer. Danach geht es langsamer voran, denn jetzt kommen die Einzelheiten dran – Gebirge, Küsten, Tiefseegräben.
 
 ![Die Fehlerkurve in der App nach dem Training des Standardbeispiels: Der RMSE fällt in den ersten 200 Schritten steil von etwa 2 600 m auf unter 500 m und sinkt danach langsam bis knapp über 200 m.](img/app-fehlerkurve.png)
 
@@ -43,11 +54,13 @@ Also fängt man mit irgendwelchen Werten an, zum Beispiel mit 0 und 0. Dann sagt
 
 ![Gradientenabstieg am Straßenbeispiel: Links die Messpunkte der Straße und die Gerade nach 0, 1, 10, 50 und 200 Schritten. Die Start-Gerade liegt bei 0 m, nach einem Schritt ist sie viel zu steil, danach nähert sie sich den Messpunkten und liegt nach 200 Schritten genau darauf. Rechts fällt der Fehler von 431 m auf fast 0.](img/strasse-training.svg)
 
-Das Diagramm zeigt, wie es weitergeht, wenn man die Gewichte Schritt für Schritt nachstellt. Nach dem ersten Schritt ist die Gerade viel zu steil – sie schießt über das Ziel hinaus. Danach pendelt sie sich ein und liegt nach 200 Schritten auf den Messpunkten: die Gewichte sind bei 300 und 0,05 angekommen. Rechts sieht man den Fehler dazu; er fällt genauso wie die Fehlerkurve in der App, erst steil, dann flach.
+Das Diagramm zeigt, wie es weitergeht, wenn man die Gewichte Schritt für Schritt nachjustiert. Nach dem ersten Schritt ist die Gerade viel zu steil – sie schießt über das Ziel hinaus. Danach pendelt sie sich ein und liegt nach 200 Schritten auf den Messpunkten: die Gewichte sind bei 300 und 0,05 angekommen. Rechts sieht man den Fehler dazu; er fällt genauso wie die Fehlerkurve in der App, erst steil, dann flach.
 
 Jetzt fragt man für jedes Gewicht: Wird der Fehler kleiner oder größer, wenn ich es ein wenig erhöhe? Und dann stellt man es ein kleines Stück in die günstige Richtung. Das wiederholt man, bis die Formel zu den Messwerten passt. Schritt für Schritt wandern die beiden Gewichte so auf 300 und 0,05 zu. Genau das passiert in Teil 4 jedes Trainingsschritts, nur eben mit 82 561 Gewichten statt mit zwei.
 
-Ausprobieren muss man dafür nicht. Die Mathematik liefert für alle Gewichte gleichzeitig, in welche Richtung und wie stark der Fehler auf eine kleine Änderung reagiert (die Ableitung). Das Verfahren heißt **Gradientenabstieg**.
+Dabei wird nichts ausprobiert. Die Mathematik liefert für alle Gewichte gleichzeitig, in welche Richtung und wie stark der Fehler auf eine kleine Änderung reagiert (die Ableitung). Das Verfahren heißt **Gradientenabstieg**.
+
+### Vertiefung: Gradientenabstieg
 
 Ein Bild aus dem Gelände hilft: Man steht im Nebel an einem Hang und will ins Tal. Man sieht das Tal nicht, spürt aber unter den Füßen, wo es bergab geht – und macht einen kleinen Schritt in diese Richtung. Das Tal ist der kleinste Fehler, der Standort sind die Gewichte. Beim Netz hat diese Landschaft nicht zwei, sondern 82 561 Richtungen.
 
@@ -71,15 +84,19 @@ Ganz gelingt das nie. Im Standardbeispiel muss jedes Gewicht im Mittel 28 Raster
 
 ![Gleiche Gradzahl, verschiedene Fläche: Eine Rasterzelle von 1° × 1° ist am Äquator 111 km breit, bei 45° Breite 79 km und bei 70° nur 38 km. Jenseits von 60° Breite liegt ein Drittel der Rasterzeilen, aber nur 13 % der Erdoberfläche.](img/zellflaeche.svg)
 
-Jede Zeile des Rasters hat gleich viele Zellen, egal ob sie am Äquator oder nahe am Pol liegt. Die Zellen sind aber verschieden groß: Zu den Polen hin rücken die Längengrade zusammen, die Zellen werden schmaler. Ihre Breite schrumpft mit dem Kosinus der geografischen Breite.
+Jede Zeile des Rasters hat gleich viele Zellen, egal ob sie am Äquator oder nahe am Pol liegt. Die Zellen sind aber verschieden groß: Zu den Polen hin rücken die Längengrade zusammen, die Zellen werden schmaler. Ihre Breite schrumpft mit dem Kosinus der geografischen Breite: Bei 60° ist eine Zelle nur noch halb so breit wie am Äquator, weil cos(60°) = 0,5 ist.
 
 Zieht man die Zellen einfach gleichmäßig, bekommen die Polargebiete im Training ein Gewicht, das ihrer Fläche nicht entspricht – jenseits von 60° Breite rund zweieinhalbmal zu viel. Das Netz würde viel Mühe auf Arktis und Antarktis verwenden und dafür bei den Kontinenten sparen.
 
-Die App gleicht das aus: Sie zieht die Zeilen mit einer Wahrscheinlichkeit, die zur Fläche ihrer Zellen passt. Zeilen am Äquator kommen häufiger dran, Zeilen am Pol seltener. In der Seitenleiste heißt das *Area-weighted sampling*.
+Die App gleicht das aus: Sie zieht die Zeilen mit einer Wahrscheinlichkeit, die zur Fläche ihrer Zellen passt. Zeilen am Äquator kommen häufiger dran, Zeilen am Pol seltener. In der Seitenleiste heißt das **Area-weighted sampling**.
 
 ## Den Fehler messen
 
-Für jede Rasterzelle gibt es einen Fehler: die Höhe, die das Netz ausrechnet, minus die Höhe im Raster. Um aus Millionen solcher Einzelfehler eine Zahl zu machen, zeigt die App vier Maße:
+Für jede Rasterzelle gibt es einen **Fehler**: 
+
+**die Höhe, die das Netz ausrechnet, minus die Höhe im Raster**. 
+
+Um aus Millionen solcher Einzelfehler eine Zahl zu machen, zeigt die App vier Maße:
 
 ![Die vier Fehlermaße in der App nach dem Training des Standardbeispiels: RMSE, weighted RMSE, MAE und R².](img/app-fehlermasse.png)
 
@@ -164,3 +181,5 @@ Die **Fehlerkurve** zeigt den RMSE über die Trainingsschritte. Ihre Höhenachse
 ---
 
 [Übersicht](README.md) · Zurück: [Kapitel 1 · Geodaten als Funktion statt als Raster](01-geodaten-als-funktion.md) · Weiter: [Kapitel 3 · Architektur eines neuronalen Netzes](03-architektur.md)
+
+*Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

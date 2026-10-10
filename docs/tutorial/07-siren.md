@@ -87,9 +87,9 @@ Der SIREN zeichnet Küsten und Gebirge schärfer, hat auf dem Land aber ein fein
 | *Fourier MLP (recommended)*, Kapitel 5 | 256 | 4 | 128 | 82 561 | 323 KB | 14 |
 | *SIREN (sine activation)* | 3 | 4 | 160 | 78 081 | 305 KB | 15 |
 
-Der SIREN hat nur drei Eingaben und kann deshalb bei gleicher Dateigröße mehr Neuronen pro Schicht haben. Wie genau beide die Höhen treffen, steht im Anhang mit den Messungen.
+Der SIREN hat nur drei Eingaben und kann deshalb bei gleicher Dateigröße mehr Neuronen pro Schicht haben. Wie genau beide die Höhen treffen, steht im [Anhang mit den Messungen](anhang-messungen.md).
 
-**Was man beim Speichern beachten sollte:** Weil ω₀ = 30 jede kleine Änderung der Gewichte verstärkt, reagiert ein SIREN empfindlicher auf Rundung als ein Netz mit Knick. Das spielt beim Speichern mit weniger Stellen eine Rolle – dazu mehr in Kapitel 10.
+**Was man beim Speichern beachten sollte:** Weil ω₀ = 30 jede kleine Änderung der Gewichte verstärkt, reagiert ein SIREN empfindlicher auf Rundung als ein Netz mit Knick. Das spielt beim Speichern mit weniger Stellen eine Rolle – dazu mehr in [Kapitel 10](10-abfragen-und-exportieren.md).
 
 ## Ausprobieren
 
@@ -115,3 +115,5 @@ Der SIREN hat nur drei Eingaben und kann deshalb bei gleicher Dateigröße mehr 
 ---
 
 [Übersicht](README.md) · Zurück: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) · Weiter: [Kapitel 8 · Das Kontextfeld](08-kontextfeld.md)
+
+*Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

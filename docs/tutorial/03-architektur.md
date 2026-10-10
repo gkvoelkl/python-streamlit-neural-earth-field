@@ -1,28 +1,33 @@
+# Geodaten in neuronalen Netzen speichern
 # Kapitel 3 · Architektur eines neuronalen Netzes
 
 ![In einer dunklen Holzwerkstatt lehnt links ein einfaches Brett an der Wand. Daneben steht Aiko, ein leuchtendes neuronales Netz mit Ärmchen und Turnschuhen, vor einem großen Gebirgsmodell, das aus vielen geraden Leuchtstäben und hellen Knoten wie ein Netz gebaut ist. Rechts betrachtet Chester mit blauer Kappe, Notizblock und Stift das Modell.](img/kapitel-03-chester.jpg)
 
-**Inhalt:** Was in einem neuronalen Netz eigentlich gerechnet wird – vom einfachsten Modell, einer gewichteten Summe, über ein einzelnes Neuron bis zum Netz mit mehreren Schichten.
+**Inhalt:** 
+
+* Was wird in einem neuronalen Netz eigentlich gerechnet?
+
+* Der Weg vom einfachsten Modell, einer gewichteten Summe, über ein einzelnes Neuron bis zum Netz mit mehreren Schichten
 
 ## Ausgangspunkt
 
-In den Kapiteln 1 und 2 war das Netz ein geschlossener Kasten:
+* Bisher war das neuronale Netz ein geschlossener Kasten.
 
-Koordinate hinein, Höhe heraus, dazwischen 82 561 Gewichte. 
+* Koordinate hinein, Höhe heraus, dazwischen 82 561 Gewichte. 
 
-In diesem Kapitel schauen wir hinein. Wir beginnen mit dem einfachsten Modell, das es gibt, und bauen es Schritt für Schritt zu einem neuronalen Netz aus.
+* Jetzt schauen wir hinein: Aus dem einfachsten Modell, das es gibt, bauen wir Schritt für Schritt ein neuronales Netz.
 
 ## Das einfachste Modell: eine gewichtete Summe
 
-Für die Ermittlung der Höhe gibt es zwei Eingaben: Länge und Breite.
+Für die Ermittlung der Höhe gibt es **zwei Eingaben**: **Länge** und **Breite**.
 
 Das einfachste Modell nimmt jede davon mit einem Gewicht mal und zählt einen Grundwert dazu:
 
 ```math
-\text{Höhe} = a \cdot \text{Länge} + b \cdot \text{Breite} + c
+\text{Höhe} = w_1 \cdot \text{Länge} + w_2 \cdot \text{Breite} + b
 ```
 
-Das sind drei Gewichte: *a*, *b* und *c*. Auf der Weltkarte beschreibt diese sehr einfache Formel eine **schräge Ebene**: Die Ebene steigt in eine Richtung gleichmäßig an und fällt in die andere gleichmäßig ab. 
+Das sind drei Gewichte: *w₁*, *w₂* und der Grundwert *b*. Auf der Weltkarte beschreibt diese sehr einfache Formel eine **schräge Ebene**: Die Ebene steigt in eine Richtung gleichmäßig an und fällt in die andere gleichmäßig ab. 
 
 Mehr ist mit dieser einfachen Berechnungsweise nicht möglich. Kontinente, Gebirge und Ozeanbecken lassen sich damit nicht darstellen – das Training findet nur diese einfache Ebene, die insgesamt am wenigsten danebenliegt.
 
@@ -40,7 +45,7 @@ So sieht das in der App aus: links das Original, rechts das trainierte Modell mi
 
 Ein **Neuron**, die kleinste Recheneinheit eines neuronalen Netzes, rechnet zunächst genau dasselbe wie das einfachste Modell: jede Eingabe mal ein Gewicht (*w₁*, *w₂*), alles addieren, einen Grundwert dazu (*b*). Dann kommt allerdings ein weiterer Schritt, der **Knick**:
 
-Ist die Summe negativ, gibt das Neuron 0 aus; ist sie positiv, gibt es sie unverändert weiter. In der Fachsprache heißt so ein Knick *Aktivierungsfunktion*. Die hier verwendete Aktivierungsfunktion heißt *ReLU*.
+Dieser Knick ist in der Fachsprache eine *Aktivierungsfunktion*. Ist die Summe negativ, gibt das Neuron 0 aus; ist sie positiv, gibt es den addierten Wert unverändert weiter. Die hier verwendete Aktivierungsfunktion heißt *ReLU*.
 
 **ReLU** steht für *Rectified Linear Unit*, frei übersetzt „gleichgerichtete lineare Einheit“. Wie ein Gleichrichter in der Elektrotechnik nur den Strom in eine Richtung durchlässt, lässt ReLU nur positive Werte durch:
 
@@ -151,3 +156,5 @@ Die Kontinente sind runder und besser zu erkennen. Feine Einzelheiten fehlen abe
 ---
 
 [Übersicht](README.md) · Zurück: [Kapitel 2 · Training des neuronalen Netzes](02-training.md) · Weiter: [Kapitel 4 · Die Erde ist eine Kugel](04-kugelkoordinaten.md)
+
+*Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

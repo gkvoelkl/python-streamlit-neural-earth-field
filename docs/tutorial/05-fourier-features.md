@@ -1,14 +1,19 @@
+# Geodaten in neuronalen Netzen speichern
 # Kapitel 5 · Höhen als Wellen
 
 ![Chester mit blauer Kappe sitzt mit geschlossenen Augen an einer Harfe. Von der Harfe ziehen viele leuchtende Wellen über eine Erdkugel hinweg zu Aiko, einem leuchtenden neuronalen Netz, das sie mit offenen Armen auffängt.](img/kapitel-05-chester.jpg)
 
-**Inhalt:** Warum ein Höhenmodell aus Wellen bestehen kann, warum ein einfaches neuronales Netz kurze Wellen schwer lernt und wie Fourier-Features das ändern können.
+**Inhalt:** 
+
+* Warum ein Höhenmodell aus Wellen bestehen kann
+* Warum ein einfaches neuronales Netz kurze Wellen schwer lernt
+* Wie Fourier-Features das ändern können
 
 ## Ausgangspunkt
 
-Nach Kapitel 4 bekommt das neuronale Netz als Eingabe Kugelkoordinaten (X, Y, Z) und hat damit keine Naht mehr. 
+Wie in Kapitel 4 gesehen, hat ein neuronales Netz mit Kugelkoordinaten (x, y, z) als Eingabe keine Naht mehr.
 
-Trotzdem: Am Ende von Kapitel 3 waren die Kontinente zwar zu erkennen, Gebirge und Küsten aber nicht. Woran liegt das, und was kann man für mehr Details tun?
+Die Kontinente sind auf der Karte zwar zu erkennen, Gebirge und Küsten aber kaum. Woran liegt das, und was kann man für mehr Details tun?
 
 ## Ein Gebirge ist eine Summe von Wellen
 
@@ -118,7 +123,7 @@ Die Netze aus den Kapiteln 3 bis 5 im Vergleich. Gespeichert werden die Gewichte
 | 5 | Fourier-Features + 4 Schichten | 82 561 | 323 KB | 7,1 % | 14 |
 | – | **Höhenraster (Original)** | – | **4,4 MB** | 100 % | 1 |
 
-Je mehr Gewichte, desto größer die Datei – aber desto mehr Einzelheiten kann das Netz auch darstellen. Die beiden ersten Netze sind winzig, geben die Erde aber kaum wieder (Kapitel 3). Wie gut die einzelnen Netze die Höhen tatsächlich treffen, steht gesammelt im Anhang mit den Messungen.
+Je mehr Gewichte, desto größer die Datei – aber desto mehr Einzelheiten kann das Netz auch darstellen. Die beiden ersten Netze sind winzig, geben die Erde aber kaum wieder (Kapitel 3). Wie gut die einzelnen Netze die Höhen tatsächlich treffen, steht gesammelt im [Anhang mit den Messungen](anhang-messungen.md).
 
 ## σ: wie schnell die Wellen sind
 
@@ -184,11 +189,13 @@ Alles Weitere sind **Ergänzungen und Vertiefungen**. Sie bauen auf den Kapiteln
 - [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) – ein geordneter Satz von Mustern, der genau auf die Kugel passt
 - [Kapitel 7 · Vertiefung: SIREN](07-siren.md) – Neuronen, die selbst mit einem Sinus rechnen
 - [Kapitel 8 · Das Kontextfeld](08-kontextfeld.md) – ein grobes Gitter liefert die Kontinente, das Netz lernt nur noch die Einzelheiten
-- Kapitel 9 · Rate und Fehler messen – Dateigröße und Genauigkeit verschiedener Netze fair vergleichen *(in Arbeit)*
-- Kapitel 10 · Abfragen und exportieren – Höhen an beliebigen Orten abfragen und das Netz als Datei weitergeben *(in Arbeit)*
-- Kapitel 11 · Einordnung und Ausblick – wo das Verfahren in der Forschung steht *(in Arbeit)*
-- Anhang · Messungen – alle Ergebnisse an einer Stelle *(in Arbeit)*
+- [Kapitel 9 · Rate und Fehler messen](09-rate-und-fehler.md) – Dateigröße und Genauigkeit verschiedener Netze fair vergleichen
+- [Kapitel 10 · Abfragen und exportieren](10-abfragen-und-exportieren.md) – Höhen an beliebigen Orten abfragen und das Netz als Datei weitergeben
+- [Kapitel 11 · Einordnung und Ausblick](11-einordnung-und-ausblick.md) – wo das Verfahren in der Forschung steht und wie es mit Punkten, Linien und Flächen weitergeht
+- [Anhang · Messungen](anhang-messungen.md) – alle Ergebnisse an einer Stelle
 
 ---
 
 [Übersicht](README.md) · Zurück: [Kapitel 4 · Die Erde ist eine Kugel](04-kugelkoordinaten.md) · Weiter: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
+
+*Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

@@ -79,7 +79,7 @@ Die zufälligen Streifen aus Kapitel 5 sind da sparsamer. Sie decken nicht jede 
 | Zahl der Eingaben für kurze Wellen | gering (z. B. 256) | wächst sehr schnell |
 | Rechenaufwand | gering | hoch, vor allem bei großem *L* |
 
-Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Grad ab. Die Ergebnisse stehen im Anhang mit den Messungen.
+Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Grad ab. Die Ergebnisse stehen im [Anhang mit den Messungen](anhang-messungen.md).
 
 ## Ausprobieren
 
@@ -108,3 +108,5 @@ Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Gra
 ---
 
 [Übersicht](README.md) · Zurück: [Kapitel 5 · Höhen als Wellen](05-fourier-features.md) · Weiter: [Kapitel 7 · Vertiefung: SIREN](07-siren.md)
+
+*Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*
