@@ -1,6 +1,6 @@
 # Kapitel 7 · Vertiefung: SIREN
 
-![Chester mit blauer Kappe und Aiko, ein leuchtendes neuronales Netz, surfen nachts auf einem Meer über leuchtende Wellen; am Horizont geht die Erdkugel auf.](img/kapitel-07-chester.jpg)
+![Chester mit blauer Kappe und Aiko, ein leuchtendes neuronales Netz, surfen nachts auf einem Meer über leuchtende Wellen; am Horizont geht die Erdkugel auf.](../img/kapitel-07-chester.jpg)
 
 **Inhalt:** Ein weiterer Weg zur Arbeit mit Wellen: Statt die Eingabe in Wellen zu verwandeln (Kapitel 5), rechnet jedes Neuron selbst mit einer Sinus-Kurve.
 
@@ -12,7 +12,7 @@ In Kapitel 5 bekam das neuronale Netz Wellen als Eingabe, die Fourier-Features. 
 
 ## Sinus statt Knick
 
-![Zwei Diagramme nebeneinander. Links der Knick (ReLU): Für negative Summen ist die Ausgabe 0, für positive steigt sie gerade an. Rechts der Sinus: Die Ausgabe schwingt gleichmäßig auf und ab.](img/knick-sinus.svg)
+![Zwei Diagramme nebeneinander. Links der Knick (ReLU): Für negative Summen ist die Ausgabe 0, für positive steigt sie gerade an. Rechts der Sinus: Die Ausgabe schwingt gleichmäßig auf und ab.](../img/knick-sinus.svg)
 
 Ein Neuron rechnet in einem SIREN in drei Schritten. Als Beispiel dient Regensburg aus Kapitel 4 mit *x* = 0,64, *y* = 0,14 und *z* = 0,75; die Gewichte sind ausgedacht: *w₁* = 0,2, *w₂* = −0,5, *w₃* = 0,1 und der Grundwert *b* = −0,1.
 
@@ -53,7 +53,7 @@ Was das bewirkt: Mit dem Knick setzt das Netz seine Form aus geraden Stücken zu
 
 Wie gut das funktioniert, zeigt wieder das Alpenprofil. Die oberen beiden Zeilen kennen Sie aus Kapitel 5, darunter ein etwa gleich großer SIREN:
 
-![Drei Zeilen mit je drei Bildern des Alpenprofils nach 50, 500 und 3 000 Schritten. Oben das einfache Netz mit Knick: auch nach 3 000 Schritten nur ein grober Umriss, Fehler 334 m. In der Mitte das Netz mit Fourier-Features: nach 3 000 Schritten 20 m. Unten der SIREN: nach 50 Schritten ein grober Umriss mit Plateaus, nach 500 Schritten 99 m, nach 3 000 Schritten 6 m.](img/profil-siren.png)
+![Drei Zeilen mit je drei Bildern des Alpenprofils nach 50, 500 und 3 000 Schritten. Oben das einfache Netz mit Knick: auch nach 3 000 Schritten nur ein grober Umriss, Fehler 334 m. In der Mitte das Netz mit Fourier-Features: nach 3 000 Schritten 20 m. Unten der SIREN: nach 50 Schritten ein grober Umriss mit Plateaus, nach 500 Schritten 99 m, nach 3 000 Schritten 6 m.](../img/profil-siren.png)
 
 Der SIREN braucht etwas länger, um in Gang zu kommen – nach 50 Schritten ist er noch grob. Danach holt er auf und trifft das Profil nach 3 000 Schritten sogar genauer als das Netz mit Fourier-Features.
 
@@ -65,7 +65,7 @@ Sitzmann und Kollegen geben deshalb eine besondere **Startbelegung** vor: Die Ge
 
 Wie groß der Unterschied ist, zeigt ein Versuch: Beide Netze lernen nur jeden zweiten Punkt des Alpenprofils; die Punkte dazwischen dienen zur Kontrolle.
 
-![Zwei Diagramme für einen Ausschnitt des Alpenprofils von 10° bis 11,5° Ost. Links mit der Startbelegung nach Sitzmann: Die Kurve verläuft glatt durch die Trainingspunkte und nahe an den Punkten dazwischen; Fehler 4 m auf den Trainingspunkten, 116 m dazwischen. Rechts ohne diese Startbelegung: Die Kurve trifft die Trainingspunkte, springt dazwischen aber wild auf und ab; Fehler 0 m auf den Trainingspunkten, 923 m dazwischen.](img/siren-startbelegung.png)
+![Zwei Diagramme für einen Ausschnitt des Alpenprofils von 10° bis 11,5° Ost. Links mit der Startbelegung nach Sitzmann: Die Kurve verläuft glatt durch die Trainingspunkte und nahe an den Punkten dazwischen; Fehler 4 m auf den Trainingspunkten, 116 m dazwischen. Rechts ohne diese Startbelegung: Die Kurve trifft die Trainingspunkte, springt dazwischen aber wild auf und ab; Fehler 0 m auf den Trainingspunkten, 923 m dazwischen.](../img/siren-startbelegung.png)
 
 | SIREN | Fehler auf den Trainingspunkten | Fehler auf den Punkten dazwischen |
 |---|---:|---:|
@@ -78,7 +78,7 @@ Das ist dieselbe Falle wie ein zu großes σ in Kapitel 5: zu schnelle Wellen. F
 
 Auf der ganzen Erde, wieder am Ausschnitt Europa aus Kapitel 5:
 
-![Drei Karten von Europa: das Original, das Netz mit Fourier-Features und der SIREN. Die Fourier-Karte ist weich gezeichnet. Die SIREN-Karte hat schärfere Küsten und deutlichere Gebirge, zeigt auf dem Land aber ein feines, körniges Muster.](img/europa-siren.png)
+![Drei Karten von Europa: das Original, das Netz mit Fourier-Features und der SIREN. Die Fourier-Karte ist weich gezeichnet. Die SIREN-Karte hat schärfere Küsten und deutlichere Gebirge, zeigt auf dem Land aber ein feines, körniges Muster.](../img/europa-siren.png)
 
 Der SIREN zeichnet Küsten und Gebirge schärfer, hat auf dem Land aber ein feines, körniges Muster – Wellen, die etwas zu schnell geraten sind. Beide Netze sind etwa gleich groß:
 
@@ -96,7 +96,7 @@ Der SIREN hat nur drei Eingaben und kann deshalb bei gleicher Dateigröße mehr 
 1. In der Seitenleiste unter *2 · Network* die Vorlage *SIREN (sine activation)* wählen und *Architecture details* aufklappen.
 2. *Positional encoding* steht auf `none`: Es gibt keine Fourier-Features. Unter *Activation* steht `siren`.
 
-   <img src="img/app-siren-einstellungen.png" alt="Seitenleiste mit aufgeklappten Architecture details: Vorlage SIREN (sine activation), Coordinate input xyz, Positional encoding none, Hidden layers 4, Activation siren, Neurons per layer 160." width="300">
+   <img src="../img/app-siren-einstellungen.png" alt="Seitenleiste mit aufgeklappten Architecture details: Vorlage SIREN (sine activation), Coordinate input xyz, Positional encoding none, Hidden layers 4, Activation siren, Neurons per layer 160." width="300">
 
 3. Trainieren und im Reiter *Maps & Error* das Ergebnis mit *Fourier MLP (recommended)* vergleichen. Im Reiter *Globe 3D* lohnt ein Blick auf Gebirge wie die Anden oder den Himalaya.
 

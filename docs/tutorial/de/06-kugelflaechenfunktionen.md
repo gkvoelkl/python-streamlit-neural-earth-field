@@ -1,6 +1,6 @@
 # Kapitel 6 · Vertiefung: Kugelflächenfunktionen
 
-![Chester mit blauer Kappe setzt mit einer Pinzette Mosaiksteine in eine Erdkugel aus vielen blauen, grünen und ockerfarbenen Kacheln. Links steht Aiko, ein leuchtendes neuronales Netz, vor einem Sortierkasten; auf dem Tisch liegen weitere Mosaiksteine.](img/kapitel-06-chester.jpg)
+![Chester mit blauer Kappe setzt mit einer Pinzette Mosaiksteine in eine Erdkugel aus vielen blauen, grünen und ockerfarbenen Kacheln. Links steht Aiko, ein leuchtendes neuronales Netz, vor einem Sortierkasten; auf dem Tisch liegen weitere Mosaiksteine.](../img/kapitel-06-chester.jpg)
 
 **Inhalt:** Die Streifenmuster aus Kapitel 5 sind zufällig gewählt. Es gibt aber auch einen festen, geordneten Satz von Mustern, der genau zur Kugel passt: die sogenannte Kugelflächenfunktionen. Dieses Kapitel ist eine Vertiefung. Sie können es gerne überspringen.
 
@@ -14,11 +14,11 @@ Mathematiker kennen seit langem einen geordneten Satz von solchen Mustern, der g
 
 Die Kugelflächenfunktionen sind nach ihrem **Grad** geordnet. Jeder Grad bringt andere Muster, jedes feiner als die davor:
 
-![Kugelflächenfunktionen der Grade 0 bis 3 auf Erdkugeln, als Pyramide angeordnet. Grad 0: ein einziges Muster, die ganze Kugel gleich. Grad 1: drei Muster, jeweils eine Hälfte positiv, eine negativ. Grad 2: fünf Muster mit vier Feldern oder Bändern. Grad 3: sieben noch feinere Muster. Bis Grad 3 sind es zusammen 16 Muster.](img/kugelflaechen-grad0-3.png)
+![Kugelflächenfunktionen der Grade 0 bis 3 auf Erdkugeln, als Pyramide angeordnet. Grad 0: ein einziges Muster, die ganze Kugel gleich. Grad 1: drei Muster, jeweils eine Hälfte positiv, eine negativ. Grad 2: fünf Muster mit vier Feldern oder Bändern. Grad 3: sieben noch feinere Muster. Bis Grad 3 sind es zusammen 16 Muster.](../img/kugelflaechen-grad0-3.png)
 
 Wie bei den Streifenmustern in Kapitel 5 ergibt sich auch hier eine Welle, wenn man quer über die Kugel geht und die Werte aufträgt:
 
-![Zwei Kugelflächenfunktionen vom Grad 3 auf Erdkugeln. Links ein Muster aus Bändern mit einer Linie von Süd nach Nord; darunter der Verlauf entlang der Linie: eine Welle, die zum Nordpol hin auf den Höchstwert steigt. Rechts ein Muster aus Sektoren mit einer Linie entlang des Äquators; darunter eine gleichmäßige Welle mit einem Gipfel bei 0° und Tälern bei 60° West und 60° Ost – rund um die Erde genau drei Wellen.](img/kugelflaeche-grad3-schnitt.png)
+![Zwei Kugelflächenfunktionen vom Grad 3 auf Erdkugeln. Links ein Muster aus Bändern mit einer Linie von Süd nach Nord; darunter der Verlauf entlang der Linie: eine Welle, die zum Nordpol hin auf den Höchstwert steigt. Rechts ein Muster aus Sektoren mit einer Linie entlang des Äquators; darunter eine gleichmäßige Welle mit einem Gipfel bei 0° und Tälern bei 60° West und 60° Ost – rund um die Erde genau drei Wellen.](../img/kugelflaeche-grad3-schnitt.png)
 
 Anders als die geraden Streifen aus Kapitel 5 passen diese Wellen genau auf die Kugel: Entlang des Äquators geht beim Sektoren-Muster eine ganze Zahl von Wellen auf – beim Grad 3 genau drei.
 
@@ -43,7 +43,7 @@ Anders als die zufälligen Streifen aus Kapitel 5 sind diese Muster **vollständ
 
 Mit diesen Mustern kann man die Erde zusammensetzen – genau wie das Alpenprofil in Kapitel 5 aus Wellen. Jedes Muster bekommt ein Gewicht, alle werden zusammengezählt. Je höher der Grad, desto mehr Muster stehen zur Verfügung und desto schärfer wird die Erde:
 
-![Fünf Weltkarten: das Original und die Erde, zusammengesetzt aus Kugelflächenfunktionen bis Grad 2, 8, 20 und 40. Bis Grad 2 ist nur ein grober Unterschied zwischen Nordhalbkugel und Pazifik zu sehen, bis Grad 8 erscheinen Kontinente als Flecken, bis Grad 20 sind ihre Umrisse erkennbar, bis Grad 40 auch Halbinseln, Gebirge und die Antarktis.](img/erde-aus-kugelflaechen.png)
+![Fünf Weltkarten: das Original und die Erde, zusammengesetzt aus Kugelflächenfunktionen bis Grad 2, 8, 20 und 40. Bis Grad 2 ist nur ein grober Unterschied zwischen Nordhalbkugel und Pazifik zu sehen, bis Grad 8 erscheinen Kontinente als Flecken, bis Grad 20 sind ihre Umrisse erkennbar, bis Grad 40 auch Halbinseln, Gebirge und die Antarktis.](../img/erde-aus-kugelflaechen.png)
 
 Das ist das einfachste Modell aus Kapitel 3, nur mit anderen Eingaben: **eine gewichtete Summe**, ohne versteckte Schichten und ohne Knicke. Jedes Muster ist eine Eingabe, jedes Gewicht gehört zu einem Muster.
 
@@ -86,7 +86,7 @@ Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Gra
 1. In der Seitenleiste unter *2 · Network* die Vorlage *Spherical harmonic expansion (L = 40, linear)* wählen und *Architecture details* aufklappen.
 2. Unter *Positional encoding* steht jetzt `spherical`. Der Regler *Maximum degree L* legt den höchsten Grad fest. Darunter zeigt die App die Zahl der Muster und die kürzeste Welle. *Hidden layers* steht auf 0: ein lineares Modell.
 
-   <img src="img/app-kugelflaechen-einstellungen.png" alt="Seitenleiste mit aufgeklappten Architecture details: Vorlage Spherical harmonic expansion, Positional encoding spherical, Maximum degree L 40, darunter 1681 features und finest wavelength ungefähr 1,000 km, Hidden layers 0 und der Hinweis Linear model." width="300">
+   <img src="../img/app-kugelflaechen-einstellungen.png" alt="Seitenleiste mit aufgeklappten Architecture details: Vorlage Spherical harmonic expansion, Positional encoding spherical, Maximum degree L 40, darunter 1681 features und finest wavelength ungefähr 1,000 km, Hidden layers 0 und der Hinweis Linear model." width="300">
 
 3. Trainieren und im Reiter *Maps & Error* das Ergebnis ansehen. Es sollte ähnlich aussehen wie die Karte „bis Grad 40“ oben.
 4. Dann die Vorlage *Spherical harmonics (L = 16)* wählen, trainieren und mit *Fourier MLP (recommended)* aus Kapitel 5 vergleichen.

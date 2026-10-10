@@ -11,3 +11,6 @@ wheels/
 
 # Data (large, not committed)
 data/
+
+# Website build (MkDocs)
+site/

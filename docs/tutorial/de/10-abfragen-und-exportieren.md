@@ -1,7 +1,7 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 10 · Abfragen und exportieren
 
-![Auf einem Holztisch steht ein offener Pappkarton, aus dem Aiko, ein leuchtendes neuronales Netz, fröhlich mit beiden Armen winkt. Daneben drückt Chester mit blauer Kappe ein kleines Versandetikett an den Karton. Rechts steht eine Erdkugel aus Mosaiksteinen, im Hintergrund ein Regal mit weiteren Paketen.](img/kapitel-10-chester.jpg)
+![Auf einem Holztisch steht ein offener Pappkarton, aus dem Aiko, ein leuchtendes neuronales Netz, fröhlich mit beiden Armen winkt. Daneben drückt Chester mit blauer Kappe ein kleines Versandetikett an den Karton. Rechts steht eine Erdkugel aus Mosaiksteinen, im Hintergrund ein Regal mit weiteren Paketen.](../img/kapitel-10-chester.jpg)
 
 **Inhalt:**
 
@@ -39,7 +39,7 @@ Weil das Netz eine Funktion ist, kann man es auch auf einem Gitter abfragen, das
 
 Nein. Das Profil durch die Alpen zeigt es:
 
-![Höhenprofil bei 46,4° Nord von 2° bis 18° Ost. Hellbraun das feinere Gitter 2160 × 4320 mit vielen spitzen Gipfeln und Tälern bis knapp 3 000 m. Blau das Trainingsgitter 1080 × 2160 als Treppe, etwas weniger zackig. Orange das Netz, alle 1/60° abgefragt: eine glatte, weiche Kurve, die über den Alpen nur bis etwa 2 000 m reicht und keinen der einzelnen Gipfel zeigt.](img/abfrage-profil.svg)
+![Höhenprofil bei 46,4° Nord von 2° bis 18° Ost. Hellbraun das feinere Gitter 2160 × 4320 mit vielen spitzen Gipfeln und Tälern bis knapp 3 000 m. Blau das Trainingsgitter 1080 × 2160 als Treppe, etwas weniger zackig. Orange das Netz, alle 1/60° abgefragt: eine glatte, weiche Kurve, die über den Alpen nur bis etwa 2 000 m reicht und keinen der einzelnen Gipfel zeigt.](../img/abfrage-profil.svg)
 
 Die orange Kurve ist sehr fein abgefragt, 960 Punkte auf 16 Grad. Trotzdem ist sie glatt. Das Netz liefert zwischen den Punkten, die es im Training gesehen hat, weiche Übergänge, aber keine neuen Gipfel und Täler. Woher sollte es sie auch kennen? Im Training kamen sie nie vor.
 
@@ -116,15 +116,15 @@ Eine Vorsicht gehört dazu: Das Dateiformat `.pt` kann beim Laden nicht nur Zahl
    - *Window [°]* – wie viele Grad der Ausschnitt breit und hoch ist, 2 bis 90,
    - *Points per axis* – wie viele Punkte das Netz pro Richtung abfragt, 128 bis 512.
 
-   ![Die Einstellungen im Reiter Super-Resolution: Longitude (centre) 10,00, Latitude (centre) 46,00, Window 20 Grad, Points per axis 256.](img/app-abfrage-einstellungen.png)
+   ![Die Einstellungen im Reiter Super-Resolution: Longitude (centre) 10,00, Latitude (centre) 46,00, Window 20 Grad, Points per axis 256.](../img/app-abfrage-einstellungen.png)
 
 3. Die beiden Karten vergleichen. Links das Trainingsgitter in diesem Ausschnitt, bei 20° sind das 120 × 120 Zellen. Rechts das Netz, auf 256 × 256 Punkten abgefragt. Die rechte Karte ist feiner gerastert, aber weicher – Küsten und Gebirge sind verwaschen.
 
-   ![Zwei Karten von Mitteleuropa und dem Mittelmeer, jeweils 0° bis 20° Ost und 36° bis 56° Nord. Links das Trainingsgitter mit 120 × 120 Zellen: scharfe Küsten, der Alpenbogen mit weißen Gipfeln, Sardinien, Korsika und Italien klar erkennbar. Rechts das Netz auf 256 × 256 Punkten: glatte Farbflächen, die Alpen als weicher brauner Rücken, Küsten und Inseln verschwommen.](img/app-abfrage-karten.png)
+   ![Zwei Karten von Mitteleuropa und dem Mittelmeer, jeweils 0° bis 20° Ost und 36° bis 56° Nord. Links das Trainingsgitter mit 120 × 120 Zellen: scharfe Küsten, der Alpenbogen mit weißen Gipfeln, Sardinien, Korsika und Italien klar erkennbar. Rechts das Netz auf 256 × 256 Punkten: glatte Farbflächen, die Alpen als weicher brauner Rücken, Küsten und Inseln verschwommen.](../img/app-abfrage-karten.png)
 
 4. Den Reiter *Export* öffnen. Oben stehen drei Zahlen: die Größe des Rasters, die Datei in float32 und die Datei in float16, jeweils mit der Kompressionsrate darunter. Mit den beiden Knöpfen darunter lassen sich die Dateien herunterladen.
 
-   ![Der Reiter Export für das Standardbeispiel: Raw grid (int16) 4.4 MB, Model float32 326.7 KB mit Rate 14, Model float16 165.4 KB mit Rate 28, darunter die Knöpfe Weights float32 (.pt) und Weights float16 (.pt).](img/app-export.png)
+   ![Der Reiter Export für das Standardbeispiel: Raw grid (int16) 4.4 MB, Model float32 326.7 KB mit Rate 14, Model float16 165.4 KB mit Rate 28, darunter die Knöpfe Weights float32 (.pt) und Weights float16 (.pt).](../img/app-export.png)
 
 ## Ideen zum Weiterprobieren
 

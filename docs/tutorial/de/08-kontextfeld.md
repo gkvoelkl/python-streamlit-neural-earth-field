@@ -1,6 +1,6 @@
 # Kapitel 8 · Das Kontextfeld
 
-![Chester mit blauer Kappe malt mit einem feinen Pinsel Einzelheiten auf eine große Erdkugel in einem hellen Atelier; daneben hält Aiko, ein leuchtendes neuronales Netz, die Farbpalette.](img/kapitel-08-chester.jpg)
+![Chester mit blauer Kappe malt mit einem feinen Pinsel Einzelheiten auf eine große Erdkugel in einem hellen Atelier; daneben hält Aiko, ein leuchtendes neuronales Netz, die Farbpalette.](../img/kapitel-08-chester.jpg)
 
 **Inhalt:** Statt die ganze Erde aus dem Nichts zu lernen, bekommt das neuronal Netz eine sehr grobe Höhenkarte mit und lernt dazu, was noch fehlt. 
 
@@ -18,7 +18,7 @@ Die Idee dieses Kapitels: Diese groben Formen liefert man dem neuronalen Netz fe
 
 Das **Kontextfeld** ist eine sehr grobe Höhenkarte der Erde. In der Vorlage der App hat sie 90 × 180 Gitterpunkte, also alle 2° einen Wert – am Äquator etwa alle 220 km. Jeder Wert ist der Mittelwert der Höhen in seiner Zelle. Zwischen den Gitterpunkten werden die Werte geradlinig verbunden.
 
-![Drei Karten des Alpenraums von 2° bis 18° Ost und 40° bis 52° Nord, jeweils mit weißen Gitterlinien alle 2° und einem Punkt in jeder Zellmitte. Links das Original mit Alpenbogen, Po-Ebene und Mittelmeer. In der Mitte das Kontextfeld: jede Zelle einfarbig mit ihrer gespeicherten Höhe, zum Beispiel 1 520 m in der Zelle mit dem Alpenhauptkamm und −2 650 m im Mittelmeer. Rechts dieselben Werte, zwischen den Gitterpunkten geradlinig verbunden: eine weiche Karte, auf der die Alpen nur als heller Rücken zu sehen sind.](img/kontextfeld-gitter.png)
+![Drei Karten des Alpenraums von 2° bis 18° Ost und 40° bis 52° Nord, jeweils mit weißen Gitterlinien alle 2° und einem Punkt in jeder Zellmitte. Links das Original mit Alpenbogen, Po-Ebene und Mittelmeer. In der Mitte das Kontextfeld: jede Zelle einfarbig mit ihrer gespeicherten Höhe, zum Beispiel 1 520 m in der Zelle mit dem Alpenhauptkamm und −2 650 m im Mittelmeer. Rechts dieselben Werte, zwischen den Gitterpunkten geradlinig verbunden: eine weiche Karte, auf der die Alpen nur als heller Rücken zu sehen sind.](../img/kontextfeld-gitter.png)
 
 Die Abbildung zeigt das am Beispiel der Alpen:
 
@@ -32,13 +32,13 @@ Damit lässt sich jede Höhe in zwei Teile zerlegen:
 \text{Höhe} = \text{Kontextfeld} + \text{Rest}
 ```
 
-![Drei Weltkarten nebeneinander: Das Kontextfeld 90 × 180 zeigt Kontinente und Ozeanbecken weich gezeichnet. Plus der Rest, den das Netz lernt: fast überall weiß, nur an Küsten, Gebirgen, Inselbögen und Tiefseegräben rote und blaue Linien. Gleich die Höhe im Original.](img/kontextfeld-welt.png)
+![Drei Weltkarten nebeneinander: Das Kontextfeld 90 × 180 zeigt Kontinente und Ozeanbecken weich gezeichnet. Plus der Rest, den das Netz lernt: fast überall weiß, nur an Küsten, Gebirgen, Inselbögen und Tiefseegräben rote und blaue Linien. Gleich die Höhe im Original.](../img/kontextfeld-welt.png)
 
 Das Kontextfeld enthält schon die Kontinente und Ozeanbecken. Im Rest bleibt fast nur übrig, was auf kleinem Raum passiert: Küsten, Gebirge, Inselbögen und Tiefseegräben. Im Mittel weicht der Rest nur um rund 450 m von null ab – statt 2 500 m.
 
 Am Alpenprofil aus Kapitel 3 sieht das so aus:
 
-![Oben das Alpenprofil bei 46,4° Nord in Grau, darüber das Kontextfeld als orange Linie mit Stützstellen alle 2°: eine flache Kurve, die über den Alpen nur auf etwa 1 000 m ansteigt. Unten der Rest: über den Alpen bis zu 1 600 m positiv, in den Tälern und im Flachland leicht negativ.](img/kontextfeld-profil.png)
+![Oben das Alpenprofil bei 46,4° Nord in Grau, darüber das Kontextfeld als orange Linie mit Stützstellen alle 2°: eine flache Kurve, die über den Alpen nur auf etwa 1 000 m ansteigt. Unten der Rest: über den Alpen bis zu 1 600 m positiv, in den Tälern und im Flachland leicht negativ.](../img/kontextfeld-profil.png)
 
 Das Kontextfeld ist viel zu grob für die Gipfel und Täler – aber es weiß, dass hier ein Gebirge liegt. Die Einzelheiten muss das Netz weiterhin selbst lernen.
 
@@ -72,7 +72,7 @@ Dazu kommt das Netz. Die zusätzliche Eingabe kostet in der ersten Schicht ein G
 
 Die Kompressionsrate sinkt dadurch von 14 auf 13. Genau diese Zahlen zeigt die App im Reiter *Idea & Budget*:
 
-![Die vier Kennzahlen im Reiter Idea & Budget für die Vorlage Fourier MLP + context field: 2 332 800 Gitterpunkte, 82 689 Parameter, float32 plus 31,7 KB Zusatz ergibt 354,7 KB, Kompressionsrate 13.](img/app-kontextfeld-budget.png)
+![Die vier Kennzahlen im Reiter Idea & Budget für die Vorlage Fourier MLP + context field: 2 332 800 Gitterpunkte, 82 689 Parameter, float32 plus 31,7 KB Zusatz ergibt 354,7 KB, Kompressionsrate 13.](../img/app-kontextfeld-budget.png)
 
 Die App weist die 31,7 KB als *overhead* aus: das Kontextfeld plus die 12 Byte für Mittelwert, Standardabweichung und Startwert.
 
@@ -84,7 +84,7 @@ Das Kontextfeld kostet 31,6 KB. Dieselben Bytes könnte man auch in ein etwas br
 
 Zuerst das Standardbeispiel auf der Karte:
 
-![Drei Karten von Europa: das Original, das Netz ohne Kontextfeld und das Netz mit Kontextfeld 90 × 180. Ohne Kontextfeld sind Küsten und Gebirge stark verwaschen, die Alpen sind ein weicher Fleck. Mit Kontextfeld sind die Umrisse von Italien, Griechenland und der Iberischen Halbinsel deutlich schärfer, die Alpen und Pyrenäen klar erkennbar.](img/europa-kontextfeld.png)
+![Drei Karten von Europa: das Original, das Netz ohne Kontextfeld und das Netz mit Kontextfeld 90 × 180. Ohne Kontextfeld sind Küsten und Gebirge stark verwaschen, die Alpen sind ein weicher Fleck. Mit Kontextfeld sind die Umrisse von Italien, Griechenland und der Iberischen Halbinsel deutlich schärfer, die Alpen und Pyrenäen klar erkennbar.](../img/europa-kontextfeld.png)
 
 Mit Kontextfeld werden Küsten und Gebirge deutlich schärfer, obwohl die Datei nur um 10 % wächst. Das Netz muss seine Gewichte nicht mehr für die Lage der Kontinente aufwenden und hat mehr für die Einzelheiten übrig.
 
@@ -118,7 +118,7 @@ Schon das sehr grobe Kontextfeld 45 × 90 mit nur 7,9 KB senkt den Fehler um ein
 1. In der Seitenleiste unter *2 · Network* die Vorlage *Fourier MLP + context field* wählen und *Architecture details* aufklappen.
 2. Ganz unten ist *Provide coarse context field* eingeschaltet. Darunter legt *Context field resolution* fest, wie viele Gitterpunkte das Kontextfeld von Nord nach Süd hat: 45, 90 oder 180.
 
-   <img src="img/app-kontextfeld-einstellungen.png" alt="Ausschnitt der Seitenleiste: Neurons per layer 128, Provide coarse context field eingeschaltet, Context field resolution 90 auf einer Skala von 45 bis 180." width="300">
+   <img src="../img/app-kontextfeld-einstellungen.png" alt="Ausschnitt der Seitenleiste: Neurons per layer 128, Provide coarse context field eingeschaltet, Context field resolution 90 auf einer Skala von 45 bis 180." width="300">
 
 3. Im Reiter *Idea & Budget* die Dateigröße mit der Vorlage *Fourier MLP (recommended)* vergleichen.
 4. Trainieren und im Reiter *Maps & Error* die Fehlerkarte ansehen. Wo liegen die größten Fehler jetzt?

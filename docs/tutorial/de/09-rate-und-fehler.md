@@ -1,7 +1,7 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 9 · Kompresions-Rate und Fehler messen
 
-![Unter einer Schreibtischlampe steht eine alte Balkenwaage aus Messing. Auf der linken Waagschale steht Aiko, ein leuchtendes neuronales Netz, und breitet die Arme aus; auf der rechten liegt ein Stapel gefalteter Landkarten. Rechts prüft Chester mit blauer Kappe die Waage durch eine Lupe; vorn auf dem Tisch liegt eine aufgeschlagene Karte.](img/kapitel-09-chester.jpg)
+![Unter einer Schreibtischlampe steht eine alte Balkenwaage aus Messing. Auf der linken Waagschale steht Aiko, ein leuchtendes neuronales Netz, und breitet die Arme aus; auf der rechten liegt ein Stapel gefalteter Landkarten. Rechts prüft Chester mit blauer Kappe die Waage durch eine Lupe; vorn auf dem Tisch liegt eine aufgeschlagene Karte.](../img/kapitel-09-chester.jpg)
 
 **Inhalt:**
 
@@ -32,7 +32,7 @@ Für die Kurve trainiert man mehrere Netze, die sich nur in einer Eigenschaft un
 
 Das Diagramm zeigt das für das Standardgitter 1080 × 2160 mit neun Netzbreiten von 16 bis 256 Neuronen, einmal ohne und einmal mit dem Kontextfeld aus Kapitel 8:
 
-![Rate-Distortion-Kurve auf dem Standardgitter: waagerecht die Kompressionsrate von 3 bis 800 auf einer logarithmischen Achse, senkrecht der gewichtete RMSE von 0 bis 2 400 m. Die blaue Kurve ohne Kontextfeld liegt links bei 250 m und steigt rechts von einer Rate um 50 steil an, bis auf 2 160 m beim Netz mit 16 Neuronen. Die orange Kurve mit Kontextfeld liegt überall darunter, von 176 m links bis 431 m bei einer Rate von 117, und endet dort. Eine gestrichelte Linie bei 300 m schneidet die blaue Kurve bei einer Rate von etwa 21 und die orange bei etwa 42. Unten rechts ist der ideale Bereich grün hinterlegt.](img/rd-kurve.svg)
+![Rate-Distortion-Kurve auf dem Standardgitter: waagerecht die Kompressionsrate von 3 bis 800 auf einer logarithmischen Achse, senkrecht der gewichtete RMSE von 0 bis 2 400 m. Die blaue Kurve ohne Kontextfeld liegt links bei 250 m und steigt rechts von einer Rate um 50 steil an, bis auf 2 160 m beim Netz mit 16 Neuronen. Die orange Kurve mit Kontextfeld liegt überall darunter, von 176 m links bis 431 m bei einer Rate von 117, und endet dort. Eine gestrichelte Linie bei 300 m schneidet die blaue Kurve bei einer Rate von etwa 21 und die orange bei etwa 42. Unten rechts ist der ideale Bereich grün hinterlegt.](../img/rd-kurve.svg)
 
 Die Zahlen dazu:
 
@@ -109,12 +109,12 @@ Huang und Hoefler, die Vorlage dieser Tutorial-Reihe, beurteilen ihr Verfahren e
    - *Network widths* – die Netzbreiten, die als Punkte in die Kurve eingehen, von 16 bis 256 Neuronen (voreingestellt 16, 32, 64 und 128).
    - *Also with context field (90 × 180)* – zusätzlich eine zweite Kurve mit Kontextfeld.
 
-   ![Die Einstellungen im Reiter Rate & Error: Steps per network 600, Network widths 16, 32, 64 und 128, Also with context field (90 × 180) eingeschaltet, darunter der Knopf Compute curve.](img/app-rate-einstellungen.png)
+   ![Die Einstellungen im Reiter Rate & Error: Steps per network 600, Network widths 16, 32, 64 und 128, Also with context field (90 × 180) eingeschaltet, darunter der Knopf Compute curve.](../img/app-rate-einstellungen.png)
 
 3. Auf *Compute curve* klicken. Die App trainiert nun ein Netz nach dem anderen; ein Balken zeigt den Fortschritt. Mit den Voreinstellungen sind es acht Netze. Auf einem Mac mit Apple-Grafikchip dauert das gut eine Minute, ohne Grafikchip deutlich länger.
 4. Die Kurve ansehen. Die Zahl an jedem Punkt ist die Netzbreite.
 
-   ![Die Rate-Distortion-Kurve in der App mit den Voreinstellungen: blau ohne Kontextfeld, von 346 m bei Breite 128 bis 2 279 m bei Breite 16; orange mit Kontextfeld, von 265 m bis 442 m. Rechts unten der Hinweis bottom right would be ideal.](img/app-rate-kurve.png)
+   ![Die Rate-Distortion-Kurve in der App mit den Voreinstellungen: blau ohne Kontextfeld, von 346 m bei Breite 128 bis 2 279 m bei Breite 16; orange mit Kontextfeld, von 265 m bis 442 m. Rechts unten der Hinweis bottom right would be ideal.](../img/app-rate-kurve.png)
 
 5. Unter der Kurve steht eine Tabelle mit Parametern, Dateigröße, Rate, gewichtetem RMSE und PSNR für jedes Netz.
 

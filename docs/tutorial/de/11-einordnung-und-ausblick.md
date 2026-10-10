@@ -1,7 +1,7 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 11 · Einordnung und Ausblick
 
-![Abendsonne über einem weiten Tal. Auf einem dicken Ast steht Aiko, ein leuchtendes neuronales Netz, und breitet die Arme aus; daneben sitzt Chester mit blauer Kappe und zeigt mit der Pfote in die Ferne. Im Tal leuchten viele kleine Lichtpunkte, leuchtende Wege schlängeln sich zwischen Bäumen hindurch, und Felder sind durch Ränder voneinander getrennt.](img/kapitel-11-chester.jpg)
+![Abendsonne über einem weiten Tal. Auf einem dicken Ast steht Aiko, ein leuchtendes neuronales Netz, und breitet die Arme aus; daneben sitzt Chester mit blauer Kappe und zeigt mit der Pfote in die Ferne. Im Tal leuchten viele kleine Lichtpunkte, leuchtende Wege schlängeln sich zwischen Bäumen hindurch, und Felder sind durch Ränder voneinander getrennt.](../img/kapitel-11-chester.jpg)
 
 **Inhalt:**
 
@@ -51,7 +51,7 @@ Ein Netz *f*(lon, lat) gibt für jeden Ort eine Zahl aus. Ein Fluss ist aber kei
 
 Der erste Weg macht aus den Vektordaten ein Feld – eine Größe, die an jedem Ort einen Wert hat. Dieses Feld lässt sich dann genauso mit einem Netz speichern wie die Höhen in diesem Tutorial.
 
-![Drei Quadrate nebeneinander. Links zwölf orange Punkte, darunter eine blaue Fläche, die dort dunkel ist, wo viele Punkte dicht beieinanderliegen. In der Mitte eine orange Linie wie ein Fluss, dunkelblau direkt an der Linie und nach außen immer heller. Rechts eine gestrichelte Fläche, innen blau, außen orange, am Rand weiß.](img/vektor-zu-feld.svg)
+![Drei Quadrate nebeneinander. Links zwölf orange Punkte, darunter eine blaue Fläche, die dort dunkel ist, wo viele Punkte dicht beieinanderliegen. In der Mitte eine orange Linie wie ein Fluss, dunkelblau direkt an der Linie und nach außen immer heller. Rechts eine gestrichelte Fläche, innen blau, außen orange, am Rand weiß.](../img/vektor-zu-feld.svg)
 
 **Punkte werden zu einer Dichte.** Für jeden Ort fragt man: Wie viele Punkte liegen in der Nähe? Oder bei Fundorten einer Tierart: Wie wahrscheinlich ist es, die Art hier anzutreffen? Cole und Kollegen haben so mit einem einzigen Netz die Verbreitungsgebiete von 47 000 Tier- und Pflanzenarten gelernt, aus Millionen von Beobachtungen, die Freiwillige gemeldet haben [3]. Ihr Netz bekommt eine Koordinate und gibt für jede Art eine Wahrscheinlichkeit aus – ein Feld, wie in diesem Tutorial, nur mit 47 000 Ausgaben statt einer.
 
@@ -63,7 +63,7 @@ Haben die Punkte Messwerte, etwa Temperaturen an Wetterstationen, lernt das Netz
 
 **Die Geometrie zurückgewinnen.** Aus dem Feld bekommt man die Vektordaten wieder heraus: die Gipfel der Dichte, die Nulllinie des Abstands, den Rand bei null. Das lässt sich sogar mit dem Netz dieses Tutorials zeigen. Die Küste ist die Linie, an der die Höhe genau 0 m ist:
 
-![Zwei Karten von Mitteleuropa und dem Mittelmeer mit der Küste als 0-m-Linie. Links aus dem Trainingsgitter: feine, zackige Küsten, Korsika, Sardinien, Sizilien und kleine Inseln deutlich. Rechts aus dem Netz: glatte, runde Küsten, Korsika und Sardinien als weiche Flecken, kleine Inseln fehlen, dafür liegen an einigen Stellen im Landesinneren Seen, die es nicht gibt.](img/kueste-aus-feld.svg)
+![Zwei Karten von Mitteleuropa und dem Mittelmeer mit der Küste als 0-m-Linie. Links aus dem Trainingsgitter: feine, zackige Küsten, Korsika, Sardinien, Sizilien und kleine Inseln deutlich. Rechts aus dem Netz: glatte, runde Küsten, Korsika und Sardinien als weiche Flecken, kleine Inseln fehlen, dafür liegen an einigen Stellen im Landesinneren Seen, die es nicht gibt.](../img/kueste-aus-feld.svg)
 
 Bezogen auf die Fläche liegt das Standardbeispiel bei 97 % der Erdoberfläche auf der richtigen Seite – Land, wo Land ist, Meer, wo Meer ist. An den Küsten selbst, in Zellen mit Höhen zwischen −200 m und +200 m, sind es nur noch 80 %. Genau dort, wo die Linie verläuft, ist das Netz am unsichersten.
 

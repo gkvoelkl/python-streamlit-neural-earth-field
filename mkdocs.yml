@@ -1,0 +1,110 @@
+site_name: Geodaten in neuronalen Netzen speichern
+site_description: Ein Tutorial über neuronale Felder als Kompression für Geodaten – mit der Erde als Beispiel
+site_author: Gerhard Völkl
+site_url: https://gkvoelkl.github.io/python-streamlit-neural-earth-field/
+repo_url: https://github.com/gkvoelkl/python-streamlit-neural-earth-field
+repo_name: gkvoelkl/python-streamlit-neural-earth-field
+edit_uri: edit/main/docs/tutorial/
+copyright: Gerhard Völkl · MIT License
+
+docs_dir: docs/tutorial
+site_dir: site
+# keeps relative paths in raw HTML (<img src="../img/…">) working
+use_directory_urls: false
+exclude_docs: |
+  PLANUNG.md
+  img/chester-prompts.md
+  tools/
+hooks:
+  - docs/tutorial/tools/mkdocs_hooks.py
+
+nav:
+  - Übersicht: README.md
+  - Teil 1 · Grundlagen:
+      - 1 · Geodaten als Funktion statt als Raster: 01-geodaten-als-funktion.md
+      - 2 · Training des neuronalen Netzes: 02-training.md
+      - 3 · Architektur eines neuronalen Netzes: 03-architektur.md
+  - Teil 2 · Bessere Netze für Geodaten:
+      - 4 · Die Erde ist eine Kugel: 04-kugelkoordinaten.md
+      - 5 · Höhen als Wellen: 05-fourier-features.md
+  - Ergänzungen und Vertiefungen:
+      - 6 · Kugelflächenfunktionen: 06-kugelflaechenfunktionen.md
+      - 7 · SIREN: 07-siren.md
+      - 8 · Das Kontextfeld: 08-kontextfeld.md
+      - 9 · Rate und Fehler messen: 09-rate-und-fehler.md
+      - 10 · Abfragen und exportieren: 10-abfragen-und-exportieren.md
+      - 11 · Einordnung und Ausblick: 11-einordnung-und-ausblick.md
+  - Anhang · Messungen: anhang-messungen.md
+
+theme:
+  name: material
+  language: de
+  features:
+    - navigation.footer
+    - navigation.top
+    - content.action.edit
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle: {icon: material/weather-night, name: Dunkel}
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle: {icon: material/weather-sunny, name: Hell}
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: de
+          name: Deutsch
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+          site_name: Storing geodata in neural networks
+          site_description: A tutorial on neural fields as compression for geodata – with the Earth as the example
+          nav_translations:
+            Übersicht: Overview
+            Teil 1 · Grundlagen: Part 1 · Basics
+            1 · Geodaten als Funktion statt als Raster: 1 · Geodata as a function instead of a grid
+            2 · Training des neuronalen Netzes: 2 · Training the neural network
+            3 · Architektur eines neuronalen Netzes: 3 · Architecture of a neural network
+            Teil 2 · Bessere Netze für Geodaten: Part 2 · Better networks for geodata
+            4 · Die Erde ist eine Kugel: 4 · The Earth is a sphere
+            5 · Höhen als Wellen: 5 · Elevations as waves
+            Ergänzungen und Vertiefungen: Extensions and deep dives
+            6 · Kugelflächenfunktionen: 6 · Spherical harmonics
+            8 · Das Kontextfeld: 8 · The context field
+            9 · Rate und Fehler messen: 9 · Measuring rate and error
+            10 · Abfragen und exportieren: 10 · Querying and exporting
+            11 · Einordnung und Ausblick: 11 · Context and outlook
+            Anhang · Messungen: Appendix · Measurements
+
+markdown_extensions:
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        # GitHub-style ```math blocks, so the Markdown renders on GitHub and on the site
+        - name: math
+          class: arithmatex
+          format: !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format
+            kwds: {mode: generic, tag: div}
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css

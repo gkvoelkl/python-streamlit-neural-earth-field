@@ -1,5 +1,7 @@
 # Tutorial: Geodaten in neuronalen Netzen speichern
 
+*[English version](../en/README.md) – Kapitel 1 ist übersetzt, die übrigen folgen.*
+
 Dieses Tutorial zeigt Schritt für Schritt, wie man das Höhenmodell der ganzen Erde in die Gewichte eines kleinen neuronalen Netzes packt – und warum die Gewichte dann die Datei sind. Jedes Kapitel verbindet eine Idee mit Experimenten in der Begleit-App aus diesem Repo. Programmcode zeigt das Tutorial bewusst nicht – wer hineinschauen will, findet alles im Ordner `src/`.
 
 **Zielgruppe:** Leute mit soliden Python-Kenntnissen und etwas numpy. Neuronale Netze muss man höchstens aus Einführungen kennen, Erfahrung mit Geodaten ist nicht nötig.
@@ -11,7 +13,7 @@ uv sync
 uv run streamlit run app.py
 ```
 
-Optional, aber empfohlen: das globale Höhenmodell ETOPO 2022 (456 MB) nach `data/` laden, wie in der [README des Repos](../../README.md#data) beschrieben. Ohne die Datei läuft alles mit einer synthetischen Erde.
+Optional, aber empfohlen: das globale Höhenmodell ETOPO 2022 (456 MB) nach `data/` laden, wie in der [README des Repos](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_de.md#daten) beschrieben. Ohne die Datei läuft alles mit einer synthetischen Erde.
 
 Die App ist auf Englisch. Begriffe aus der Oberfläche stehen im Tutorial im Original und kursiv, etwa *Idea & Budget*.
 

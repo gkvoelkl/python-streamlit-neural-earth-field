@@ -4,7 +4,9 @@ Arbeitsdokument für die Autoren, nicht Teil des Tutorials. Stand: 3. Oktober 20
 
 ## Regeln
 
-- **Format:** Markdown im Repo unter `docs/tutorial/`, eine Datei pro Kapitel (`NN-titel.md`), Bilder in `img/`.
+- **Format:** Markdown im Repo, deutsche Kapitel unter `docs/tutorial/de/`, eine Datei pro Kapitel (`NN-titel.md`), Bilder gemeinsam in `docs/tutorial/img/` (aus einem Kapitel verlinkt als `../img/…`).
+- **Zweisprachig (seit 10. Oktober 2026):** Deutsch ist das Original. Die englische Fassung liegt unter `docs/tutorial/en/` mit denselben Dateinamen und beginnt mit dem Hinweis „Translated from the German original“. Beide Fassungen verlinken sich oben gegenseitig (`../en/…` bzw. `../de/…`); noch nicht übersetzte Kapitel verlinkt die englische Fassung auf das deutsche Original. Englische Diagramme liegen in `img/en/` und entstehen mit `tools/translate_svg.py` aus den deutschen SVGs; die Übersetzungen stehen in `tools/svg-en.json`. Chester-Bilder und App-Screenshots gelten für beide Sprachen.
+- **Website:** MkDocs Material mit `mkdocs-static-i18n` (`mkdocs.yml` im Wurzelordner), Deutsch an der Wurzel, Englisch unter `en/`. Neue Kapitel in `nav` und in `nav_translations` eintragen; `mkdocs build --strict` muss ohne Warnung durchlaufen.
 - **Vorgehen:** ein Kapitel nach dem anderen. Anmerkungen beim Gegenlesen als `/* … */` direkt in den Text; sie werden eingearbeitet und entfernt.
 - **Kein Programmcode** im Tutorial. Erklärt wird mit Text, einfachen Rechenbeispielen, Diagrammen und Screenshots der App.
 - **Keine Übungen, keine Lösungen.** Jedes Kapitel endet mit „Ideen zum Weiterprobieren“: offene Vorschläge für die App.
@@ -136,6 +138,11 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Messung (10. Oktober 2026):** alle Vorlagen plus die Netze aus Kapitel 3, 1080 × 2160, 4 000 Schritte, je 3 Läufe (Startwerte 0–2; L = 40 nur 1 Lauf), Auswertung auf dem ganzen Gitter, Apple M4, MPS. Dazu float16 und eine Übersicht der Messungen aus den Kapiteln.
 
 ## Offene Punkte
+
+- [ ] Kapitel 2 bis 11 und den Anhang übersetzen, jeweils mit den Diagrammen (Einträge in `tools/svg-en.json`).
+- [ ] Begriffsliste Deutsch–Englisch, damit die Übersetzung einheitlich bleibt (z. B. Kontextfeld → *context field*, Startbelegung → *initialisation*, Gewichte → *weights*, Rate → *compression ratio*).
+- [ ] E-Mail-Adresse im Disclaimer vor der Veröffentlichung prüfen (öffentlich sichtbar).
+- [ ] Nutzungsbedingungen von Kling für die Veröffentlichung der Chester-Bilder prüfen.
 
 - [x] Messungen mit mehreren Startwerten wiederholen: im Anhang 3 Läufe je Variante, Mittelwert und Spanne.
 - [ ] Eine kleinere Variante der Experimente für Rechner ohne GPU beschreiben (Gitter 360 × 720, 1000 Schritte)?

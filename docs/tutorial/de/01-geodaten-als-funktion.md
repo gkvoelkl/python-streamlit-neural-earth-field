@@ -1,7 +1,9 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 1 · Geodaten als Funktion statt als Raster
 
-![Chester, das Eichhörnchen mit der blauen Kappe, hält Aiko in den Pfoten, ein kleines leuchtendes neuronales Netz. Aus einer Erdkugel, die aus kleinen Pixel-Quadraten besteht, fließt eine Spirale in Aiko hinein.](img/kapitel-01-chester.jpg)
+*[English version](../en/01-geodaten-als-funktion.md)*
+
+![Chester, das Eichhörnchen mit der blauen Kappe, hält Aiko in den Pfoten, ein kleines leuchtendes neuronales Netz. Aus einer Erdkugel, die aus kleinen Pixel-Quadraten besteht, fließt eine Spirale in Aiko hinein.](../img/kapitel-01-chester.jpg)
 
 
 **Inhalt:** 
@@ -24,23 +26,23 @@ Das ist die Kern-Idee, mit der sich dieses Tutorial und alle Kapitel dieser Reih
 
 Der Einfachheit halber verwendet diese Tutorial-Reihe als Beispiel die Höhendaten der Erde. Die Prinzipien gelten genauso für andere Geodaten, etwa Temperaturen oder Niederschläge.
 
-![Das Netz ersetzt das Raster und ist 14-mal kleiner: Höhenraster mit 2 332 800 Werten wird trainiert zu einem neuronalen Feld mit 82 561 Gewichten, das an jeder Koordinate abgefragt werden kann. Gespeichert werden 323 KB statt 4,4 MB.](img/geodaten-zu-netz.svg)
+![Das Netz ersetzt das Raster und ist 14-mal kleiner: Höhenraster mit 2 332 800 Werten wird trainiert zu einem neuronalen Feld mit 82 561 Gewichten, das an jeder Koordinate abgefragt werden kann. Gespeichert werden 323 KB statt 4,4 MB.](../img/geodaten-zu-netz.svg)
 
 ## Die verwendeten Daten im Detail
 
 Ein digitales Höhenmodell ist nichts anderes als eine Tabelle: Für jede Zelle eines regelmäßigen Gitters aus Längen- und Breitengraden steht dort eine Höhe in Metern.
 
-![Ein Höhenraster ist eine Tabelle: Links ein Ausschnitt mit Alpen und Ligurischem Meer als Zahlen, sechs Zeilen für die Breitengrade 48,5° bis 43,5° Nord und acht Spalten für die Längengrade 5,5° bis 12,5° Ost. Rechts dieselben Werte als Farben, von Blau für das Meer über Grün bis Braun für die Alpen.](img/raster-als-tabelle.svg)
+![Ein Höhenraster ist eine Tabelle: Links ein Ausschnitt mit Alpen und Ligurischem Meer als Zahlen, sechs Zeilen für die Breitengrade 48,5° bis 43,5° Nord und acht Spalten für die Längengrade 5,5° bis 12,5° Ost. Rechts dieselben Werte als Farben, von Blau für das Meer über Grün bis Braun für die Alpen.](../img/raster-als-tabelle.svg)
 
 Das globale Modell ETOPO 2022 hat in der Fassung, die hier Verwendung findet, 10 800 × 21 600 Zellen, also rund **233 Millionen Werte**.
 
 Jede Zelle gehört zu einem Ort auf der Erde, und jeder Ort ist durch zwei Winkel festgelegt: die **Länge** (*longitude*, kurz lon) gibt an, wie weit östlich oder westlich vom Nullmeridian durch Greenwich er liegt, die **Breite** (*latitude*, kurz lat), wie weit nördlich oder südlich vom Äquator. Klappt man dieses Gradnetz von der Kugel auf, wird es zu einem Rechteck – und genau dieses Rechteck ist das Raster.
 
-![Links die Erde als Kugel mit Längen- und Breitengraden, hervorgehoben der Äquator (0° Breite) und der Nullmeridian (0° Länge), eingezeichnet Regensburg bei 12,1° Ost und 49,0° Nord. Rechts dasselbe Gradnetz aufgeklappt zu einem Rechteck von −180° bis 180° Länge und 90° Süd bis 90° Nord: 21 600 Spalten und 10 800 Zeilen.](img/erde-gradnetz.svg)
+![Links die Erde als Kugel mit Längen- und Breitengraden, hervorgehoben der Äquator (0° Breite) und der Nullmeridian (0° Länge), eingezeichnet Regensburg bei 12,1° Ost und 49,0° Nord. Rechts dasselbe Gradnetz aufgeklappt zu einem Rechteck von −180° bis 180° Länge und 90° Süd bis 90° Nord: 21 600 Spalten und 10 800 Zeilen.](../img/erde-gradnetz.svg)
 
 Alle Beispiele der Tutorial-Reihe können Sie in der Begleit-App nachvollziehen:
 
-![Die Begleit-App nach dem Start: links die Seitenleiste mit Datenquelle, Gitterauflösung, Netz-Vorlage und Trainingseinstellungen, rechts der Reiter Idea & Budget.](img/app-uebersicht.jpg)
+![Die Begleit-App nach dem Start: links die Seitenleiste mit Datenquelle, Gitterauflösung, Netz-Vorlage und Trainingseinstellungen, rechts der Reiter Idea & Budget.](../img/app-uebersicht.jpg)
 
 Wie Sie die App installieren und starten, steht am Ende dieses Kapitels im Abschnitt [Ausprobieren](#ausprobieren).
 
@@ -88,7 +90,7 @@ Gewichte sind die Parameter, die die Berechnungen steuern.
 \text{Höhe}(x) = 300 + 0{,}05 \cdot x \qquad (x = \text{Strecke in Metern})
 ```
 
-![Höhenprofil einer Straße über 5 km: Die Messpunkte steigen gleichmäßig von 300 m auf 550 m und liegen alle auf einer Geraden. Markiert sind der Startwert 300 m, die Steigung von 50 m auf 1 000 m und die abgelesene Höhe 425 m nach 2,5 km. Gespeichert werden nur die zwei Gewichte 300 und 0,05.](img/strasse-profil.svg)
+![Höhenprofil einer Straße über 5 km: Die Messpunkte steigen gleichmäßig von 300 m auf 550 m und liegen alle auf einer Geraden. Markiert sind der Startwert 300 m, die Steigung von 50 m auf 1 000 m und die abgelesene Höhe 425 m nach 2,5 km. Gespeichert werden nur die zwei Gewichte 300 und 0,05.](../img/strasse-profil.svg)
 
 Statt 500 Zahlen speichern wir nur zwei: **300** und **0,05**. Das sind die Gewichte dieser Funktion. Wer die Höhe nach 2,5 km wissen will, rechnet sie aus: 300 + 0,05 · 2 500 = 425 m. Die Tabelle braucht man nicht mehr.
 
@@ -96,7 +98,7 @@ Echtes Gelände steigt nicht gleichmäßig. Es hat Täler, Gipfel und Küsten. D
 
 Ein neuronales Netz baut deshalb aus vielen solchen einfachen Stücken eine biegsame Funktion zusammen. Jedes Stück hat wieder seine eigenen Gewichte; wo ein Stück endet, knickt die Kurve ab, und das nächste beginnt.
 
-![Ein Geländeprofil mit Tal, Vorgipfel, Gipfel und Küste, darüber elf gerade Stücke, die an Knickpunkten aneinanderstoßen und dem Gelände schon recht nahe kommen.](img/gelaende-stuecke.svg)
+![Ein Geländeprofil mit Tal, Vorgipfel, Gipfel und Küste, darüber elf gerade Stücke, die an Knickpunkten aneinanderstoßen und dem Gelände schon recht nahe kommen.](../img/gelaende-stuecke.svg)
 
 Wie das Netz diese Stücke genau bildet, zeigt Kapitel 3. Hier genügt: Mehr Stücke bedeuten mehr Gewichte – und mehr Gewichte bedeuten mehr Speicher.
 
@@ -185,13 +187,13 @@ Dafür fasst die App Blöcke von Zellen zusammen und nimmt deren Mittelwert; das
 
 * **App installieren:** Die App braucht Python 3.14 oder neuer und den Paketmanager [uv](https://docs.astral.sh/uv/). Laden Sie das Repository herunter (mit `git clone` oder als ZIP-Datei) und rufen Sie im Projektordner einmal `uv sync` auf. uv legt dabei eine eigene Python-Umgebung an und installiert alle benötigten Pakete.
 
-* **Höhendaten laden:** Die ETOPO-Datei (456 MB) wird einmal heruntergeladen und im Ordner `data/` abgelegt. Den genauen Befehl finden Sie in der README des Projekts unter *Data*. Ohne die Datei läuft die App trotzdem, dann mit einer künstlichen Test-Erde (Quelle *Synthetic*).
+* **Höhendaten laden:** Die ETOPO-Datei (456 MB) wird einmal heruntergeladen und im Ordner `data/` abgelegt. Den genauen Befehl finden Sie in der [README des Projekts](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_de.md#daten) unter *Daten*. Ohne die Datei läuft die App trotzdem, dann mit einer künstlichen Test-Erde (Quelle *Synthetic*).
 
 * **App starten:** `uv run streamlit run app.py`. Die App öffnet sich im Browser.
 
 * Den Reiter **Idea & Budget** öffnen. Unter *Your budget – before training* stehen vier Kennzahlen: *Grid points*, *Parameters*, *Compression ratio* und *Bits per grid point*.
 
-   ![Die vier Kennzahlen im Reiter Idea & Budget für das Standardbeispiel: 2 332 800 Gitterpunkte, 82 561 Parameter, Kompressionsrate 14, 1,133 Bits pro Gitterpunkt.](img/app-budget.png)
+   ![Die vier Kennzahlen im Reiter Idea & Budget für das Standardbeispiel: 2 332 800 Gitterpunkte, 82 561 Parameter, Kompressionsrate 14, 1,133 Bits pro Gitterpunkt.](../img/app-budget.png)
 
    - *Grid points* – die Zahl der Gitterzellen in der Arbeitsauflösung: 1080 × 2160 = 2 332 800 Höhenwerte.
    - *Parameters* – die Zahl der Gewichte des gewählten Netzes: 82 561.
@@ -200,7 +202,7 @@ Dafür fasst die App Blöcke von Zellen zusammen und nimmt deren Mittelwert; das
 
 * In der **Seitenleiste** unter **1 · Data** den Regler **Grid resolution** verschieben. Beobachten Sie: Die Zahl der Parameter bleibt gleich, Rohgröße und Kompressionsrate ändern sich.
 
-   <img src="img/app-seitenleiste.png" alt="Seitenleiste der App: unter 1 · Data die Quelle ETOPO 2022 und der Regler Grid resolution auf 1080 × 2160, unter 2 · Network die Vorlage Fourier MLP (recommended)." width="300">
+   <img src="../img/app-seitenleiste.png" alt="Seitenleiste der App: unter 1 · Data die Quelle ETOPO 2022 und der Regler Grid resolution auf 1080 × 2160, unter 2 · Network die Vorlage Fourier MLP (recommended)." width="300">
 
 * Den Regler ganz nach links schieben (180 × 360). Was meldet die App?
 

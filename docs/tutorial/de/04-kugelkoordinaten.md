@@ -1,7 +1,7 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 4 · Die Erde ist eine Kugel
 
-![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Aiko, ein leuchtendes neuronales Netz, steht links auf dem Tisch und hält den Faden.](img/kapitel-04-chester.jpg)
+![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Aiko, ein leuchtendes neuronales Netz, steht links auf dem Tisch und hält den Faden.](../img/kapitel-04-chester.jpg)
 
 **Inhalt:** 
 
@@ -15,7 +15,7 @@ In Kapitel 3 bekam das neuronale Netz Länge und Breite als Eingabe – so, wie 
 
 ## Zwei Haken bei Länge und Breite
 
-![Links eine Kugel mit zwei benachbarten Punkten A und B an der Datumsgrenze, 22 km voneinander entfernt, und dem Nordpol als einzelnem Punkt. Rechts eine rechteckige Weltkarte, auf der A ganz rechts bei +179,9° und B ganz links bei −179,9° liegt; die obere Kante der Karte ist der Nordpol.](img/naht-und-pole.svg)
+![Links eine Kugel mit zwei benachbarten Punkten A und B an der Datumsgrenze, 22 km voneinander entfernt, und dem Nordpol als einzelnem Punkt. Rechts eine rechteckige Weltkarte, auf der A ganz rechts bei +179,9° und B ganz links bei −179,9° liegt; die obere Kante der Karte ist der Nordpol.](../img/naht-und-pole.svg)
 
 **Die Naht.** Die Länge läuft von −180° bis +180°. Ein Punkt bei 179,9° Ost und einer bei 179,9° West liegen auf der Erde nur 22 km auseinander – beide im Pazifik, ganz in der Nähe der Datumsgrenze, die ungefähr dem 180. Längengrad folgt. 
 
@@ -33,7 +33,7 @@ Die Lösung: Man beschreibt einen Ort nicht durch zwei Winkel (Länge, Breite), 
 
 Dazu stellt man sich die Erde als Kugel mit dem Radius 1 vor, mit dem Erdmittelpunkt als Ursprung. Jeder Ort ist dann ein Punkt auf dieser Kugel und hat drei Koordinaten *x*, *y* und *z*.
 
-![Eine Kugel mit drei Achsen: x zeigt zum Punkt 0° Ost, 0° Nord, y zu 90° Ost, 0° Nord, z zum Nordpol. Regensburg ist als Punkt auf der Kugel markiert. Rechts die Umrechnungsformeln und die Werte für Regensburg: x = 0,64, y = 0,14, z = 0,75.](img/kugel-xyz.svg)
+![Eine Kugel mit drei Achsen: x zeigt zum Punkt 0° Ost, 0° Nord, y zu 90° Ost, 0° Nord, z zum Nordpol. Regensburg ist als Punkt auf der Kugel markiert. Rechts die Umrechnungsformeln und die Werte für Regensburg: x = 0,64, y = 0,14, z = 0,75.](../img/kugel-xyz.svg)
 
 Aus Länge und Breite rechnet man sie so aus:
 
@@ -51,7 +51,7 @@ z = \sin(\text{Breite})
 
 Was die drei Formeln bedeuten, zeigt das Beispiel Regensburg Schritt für Schritt:
 
-![Drei Abschnitte. 1: In der Seitenansicht liegt Regensburg 49° über dem Äquator; daraus folgen die Höhe z = sin(49°) = 0,75 und der Abstand zur Erdachse r = cos(49°) = 0,66. 2: Von oben auf den Nordpol gesehen liegt Regensburg auf einem Kreis mit Radius 0,66, um 12,1° gegen die Richtung 0° Ost gedreht; der Anteil in Richtung 0° Ost ist x = 0,66 · cos(12,1°) = 0,64. 3: Der Anteil in Richtung 90° Ost ist y = 0,66 · sin(12,1°) = 0,14.](img/xyz-schritte.svg)
+![Drei Abschnitte. 1: In der Seitenansicht liegt Regensburg 49° über dem Äquator; daraus folgen die Höhe z = sin(49°) = 0,75 und der Abstand zur Erdachse r = cos(49°) = 0,66. 2: Von oben auf den Nordpol gesehen liegt Regensburg auf einem Kreis mit Radius 0,66, um 12,1° gegen die Richtung 0° Ost gedreht; der Anteil in Richtung 0° Ost ist x = 0,66 · cos(12,1°) = 0,64. 3: Der Anteil in Richtung 90° Ost ist y = 0,66 · sin(12,1°) = 0,14.](../img/xyz-schritte.svg)
 
 1. **Die Breite bestimmt die Höhe.** Je weiter nördlich ein Ort liegt, desto höher liegt er über der Ebene des Äquators: z = sin(Breite). Gleichzeitig rückt er näher an die Erdachse heran; der Abstand zur Achse ist r = cos(Breite).
 2. **Die Länge verteilt diesen Abstand auf zwei Richtungen.** Von oben auf den Nordpol gesehen liegen alle Orte gleicher Breite auf einem Kreis mit dem Radius r. Die Länge ist der Winkel auf diesem Kreis. Der Anteil in Richtung 0° Ost ist x = r · cos(Länge).
@@ -82,7 +82,7 @@ Wie groß der Unterschied ist, zeigt ein Vergleich: ein neuronales Netz mit ders
 
 Das Bild zeigt den Pazifik zu beiden Seiten des 180. Längengrades.
 
-![Drei Karten des Pazifiks zwischen 160° Ost und 160° West, von 50° Süd bis 10° Nord, mit dem 180. Längengrad als gestrichelter Linie. Links das Original mit Tiefseegräben und Neuseeland. In der Mitte das mit Länge und Breite gelernte Netz: An der gestrichelten Linie verläuft eine senkrechte Kante, links davon ist es heller als rechts. Rechts das mit Kugelkoordinaten gelernte Netz: keine Kante an der Linie.](img/naht-pazifik.png)
+![Drei Karten des Pazifiks zwischen 160° Ost und 160° West, von 50° Süd bis 10° Nord, mit dem 180. Längengrad als gestrichelter Linie. Links das Original mit Tiefseegräben und Neuseeland. In der Mitte das mit Länge und Breite gelernte Netz: An der gestrichelten Linie verläuft eine senkrechte Kante, links davon ist es heller als rechts. Rechts das mit Kugelkoordinaten gelernte Netz: keine Kante an der Linie.](../img/naht-pazifik.png)
 
 Mit Länge und Breite hat das Netz an der 180°-Linie eine sichtbare **Naht**: Die Höhe springt dort, obwohl das Gelände auf beiden Seiten weitergeht. Entlang der ganzen Linie vom Süd- zum Nordpol beträgt der Sprung im Mittel 675 m. Mit Kugelkoordinaten verschwindet er fast vollständig: im Mittel 2 m.
 
@@ -93,7 +93,7 @@ Beide Netze haben dieselbe Größe und sind gleich lange trainiert.
 1. In der Seitenleiste unter *2 · Network* die Vorlage *Plain MLP (fails on purpose)* wählen und *Architecture details* aufklappen.
 2. Ganz oben steht *Coordinate input*. Voreingestellt ist `xyz` – die Kugelkoordinaten aus diesem Kapitel. Die Alternative `lonlat` gibt Länge und Breite direkt ins Netz.
 
-   <img src="img/app-koordinaten-eingabe.png" alt="Seitenleiste mit aufgeklappten Architecture details: Die Auswahl Coordinate input ist geöffnet und zeigt die beiden Möglichkeiten xyz und lonlat." width="300">
+   <img src="../img/app-koordinaten-eingabe.png" alt="Seitenleiste mit aufgeklappten Architecture details: Die Auswahl Coordinate input ist geöffnet und zeigt die beiden Möglichkeiten xyz und lonlat." width="300">
 
 3. Mit `lonlat` trainieren und im Reiter *Maps & Error* die Fehlerkarte am rechten und linken Rand ansehen. Dann mit `xyz` trainieren und vergleichen.
 4. Im Reiter *Globe 3D* lässt sich die Erde drehen. Den Regler *View direction (longitude)* auf 180 stellen: Dann schaut man direkt auf die Naht.
