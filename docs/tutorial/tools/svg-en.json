@@ -82,5 +82,18 @@
     "Vorgipfel": "Subsidiary peak",
     "echtes Gelände": "real terrain",
     "gerade Stücke": "straight pieces"
+  },
+  "rd-kurve.svg": {
+    "Rate-Distortion-Kurve: Kompressionsrate gegen flächengewichteten RMSE für Netze der Breite 16 bis 256, mit und ohne Kontextfeld": "Rate-distortion curve: compression ratio against area-weighted RMSE for networks of width 16 to 256, with and without context field",
+    "Dateigröße gegen Fehler: die Rate-Distortion-Kurve": "File size against error: the rate-distortion curve",
+    "Fehler: gewichteter RMSE [m] (unten = genauer)": "Error: weighted RMSE [m] (lower = more accurate)",
+    "Gestrichelt: Fehler 300 m. Ohne Kontextfeld wird er erst bei einer Rate von etwa 21 erreicht, mit Kontextfeld schon bei etwa 42.": "Dashed: error 300 m. Without context field it is reached only at a ratio of about 21, with context field already at about 42.",
+    "Kompressionsrate (logarithmisch) → kleinere Datei": "Compression ratio (logarithmic) → smaller file",
+    "Standardgitter 1080 × 2160, neun Netzbreiten von 16 bis 256 Neuronen, je 2 000 Trainingsschritte, je ein Lauf": "Standard grid 1080 × 2160, nine network widths from 16 to 256 neurons, 2 000 training steps each, one run each",
+    "Zahl am Punkt = Neuronen pro Schicht": "Number at the point = neurons per layer",
+    "ideal: kleine Datei,": "ideal: small file,",
+    "kleiner Fehler": "small error",
+    "mit Kontextfeld 90 × 180": "with context field 90 × 180",
+    "ohne Kontextfeld": "without context field"
   }
 }

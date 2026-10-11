@@ -47,6 +47,11 @@ synthetic test Earth.
 | **Rate & Error** | Rate-distortion curve across several network sizes |
 | **Export** | Weights as `.pt` in float32 / float16, with a loading example |
 
+<p align="center">
+  <img src="./docs/tutorial/img/app-uebersicht.jpg" alt="The app after start-up: on the left the sidebar with data source, grid resolution, network preset and training settings; on the right the Idea &amp; Budget tab with the tab bar above it." width="820">
+  <br><sub><em>The app after start-up: settings in the sidebar, seven tabs for budget, training and results.</em></sub>
+</p>
+
 ## The three tricks
 
 1. **Coordinates on the sphere.** `(lon, lat)` has a seam at ±180° and two
@@ -85,6 +90,11 @@ In this short run on the fine grid, SIREN comes close to the Fourier MLP with a
 4000 steps (three runs each) the context field is clearly ahead: 186 m versus
 233 m weighted RMSE, with SIREN varying most from run to run (215–246 m). All
 measurements are collected in the appendix of the tutorial.
+
+<p align="center">
+  <img src="./docs/tutorial/img/en/rd-kurve.svg" alt="Rate-distortion curve on the 1080 × 2160 grid: compression ratio on a logarithmic axis against weighted RMSE for nine network widths. The curve with context field lies below the one without everywhere; without context field the error rises steeply for small networks." width="820">
+  <br><sub><em>File size against error on the 1080 × 2160 grid (2 000 steps, one run per point): the context field wins at every file size both curves cover. From chapter 9 of the tutorial.</em></sub>
+</p>
 
 ## Tutorial website
 

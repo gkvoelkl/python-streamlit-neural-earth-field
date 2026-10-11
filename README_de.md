@@ -48,6 +48,11 @@ künstlichen Test-Erde.
 | **Rate & Error** | Rate-Distortion-Kurve über mehrere Netzgrößen |
 | **Export** | Gewichte als `.pt` in float32 / float16, mit Ladebeispiel |
 
+<p align="center">
+  <img src="./docs/tutorial/img/app-uebersicht.jpg" alt="Die App nach dem Start: links die Seitenleiste mit Datenquelle, Gitterauflösung, Netz-Vorlage und Trainingseinstellungen; rechts der Reiter Idea &amp; Budget, darüber die Leiste mit allen Reitern." width="820">
+  <br><sub><em>Die App nach dem Start: Einstellungen in der Seitenleiste, sieben Reiter für Budget, Training und Ergebnisse.</em></sub>
+</p>
+
 ## Die drei Kniffe
 
 1. **Koordinaten auf der Kugel.** `(lon, lat)` hat eine Naht bei ±180° und zwei
@@ -87,6 +92,11 @@ dem Gitter 1080 × 2160 mit 4 000 Schritten (je drei Läufe) liegt das Kontextfe
 deutlich vorn: 186 m gegen 233 m gewichteten RMSE, und der SIREN schwankt am
 stärksten von Lauf zu Lauf (215–246 m). Alle Messungen stehen im Anhang des
 Tutorials.
+
+<p align="center">
+  <img src="./docs/tutorial/img/rd-kurve.svg" alt="Rate-Distortion-Kurve auf dem Gitter 1080 × 2160: Kompressionsrate auf logarithmischer Achse gegen den gewichteten RMSE für neun Netzbreiten. Die Kurve mit Kontextfeld liegt überall unter der ohne; ohne Kontextfeld steigt der Fehler bei kleinen Netzen steil an." width="820">
+  <br><sub><em>Dateigröße gegen Fehler auf dem Gitter 1080 × 2160 (2 000 Schritte, ein Lauf pro Punkt): Das Kontextfeld gewinnt bei jeder Dateigröße, die beide Kurven abdecken. Aus Kapitel 9 des Tutorials.</em></sub>
+</p>
 
 ## Website des Tutorials
 
