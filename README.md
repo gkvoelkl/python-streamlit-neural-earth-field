@@ -34,25 +34,65 @@
 The elevation model of the entire Earth – 2.3 million values, 4.4 MB – stored in
 the weights of a small neural network of 323 KB. Instead of a table of
 elevations you keep a function `f(lon, lat) → elevation`, trained deliberately on
-exactly this one dataset: **the weights are the file**. A Streamlit app lets you
-try it out, and a step-by-step tutorial without program code explains every idea.
+exactly this one dataset: **the weights are the file**.
+
+### What you get
+
+- **Software to try out** – a Streamlit app in which you train the network
+  yourself and watch the result: file size and compression ratio before
+  training, the live error curve, original and reconstruction as two rotatable
+  globes, error maps, queries at any coordinate, a rate-distortion curve and the
+  export of the weights in float32 or float16.
+- **A matching tutorial** – eleven chapters and an appendix with measurements,
+  each linking an idea to an experiment in the app: from the grid as a function
+  through training, network architecture, spherical coordinates and Fourier
+  features to the context field and an outlook on vector data. No program code,
+  but diagrams, worked examples and screenshots – for readers who know neural
+  networks at most from introductions. Written in German, with an English
+  translation in progress.
+
+### Getting started
 
 ```bash
 uv sync
 uv run streamlit run app.py
 ```
 
-- **Tutorial:** [website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/en/) · [Markdown](docs/tutorial/en/README.md) – written in German, being translated into English
+- **Tutorial:** [website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/en/) · [Markdown](docs/tutorial/en/README.md)
 - **Details:** data download, the three tricks, results, tests → [README_en.md](README_en.md)
+
+---
+
+<p align="center">
+  <img src="./docs/tutorial/img/app-globus.jpg" alt="The Globe 3D tab of the app: on the left the original elevation grid, on the right the reconstruction from the neural network, both as globes showing Europe and Africa – the network version is slightly smoother." width="820">
+  <br><sub><em>Original and neural field side by side in the app · Original und neuronales Feld nebeneinander in der App</em></sub>
+</p>
+
+---
 
 ## Deutsch
 
 Das Höhenmodell der ganzen Erde – 2,3 Millionen Werte, 4,4 MB – gespeichert in den
 Gewichten eines kleinen neuronalen Netzes von 323 KB. Statt einer Tabelle von
 Höhen behält man eine Funktion `f(lon, lat) → Höhe`, absichtlich auf genau diesen
-einen Datensatz trainiert: **Die Gewichte sind die Datei.** Eine Streamlit-App
-lädt zum Ausprobieren ein, und ein Schritt-für-Schritt-Tutorial ohne Programmcode
-erklärt jede Idee.
+einen Datensatz trainiert: **Die Gewichte sind die Datei.**
+
+### Was Sie bekommen
+
+- **Software zum Ausprobieren** – eine Streamlit-App, in der Sie das Netz selbst
+  trainieren und das Ergebnis ansehen: Dateigröße und Kompressionsrate schon vor
+  dem Training, die Fehlerkurve live, Original und Rekonstruktion als zwei
+  drehbare Globen, Fehlerkarten, Abfragen an beliebigen Koordinaten, eine
+  Rate-Distortion-Kurve und den Export der Gewichte in float32 oder float16.
+- **Ein passendes Tutorial** – elf Kapitel und ein Anhang mit Messungen, jedes
+  Kapitel verbindet eine Idee mit einem Experiment in der App: vom Raster als
+  Funktion über Training, Netzarchitektur, Kugelkoordinaten und Fourier-Features
+  bis zum Kontextfeld und einem Ausblick auf Vektordaten. Ohne Programmcode,
+  dafür mit Diagrammen, Rechenbeispielen und Screenshots – für alle, die
+  neuronale Netze höchstens aus Einführungen kennen. Auf Deutsch geschrieben,
+  die englische Übersetzung entsteht gerade.
+
+### Loslegen
 
 ```bash
 uv sync
