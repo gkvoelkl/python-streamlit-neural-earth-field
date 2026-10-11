@@ -187,7 +187,7 @@ To do so, the app combines blocks of cells and takes their mean; the result is s
 
 * **Install the app:** the app needs Python 3.14 or newer and the package manager [uv](https://docs.astral.sh/uv/). Download the [repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field) (with `git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git` or on GitHub via *Code → Download ZIP*) and run `uv sync` once in the project folder. uv creates its own Python environment and installs all required packages.
 
-* **Load the elevation data:** the ETOPO file (456 MB) is downloaded once and placed in the `data/` folder. The exact command is in the [project README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_en.md#data) under *Data*. Without the file, the app still runs, using an artificial test Earth (source *Synthetic*).
+* **Load the elevation data:** the app needs the ETOPO file (456 MB) in the `data/` folder. If it is missing, the app asks on the first start whether it may download it and shows the progress; depending on the connection this takes a few minutes. Without these data the app shuts down. If you prefer to download the file yourself, the command is in the [project README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_en.md#data) under *Data*.
 
 * **Start the app:** `uv run streamlit run app.py`. The app opens in the browser.
 
@@ -220,7 +220,6 @@ Training decides how good the reconstruction will be.
 - Select the finest resolution, 2160 × 4320, and watch *Bits per grid point*. What does it mean when the network needs less than one bit per grid point?
 - Go through all presets under *2 · Network* and compare the number of parameters. Which saves the most, which saves nothing?
 - Under *Architecture details*, double the *Neurons per layer*. Does the number of parameters double – or grow more?
-- Switch between the sources *ETOPO 2022* and *Synthetic*. Why does the budget not change?
 
 ## Further reading
 

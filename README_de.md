@@ -26,7 +26,10 @@ geschrieben und in Übersetzung ins Englische: [Deutsch](docs/tutorial/de/README
 
 ## Daten
 
-Das globale Höhenraster einmal herunterladen (ETOPO 2022, 1 Bogenminute, 456 MB):
+Die App braucht das globale Höhenraster ETOPO 2022 (1 Bogenminute, 456 MB) im Ordner
+`data/`. Fehlt die Datei, fragt die App beim Start, ob sie sie herunterladen darf, und
+zeigt den Fortschritt. Lehnen Sie ab, weist sie darauf hin, dass die Daten nötig sind,
+und beendet sich. Wer die Datei lieber selbst herunterlädt:
 
 ```bash
 mkdir -p data
@@ -35,8 +38,7 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 ```
 
 Die App mittelt es auf die gewählte Arbeitsauflösung (180 × 360 bis 2160 × 4320)
-und legt das Ergebnis unter `data/cache/` ab. Ohne die Datei läuft alles mit einer
-künstlichen Test-Erde.
+und legt das Ergebnis unter `data/cache/` ab.
 
 ## Was die App zeigt
 

@@ -7,9 +7,11 @@ exactly what the neural field is meant to replace -- which is why
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
+import httpx
 import numpy as np
 
 ETOPO_FILENAME = "ETOPO_2022_v1_60s_N90W180_surface.nc"
@@ -17,6 +19,7 @@ ETOPO_URL = (
     "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/"
     "60s_surface_elev_netcdf/ETOPO_2022_v1_60s_N90W180_surface.nc"
 )
+ETOPO_BYTES = 478_290_125  # size of the file above (456 MB); the server sends no Content-Length
 BYTES_PER_SAMPLE = 2  # whole metres fit int16; ETOPO itself stores float32, so this is conservative
 
 
@@ -43,6 +46,44 @@ def source_path() -> Path:
 def source_available() -> bool:
     p = source_path()
     return p.exists() and p.stat().st_size > 1_000_000
+
+
+def download_etopo(
+    progress: Callable[[int, int | None], None] | None = None,
+    url: str = ETOPO_URL,
+    target: Path | None = None,
+    chunk_size: int = 1 << 20,
+    client: httpx.Client | None = None,
+) -> Path:
+    """Downloads the ETOPO file; ``progress(bytes_done, bytes_total)`` is called per chunk.
+
+    The data first goes to ``<target>.part`` and is only renamed once complete, so an
+    interrupted download never looks like a valid file. Raises ``httpx.HTTPError`` or
+    ``OSError`` if it fails.
+    """
+    target = target or source_path()
+    partial = target.with_name(target.name + ".part")
+    own_client = client is None
+    client = client or httpx.Client(follow_redirects=True, timeout=httpx.Timeout(30.0))
+    try:
+        with client.stream("GET", url) as response, open(partial, "wb") as out:
+            response.raise_for_status()
+            length = response.headers.get("Content-Length")
+            total = int(length) if length else None
+            done = 0
+            for chunk in response.iter_bytes(chunk_size):
+                out.write(chunk)
+                done += len(chunk)
+                if progress:
+                    progress(done, total)
+        if total is not None and done != total:
+            raise OSError(f"download incomplete: {done} of {total} bytes")
+        partial.replace(target)
+    finally:
+        partial.unlink(missing_ok=True)
+        if own_client:
+            client.close()
+    return target
 
 
 @dataclass
@@ -157,35 +198,3 @@ def load_etopo(target_ny: int = 360, use_cache: bool = True) -> ElevationGrid:
     grid = ElevationGrid(lon=lon, lat=lat, z=z, source=f"ETOPO 2022 1' → {ny}x{nx}")
     np.savez_compressed(cache, lon=lon, lat=lat, z=z)
     return grid
-
-
-def synthetic_grid(target_ny: int = 180, seed: int = 0) -> ElevationGrid:
-    """Artificial Earth made of random spherical waves -- for trying things out without a download."""
-    rng = np.random.default_rng(seed)
-    ny, nx = target_ny, 2 * target_ny
-    lat = np.linspace(-90 + 90 / ny, 90 - 90 / ny, ny, dtype=np.float32)
-    lon = np.linspace(-180 + 180 / nx, 180 - 180 / nx, nx, dtype=np.float32)
-
-    lon2d, lat2d = np.meshgrid(np.deg2rad(lon), np.deg2rad(lat))
-    xyz = np.stack(
-        [
-            np.cos(lat2d) * np.cos(lon2d),
-            np.cos(lat2d) * np.sin(lon2d),
-            np.sin(lat2d),
-        ],
-        axis=-1,
-    )
-
-    field = np.zeros((ny, nx), dtype=np.float32)
-    for octave in range(6):
-        freq = 1.5 * 2**octave
-        directions = rng.normal(size=(12, 3))
-        directions /= np.linalg.norm(directions, axis=1, keepdims=True)
-        phase = rng.uniform(0, 2 * np.pi, size=12)
-        wave = np.sin(freq * (xyz @ directions.T) + phase).sum(axis=-1)
-        field += (wave / 12).astype(np.float32) / (octave + 1)
-
-    # pull into an Earth-like distribution: lots of deep sea, little high mountain terrain
-    field = (field - field.mean()) / field.std()
-    z = np.where(field > 0, field * 1200.0, field * 2600.0).astype(np.float32)
-    return ElevationGrid(lon=lon, lat=lat, z=z, source="synthetic (no download needed)")

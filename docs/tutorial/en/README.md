@@ -15,7 +15,7 @@ uv sync
 uv run streamlit run app.py
 ```
 
-Optional but recommended: download the global elevation model ETOPO 2022 (456 MB) into `data/`, as described in the [repository README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_en.md#data). Without the file, everything runs on a synthetic Earth.
+On the first start, the app asks whether it may download the global elevation model ETOPO 2022 (456 MB); it does not run without these data. If you prefer to download the file yourself, the command is in the [repository README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_en.md#data).
 
 The app is in English. Terms from the user interface appear in italics, for example *Idea & Budget*.
 

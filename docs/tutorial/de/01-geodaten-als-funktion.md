@@ -187,7 +187,7 @@ Dafür fasst die App Blöcke von Zellen zusammen und nimmt deren Mittelwert; das
 
 * **App installieren:** Die App braucht Python 3.14 oder neuer und den Paketmanager [uv](https://docs.astral.sh/uv/). Laden Sie das [Repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field) herunter (mit `git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git` oder auf GitHub über *Code → Download ZIP*) und rufen Sie im Projektordner einmal `uv sync` auf. uv legt dabei eine eigene Python-Umgebung an und installiert alle benötigten Pakete.
 
-* **Höhendaten laden:** Die ETOPO-Datei (456 MB) wird einmal heruntergeladen und im Ordner `data/` abgelegt. Den genauen Befehl finden Sie in der [README des Projekts](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_de.md#daten) unter *Daten*. Ohne die Datei läuft die App trotzdem, dann mit einer künstlichen Test-Erde (Quelle *Synthetic*).
+* **Höhendaten laden:** Die App braucht die ETOPO-Datei (456 MB) im Ordner `data/`. Fehlt sie, fragt die App beim ersten Start, ob sie sie herunterladen darf, und zeigt den Fortschritt; das dauert je nach Verbindung einige Minuten. Ohne diese Daten beendet sich die App. Wer die Datei lieber selbst lädt, findet den Befehl in der [README des Projekts](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_de.md#daten) unter *Daten*.
 
 * **App starten:** `uv run streamlit run app.py`. Die App öffnet sich im Browser.
 
@@ -220,7 +220,6 @@ Das Training entscheidet darüber, wie gut die Rekonstruktion wird.
 - Die feinste Auflösung 2160 × 4320 wählen und auf *Bits per grid point* achten. Was bedeutet es, wenn das Netz für einen Gitterpunkt weniger als ein Bit braucht?
 - Alle Vorlagen unter *2 · Network* durchgehen und die Parameterzahl vergleichen. Welche spart am meisten, welche gar nicht?
 - Unter *Architecture details* die *Neurons per layer* verdoppeln. Wächst die Parameterzahl auf das Doppelte – oder stärker?
-- Zwischen den Quellen *ETOPO 2022* und *Synthetic* wechseln. Warum ändert sich am Budget nichts?
 
 ## Weiterführende Links
 

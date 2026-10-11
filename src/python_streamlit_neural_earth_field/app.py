@@ -3,20 +3,25 @@
 from __future__ import annotations
 
 import io
+import os
+import signal
+import threading
 from dataclasses import replace
 
+import httpx
 import numpy as np
 import streamlit as st
 import torch
 
 from . import viz
 from .data import (
+    ETOPO_BYTES,
     ETOPO_URL,
     ElevationGrid,
+    download_etopo,
     load_etopo,
     source_available,
     source_path,
-    synthetic_grid,
     thin,
 )
 from .metrics import Compression, evaluate, human_bytes
@@ -43,10 +48,8 @@ def fmt_int(n: float) -> str:
 
 
 @st.cache_data(show_spinner="Loading elevation grid …")
-def get_grid(source: str, target_ny: int) -> ElevationGrid:
-    if source == "etopo":
-        return load_etopo(target_ny)
-    return synthetic_grid(target_ny)
+def get_grid(target_ny: int) -> ElevationGrid:
+    return load_etopo(target_ny)
 
 
 def make_field(cfg: FieldConfig, grid: ElevationGrid) -> NeuralField:
@@ -61,20 +64,12 @@ def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
     st.sidebar.title("🌍 Neural Elevation Field")
 
     st.sidebar.subheader("1 · Data")
-    if source_available():
-        label = st.sidebar.radio("Source", ["ETOPO 2022", "Synthetic"], horizontal=True)
-        source = "etopo" if label.startswith("ETOPO") else "synthetic"
-    else:
-        st.sidebar.warning(
-            "ETOPO file missing – using a synthetic Earth instead.\n\n"
-            f"```\ncurl -L -o {source_path()} \\\n  {ETOPO_URL}\n```"
-        )
-        source = "synthetic"
+    st.sidebar.caption("Source: ETOPO 2022 global relief model (NOAA NCEI), 1 arc-minute")
 
     res_label = st.sidebar.select_slider(
         "Grid resolution", options=list(RESOLUTIONS), value=DEFAULT_RESOLUTION
     )
-    grid = get_grid(source, RESOLUTIONS[res_label])
+    grid = get_grid(RESOLUTIONS[res_label])
 
     st.sidebar.subheader("2 · Network")
     preset_name = st.sidebar.selectbox("Preset", list(PRESETS))
@@ -610,8 +605,74 @@ def tab_export(grid: ElevationGrid) -> None:
     st.json(field.cfg.to_dict())
 
 
+def _manual_download_hint() -> str:
+    return f"```\ncurl -L -o {source_path()} \\\n  {ETOPO_URL}\n```"
+
+
+def _shut_down(delay_s: float = 2.0) -> None:
+    """Ends the Streamlit server shortly after the current page has been sent."""
+    threading.Timer(delay_s, lambda: os.kill(os.getpid(), signal.SIGINT)).start()
+
+
+def require_elevation_data() -> None:
+    """Makes sure the ETOPO file is there – asks before downloading it, quits otherwise."""
+    if source_available():
+        return
+
+    st.title("The Earth as a Neural Field")
+    if st.session_state.get("download_declined"):
+        st.error(
+            "**This app needs the ETOPO 2022 elevation data and cannot run without it.** "
+            "The app is shutting down now. Start it again to download the data, "
+            "or download it yourself:\n\n" + _manual_download_hint()
+        )
+        print(f"ETOPO 2022 elevation data missing ({source_path()}) – the app needs it. Shutting down.")
+        _shut_down()
+        st.stop()
+
+    st.info(
+        "**The elevation data is missing.** This app works with the global relief model "
+        "ETOPO 2022 of NOAA (1 arc-minute, about **456 MB**). It is not yet in "
+        f"`{source_path().parent}`.\n\nMay the app download it now? This happens only once "
+        "and can take several minutes, depending on the connection."
+    )
+    if not st.session_state.get("downloading"):
+        yes, no, _ = st.columns([1, 1, 3])
+        if no.button("No, quit"):
+            st.session_state.download_declined = True
+            st.rerun()
+        if yes.button("Download (456 MB)", type="primary"):
+            st.session_state.downloading = True  # hides the buttons, so a second click cannot restart it
+            st.rerun()
+        st.stop()
+
+    bar = st.progress(0.0, text="Connecting …")
+
+    def report(done: int, total: int | None) -> None:
+        expected = total or ETOPO_BYTES  # NOAA sends no size, the file's size is known
+        mb = 1 << 20
+        bar.progress(
+            min(done / expected, 1.0),
+            text=f"{done / mb:,.0f} of {expected / mb:,.0f} MB – please keep this page open",
+        )
+
+    try:
+        download_etopo(report)
+    except (httpx.HTTPError, OSError) as error:
+        st.session_state.downloading = False
+        bar.empty()
+        st.error(
+            f"The download failed: {error}\n\nPlease try again later or download the file "
+            "yourself:\n\n" + _manual_download_hint()
+        )
+        st.stop()
+    bar.empty()
+    st.rerun()
+
+
 def main() -> None:
     st.set_page_config(page_title="Neural Elevation Field of the Earth", page_icon="🌍", layout="wide")
+    require_elevation_data()
     grid, cfg, tcfg, device_label, start = sidebar()
 
     st.title("The Earth as a Neural Field")

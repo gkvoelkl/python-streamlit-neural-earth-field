@@ -25,7 +25,10 @@ being translated into English: [Deutsch](docs/tutorial/de/README.md) ·
 
 ## Data
 
-Download the global elevation grid once (ETOPO 2022, 1 arc-minute, 456 MB):
+The app needs the global elevation grid ETOPO 2022 (1 arc-minute, 456 MB) in
+`data/`. If the file is missing, the app asks on start-up whether it may download
+it, and shows the progress. If you decline, it explains that the data are required
+and shuts down. To download the file yourself instead:
 
 ```bash
 mkdir -p data
@@ -34,8 +37,7 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 ```
 
 The app averages it down to the chosen working resolution (180 × 360 to 2160 × 4320)
-and caches it under `data/cache/`. Without the file, everything still runs on a
-synthetic test Earth.
+and caches it under `data/cache/`.
 
 ## What the app shows
 

@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import io
 
+import httpx
 import numpy as np
 import pytest
 import torch
 
-from python_streamlit_neural_earth_field.data import synthetic_grid
+from python_streamlit_neural_earth_field.data import ElevationGrid, download_etopo
 from python_streamlit_neural_earth_field.encoding import SphericalHarmonics, lonlat_to_xyz
 from python_streamlit_neural_earth_field.model import (
     PRESETS,
@@ -20,9 +21,34 @@ from python_streamlit_neural_earth_field.model import (
 from python_streamlit_neural_earth_field.training import TrainConfig, train
 
 
+def _test_grid(ny: int = 90, seed: int = 0) -> ElevationGrid:
+    """A small elevation grid for the tests only, so they run without the ETOPO download.
+
+    Random waves on the sphere, scaled to an Earth-like range of elevations.
+    """
+    rng = np.random.default_rng(seed)
+    nx = 2 * ny
+    lat = np.linspace(-90 + 90 / ny, 90 - 90 / ny, ny, dtype=np.float32)
+    lon = np.linspace(-180 + 180 / nx, 180 - 180 / nx, nx, dtype=np.float32)
+    lon2d, lat2d = np.meshgrid(np.deg2rad(lon), np.deg2rad(lat))
+    xyz = np.stack(
+        [np.cos(lat2d) * np.cos(lon2d), np.cos(lat2d) * np.sin(lon2d), np.sin(lat2d)], axis=-1
+    )
+    field = np.zeros((ny, nx), dtype=np.float32)
+    for octave in range(6):
+        directions = rng.normal(size=(12, 3))
+        directions /= np.linalg.norm(directions, axis=1, keepdims=True)
+        phase = rng.uniform(0, 2 * np.pi, size=12)
+        wave = np.sin(1.5 * 2**octave * (xyz @ directions.T) + phase).sum(axis=-1)
+        field += (wave / 12).astype(np.float32) / (octave + 1)
+    field = (field - field.mean()) / field.std()
+    z = np.where(field > 0, field * 1200.0, field * 2600.0).astype(np.float32)
+    return ElevationGrid(lon=lon, lat=lat, z=z, source="test grid")
+
+
 @pytest.fixture(scope="module")
 def grid():
-    return synthetic_grid(90)
+    return _test_grid(90)
 
 
 def _field(preset: str, grid) -> NeuralField:
@@ -172,3 +198,26 @@ def test_siren_hidden_layers_get_unit_spread_before_the_sine():
     h = field.body[1](field.body[0](field.transform(torch.rand(4096, 2) * torch.tensor([360.0, 180.0]) - torch.tensor([180.0, 90.0]))))
     pre = field.body[3].w0 * field.body[2](h)
     assert 0.4 < float(pre.detach().std()) < 2.5
+
+
+def _client(status: int, body: bytes = b"") -> httpx.Client:
+    return httpx.Client(transport=httpx.MockTransport(lambda request: httpx.Response(status, content=body)))
+
+
+def test_download_writes_the_file_and_reports_progress(tmp_path):
+    body = bytes(range(256)) * 10_000
+    target = tmp_path / "etopo.nc"
+    seen = []
+    download_etopo(lambda done, total: seen.append((done, total)), url="https://example.test/etopo.nc",
+                   target=target, chunk_size=100_000, client=_client(200, body))
+    assert target.read_bytes() == body
+    assert seen[-1] == (2_560_000, 2_560_000)
+    assert not (tmp_path / "etopo.nc.part").exists()
+
+
+def test_failed_download_leaves_no_file(tmp_path):
+    target = tmp_path / "etopo.nc"
+    with pytest.raises(httpx.HTTPStatusError):
+        download_etopo(url="https://example.test/etopo.nc", target=target, client=_client(404))
+    assert not target.exists()
+    assert not (tmp_path / "etopo.nc.part").exists()

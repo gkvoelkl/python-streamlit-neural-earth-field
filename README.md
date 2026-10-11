@@ -62,9 +62,8 @@ uv sync
 uv run streamlit run app.py
 ```
 
-The app opens in the browser. For the real elevation data, download ETOPO 2022 once
-(456 MB) as described in [README_en.md](README_en.md#data); without it the app runs
-on a synthetic test Earth.
+The app opens in the browser. On the first start it looks for the elevation data
+(ETOPO 2022, 456 MB) and asks whether it may download it – this happens only once.
 
 - **Tutorial:** [website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/en/) · [Markdown](docs/tutorial/en/README.md)
 - **Details:** data download, the three tricks, results, tests → [README_en.md](README_en.md)
@@ -111,9 +110,8 @@ uv sync
 uv run streamlit run app.py
 ```
 
-Die App öffnet sich im Browser. Für die echten Höhendaten laden Sie ETOPO 2022 einmal
-herunter (456 MB), wie in [README_de.md](README_de.md#daten) beschrieben; ohne die
-Datei läuft die App mit einer künstlichen Test-Erde.
+Die App öffnet sich im Browser. Beim ersten Start sucht sie die Höhendaten
+(ETOPO 2022, 456 MB) und fragt, ob sie sie herunterladen darf – das geschieht nur einmal.
 
 - **Tutorial:** [Website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/) · [Markdown](docs/tutorial/de/README.md)
 - **Details:** Daten herunterladen, die drei Kniffe, Ergebnisse, Tests → [README_de.md](README_de.md)
