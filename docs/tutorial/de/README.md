@@ -9,6 +9,8 @@ Dieses Tutorial zeigt Schritt für Schritt, wie man das Höhenmodell der ganzen 
 ## Vorbereitung
 
 ```bash
+git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
+cd python-streamlit-neural-earth-field
 uv sync
 uv run streamlit run app.py
 ```

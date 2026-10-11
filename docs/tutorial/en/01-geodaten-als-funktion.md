@@ -185,7 +185,7 @@ To do so, the app combines blocks of cells and takes their mean; the result is s
 
 ## Try it out
 
-* **Install the app:** the app needs Python 3.14 or newer and the package manager [uv](https://docs.astral.sh/uv/). Download the repository (with `git clone` or as a ZIP file) and run `uv sync` once in the project folder. uv creates its own Python environment and installs all required packages.
+* **Install the app:** the app needs Python 3.14 or newer and the package manager [uv](https://docs.astral.sh/uv/). Download the [repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field) (with `git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git` or on GitHub via *Code → Download ZIP*) and run `uv sync` once in the project folder. uv creates its own Python environment and installs all required packages.
 
 * **Load the elevation data:** the ETOPO file (456 MB) is downloaded once and placed in the `data/` folder. The exact command is in the [project README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_en.md#data) under *Data*. Without the file, the app still runs, using an artificial test Earth (source *Synthetic*).
 

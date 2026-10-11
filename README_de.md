@@ -12,7 +12,9 @@ data into neural networks* (ICLR 2023). Hier ist das Zielfeld die Topographie un
 Bathymetrie der Erde (ETOPO 2022), und das Ergebnis lässt sich als 3D-Globus
 ansehen.
 
-```
+```bash
+git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
+cd python-streamlit-neural-earth-field
 uv sync
 uv run streamlit run app.py
 ```

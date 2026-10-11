@@ -185,7 +185,7 @@ Dafür fasst die App Blöcke von Zellen zusammen und nimmt deren Mittelwert; das
 
 ## Ausprobieren
 
-* **App installieren:** Die App braucht Python 3.14 oder neuer und den Paketmanager [uv](https://docs.astral.sh/uv/). Laden Sie das Repository herunter (mit `git clone` oder als ZIP-Datei) und rufen Sie im Projektordner einmal `uv sync` auf. uv legt dabei eine eigene Python-Umgebung an und installiert alle benötigten Pakete.
+* **App installieren:** Die App braucht Python 3.14 oder neuer und den Paketmanager [uv](https://docs.astral.sh/uv/). Laden Sie das [Repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field) herunter (mit `git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git` oder auf GitHub über *Code → Download ZIP*) und rufen Sie im Projektordner einmal `uv sync` auf. uv legt dabei eine eigene Python-Umgebung an und installiert alle benötigten Pakete.
 
 * **Höhendaten laden:** Die ETOPO-Datei (456 MB) wird einmal heruntergeladen und im Ordner `data/` abgelegt. Den genauen Befehl finden Sie in der [README des Projekts](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_de.md#daten) unter *Daten*. Ohne die Datei läuft die App trotzdem, dann mit einer künstlichen Test-Erde (Quelle *Synthetic*).
 

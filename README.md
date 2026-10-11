@@ -53,10 +53,18 @@ exactly this one dataset: **the weights are the file**.
 
 ### Getting started
 
+You need Python 3.14 or newer and the package manager [uv](https://docs.astral.sh/uv/).
+
 ```bash
+git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
+cd python-streamlit-neural-earth-field
 uv sync
 uv run streamlit run app.py
 ```
+
+The app opens in the browser. For the real elevation data, download ETOPO 2022 once
+(456 MB) as described in [README_en.md](README_en.md#data); without it the app runs
+on a synthetic test Earth.
 
 - **Tutorial:** [website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/en/) · [Markdown](docs/tutorial/en/README.md)
 - **Details:** data download, the three tricks, results, tests → [README_en.md](README_en.md)
@@ -94,10 +102,18 @@ einen Datensatz trainiert: **Die Gewichte sind die Datei.**
 
 ### Loslegen
 
+Sie brauchen Python 3.14 oder neuer und den Paketmanager [uv](https://docs.astral.sh/uv/).
+
 ```bash
+git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
+cd python-streamlit-neural-earth-field
 uv sync
 uv run streamlit run app.py
 ```
+
+Die App öffnet sich im Browser. Für die echten Höhendaten laden Sie ETOPO 2022 einmal
+herunter (456 MB), wie in [README_de.md](README_de.md#daten) beschrieben; ohne die
+Datei läuft die App mit einer künstlichen Test-Erde.
 
 - **Tutorial:** [Website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/) · [Markdown](docs/tutorial/de/README.md)
 - **Details:** Daten herunterladen, die drei Kniffe, Ergebnisse, Tests → [README_de.md](README_de.md)

@@ -9,6 +9,8 @@ This tutorial shows step by step how to pack the elevation model of the entire E
 ## Getting started
 
 ```bash
+git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
+cd python-streamlit-neural-earth-field
 uv sync
 uv run streamlit run app.py
 ```

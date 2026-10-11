@@ -11,7 +11,9 @@ The inspiration is Huang & Hoefler, *Compressing multidimensional weather and cl
 data into neural networks* (ICLR 2023). Here the target field is the Earth's
 topography and bathymetry (ETOPO 2022), and the result can be viewed as a 3D globe.
 
-```
+```bash
+git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
+cd python-streamlit-neural-earth-field
 uv sync
 uv run streamlit run app.py
 ```
