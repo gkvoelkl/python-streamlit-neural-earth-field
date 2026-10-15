@@ -53,6 +53,7 @@ Leute mit soliden Python-Kenntnissen und etwas numpy, die neuronale Netze höchs
 - **Lernziel:** Verstehen, wie das Netz trainiert wird, warum es hier keine Testdaten gibt und was Erfolg stattdessen heißt. Den Begriff Overfitting erst im Kapitel einführen, nicht im Titel.
 - **Inhalt:** Training in Schritten: zufällige Gitterzellen ziehen, Fehler messen, Gewichte ein wenig verbessern. Fehlermaße RMSE, MAE und R² in Worten. Warum Zellen am Pol kleiner sind als am Äquator und deshalb mit cos(Breite) gewichtet werden; gewichteter RMSE. Fehlerkurve lesen.
 - **In der App:** *Training*, einmal mit und einmal ohne *Area-weighted sampling*.
+- **Netz (seit 15. Oktober 2026):** das einfache MLP – Vorlage *Plain MLP (fails on purpose)* mit `lonlat`, ohne Kodierung, ReLU, 4 × 128, 50 049 Gewichte –, weil der Text Länge und Breite als Eingabe beschreibt. Das Standardbeispiel (82 561 Gewichte) folgt in den Kapiteln 3 bis 5.
 - **Ideen:** Schritte und Lernrate variieren; beobachten, wann die Fehlerkurve abflacht.
 - **Chester:** als Trainer mit Klemmbrett; Aiko (mit Ärmchen und Beinchen) stemmt eine Hantel.
 

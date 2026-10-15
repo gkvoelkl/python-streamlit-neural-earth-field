@@ -1,6 +1,8 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 3 · Architektur eines neuronalen Netzes
 
+*[English version](../en/03-architektur.md)*
+
 ![In einer dunklen Holzwerkstatt lehnt links ein einfaches Brett an der Wand. Daneben steht Aiko, ein leuchtendes neuronales Netz mit Ärmchen und Turnschuhen, vor einem großen Gebirgsmodell, das aus vielen geraden Leuchtstäben und hellen Knoten wie ein Netz gebaut ist. Rechts betrachtet Chester mit blauer Kappe, Notizblock und Stift das Modell.](../img/kapitel-03-chester.jpg)
 
 **Inhalt:** 
@@ -13,7 +15,7 @@
 
 * Bisher war das neuronale Netz ein geschlossener Kasten.
 
-* Koordinate hinein, Höhe heraus, dazwischen 82 561 Gewichte. 
+* Koordinate hinein, Höhe heraus, dazwischen Gewichte – 50 049 beim einfachen Netz aus Kapitel 2, 82 561 beim Standardbeispiel.
 
 * Jetzt schauen wir hinein: Aus dem einfachsten Modell, das es gibt, bauen wir Schritt für Schritt ein neuronales Netz.
 
@@ -27,13 +29,13 @@ Das einfachste Modell nimmt jede davon mit einem Gewicht mal und zählt einen Gr
 \text{Höhe} = w_1 \cdot \text{Länge} + w_2 \cdot \text{Breite} + b
 ```
 
-Das sind drei Gewichte: *w₁*, *w₂* und der Grundwert *b*. Auf der Weltkarte beschreibt diese sehr einfache Formel eine **schräge Ebene**: Die Ebene steigt in eine Richtung gleichmäßig an und fällt in die andere gleichmäßig ab. 
+Das sind drei Gewichte: *w₁*, *w₂* und der Grundwert *b*. Auf der Weltkarte beschreibt diese sehr einfache Formel eine **schräge Ebene**: Die Ebene steigt in eine Richtung gleichmäßig an und fällt in die andere gleichmäßig ab.
 
-Mehr ist mit dieser einfachen Berechnungsweise nicht möglich. Kontinente, Gebirge und Ozeanbecken lassen sich damit nicht darstellen – das Training findet nur diese einfache Ebene, die insgesamt am wenigsten danebenliegt.
+Mehr ist mit dieser einfachen Berechnungsweise nicht möglich. Kontinente, Gebirge und Ozeanbecken lassen sich damit nicht darstellen – das Training eines neuronalen Netzes mit dieser Architektur findet nur diese einfache Ebene.
 
 ![Links die echte Weltkarte, rechts das Ergebnis des einfachsten Modells: eine fast einfarbig blaue Fläche, die von unten links nach oben rechts ganz leicht heller wird.](../img/app-karte-0-schichten.png)
 
-So sieht das in der App aus: links das Original, rechts das trainierte Modell mit drei Gewichten. Übrig bleibt eine leicht geneigte Fläche, von den Kontinenten ist nichts zu sehen. In der App heißt dieses Modell „0 versteckte Schichten“ – was eine versteckte Schicht ist, zeigt der nächste Abschnitt.
+So sieht das in der App aus: links das Original, rechts das trainierte Modell mit drei Gewichten. Das Ergebnis ist eine leicht geneigte Fläche, von den Kontinenten ist nichts zu sehen.
 
 ## Ein Neuron: Summe und Knick
 
@@ -61,12 +63,12 @@ ReLU ist die gebräuchlichste Aktivierungsfunktion, weil sie sehr einfach zu ber
 
 Warum der Knick so wichtig ist: Ohne ihn wäre jedes Neuron nur eine gewichtete Summe. Schaltet man mehrere Neuronen ohne Aktivierungsfunktion hintereinander, ist das Ergebnis – eine Summe aus gewichteten Summen – wieder nur eine gewichtete Summe.
 
-Auch tausend Neuronen ohne "Knick" ergäben nur eine schräge Ebene. Erst durch den Knick kann das Netz andere Funktionen als Geraden abbilden; die Richtung wechseln.
+Auch tausend Neuronen ohne „Knick“ ergäben nur eine schräge Ebene. Erst durch den Knick kann das Netz die Richtung wechseln und so andere Funktionen als Geraden abbilden.
 
 
 ## Mehr Neuronen, mehr Knicke
 
-Bei der Abbildung der Weltkarte macht ein einzelnes Neuron Folgendes: Auf der einen Seite einer geraden Linie über die Karte gibt es 0 aus, auf der anderen Seite steigt sein Wert gleichmäßig an – wie eine Rampe, die an einer Kante beginnt. 
+Bei der Abbildung der Weltkarte macht ein einzelnes Neuron Folgendes: Auf der einen Seite einer geraden Linie über die Karte gibt es 0 aus, auf der anderen Seite steigt sein Wert gleichmäßig an – wie eine Rampe, die an einer Kante beginnt.
 
 Ein Netz aus vielen Neuronen addiert viele solcher Rampen mit verschiedenen Kanten und Neigungen. So entsteht eine Fläche, die sich biegen kann.
 
@@ -121,7 +123,7 @@ Jede weitere Schicht mit 128 Neuronen kostet 16 512 Gewichte, denn jedes ihrer N
 
 Das Standardbeispiel aus Kapitel 1 hat 82 561 Gewichte, obwohl es ebenfalls 4 Schichten mit 128 Neuronen hat. Der Unterschied steckt in der ersten Schicht: Sie bekommt dort nicht 2 Eingaben, sondern 256 – woher die kommen, erklärt Kapitel 5.
 
-Mit 4 versteckten Schichten sieht das Ergebnis so aus:
+Mit 4 versteckten Schichten – das ist genau das einfache Netz aus Kapitel 2 – sieht das Ergebnis so aus:
 
 ![Links die echte Weltkarte, rechts das Ergebnis mit vier versteckten Schichten: Die Kontinente sind runder und besser zu erkennen, aber verschwommen; Gebirge und Küstenlinien fehlen weitgehend.](../img/app-karte-4-schichten.png)
 
@@ -129,17 +131,27 @@ Die Kontinente sind runder und besser zu erkennen. Feine Einzelheiten fehlen abe
 
 ## Ausprobieren
 
-1. In der Seitenleiste unter *2 · Network* die Vorlage *Plain MLP (fails on purpose)* wählen.
-2. *Architecture details* aufklappen und den Regler *Hidden layers* ganz nach links auf 0 schieben. Darunter erscheint der Hinweis, dass es jetzt ein lineares Modell ist.
+### Einfache Architektur
+
+Wählen Sie in der Seitenleiste unter **2 · Network** die Vorlage **Plain MLP (fails on purpose)**.
+
+Klappen Sie dann **Architecture details** auf und stellen Sie *Coordinate input* wie in Kapitel 2 auf `lonlat`, damit das Netz Länge und Breite als Eingabe bekommt. Schieben Sie anschließend den Regler *Hidden layers* ganz nach links auf 0. Darunter erscheint der Hinweis, dass es jetzt ein lineares Modell ist.
 
    <img src="../img/app-architektur-0-schichten.png" alt="Seitenleiste mit aufgeklappten Architecture details: Vorlage Plain MLP, Coordinate input lonlat, Positional encoding none, Hidden layers 0 und der Hinweis Linear model." width="300">
 
-   Die App gibt nicht Länge und Breite direkt ins Netz, sondern rechnet sie vorher um – warum, zeigt Kapitel 4. Deshalb zeigt sie etwas andere Gewichtszahlen als dieses Kapitel, zum Beispiel 4 statt 3 beim einfachsten Modell, und die Karten sehen etwas anders aus. Am Prinzip ändert das nichts. Die Bilder in diesem Kapitel sind mit der Einstellung `lonlat` entstanden, die im Screenshot unter *Coordinate input* zu sehen ist.
+Klicken Sie auf **🚀 Train**. Das lineare Modell ist in wenigen Sekunden fertig. Danach sehen Sie das Ergebnis in den anderen Reitern, z. B. **Maps & Error**.
 
-3. Auf *🚀 Train* klicken. Das lineare Modell ist in wenigen Sekunden fertig. Danach den Reiter *Maps & Error* öffnen.
-4. *Hidden layers* auf 1 stellen, neu trainieren und die Karte vergleichen. Dann dasselbe mit 4 Schichten. Die Zahl der Gewichte steht jeweils im Reiter *Idea & Budget*.
+### Andere Architektur
 
-**Hinweis zum linearen Modell:** Im Reiter *Training* kann die Fehlerkurve beim linearen Modell ansteigen statt fallen, und R² kann knapp unter 0 liegen. Das ist kein Fehler: Das Training verkleinert den flächengewichteten Fehler (Kapitel 2), die Kurve und R² messen aber ungewichtet. Der Wert *weighted RMSE* sinkt während des Trainings – im Standardbeispiel von rund 2 780 m auf 2 390 m. Für die schräge Ebene ist es ein Kompromiss: Sie passt besser zu den großen Flächen am Äquator und schlechter zu den Polargebieten, die ungewichtet viel mehr Zellen haben.
+Stellen Sie **Hidden layers** auf **1**, trainieren Sie neu und vergleichen Sie die Karte. Dann dasselbe mit **4** Schichten. Die Zahl der Gewichte steht jeweils im Reiter *Idea & Budget*.
+
+### Hinweis zum linearen Modell
+
+Im Reiter *Training* kann die Fehlerkurve beim linearen Modell ansteigen statt fallen, und R² kann knapp unter 0 liegen.
+
+Das ist kein Fehler: Das Training verkleinert den flächengewichteten Fehler (Kapitel 2), die Kurve und R² messen aber ungewichtet. Der Wert *weighted RMSE* sinkt während des Trainings – auf dem Standardgitter 1080 × 2160 von rund 2 780 m auf 2 390 m.
+
+Für die schräge Ebene ist es ein Kompromiss: Sie passt besser zu den großen Flächen am Äquator und schlechter zu den Polargebieten, die ungewichtet viel mehr Zellen haben.
 
 ## Ideen zum Weiterprobieren
 

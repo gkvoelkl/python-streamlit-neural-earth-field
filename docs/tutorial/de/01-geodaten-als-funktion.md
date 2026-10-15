@@ -16,7 +16,7 @@
 
 ## Die Kern-Idee
 
-Wer mit detaillierten Geodaten wie den Höhendaten der ganzen Welt arbeitet, hat es immer mit riesigen Datenmengen zu tun. Bei anderen Daten in diesem Bereich ist es nicht einfacher.
+Wer mit detaillierten Geodaten wie den Höhendaten der ganzen Welt arbeitet, hat es immer mit riesigen Datenmengen zu tun. Bei anderen Daten im Geo-Bereich ist es nicht einfacher.
 
 Findige Menschen kamen deshalb auf die Idee:
 
@@ -24,7 +24,7 @@ Findige Menschen kamen deshalb auf die Idee:
 
 Das ist die Kern-Idee, mit der sich dieses Tutorial und alle Kapitel dieser Reihe befassen.
 
-Der Einfachheit halber verwendet diese Tutorial-Reihe als Beispiel die Höhendaten der Erde. Die Prinzipien gelten genauso für andere Geodaten, etwa Temperaturen oder Niederschläge.
+Der Einfachheit halber verwendet diese Tutorial-Reihe als Beispiel die Höhendaten der Erde. Die Prinzipien gelten genauso für andere Geodaten, etwa Temperaturen oder Niederschläge usw.
 
 ![Das Netz ersetzt das Raster und ist 14-mal kleiner: Höhenraster mit 2 332 800 Werten wird trainiert zu einem neuronalen Feld mit 82 561 Gewichten, das an jeder Koordinate abgefragt werden kann. Gespeichert werden 323 KB statt 4,4 MB.](../img/geodaten-zu-netz.svg)
 
@@ -185,13 +185,44 @@ Dafür fasst die App Blöcke von Zellen zusammen und nimmt deren Mittelwert; das
 
 ## Ausprobieren
 
-* **App installieren:** Die App braucht Python 3.14 oder neuer und den Paketmanager [uv](https://docs.astral.sh/uv/). Laden Sie das [Repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field) herunter (mit `git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git` oder auf GitHub über *Code → Download ZIP*) und rufen Sie im Projektordner einmal `uv sync` auf. uv legt dabei eine eigene Python-Umgebung an und installiert alle benötigten Pakete.
+### App installieren
 
-* **Höhendaten laden:** Die App braucht die ETOPO-Datei (456 MB) im Ordner `data/`. Fehlt sie, fragt die App beim ersten Start, ob sie sie herunterladen darf, und zeigt den Fortschritt; das dauert je nach Verbindung einige Minuten. Ohne diese Daten beendet sich die App. Wer die Datei lieber selbst lädt, findet den Befehl in der [README des Projekts](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_de.md#daten) unter *Daten*.
+Die App braucht
 
-* **App starten:** `uv run streamlit run app.py`. Die App öffnet sich im Browser.
+* Python 3.14 oder neuer und
+* den Paketmanager [uv](https://docs.astral.sh/uv/).
 
-* Den Reiter **Idea & Budget** öffnen. Unter *Your budget – before training* stehen vier Kennzahlen: *Grid points*, *Parameters*, *Compression ratio* und *Bits per grid point*.
+Laden Sie einfachheitshalber das [Repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field) herunter:
+
+`git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git`
+
+oder auf GitHub über *Code → Download ZIP*. Rufen Sie dann im neu erstellten Projektordner einmal
+
+`uv sync`
+
+auf.
+
+uv legt dabei eine eigene Python-Umgebung an und installiert alle benötigten Pakete.
+
+### Höhendaten laden
+
+Die App braucht die ETOPO-Datei (456 MB) im Ordner `data/`.
+
+Fehlt sie, fragt die App beim ersten Start, ob sie sie herunterladen darf, und zeigt den Fortschritt; das dauert je nach Verbindung einige Minuten.
+
+Ohne diese Daten beendet sich die App. Wer die Datei lieber selbst lädt, findet den Befehl in der [README des Projekts](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_de.md#daten) unter *Daten*.
+
+### App starten
+
+Starten Sie die App im Projektordner mit
+
+`uv run streamlit run app.py`
+
+Die App öffnet sich im Browser.
+
+Öffnen Sie den Reiter **Idea & Budget**. Unter *Your budget – before training* stehen vier Kennzahlen:
+
+*Grid points*, *Parameters*, *Compression ratio* und *Bits per grid point*.
 
    ![Die vier Kennzahlen im Reiter Idea & Budget für das Standardbeispiel: 2 332 800 Gitterpunkte, 82 561 Parameter, Kompressionsrate 14, 1,133 Bits pro Gitterpunkt.](../img/app-budget.png)
 
@@ -210,7 +241,7 @@ Dafür fasst die App Blöcke von Zellen zusammen und nimmt deren Mittelwert; das
 
 Das Training des Netzes ist Thema im nächsten Kapitel.
 
-Die Architektur des neuronalen Netzes legt die Kompressionsrate fest. 
+Die Architektur des neuronalen Netzes legt die Kompressionsrate fest.
 
 Das Training entscheidet darüber, wie gut die Rekonstruktion wird.
 

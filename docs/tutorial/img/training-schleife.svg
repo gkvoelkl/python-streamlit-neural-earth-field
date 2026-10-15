@@ -2,7 +2,7 @@
 <rect width="860" height="460" rx="12" fill="#ffffff"/>
 <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8a96a3"/></marker></defs>
 <text x="28" y="40" font-size="19" font-weight="600" fill="#1f2933">Ein Trainingsschritt – 4 000-mal wiederholt</text>
-<text x="28" y="64" font-size="13.5" fill="#5f6b7a">Standardbeispiel: jeder Schritt verbessert alle 82 561 Gewichte ein kleines Stück</text>
+<text x="28" y="64" font-size="13.5" fill="#5f6b7a">Einfaches Netz aus Kapitel 2: Jeder Schritt verbessert alle 50 049 Gewichte ein kleines Stück</text>
 <rect x="60" y="96" width="300" height="104" rx="10" fill="none" fill-opacity="1" stroke="#8a96a3" stroke-width="1.3"/>
 <text x="78" y="128" font-size="15" font-weight="600" fill="#1f2933">1 · Stichprobe ziehen</text>
 <text x="78" y="154" font-size="13.5" fill="#5f6b7a">32 768 zufällige Zellen</text>

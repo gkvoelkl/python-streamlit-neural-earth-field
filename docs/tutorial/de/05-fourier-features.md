@@ -118,7 +118,7 @@ Die Netze aus den Kapiteln 3 bis 5 im Vergleich. Gespeichert werden die Gewichte
 |---|---|---:|---:|---:|---:|
 | 3 | einfachstes Modell (Länge, Breite) | 3 | 20 Byte | < 0,001 % | 233 280 |
 | 3 | 1 versteckte Schicht (Länge, Breite) | 513 | 2,0 KB | 0,04 % | 2 265 |
-| 3 | 4 versteckte Schichten (Länge, Breite) | 50 049 | 196 KB | 4,3 % | 23 |
+| 2, 3 | 4 versteckte Schichten (Länge, Breite) | 50 049 | 196 KB | 4,3 % | 23 |
 | 4 | 4 versteckte Schichten (x, y, z) | 50 177 | 196 KB | 4,3 % | 23 |
 | 5 | Fourier-Features + 4 Schichten | 82 561 | 323 KB | 7,1 % | 14 |
 | – | **Höhenraster (Original)** | – | **4,4 MB** | 100 % | 1 |

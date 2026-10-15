@@ -7,11 +7,11 @@
 
 * Warum sind Länge und Breite eine schlechte Eingabe für ein neuronales Netz?
 * Wie beschreibt man einen Ort stattdessen als Punkt auf einer Kugel?
-* Was ändert das an der Datumsgrenze und an den Polen?
+* Was ändert diese neue Vorgehensweise an der Datumsgrenze und an den Polen?
 
 ## Ausgangspunkt
 
-In Kapitel 3 bekam das neuronale Netz Länge und Breite als Eingabe – so, wie man Orte auf einer Weltkarte angibt. Für Menschen ist das praktisch. Für das neuronale Netz ist das nicht so einfach.
+In Kapitel 3 bekam das neuronale Netz Länge und Breite als Eingabe – so, wie man Orte auf einer Weltkarte normalerweise angibt. Für Menschen ist das praktisch. Für das neuronale Netz ist das nicht so einfach.
 
 ## Zwei Haken bei Länge und Breite
 

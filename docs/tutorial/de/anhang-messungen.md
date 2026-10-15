@@ -31,7 +31,7 @@ Beim gewichteten RMSE steht der Mittelwert der drei Läufe, in Klammern der klei
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 0 Schichten (Länge, Breite) | 3 | 3 | 20 Byte | 233 280 | 2 386 m (2 386–2 386) | 2 771 m | 2 254 m | 8 593 m | 15,4 dB | −0,092 | 5 s |
 | 1 Schicht (Länge, Breite) | 3 | 513 | 2,0 KB | 2 265 | 1 425 m (1 390–1 457) | 1 491 m | 1 159 m | 8 307 m | 20,8 dB | 0,684 | 15 s |
-| 4 Schichten (Länge, Breite) | 3 | 50 049 | 196 KB | 23 | 706 m (685–731) | 648 m | 426 m | 7 977 m | 28,0 dB | 0,940 | 55 s |
+| 4 Schichten (Länge, Breite) | 2, 3 | 50 049 | 196 KB | 23 | 706 m (685–731) | 648 m | 426 m | 7 977 m | 28,0 dB | 0,940 | 55 s |
 | *Plain MLP (fails on purpose)*, (x, y, z) | 4 | 50 177 | 196 KB | 23 | 593 m (578–604) | 568 m | 373 m | 7 885 m | 29,2 dB | 0,954 | 58 s |
 | *Fourier MLP, very small* | 5 | 10 945 | 43 KB | 107 | 372 m (368–378) | 358 m | 228 m | 5 070 m | 33,2 dB | 0,982 | 29 s |
 | *Fourier MLP (recommended)* | 5 | 82 561 | 323 KB | 14 | 245 m (243–248) | 232 m | 141 m | 4 387 m | 37,0 dB | 0,992 | 74 s |
