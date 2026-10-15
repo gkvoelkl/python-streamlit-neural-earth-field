@@ -14,3 +14,6 @@ data/
 
 # Website build (MkDocs)
 site/
+
+# Working notes of the authors, kept locally
+docs/tutorial/PLANUNG.md
