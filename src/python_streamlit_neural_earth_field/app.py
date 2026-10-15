@@ -678,8 +678,15 @@ def main() -> None:
     st.title("The Earth as a Neural Field")
     st.caption("f(lon, lat) → elevation · the weights are the compressed data")
 
-    tabs = st.tabs(["💡 Idea & Budget", "📉 Training", "🌐 Globe 3D", "🗺️ Maps & Error",
-                    "🔍 Super-Resolution", "📐 Rate & Error", "💾 Export"])
+    labels = ["💡 Idea & Budget", "📉 Training", "🌐 Globe 3D", "🗺️ Maps & Error",
+              "🔍 Super-Resolution", "📐 Rate & Error", "💾 Export"]
+    # Each press of Train gives the tab bar a new key, so it is created afresh and
+    # opens on the Training tab. Otherwise the tabs keep the user's choice and don't
+    # rerun the app – a rerun would abort a training that is still running.
+    if start:
+        st.session_state.train_runs = st.session_state.get("train_runs", 0) + 1
+    runs = st.session_state.get("train_runs", 0)
+    tabs = st.tabs(labels, default=labels[1] if runs else None, key=f"tabs-{runs}")
     with tabs[0]:
         tab_idea(grid, make_field(cfg, grid))
     with tabs[1]:

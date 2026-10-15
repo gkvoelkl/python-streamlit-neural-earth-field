@@ -175,7 +175,7 @@ In der Seitenleiste unter *3 · Training* stehen die Einstellungen für das Trai
    | *Area-weighted sampling* | Ausgleich für die Pole |
    | *Device* | Rechenwerk: *auto* nimmt die Grafikeinheit, wenn es eine gibt (*mps* auf Apple-Rechnern, *cuda* bei NVIDIA), sonst den Prozessor (*cpu*) |
 
-Klicken Sie danach auf *🚀 Train* und öffnen Sie den Reiter *Training*. Oben läuft ein Fortschrittsbalken, darunter stehen die aktuellen Fehlermaße und die Fehlerkurve, die mit jedem Messpunkt wächst.
+Klicken Sie danach auf *🚀 Train*. Die App wechselt dann von selbst in den Reiter *Training*. Oben läuft ein Fortschrittsbalken, darunter stehen die aktuellen Fehlermaße und die Fehlerkurve, die mit jedem Messpunkt wächst.
 
    ![Der Reiter Training während des Trainings, nach 1301 von 4000 Schritten: oben 50 049 Parameter und der Fortschrittsbalken, darunter die Kennzahlen RMSE, weighted RMSE, MAE und R² sowie die Fehlerkurve, die nach einem steilen Abfall flacher weiterfällt.](../img/app-training-laeuft.png)
 

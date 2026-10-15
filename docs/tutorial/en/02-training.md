@@ -175,7 +175,7 @@ In the sidebar under *3 · Training* are the settings for the training. They sta
    | *Area-weighted sampling* | compensation for the poles |
    | *Device* | processing unit: *auto* uses the graphics unit if there is one (*mps* on Apple computers, *cuda* with NVIDIA), otherwise the processor (*cpu*) |
 
-Then click *🚀 Train* and open the *Training* tab. At the top a progress bar runs, below it are the current error measures and the error curve, which grows with every measuring point.
+Then click *🚀 Train*. The app switches to the *Training* tab by itself. At the top a progress bar runs, below it are the current error measures and the error curve, which grows with every measuring point.
 
    ![The Training tab during training, after 1301 of 4000 steps: at the top 50 049 parameters and the progress bar, below the figures RMSE, weighted RMSE, MAE and R² as well as the error curve, which after a steep drop continues to fall more gently.](../img/app-training-laeuft.png)
 
