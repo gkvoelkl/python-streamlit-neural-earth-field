@@ -7,6 +7,7 @@ exactly what the neural field is meant to replace -- which is why
 
 from __future__ import annotations
 
+import os
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
@@ -20,6 +21,11 @@ ETOPO_URL = (
     "60s_surface_elev_netcdf/ETOPO_2022_v1_60s_N90W180_surface.nc"
 )
 ETOPO_BYTES = 478_290_125  # size of the file above (456 MB); the server sends no Content-Length
+# Grids already averaged down from ETOPO 2022, for the online version (see cloud/README.md)
+GRID_URL = (
+    "https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/download/"
+    "data-v1/etopo_{ny}.npz"
+)
 BYTES_PER_SAMPLE = 2  # whole metres fit int16; ETOPO itself stores float32, so this is conservative
 
 
@@ -27,8 +33,13 @@ def project_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
+def cloud_mode() -> bool:
+    """True in the online version: grids come from the release instead of the ETOPO file."""
+    return os.environ.get("NEURAL_EARTH_CLOUD") == "1"
+
+
 def data_dir() -> Path:
-    d = project_root() / "data"
+    d = Path(os.environ.get("NEURAL_EARTH_DATA_DIR") or project_root() / "data")
     d.mkdir(exist_ok=True)
     return d
 
@@ -165,18 +176,19 @@ def _block_mean_2d(var, fy: int, fx: int, ny: int, nx: int, block_rows: int = 48
 
 def load_etopo(target_ny: int = 360, use_cache: bool = True) -> ElevationGrid:
     """Loads ETOPO 2022 (1 arc-minute) and averages it down to ``target_ny`` latitude rows."""
-    if not source_available():
-        raise FileNotFoundError(
-            f"{source_path()} is missing.\nDownload:\n  curl -L -o {source_path()} {ETOPO_URL}"
-        )
-
     cache = cache_dir() / f"etopo_{target_ny}.npz"
+    if use_cache and not cache.exists() and cloud_mode():
+        download_etopo(url=GRID_URL.format(ny=target_ny), target=cache)
     if use_cache and cache.exists():
         d = np.load(cache)
         return ElevationGrid(
             lon=d["lon"], lat=d["lat"], z=d["z"], source=f"ETOPO 2022 (cache {cache.name})"
         )
 
+    if not source_available():
+        raise FileNotFoundError(
+            f"{source_path()} is missing.\nDownload:\n  curl -L -o {source_path()} {ETOPO_URL}"
+        )
     import netCDF4  # imported locally so the app also starts without data
 
     with netCDF4.Dataset(source_path()) as ds:

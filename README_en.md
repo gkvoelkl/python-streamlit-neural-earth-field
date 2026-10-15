@@ -39,6 +39,18 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 The app averages it down to the chosen working resolution (180 × 360 to 2160 × 4320)
 and caches it under `data/cache/`.
 
+## GPU and online version
+
+`uv sync` installs PyTorch from PyPI. On a Mac it uses the Apple graphics unit (MPS), on
+Linux an NVIDIA GPU if there is one (the download is large because of the CUDA libraries).
+On Windows, PyPI only offers PyTorch for the CPU; for an NVIDIA GPU, install the CUDA build
+as described at [pytorch.org](https://pytorch.org/get-started/locally/).
+
+The folder [`cloud/`](cloud/README.md) is for running the app online on Streamlit Community
+Cloud: PyTorch for the CPU only, and the elevation grids, already averaged down, come from the
+release [`data-v1`](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/tag/data-v1)
+instead of the 456 MB ETOPO file. Local installs are not affected.
+
 ## What the app shows
 
 | Tab | Content |

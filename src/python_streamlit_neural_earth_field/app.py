@@ -18,6 +18,7 @@ from .data import (
     ETOPO_BYTES,
     ETOPO_URL,
     ElevationGrid,
+    cloud_mode,
     download_etopo,
     load_etopo,
     source_available,
@@ -63,6 +64,12 @@ def make_field(cfg: FieldConfig, grid: ElevationGrid) -> NeuralField:
 def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
     st.sidebar.title("🌍 Neural Elevation Field")
 
+    if cloud_mode():
+        st.sidebar.info(
+            "**Online version** on a shared CPU without GPU: training takes several minutes, "
+            "so the default is 1 000 steps. For full speed, run the app on your own computer – "
+            "see the [README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field)."
+        )
     st.sidebar.subheader("1 · Data")
     st.sidebar.caption("Source: ETOPO 2022 global relief model (NOAA NCEI), 1 arc-minute")
 
@@ -129,7 +136,7 @@ def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
 
     st.sidebar.subheader("3 · Training")
     tcfg = TrainConfig()
-    tcfg.steps = st.sidebar.slider("Steps", 200, 30000, 4000, 200)
+    tcfg.steps = st.sidebar.slider("Steps", 200, 30000, 1000 if cloud_mode() else 4000, 200)
     tcfg.batch_size = int(
         st.sidebar.select_slider(
             "Points per step", [4096, 8192, 16384, 32768, 65536, 131072], value=32768
@@ -616,7 +623,7 @@ def _shut_down(delay_s: float = 2.0) -> None:
 
 def require_elevation_data() -> None:
     """Makes sure the ETOPO file is there – asks before downloading it, quits otherwise."""
-    if source_available():
+    if source_available() or cloud_mode():  # online, the averaged grids come from the release
         return
 
     st.title("The Earth as a Neural Field")

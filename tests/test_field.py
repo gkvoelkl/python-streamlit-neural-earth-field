@@ -221,3 +221,36 @@ def test_failed_download_leaves_no_file(tmp_path):
         download_etopo(url="https://example.test/etopo.nc", target=target, client=_client(404))
     assert not target.exists()
     assert not (tmp_path / "etopo.nc.part").exists()
+
+
+def _save_grid(path, ny: int = 18) -> None:
+    g = _test_grid(ny)
+    np.savez_compressed(path, lon=g.lon, lat=g.lat, z=g.z)
+
+
+def test_cached_grid_is_used_without_the_etopo_file(tmp_path, monkeypatch):
+    from python_streamlit_neural_earth_field import data
+
+    monkeypatch.setenv("NEURAL_EARTH_DATA_DIR", str(tmp_path))
+    monkeypatch.delenv("NEURAL_EARTH_CLOUD", raising=False)
+    _save_grid(data.cache_dir() / "etopo_18.npz")
+    assert not data.source_available()
+    assert data.load_etopo(18).z.shape == (18, 36)
+
+
+def test_online_version_fetches_missing_grids(tmp_path, monkeypatch):
+    from python_streamlit_neural_earth_field import data
+
+    monkeypatch.setenv("NEURAL_EARTH_DATA_DIR", str(tmp_path))
+    monkeypatch.setenv("NEURAL_EARTH_CLOUD", "1")
+    fetched = []
+
+    def fake_download(url, target, **kwargs):
+        fetched.append(url)
+        _save_grid(target)
+
+    monkeypatch.setattr(data, "download_etopo", fake_download)
+    assert data.load_etopo(18).z.shape == (18, 36)
+    assert fetched == [data.GRID_URL.format(ny=18)]
+    data.load_etopo(18)  # second time from the cache
+    assert len(fetched) == 1

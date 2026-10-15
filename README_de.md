@@ -40,6 +40,18 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 Die App mittelt es auf die gewählte Arbeitsauflösung (180 × 360 bis 2160 × 4320)
 und legt das Ergebnis unter `data/cache/` ab.
 
+## GPU und Online-Fassung
+
+`uv sync` installiert PyTorch von PyPI. Auf dem Mac rechnet es auf dem Apple-Grafikchip (MPS),
+unter Linux auf einer NVIDIA-GPU, falls vorhanden (der Download ist wegen der CUDA-Bibliotheken
+groß). Unter Windows bietet PyPI PyTorch nur für die CPU an; für eine NVIDIA-GPU installiert man
+die CUDA-Fassung wie auf [pytorch.org](https://pytorch.org/get-started/locally/) beschrieben.
+
+Der Ordner [`cloud/`](cloud/README.md) ist für den Betrieb der App online in der Streamlit
+Community Cloud: PyTorch nur für die CPU, und die bereits verkleinerten Höhenraster kommen aus
+dem Release [`data-v1`](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/tag/data-v1)
+statt aus der 456 MB großen ETOPO-Datei. Lokale Installationen betrifft das nicht.
+
 ## Was die App zeigt
 
 | Reiter | Inhalt |

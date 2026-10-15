@@ -1,0 +1,11 @@
+# Packages for the online version (Streamlit Community Cloud).
+# PyTorch without CUDA: there is no GPU online, and the CUDA build is several GB.
+# The CPU wheel is referenced directly, so pip and uv take everything else from PyPI.
+# Local installs use pyproject.toml / uv.lock and are not affected.
+torch @ https://download.pytorch.org/whl/cpu/torch-2.14.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl ; sys_platform == "linux" and platform_machine == "x86_64"
+# macOS wheels contain no CUDA anyway (only for trying the online mode locally)
+torch==2.14.0 ; sys_platform == "darwin"
+streamlit==1.64.0
+numpy==2.5.3
+plotly==7.1.0
+httpx==0.28.1
