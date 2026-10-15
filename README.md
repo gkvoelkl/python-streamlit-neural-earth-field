@@ -10,6 +10,10 @@
 </p>
 
 <p align="center">
+  <a href="https://python-app-neural-earth-field.streamlit.app"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Open in Streamlit"></a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white" alt="Python 3.14">
   <img src="https://img.shields.io/badge/PyTorch-2.14-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch 2.14">
   <img src="https://img.shields.io/badge/Streamlit-1.64-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit 1.64">
@@ -21,6 +25,7 @@
 </p>
 
 <p align="center">
+  <a href="https://python-app-neural-earth-field.streamlit.app">App online</a> ·
   <a href="https://gkvoelkl.github.io/python-streamlit-neural-earth-field/en/">Tutorial (English)</a> ·
   <a href="https://gkvoelkl.github.io/python-streamlit-neural-earth-field/">Tutorial (Deutsch)</a> ·
   <a href="README_en.md">README (English)</a> ·
@@ -65,6 +70,7 @@ uv run streamlit run app.py
 The app opens in the browser. On the first start it looks for the elevation data
 (ETOPO 2022, 456 MB) and asks whether it may download it – this happens only once.
 
+- **Online without installing:** [python-app-neural-earth-field.streamlit.app](https://python-app-neural-earth-field.streamlit.app) – on a shared CPU without GPU, so training takes a few minutes.
 - **Tutorial:** [website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/en/) · [Markdown](docs/tutorial/en/README.md)
 - **Details:** data download, the three tricks, results, tests → [README_en.md](README_en.md)
 
@@ -113,6 +119,7 @@ uv run streamlit run app.py
 Die App öffnet sich im Browser. Beim ersten Start sucht sie die Höhendaten
 (ETOPO 2022, 456 MB) und fragt, ob sie sie herunterladen darf – das geschieht nur einmal.
 
+- **Online ohne Installation:** [python-app-neural-earth-field.streamlit.app](https://python-app-neural-earth-field.streamlit.app) – auf einer geteilten CPU ohne GPU, das Training dauert deshalb einige Minuten.
 - **Tutorial:** [Website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/) · [Markdown](docs/tutorial/de/README.md)
 - **Details:** Daten herunterladen, die drei Kniffe, Ergebnisse, Tests → [README_de.md](README_de.md)
 

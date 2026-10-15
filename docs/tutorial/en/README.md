@@ -8,6 +8,8 @@ This tutorial shows step by step how to pack the elevation model of the entire E
 
 ## Getting started
 
+For a first look, the app is also online, without installing anything: <https://python-app-neural-earth-field.streamlit.app>. It runs there on a shared CPU without a graphics unit, so training takes a few minutes. For the experiments in the tutorial, your own installation is better:
+
 ```bash
 git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
 cd python-streamlit-neural-earth-field

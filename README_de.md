@@ -19,6 +19,8 @@ uv sync
 uv run streamlit run app.py
 ```
 
+**Online ohne Installation:** <https://python-app-neural-earth-field.streamlit.app> – auf einer geteilten CPU ohne GPU, das Training dauert deshalb einige Minuten (siehe [unten](#gpu-und-online-fassung)).
+
 **Tutorial:** ein Schritt-für-Schritt-Tutorial ohne Programmcode, auf Deutsch
 geschrieben und in Übersetzung ins Englische: [Deutsch](docs/tutorial/de/README.md) ·
 [English](docs/tutorial/en/README.md). Es erscheint auch als Website:
@@ -47,10 +49,11 @@ unter Linux auf einer NVIDIA-GPU, falls vorhanden (der Download ist wegen der CU
 groß). Unter Windows bietet PyPI PyTorch nur für die CPU an; für eine NVIDIA-GPU installiert man
 die CUDA-Fassung wie auf [pytorch.org](https://pytorch.org/get-started/locally/) beschrieben.
 
-Der Ordner [`cloud/`](cloud/README.md) ist für den Betrieb der App online in der Streamlit
-Community Cloud: PyTorch nur für die CPU, und die bereits verkleinerten Höhenraster kommen aus
+Die Online-Fassung unter <https://python-app-neural-earth-field.streamlit.app> läuft aus dem Ordner [`cloud/`](cloud/README.md) in der
+Streamlit Community Cloud: PyTorch nur für die CPU, und die bereits verkleinerten Höhenraster kommen aus
 dem Release [`data-v1`](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/tag/data-v1)
-statt aus der 456 MB großen ETOPO-Datei. Lokale Installationen betrifft das nicht.
+statt aus der 456 MB großen ETOPO-Datei. Auf der geteilten CPU dauern 1 000 Trainingsschritte
+des Standardbeispiels etwa 4 Minuten. Lokale Installationen betrifft das nicht.
 
 ## Was die App zeigt
 

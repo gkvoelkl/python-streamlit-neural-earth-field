@@ -8,6 +8,8 @@ Dieses Tutorial zeigt Schritt für Schritt, wie man das Höhenmodell der ganzen 
 
 ## Vorbereitung
 
+Zum ersten Hineinschauen gibt es die App auch online, ohne Installation: <https://python-app-neural-earth-field.streamlit.app>. Sie läuft dort auf einer geteilten CPU ohne Grafikchip, das Training dauert deshalb einige Minuten. Für die Experimente des Tutorials ist die eigene Installation besser:
+
 ```bash
 git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git
 cd python-streamlit-neural-earth-field

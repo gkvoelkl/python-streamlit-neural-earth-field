@@ -1,6 +1,7 @@
 # Online version
 
-This folder is only for running the app on [Streamlit Community Cloud](https://streamlit.io/cloud).
+This folder is only for running the app on [Streamlit Community Cloud](https://streamlit.io/cloud),
+live at <https://python-app-neural-earth-field.streamlit.app>.
 Local installs don't use it.
 
 - `streamlit_app.py` is the entry point to choose in Community Cloud. It switches the app to
