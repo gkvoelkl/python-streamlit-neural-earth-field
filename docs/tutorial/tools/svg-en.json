@@ -310,5 +310,24 @@
     "Kreis: alle Orte auf 49° Nord (Radius r = 0,66)": "Circle: all places at 49° north (radius r = 0.66)",
     "y = r · sin(Länge) = 0,66 · sin(12,1°) = 0,14": "y = r · sin(longitude) = 0.66 · sin(12.1°) = 0.14",
     "Erst bestimmt die Breite, wie hoch der Punkt liegt (z) und wie weit er von der Erdachse entfernt ist (r). Dann verteilt die Länge r auf x und y.": "First the latitude determines how high the point lies (z) and how far it is from the Earth's axis (r). Then the longitude distributes r between x and y."
+  },
+  "profil-wellen.svg": {
+    "Ein Höhenprofil durch die Alpen als Summe aus langen, mittleren und kurzen Wellen": "An elevation profile through the Alps as a sum of long, medium and short waves",
+    "Ein Gebirge ist eine Summe von Wellen": "A mountain range is a sum of waves",
+    "Höhenprofil bei 46,4° Nord von 2° bis 18° Ost, ETOPO 2022 in voller Auflösung (1 228 km lang), zerlegt nach Wellenlänge": "Elevation profile at 46.4° north from 2° to 18° east, ETOPO 2022 at full resolution (1 228 km long), split by wavelength",
+    "lange Wellen: über 400 km": "long waves: over 400 km",
+    "mittlere Wellen: 100 bis 400 km": "medium waves: 100 to 400 km",
+    "kurze Wellen: unter 100 km": "short waves: under 100 km",
+    "Höhen in Metern. Die drei blauen Kurven zusammengezählt ergeben genau das Original. Lange Wellen sind die Großform, kurze Wellen die Gipfel und Täler.": "Elevations in metres. The three blue curves added up give exactly the original. Long waves are the large-scale form, short waves the summits and valleys."
+  },
+  "wellen-summe.svg": {
+    "Drei Wellen werden Punkt für Punkt addiert und ergeben ein Gebirgsprofil": "Three waves are added point by point and give a mountain profile",
+    "Wellen zusammenzählen": "Adding up waves",
+    "Drei einfache Wellen, Punkt für Punkt addiert, ergeben ein Profil, das wie ein Gebirge aussieht": "Three simple waves, added point by point, give a profile that looks like a mountain range",
+    "lange Welle": "long wave",
+    "mittlere Welle": "medium wave",
+    "kurze Welle": "short wave",
+    "Summe": "Sum",
+    "An jeder Stelle werden die Höhen der drei Wellen addiert – die gestrichelte Linie zeigt das an einem Beispielpunkt. Umgekehrt lässt sich jedes Profil so zerlegen.": "At every point the heights of the three waves are added – the dashed line shows this at one example point. Conversely, every profile can be split up this way."
   }
 }

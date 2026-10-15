@@ -118,6 +118,6 @@ In the *Globe 3D* tab the Earth can be turned. Set the *View direction (longitud
 
 ---
 
-[Overview](README.md) · Back: [Chapter 3 · Architecture of a neural network](03-architektur.md) · Next: [Chapter 5 · Elevations as waves](../de/05-fourier-features.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 3 · Architecture of a neural network](03-architektur.md) · Next: [Chapter 5 · Elevations as waves](05-fourier-features.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

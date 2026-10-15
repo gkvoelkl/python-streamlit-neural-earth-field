@@ -1,6 +1,8 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 5 · Höhen als Wellen
 
+*[English version](../en/05-fourier-features.md)*
+
 ![Chester mit blauer Kappe sitzt mit geschlossenen Augen an einer Harfe. Von der Harfe ziehen viele leuchtende Wellen über eine Erdkugel hinweg zu Aiko, einem leuchtenden neuronalen Netz, das sie mit offenen Armen auffängt.](../img/kapitel-05-chester.jpg)
 
 **Inhalt:** 
@@ -11,7 +13,7 @@
 
 ## Ausgangspunkt
 
-Wie in Kapitel 4 gesehen, hat ein neuronales Netz mit Kugelkoordinaten (x, y, z) als Eingabe keine Naht mehr.
+Wie Sie in Kapitel 4 gesehen haben, hat ein neuronales Netz mit Kugelkoordinaten (x, y, z) als Eingabe keine Naht mehr.
 
 Die Kontinente sind auf der Karte zwar zu erkennen, Gebirge und Küsten aber kaum. Woran liegt das, und was kann man für mehr Details tun?
 
@@ -21,21 +23,21 @@ Bei Frequenzen denkt man meist an Töne: Schwingungen pro Sekunde. Es gibt aber 
 
 ![Die Alpen als 3D-Gelände, darüber schweben drei durchscheinende Wellenflächen: oben eine kurze Welle mit vielen schmalen Kämmen, darunter eine mittlere Welle und eine lange Welle mit einem einzigen breiten Buckel.](../img/alpen-wellen-3d.png)
 
-Jedes Höhenprofil lässt sich als Summe von Wellen verschiedener Länge schreiben. Das zeigt das Profil durch die Alpen aus Kapitel 3, diesmal in voller ETOPO-Auflösung:
+Jedes Höhenprofil lässt sich als Summe von Wellen verschiedener Länge beschreiben. Das zeigt das Profil durch die Alpen aus Kapitel 3, diesmal in voller ETOPO-Auflösung:
 
 ![Ein Höhenprofil durch die Alpen, zerlegt in drei Teile: lange Wellen über 400 km bilden einen breiten Buckel, mittlere Wellen von 100 bis 400 km schwanken um einige hundert Meter, kurze Wellen unter 100 km bilden ein dichtes Auf und Ab von bis zu 1 000 m. Zusammengezählt ergeben die drei Teile genau das Original.](../img/profil-wellen.svg)
 
-- **Lange Wellen** (über 400 km) sind die Großform: Hier steht ein Gebirge, links und rechts davon ist Flachland.
-- **Mittlere Wellen** (100 bis 400 km) sind einzelne Gebirgsgruppen und Becken.
-- **Kurze Wellen** (unter 100 km) sind Gipfel und Täler.
+- **Lange Wellen** (Wellenlänge über 400 km) sind die Großform: Hier steht ein Gebirge, links und rechts davon ist Flachland.
+- **Mittlere Wellen** (Wellenlänge 100 bis 400 km) sind einzelne Gebirgsgruppen und Becken.
+- **Kurze Wellen** (Wellenlänge unter 100 km) sind Gipfel und Täler.
 
-Zusammengezählt ergeben die drei Teile genau das Original. 
+Zusammengezählt ergeben die drei Teile ziemlich genau das Original.
 
 ![Drei Wellen untereinander – eine lange mit einem breiten Buckel, eine mittlere und eine kurze – und darunter ihre Summe, ein gebirgsartiges Profil. An einem Beispielpunkt: 1 837 m + (−231 m) + (−61 m) = 1 545 m.](../img/wellen-summe.svg)
 
-Das Prinzip zeigt ein einfaches Beispiel: An jeder Stelle werden die Höhen der Wellen addiert. Wo die lange Welle hoch ist und die kürzeren gerade nach oben ausschlagen, entsteht ein Gipfel; wo sie nach unten ausschlagen, ein Tal.
+Das Prinzip an einem einfachen Beispiel: An jeder Stelle werden die Höhen der einzelnen Wellen addiert. Wo die lange Welle hoch ist und die kürzeren gerade nach oben ausschlagen, entsteht ein Gipfel; wo sie nach unten ausschlagen, ein Tal.
 
-Für die ganze Erde gilt dasselbe, nur in zwei Richtungen: Kontinente und Ozeanbecken sind lange Wellen, Küstenlinien, Gebirge und Tiefseegräben kurze. 
+Für die ganze Erde gilt dasselbe, nur in zwei Richtungen: Kontinente und Ozeanbecken sind lange Wellen, Küstenlinien, Gebirge und Tiefseegräben kurze.
 
 ![Drei Weltkarten: das Original ist gleich der Summe aus langen Wellen – eine weichgezeichnete Erde mit Kontinenten und Ozeanbecken – und kurzen Wellen, die fast überall nahe null sind und nur an Küsten, Gebirgen und Tiefseegräben als rote und blaue Linien hervortreten.](../img/erde-lang-kurz.png)
 
@@ -43,13 +45,13 @@ Die Zerlegung eines Signals (hier Oberflächenrelief) in Wellen heißt nach dem 
 
 ## Ein einfaches Netz lernt lange Wellen zuerst
 
-Neuronale Netze haben eine bekannte Vorliebe: Sie lernen lange Wellen schnell und kurze nur sehr langsam. In der Fachsprache heißt das *spectral bias* [1]. Der Grund steckt in Kapitel 3: Ein Netz mit ReLU setzt seine Form aus geraden Stücken zusammen. Eine sanfte Großform braucht dafür wenige Knicke, ein zerklüfteter Grat sehr viele – und das Training findet die vielen Knicke nur mühsam.
+Neuronale Netze haben eine bekannte Vorliebe: Sie lernen lange Wellen schnell und kurze nur sehr langsam. In der Fachsprache heißt das *spectral bias* [1]. Der Grund steckt in Kapitel 3: Ein Netz mit ReLU setzt seine Form aus geraden Stücken zusammen. Eine sanfte Großform braucht dafür wenige Knicke, ein zerklüfteter Grat sehr viele – und im Training sind die vielen Knicke nur mühsam zu lernen.
 
 Das zeigt ein Versuch mit dem Alpenprofil. Zwei gleich große Netze lernen es, das obere auf die bisherige Art, das untere mit Fourier-Features, die der nächste Abschnitt erklärt:
 
 ![Zwei Zeilen mit je drei Bildern. Oben ein einfaches Netz: Nach 50 Schritten ist es ein breites Dreieck, nach 500 Schritten ein Trapez, nach 3 000 Schritten ein Umriss mit wenigen Ecken, Fehler 478, 386 und 334 m. Unten dasselbe Netz mit Fourier-Features: Schon nach 50 Schritten sind viele Gipfel zu sehen, nach 500 und 3 000 Schritten liegt die Linie fast genau auf dem Profil, Fehler 197, 64 und 20 m.](../img/profil-spectral-bias.png)
 
-Das einfache Netz kommt auch nach 3 000 Schritten kaum über die Großform hinaus. Mit Fourier-Features sind die Gipfel schon nach 50 Schritten da, und nach 500 Schritten liegt die Kurve fast auf dem Profil.
+Das einfache Netz kommt auch nach 3 000 Schritten kaum über die grobe Form hinaus. Mit Fourier-Features sind die Gipfel schon nach 50 Schritten da, und nach 500 Schritten liegt die Kurve fast auf dem Profil.
 
 ## Fourier-Features: Streifenmuster als Eingabe
 
@@ -112,7 +114,7 @@ Die drei Zahlen *b* legen das Muster fest: Ihre Richtung ist die Richtung, in de
 
 ### Was bisher gespeichert werden müsste
 
-Die Netze aus den Kapiteln 3 bis 5 im Vergleich. Gespeichert werden die Gewichte (je 4 Byte), dazu 8 Byte für die Normierung der Höhen und bei Fourier-Features 4 Byte für den Startwert (Kapitel 1). Zum Vergleich: Das Höhenraster des Standardbeispiels mit 1080 × 2160 Werten belegt 4,4 MB.
+Die Netze aus den Kapiteln 2 bis 5 im Vergleich. Gespeichert werden die Gewichte (je 4 Byte), dazu 8 Byte für die Normierung der Höhen und bei Fourier-Features 4 Byte für den Startwert (Kapitel 1). Zum Vergleich: Das Höhenraster des Standardbeispiels mit 1080 × 2160 Werten belegt 4,4 MB.
 
 | Kapitel | Netz | Gewichte | Größe | Anteil am Raster | Kompressionsrate |
 |---|---|---:|---:|---:|---:|
@@ -149,13 +151,15 @@ Das passende σ hängt von der Gitterauflösung und der Netzgröße ab. Für das
 
 ## Ausprobieren
 
-1. In der Seitenleiste unter *2 · Network* die Vorlage *Fourier MLP (recommended)* wählen und *Architecture details* aufklappen.
-2. Unter *Positional encoding* steht `fourier`. Darunter zwei Regler: *Fourier frequencies* ist die Zahl der Wellen, *σ (bandwidth)* ihr σ.
+Wählen Sie in der Seitenleiste unter **2 · Network** die Vorlage **Fourier MLP (recommended)** aus und klappen Sie **Architecture details** auf.
+
+Unter **Positional encoding** steht `fourier`. Darunter zwei Regler: *Fourier frequencies* ist die Zahl der Wellen, **σ (bandwidth)** ihr σ.
 
    <img src="../img/app-fourier-einstellungen.png" alt="Seitenleiste mit aufgeklappten Architecture details: Coordinate input xyz, Positional encoding fourier, Fourier frequencies 128, σ (bandwidth) 6.00." width="300">
 
-3. Trainieren und das Ergebnis im Reiter *Maps & Error* mit dem aus Kapitel 3 vergleichen. Dort hatte die Vorlage *Plain MLP* keine Fourier-Features.
-4. σ auf 1 und auf 20 stellen, jeweils neu trainieren und die Karten vergleichen. Im Reiter *Idea & Budget* lässt sich prüfen, dass sich an der Zahl der Gewichte dabei nichts ändert.
+Trainieren Sie und vergleichen Sie das Ergebnis im Reiter **Maps & Error** mit dem aus den Kapiteln 2 bis 4. Dort hatte die Vorlage *Plain MLP* keine Fourier-Features.
+
+Stellen Sie σ auf 1 und auf 20, trainieren Sie jeweils neu und vergleichen Sie die Karten. Im Reiter **Idea & Budget** können Sie prüfen, dass sich an der Zahl der Gewichte dabei nichts ändert.
 
 ## Ideen zum Weiterprobieren
 
@@ -186,8 +190,8 @@ Genau das steckt in der Vorlage *Fourier MLP (recommended)* der App.
 
 Alles Weitere sind **Ergänzungen und Vertiefungen**. Sie bauen auf den Kapiteln 1 bis 5 auf, lassen sich aber je nach Interesse einzeln lesen oder überspringen:
 
-- [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) – ein geordneter Satz von Mustern, der genau auf die Kugel passt
-- [Kapitel 7 · Vertiefung: SIREN](07-siren.md) – Neuronen, die selbst mit einem Sinus rechnen
+- [Kapitel 6 · Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) – ein geordneter Satz von Mustern, der genau auf die Kugel passt
+- [Kapitel 7 · SIREN](07-siren.md) – Neuronen, die selbst mit einem Sinus rechnen
 - [Kapitel 8 · Das Kontextfeld](08-kontextfeld.md) – ein grobes Gitter liefert die Kontinente, das Netz lernt nur noch die Einzelheiten
 - [Kapitel 9 · Rate und Fehler messen](09-rate-und-fehler.md) – Dateigröße und Genauigkeit verschiedener Netze fair vergleichen
 - [Kapitel 10 · Abfragen und exportieren](10-abfragen-und-exportieren.md) – Höhen an beliebigen Orten abfragen und das Netz als Datei weitergeben

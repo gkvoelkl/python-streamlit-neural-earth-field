@@ -1,6 +1,6 @@
 # Tutorial: Storing geodata in neural networks
 
-*[Deutsche Fassung](../de/README.md) · The tutorial was written in German. Chapters 1 to 4 are translated; the other chapters follow and link to the German original until then.*
+*[Deutsche Fassung](../de/README.md) · The tutorial was written in German. Chapters 1 to 5 are translated; the other chapters follow and link to the German original until then.*
 
 This tutorial shows step by step how to pack the elevation model of the entire Earth into the weights of a small neural network – and why the weights then are the file. Each chapter combines an idea with experiments in the companion app in this repository. The tutorial deliberately shows no program code – if you want to look inside, everything is in the `src/` folder.
 
@@ -30,7 +30,7 @@ The app is in English. Terms from the user interface appear in italics, for exam
 ### Part 2 · Better networks for geodata
 
 4. [The Earth is a sphere](04-kugelkoordinaten.md)
-5. Elevations as waves – [German](../de/05-fourier-features.md)
+5. [Elevations as waves](05-fourier-features.md)
 
 Chapter 5 completes the core of the tutorial.
 
