@@ -200,6 +200,6 @@ Alles Weitere sind **Ergänzungen und Vertiefungen**. Sie bauen auf den Kapiteln
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 4 · Die Erde ist eine Kugel](04-kugelkoordinaten.md) · Weiter: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
+[Übersicht](README.md) · Zurück: [Kapitel 4 · Die Erde ist eine Kugel](04-kugelkoordinaten.md) · Weiter: [Kapitel 6 · Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

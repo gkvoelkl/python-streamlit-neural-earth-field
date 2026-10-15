@@ -1,4 +1,4 @@
-# Kapitel 6 · Vertiefung: Kugelflächenfunktionen
+# Kapitel 6 · Kugelflächenfunktionen
 
 ![Chester mit blauer Kappe setzt mit einer Pinzette Mosaiksteine in eine Erdkugel aus vielen blauen, grünen und ockerfarbenen Kacheln. Links steht Aiko, ein leuchtendes neuronales Netz, vor einem Sortierkasten; auf dem Tisch liegen weitere Mosaiksteine.](../img/kapitel-06-chester.jpg)
 
@@ -107,6 +107,6 @@ Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Gra
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 5 · Höhen als Wellen](05-fourier-features.md) · Weiter: [Kapitel 7 · Vertiefung: SIREN](07-siren.md)
+[Übersicht](README.md) · Zurück: [Kapitel 5 · Höhen als Wellen](05-fourier-features.md) · Weiter: [Kapitel 7 · SIREN](07-siren.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

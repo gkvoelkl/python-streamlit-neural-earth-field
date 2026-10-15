@@ -38,8 +38,8 @@ Chapter 5 completes the core of the tutorial.
 
 The following chapters build on chapters 1 to 5. Read or skip them as you like.
 
-6. Deep dive: spherical harmonics – [German](../de/06-kugelflaechenfunktionen.md)
-7. Deep dive: SIREN – [German](../de/07-siren.md)
+6. Spherical harmonics – [German](../de/06-kugelflaechenfunktionen.md)
+7. SIREN – [German](../de/07-siren.md)
 8. The context field – [German](../de/08-kontextfeld.md)
 9. Measuring rate and error – [German](../de/09-rate-und-fehler.md)
 10. Querying and exporting – [German](../de/10-abfragen-und-exportieren.md)

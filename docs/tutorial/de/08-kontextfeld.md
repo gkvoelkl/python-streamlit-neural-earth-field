@@ -136,6 +136,6 @@ Schon das sehr grobe Kontextfeld 45 × 90 mit nur 7,9 KB senkt den Fehler um ein
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 7 · Vertiefung: SIREN](07-siren.md) · Weiter: [Kapitel 9 · Rate und Fehler messen](09-rate-und-fehler.md)
+[Übersicht](README.md) · Zurück: [Kapitel 7 · SIREN](07-siren.md) · Weiter: [Kapitel 9 · Rate und Fehler messen](09-rate-und-fehler.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

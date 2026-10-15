@@ -1,4 +1,4 @@
-# Kapitel 7 · Vertiefung: SIREN
+# Kapitel 7 · SIREN
 
 ![Chester mit blauer Kappe und Aiko, ein leuchtendes neuronales Netz, surfen nachts auf einem Meer über leuchtende Wellen; am Horizont geht die Erdkugel auf.](../img/kapitel-07-chester.jpg)
 
@@ -114,6 +114,6 @@ Der SIREN hat nur drei Eingaben und kann deshalb bei gleicher Dateigröße mehr 
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 6 · Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) · Weiter: [Kapitel 8 · Das Kontextfeld](08-kontextfeld.md)
+[Übersicht](README.md) · Zurück: [Kapitel 6 · Kugelflächenfunktionen](06-kugelflaechenfunktionen.md) · Weiter: [Kapitel 8 · Das Kontextfeld](08-kontextfeld.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

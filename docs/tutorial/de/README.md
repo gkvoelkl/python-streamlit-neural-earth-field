@@ -38,8 +38,8 @@ Mit Kapitel 5 ist der Kern des Tutorials abgeschlossen.
 
 Die folgenden Kapitel bauen auf den Kapiteln 1 bis 5 auf. Sie lassen sich je nach Interesse einzeln lesen oder überspringen.
 
-6. [Vertiefung: Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
-7. [Vertiefung: SIREN](07-siren.md)
+6. [Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
+7. [SIREN](07-siren.md)
 8. [Das Kontextfeld](08-kontextfeld.md)
 9. [Rate und Fehler messen](09-rate-und-fehler.md)
 10. [Abfragen und exportieren](10-abfragen-und-exportieren.md)
