@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Networks with one, two and three hidden layers">
+<rect width="960" height="500" rx="12" fill="#ffffff"/>
+<text x="28.0" y="40.0" font-size="19" fill="#1f2933" text-anchor="start" font-weight="600">One, two, three hidden layers</text>
+<text x="28.0" y="64.0" font-size="13.5" fill="#5f6b7a" text-anchor="start">Drawn with 4 neurons per layer – the Plain MLP preset has 128 each</text>
+<line x1="60.0" y1="205.0" x2="180.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="60.0" y1="205.0" x2="180.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="60.0" y1="205.0" x2="180.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="60.0" y1="205.0" x2="180.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="60.0" y1="255.0" x2="180.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="60.0" y1="255.0" x2="180.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="60.0" y1="255.0" x2="180.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="60.0" y1="255.0" x2="180.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="180.0" y1="155.0" x2="300.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="180.0" y1="205.0" x2="300.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="180.0" y1="255.0" x2="300.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="180.0" y1="305.0" x2="300.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<circle cx="60.0" cy="205.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<circle cx="60.0" cy="255.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<circle cx="180.0" cy="155.0" r="12" fill="#ffffff"/>
+<circle cx="180.0" cy="155.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="180.0" cy="205.0" r="12" fill="#ffffff"/>
+<circle cx="180.0" cy="205.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="180.0" cy="255.0" r="12" fill="#ffffff"/>
+<circle cx="180.0" cy="255.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="180.0" cy="305.0" r="12" fill="#ffffff"/>
+<circle cx="180.0" cy="305.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="300.0" cy="230.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<text x="60.0" y="183.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Longitude</text>
+<text x="60.0" y="285.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Latitude</text>
+<text x="300.0" y="260.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Elevation</text>
+<text x="180.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Layer 1</text>
+<text x="180.0" y="96.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">1 hidden layer</text>
+<text x="180.0" y="410.0" font-size="12" fill="#5f6b7a" text-anchor="middle">with 128 neurons per layer:</text>
+<text x="180.0" y="432.0" font-size="15" fill="#1f2933" text-anchor="middle" font-weight="600">513 weights</text>
+<line x1="375.0" y1="205.0" x2="455.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="375.0" y1="205.0" x2="455.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="375.0" y1="205.0" x2="455.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="375.0" y1="205.0" x2="455.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="375.0" y1="255.0" x2="455.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="375.0" y1="255.0" x2="455.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="375.0" y1="255.0" x2="455.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="375.0" y1="255.0" x2="455.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="155.0" x2="535.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="155.0" x2="535.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="155.0" x2="535.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="155.0" x2="535.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="205.0" x2="535.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="205.0" x2="535.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="205.0" x2="535.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="205.0" x2="535.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="255.0" x2="535.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="255.0" x2="535.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="255.0" x2="535.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="255.0" x2="535.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="305.0" x2="535.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="305.0" x2="535.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="305.0" x2="535.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="455.0" y1="305.0" x2="535.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="535.0" y1="155.0" x2="615.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="535.0" y1="205.0" x2="615.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="535.0" y1="255.0" x2="615.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="535.0" y1="305.0" x2="615.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<circle cx="375.0" cy="205.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<circle cx="375.0" cy="255.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<circle cx="455.0" cy="155.0" r="12" fill="#ffffff"/>
+<circle cx="455.0" cy="155.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="455.0" cy="205.0" r="12" fill="#ffffff"/>
+<circle cx="455.0" cy="205.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="455.0" cy="255.0" r="12" fill="#ffffff"/>
+<circle cx="455.0" cy="255.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="455.0" cy="305.0" r="12" fill="#ffffff"/>
+<circle cx="455.0" cy="305.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="535.0" cy="155.0" r="12" fill="#ffffff"/>
+<circle cx="535.0" cy="155.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="535.0" cy="205.0" r="12" fill="#ffffff"/>
+<circle cx="535.0" cy="205.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="535.0" cy="255.0" r="12" fill="#ffffff"/>
+<circle cx="535.0" cy="255.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="535.0" cy="305.0" r="12" fill="#ffffff"/>
+<circle cx="535.0" cy="305.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="615.0" cy="230.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<text x="375.0" y="183.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Longitude</text>
+<text x="375.0" y="285.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Latitude</text>
+<text x="615.0" y="260.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Elevation</text>
+<text x="455.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Layer 1</text>
+<text x="535.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Layer 2</text>
+<text x="495.0" y="96.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">2 hidden layers</text>
+<text x="495.0" y="410.0" font-size="12" fill="#5f6b7a" text-anchor="middle">with 128 neurons per layer:</text>
+<text x="495.0" y="432.0" font-size="15" fill="#1f2933" text-anchor="middle" font-weight="600">17 025 weights</text>
+<line x1="690.0" y1="205.0" x2="750.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="690.0" y1="205.0" x2="750.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="690.0" y1="205.0" x2="750.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="690.0" y1="205.0" x2="750.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="690.0" y1="255.0" x2="750.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="690.0" y1="255.0" x2="750.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="690.0" y1="255.0" x2="750.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="690.0" y1="255.0" x2="750.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="155.0" x2="810.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="155.0" x2="810.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="155.0" x2="810.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="155.0" x2="810.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="205.0" x2="810.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="205.0" x2="810.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="205.0" x2="810.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="205.0" x2="810.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="255.0" x2="810.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="255.0" x2="810.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="255.0" x2="810.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="255.0" x2="810.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="305.0" x2="810.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="305.0" x2="810.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="305.0" x2="810.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="750.0" y1="305.0" x2="810.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="155.0" x2="870.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="155.0" x2="870.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="155.0" x2="870.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="155.0" x2="870.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="205.0" x2="870.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="205.0" x2="870.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="205.0" x2="870.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="205.0" x2="870.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="255.0" x2="870.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="255.0" x2="870.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="255.0" x2="870.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="255.0" x2="870.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="305.0" x2="870.0" y2="155.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="305.0" x2="870.0" y2="205.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="305.0" x2="870.0" y2="255.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="810.0" y1="305.0" x2="870.0" y2="305.0" stroke="#2a86b0" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="870.0" y1="155.0" x2="930.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="870.0" y1="205.0" x2="930.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="870.0" y1="255.0" x2="930.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<line x1="870.0" y1="305.0" x2="930.0" y2="230.0" stroke="#0b3a66" stroke-opacity="0.45" stroke-width="1.2"/>
+<circle cx="690.0" cy="205.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<circle cx="690.0" cy="255.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<circle cx="750.0" cy="155.0" r="12" fill="#ffffff"/>
+<circle cx="750.0" cy="155.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="750.0" cy="205.0" r="12" fill="#ffffff"/>
+<circle cx="750.0" cy="205.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="750.0" cy="255.0" r="12" fill="#ffffff"/>
+<circle cx="750.0" cy="255.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="750.0" cy="305.0" r="12" fill="#ffffff"/>
+<circle cx="750.0" cy="305.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="810.0" cy="155.0" r="12" fill="#ffffff"/>
+<circle cx="810.0" cy="155.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="810.0" cy="205.0" r="12" fill="#ffffff"/>
+<circle cx="810.0" cy="205.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="810.0" cy="255.0" r="12" fill="#ffffff"/>
+<circle cx="810.0" cy="255.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="810.0" cy="305.0" r="12" fill="#ffffff"/>
+<circle cx="810.0" cy="305.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="870.0" cy="155.0" r="12" fill="#ffffff"/>
+<circle cx="870.0" cy="155.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="870.0" cy="205.0" r="12" fill="#ffffff"/>
+<circle cx="870.0" cy="205.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="870.0" cy="255.0" r="12" fill="#ffffff"/>
+<circle cx="870.0" cy="255.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="870.0" cy="305.0" r="12" fill="#ffffff"/>
+<circle cx="870.0" cy="305.0" r="12" fill="#2a86b0" fill-opacity="0.15" stroke="#2a86b0" stroke-width="1.5"/>
+<circle cx="930.0" cy="230.0" r="14" fill="#ffffff" stroke="#8a96a3" stroke-width="1.5"/>
+<text x="690.0" y="183.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Longitude</text>
+<text x="690.0" y="285.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Latitude</text>
+<text x="930.0" y="260.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Elevation</text>
+<text x="750.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Layer 1</text>
+<text x="810.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Layer 2</text>
+<text x="870.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="middle">Layer 3</text>
+<text x="810.0" y="96.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">3 hidden layers</text>
+<text x="810.0" y="410.0" font-size="12" fill="#5f6b7a" text-anchor="middle">with 128 neurons per layer:</text>
+<text x="810.0" y="432.0" font-size="15" fill="#1f2933" text-anchor="middle" font-weight="600">33 537 weights</text>
+<text x="28.0" y="478.0" font-size="12.5" fill="#5f6b7a" text-anchor="start">Each line stands for a weight, plus one bias per neuron. Each further layer is connected to all neurons of the layer before.</text>
+</svg>

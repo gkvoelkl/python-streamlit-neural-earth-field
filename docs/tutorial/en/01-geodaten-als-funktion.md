@@ -16,7 +16,7 @@
 
 ## The core idea
 
-Anyone working with detailed geodata such as elevations for the whole world always deals with huge amounts of data. Other data in this field is no easier.
+Anyone working with detailed geodata such as elevations for the whole world always deals with huge amounts of data. Other data in the geo domain is no easier.
 
 So some clever people came up with an idea:
 
@@ -185,13 +185,42 @@ To do so, the app combines blocks of cells and takes their mean; the result is s
 
 ## Try it out
 
-* **Install the app:** the app needs Python 3.14 or newer and the package manager [uv](https://docs.astral.sh/uv/). Download the [repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field) (with `git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git` or on GitHub via *Code → Download ZIP*) and run `uv sync` once in the project folder. uv creates its own Python environment and installs all required packages.
+### Install the app
 
-* **Load the elevation data:** the app needs the ETOPO file (456 MB) in the `data/` folder. If it is missing, the app asks on the first start whether it may download it and shows the progress; depending on the connection this takes a few minutes. Without these data the app shuts down. If you prefer to download the file yourself, the command is in the [project README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_en.md#data) under *Data*.
+The app needs
 
-* **Start the app:** `uv run streamlit run app.py`. The app opens in the browser.
+* Python 3.14 or newer and
+* the package manager [uv](https://docs.astral.sh/uv/).
 
-* Open the **Idea & Budget** tab. Under *Your budget – before training* there are four figures: *Grid points*, *Parameters*, *Compression ratio* and *Bits per grid point*.
+The simplest way is to download the [repository](https://github.com/gkvoelkl/python-streamlit-neural-earth-field):
+
+`git clone https://github.com/gkvoelkl/python-streamlit-neural-earth-field.git`
+
+or on GitHub via *Code → Download ZIP*. Then run, once, in the newly created project folder
+
+`uv sync`
+
+uv creates its own Python environment and installs all required packages.
+
+### Load the elevation data
+
+The app needs the ETOPO file (456 MB) in the `data/` folder.
+
+If it is missing, the app asks on the first start whether it may download it and shows the progress; depending on the connection this takes a few minutes.
+
+Without these data the app shuts down. If you prefer to download the file yourself, the command is in the [project README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/blob/main/README_en.md#data) under *Data*.
+
+### Start the app
+
+Start the app in the project folder with
+
+`uv run streamlit run app.py`
+
+The app opens in the browser.
+
+Open the **Idea & Budget** tab. Under *Your budget – before training* there are four figures:
+
+*Grid points*, *Parameters*, *Compression ratio* and *Bits per grid point*.
 
    ![The four figures in the Idea & Budget tab for the standard example: 2 332 800 grid points, 82 561 parameters, compression ratio 14, 1.133 bits per grid point.](../img/app-budget.png)
 
@@ -231,6 +260,6 @@ Training decides how good the reconstruction will be.
 
 ---
 
-[Overview](README.md) · Next: [Chapter 2 · Training the neural network](../de/02-training.md) *(German; English translation in progress)*
+[Overview](README.md) · Next: [Chapter 2 · Training the neural network](02-training.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

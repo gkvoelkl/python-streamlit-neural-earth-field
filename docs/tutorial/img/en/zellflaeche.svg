@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400" width="860" height="400" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Same degrees, different area: grid cells get narrower towards the poles">
+<rect width="860" height="400" rx="12" fill="#ffffff"/>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8a96a3"/></marker></defs>
+<text x="28" y="40" font-size="19" font-weight="600" fill="#1f2933">Same degrees, different area</text>
+<text x="28" y="64" font-size="13.5" fill="#5f6b7a">A grid cell of 1° × 1°, drawn to scale</text>
+<rect x="40" y="156.44" width="133.6" height="133.6" fill="#2a86b0" fill-opacity="0.25" stroke="#2a86b0" stroke-width="1.5"/>
+<text x="40" y="314" font-size="14" font-weight="600" fill="#1f2933">at 0° latitude</text>
+<text x="40" y="334" font-size="13" fill="#5f6b7a">111 km × 111 km</text>
+<rect x="223.56" y="156.44" width="94.4" height="133.6" fill="#2a86b0" fill-opacity="0.12" stroke="#2a86b0" stroke-width="1.5"/>
+<text x="223.56" y="314" font-size="14" font-weight="600" fill="#1f2933">at 45° latitude</text>
+<text x="223.56" y="334" font-size="13" fill="#5f6b7a">79 km × 111 km</text>
+<rect x="368.0011816952753" y="156.44" width="45.7" height="133.6" fill="#2a86b0" fill-opacity="0.12" stroke="#2a86b0" stroke-width="1.5"/>
+<text x="368.0011816952753" y="314" font-size="14" font-weight="600" fill="#1f2933">at 70° latitude</text>
+<text x="368.0011816952753" y="334" font-size="13" fill="#5f6b7a">38 km × 111 km</text>
+<text x="520" y="112" font-size="14" font-weight="600" fill="#1f2933">Beyond 60° latitude lie …</text>
+<rect x="520" y="136" width="300" height="22" rx="4" fill="#eef1f4"/>
+<rect x="520" y="136" width="100.0" height="22" rx="4" fill="#8a96a3"/>
+<text x="520" y="178" font-size="13" fill="#1f2933">a third of the grid rows</text>
+<rect x="520" y="202" width="300" height="22" rx="4" fill="#eef1f4"/>
+<rect x="520" y="202" width="40.2" height="22" rx="4" fill="#2a86b0"/>
+<text x="520" y="244" font-size="13" fill="#1f2933">but only 13 % of the Earth's surface</text>
+<text x="520" y="290" font-size="12.5" fill="#5f6b7a">Every grid row has the same number of cells –</text>
+<text x="520" y="308" font-size="12.5" fill="#5f6b7a">at the poles they are just much narrower.</text>
+<text x="28" y="378" font-size="12.5" fill="#5f6b7a">Without compensation, training would treat the polar regions about two and a half times as important as their area warrants.</text>
+</svg>
