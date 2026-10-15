@@ -14,7 +14,10 @@
     "75° Breite": "75° latitude",
     "Länge": "Longitude",
     "Breite": "Latitude",
-    "Höhe": "Elevation"
+    "Höhe": "Elevation",
+    "Äquator": "Equator",
+    "Nordpol": "North Pole",
+    "Regensburg": "Regensburg"
   },
   "geodaten-zu-netz.svg": {
     "Geodaten als neuronales Feld: Das Netz ersetzt das Raster und ist 14-mal kleiner": "Geodata as a neural field: the network replaces the grid and is 14 times smaller",
@@ -259,5 +262,53 @@
     "50 Neuronen": "50 neurons",
     "151 Gewichte · Fehler 231 m": "151 weights · error 231 m",
     "Grau: echtes Profil. Blau: was das Netz daraus macht. Jedes Neuron steuert einen Knick bei; mit mehr Neuronen folgt die Linie dem Gelände genauer.": "Grey: real profile. Blue: what the network makes of it. Each neuron contributes a kink; with more neurons the line follows the terrain more closely."
+  },
+  "naht-und-pole.svg": {
+    "Auf der Kugel sind die Punkte bei 179,9 Grad Ost und West Nachbarn, auf der Karte liegen sie an entgegengesetzten Rändern": "On the sphere the points at 179.9 degrees east and west are neighbours, on the map they lie at opposite edges",
+    "Nachbarn auf der Erde, weit auseinander auf der Karte": "Neighbours on Earth, far apart on the map",
+    "Zwei Punkte am Äquator, 22 km voneinander entfernt – links wie die Erde ist, rechts wie das Netz sie mit Länge und Breite sieht": "Two points at the equator, 22 km apart – on the left as the Earth is, on the right as the network sees it with longitude and latitude",
+    "Datumsgrenze": "Date line",
+    "Nordpol: ein Punkt": "North Pole: one point",
+    "Auf der Kugel": "On the sphere",
+    "A und B liegen 22 km auseinander": "A and B are 22 km apart",
+    "obere Kante: 2 160 verschiedene Eingaben – aber auf der Erde nur ein Punkt, der Nordpol": "top edge: 2 160 different inputs – but on Earth only one point, the North Pole",
+    "für das Netz so weit auseinander wie nur möglich": "for the network as far apart as possible",
+    "Länge": "longitude",
+    "Für das Netz (Länge, Breite)": "For the network (longitude, latitude)",
+    "Das Netz müsste an den Kartenrändern Sprünge lernen, die es auf der Erde nicht gibt – und am Pol einen Punkt als Linie behandeln.": "The network would have to learn jumps at the map edges that do not exist on Earth – and treat a point at the pole as a line."
+  },
+  "kugel-xyz.svg": {
+    "Ein Punkt auf der Einheitskugel, beschrieben durch x, y und z": "A point on the unit sphere, described by x, y and z",
+    "Drei Zahlen statt zwei: der Punkt auf der Kugel": "Three numbers instead of two: the point on the sphere",
+    "Die Erde als Kugel mit Radius 1, der Ursprung im Erdmittelpunkt": "The Earth as a sphere with radius 1, the origin at the centre of the Earth",
+    "x  (Richtung 0° O, 0° N)": "x  (towards 0° E, 0° N)",
+    "y  (Richtung 90° O, 0° N)": "y  (towards 90° E, 0° N)",
+    "z  (Richtung Nordpol)": "z  (towards the North Pole)",
+    "Aus Länge und Breite wird:": "From longitude and latitude:",
+    "x = cos(Breite) · cos(Länge)": "x = cos(latitude) · cos(longitude)",
+    "y = cos(Breite) · sin(Länge)": "y = cos(latitude) · sin(longitude)",
+    "z = sin(Breite)": "z = sin(latitude)",
+    "Regensburg (12,1° O, 49,0° N):": "Regensburg (12.1° E, 49.0° N):",
+    "Nah auf der Erde = nah in x, y, z:": "Close on Earth = close in x, y, z:",
+    "179,9° O:  x = −1,000  y = +0,002": "179.9° E:  x = −1.000  y = +0.002",
+    "179,9° W: x = −1,000  y = −0,002": "179.9° W: x = −1.000  y = −0.002",
+    "Keine Kanten, keine Naht: Jeder Punkt der Erde hat genau eine Beschreibung, und Nachbarn haben ähnliche Zahlen.": "No edges, no seam: every point on Earth has exactly one description, and neighbours have similar numbers."
+  },
+  "xyz-schritte.svg": {
+    "Berechnung von x, y und z in drei Schritten am Beispiel Regensburg": "Computing x, y and z in three steps, using Regensburg as the example",
+    "x, y und z in drei Schritten": "x, y and z in three steps",
+    "Beispiel Regensburg: Länge 12,1° Ost, Breite 49,0° Nord – die Erde als Kugel mit Radius 1": "Example Regensburg: longitude 12.1° east, latitude 49.0° north – the Earth as a sphere with radius 1",
+    "1 · Höhe über dem Äquator": "1 · Height above the equator",
+    "Seitenansicht": "Side view",
+    "2 · Richtung 0° Ost": "2 · Towards 0° east",
+    "Blick von oben auf den Nordpol": "View from above onto the North Pole",
+    "3 · Richtung 90° Ost": "3 · Towards 90° east",
+    "z = sin(Breite) = sin(49,0°) = 0,75": "z = sin(latitude) = sin(49.0°) = 0.75",
+    "r = cos(Breite) = 0,66: Abstand zur Erdachse": "r = cos(latitude) = 0.66: distance to the Earth's axis",
+    "Mittelpunkt": "Centre",
+    "x = r · cos(Länge) = 0,66 · cos(12,1°) = 0,64": "x = r · cos(longitude) = 0.66 · cos(12.1°) = 0.64",
+    "Kreis: alle Orte auf 49° Nord (Radius r = 0,66)": "Circle: all places at 49° north (radius r = 0.66)",
+    "y = r · sin(Länge) = 0,66 · sin(12,1°) = 0,14": "y = r · sin(longitude) = 0.66 · sin(12.1°) = 0.14",
+    "Erst bestimmt die Breite, wie hoch der Punkt liegt (z) und wie weit er von der Erdachse entfernt ist (r). Dann verteilt die Länge r auf x und y.": "First the latitude determines how high the point lies (z) and how far it is from the Earth's axis (r). Then the longitude distributes r between x and y."
   }
 }

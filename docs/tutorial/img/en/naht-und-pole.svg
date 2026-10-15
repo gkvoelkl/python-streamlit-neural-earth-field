@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 490" width="940" height="490" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="On the sphere the points at 179.9 degrees east and west are neighbours, on the map they lie at opposite edges">
+<rect width="940" height="490" rx="12" fill="#ffffff"/>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8a96a3"/></marker><marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f2933"/></marker><marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#c0622a"/></marker></defs>
+<text x="28.0" y="40.0" font-size="19" fill="#1f2933" text-anchor="start" font-weight="600">Neighbours on Earth, far apart on the map</text>
+<text x="28.0" y="64.0" font-size="13.5" fill="#5f6b7a" text-anchor="start">Two points at the equator, 22 km apart – on the left as the Earth is, on the right as the network sees it with longitude and latitude</text>
+<circle cx="200" cy="250" r="130" fill="#2a86b0" fill-opacity="0.08" stroke="#8a96a3" stroke-width="1.5"/>
+<ellipse cx="200" cy="250" rx="130" ry="32.5" fill="none" stroke="#b8c1cc"/>
+<line x1="200" y1="120" x2="200" y2="380" stroke="#c0622a" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="208.0" y="166.0" font-size="11.5" fill="#c0622a" text-anchor="start">Date line</text>
+<circle cx="193" cy="282.5" r="5" fill="#1f2933"/>
+<circle cx="207" cy="282.5" r="5" fill="#2a86b0"/>
+<text x="184.0" y="304.5" font-size="13" fill="#1f2933" text-anchor="end" font-weight="600">B</text>
+<text x="216.0" y="304.5" font-size="13" fill="#2a86b0" text-anchor="start" font-weight="600">A</text>
+<circle cx="200" cy="120" r="5" fill="#1f2933"/>
+<text x="210.0" y="114.0" font-size="12" fill="#1f2933" text-anchor="start">North Pole: one point</text>
+<text x="200.0" y="412.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">On the sphere</text>
+<text x="200.0" y="430.0" font-size="12" fill="#5f6b7a" text-anchor="middle">A and B are 22 km apart</text>
+<rect x="440" y="130" width="440" height="220" fill="#2a86b0" fill-opacity="0.08" stroke="#8a96a3" stroke-width="1.5"/>
+<line x1="513.3" y1="130" x2="513.3" y2="350" stroke="#e3e8ed"/>
+<line x1="586.7" y1="130" x2="586.7" y2="350" stroke="#e3e8ed"/>
+<line x1="660.0" y1="130" x2="660.0" y2="350" stroke="#e3e8ed"/>
+<line x1="733.3" y1="130" x2="733.3" y2="350" stroke="#e3e8ed"/>
+<line x1="806.7" y1="130" x2="806.7" y2="350" stroke="#e3e8ed"/>
+<line x1="440" y1="185.0" x2="880" y2="185.0" stroke="#e3e8ed"/>
+<line x1="440" y1="240.0" x2="880" y2="240.0" stroke="#e3e8ed"/>
+<line x1="440" y1="295.0" x2="880" y2="295.0" stroke="#e3e8ed"/>
+<line x1="440" y1="130" x2="880" y2="130" stroke="#1f2933" stroke-width="4"/>
+<text x="660.0" y="120.0" font-size="11.5" fill="#1f2933" text-anchor="middle">top edge: 2 160 different inputs – but on Earth only one point, the North Pole</text>
+<circle cx="444" cy="240.0" r="5" fill="#1f2933"/>
+<circle cx="876" cy="240.0" r="5" fill="#2a86b0"/>
+<text x="454.0" y="230.0" font-size="12" fill="#1f2933" text-anchor="start" font-weight="600">B: −179.9°</text>
+<text x="866.0" y="230.0" font-size="12" fill="#2a86b0" text-anchor="end" font-weight="600">A: +179.9°</text>
+<line x1="456" y1="262.0" x2="864" y2="262.0" stroke="#c0622a" stroke-width="1.5" marker-start="url(#arrR)" marker-end="url(#arrR)"/>
+<text x="660.0" y="282.0" font-size="12" fill="#c0622a" text-anchor="middle">for the network as far apart as possible</text>
+<text x="440.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="start">−180°</text>
+<text x="880.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="end">+180°</text>
+<text x="660.0" y="372.0" font-size="11" fill="#5f6b7a" text-anchor="middle">longitude</text>
+<text x="660.0" y="402.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">For the network (longitude, latitude)</text>
+<text x="28.0" y="470.0" font-size="12.5" fill="#5f6b7a" text-anchor="start">The network would have to learn jumps at the map edges that do not exist on Earth – and treat a point at the pole as a line.</text>
+</svg>

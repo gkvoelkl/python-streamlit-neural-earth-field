@@ -1,6 +1,8 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 4 · Die Erde ist eine Kugel
 
+*[English version](../en/04-kugelkoordinaten.md)*
+
 ![Chester mit blauer Kappe und Maßband um den Hals wölbt eine flache Weltkarte über eine Kugel und näht die Kante zusammen. Aiko, ein leuchtendes neuronales Netz, steht links auf dem Tisch und hält den Faden.](../img/kapitel-04-chester.jpg)
 
 **Inhalt:** 
@@ -11,25 +13,25 @@
 
 ## Ausgangspunkt
 
-In Kapitel 3 bekam das neuronale Netz Länge und Breite als Eingabe – so, wie man Orte auf einer Weltkarte normalerweise angibt. Für Menschen ist das praktisch. Für das neuronale Netz ist das nicht so einfach.
+In den Kapiteln 2 und 3 bekam das neuronale Netz Länge und Breite als Eingabe – so, wie man Orte auf einer Weltkarte normalerweise angibt. Für Menschen ist das praktisch. Für das neuronale Netz ist das nicht so einfach.
 
 ## Zwei Haken bei Länge und Breite
 
 ![Links eine Kugel mit zwei benachbarten Punkten A und B an der Datumsgrenze, 22 km voneinander entfernt, und dem Nordpol als einzelnem Punkt. Rechts eine rechteckige Weltkarte, auf der A ganz rechts bei +179,9° und B ganz links bei −179,9° liegt; die obere Kante der Karte ist der Nordpol.](../img/naht-und-pole.svg)
 
-**Die Naht.** Die Länge läuft von −180° bis +180°. Ein Punkt bei 179,9° Ost und einer bei 179,9° West liegen auf der Erde nur 22 km auseinander – beide im Pazifik, ganz in der Nähe der Datumsgrenze, die ungefähr dem 180. Längengrad folgt. 
+**Die Naht.** Die Länge läuft von −180° bis +180°. Ein Punkt bei 179,9° Ost und einer bei 179,9° West liegen auf der Erde nur 22 km auseinander – beide im Pazifik, ganz in der Nähe der Datumsgrenze, die ungefähr dem 180. Längengrad folgt.
 
 Für das neuronale Netz sind es aber die Zahlen +179,9 und −179,9: so verschieden, wie zwei Längen nur sein können. Das Netz müsste lernen, dass zwei völlig verschiedene Eingaben fast dieselbe Höhe haben. Mit der Methode aus Kapitel 3, die aus vielen geraden Rampen eine Fläche baut, ist das schwer.
 
-**Die Pole.** Am Nordpol hat die Länge keine Bedeutung: Jede Länge zwischen −180° und +180° beschreibt denselben Punkt. Im Raster ist die oberste Zeile trotzdem eine ganze Reihe von 2 160 Zellen mit verschiedenen Längen. 
+**Die Pole.** Am Nordpol hat die Länge keine Bedeutung: Jede Länge zwischen −180° und +180° beschreibt denselben Punkt. Im Raster ist die oberste Zeile trotzdem eine ganze Reihe von 2 160 Zellen mit verschiedenen Längen.
 
 Für das neuronale Netz sind das 2 160 verschiedene Eingaben für einen einzigen Ort. Am Südpol ist es genauso.
 
-Das liegt an der Art, wie wir sie beschreiben: Das Rechteck der Weltkarte hat Ränder, die Erdkugel hat keine.
+Beides liegt an der Art, wie wir Orte beschreiben: Das Rechteck der Weltkarte hat Ränder, die Erdkugel hat keine.
 
 ## Der Punkt auf der Kugel
 
-Die Lösung: Man beschreibt einen Ort nicht durch zwei Winkel (Länge, Breite), sondern durch seine Lage im Raum. 
+Die Lösung: Man beschreibt einen Ort nicht durch zwei Winkel (Länge, Breite), sondern durch seine Lage im Raum.
 
 Dazu stellt man sich die Erde als Kugel mit dem Radius 1 vor, mit dem Erdmittelpunkt als Ursprung. Jeder Ort ist dann ein Punkt auf dieser Kugel und hat drei Koordinaten *x*, *y* und *z*.
 
@@ -74,29 +76,33 @@ Die beiden Punkte an der Datumsgrenze haben jetzt fast dieselben Zahlen, genau w
 
 Kurz gesagt: **Wer auf der Erde nah beieinander liegt, hat jetzt auch ähnliche Koordinaten.** Es gibt keine Ränder und keine Naht mehr, über die das Netz stolpern könnte.
 
-Der Preis ist gering. Statt zwei Eingaben hat das Netz drei, und jedes Neuron der ersten Schicht braucht ein Gewicht mehr – bei 128 Neuronen sind das 128 zusätzliche Gewichte.
+Der Preis ist gering. Statt zwei Eingaben hat das Netz drei, und jedes Neuron der ersten Schicht braucht ein Gewicht mehr – bei 128 Neuronen sind das 128 zusätzliche Gewichte. Aus den 50 049 Gewichten des einfachen Netzes aus Kapitel 2 werden so 50 177.
 
 ## Was das ausmacht
 
-Wie groß der Unterschied ist, zeigt ein Vergleich: ein neuronales Netz mit derselben Architektur, ein einfaches MLP (Vorlage *Plain MLP*) mit 4 versteckten Schichten, dasselbe Raster, dasselbe Training – einmal mit Länge und Breite, einmal mit Kugelkoordinaten als Eingabeformat. 
+Wie groß der Unterschied ist, zeigt ein Vergleich: ein neuronales Netz mit derselben Architektur, ein einfaches MLP (Vorlage *Plain MLP*) mit 4 versteckten Schichten, dasselbe Raster, dasselbe Training – einmal mit Länge und Breite, einmal mit Kugelkoordinaten als Eingabeformat.
 
 Das Bild zeigt den Pazifik zu beiden Seiten des 180. Längengrades.
 
 ![Drei Karten des Pazifiks zwischen 160° Ost und 160° West, von 50° Süd bis 10° Nord, mit dem 180. Längengrad als gestrichelter Linie. Links das Original mit Tiefseegräben und Neuseeland. In der Mitte das mit Länge und Breite gelernte Netz: An der gestrichelten Linie verläuft eine senkrechte Kante, links davon ist es heller als rechts. Rechts das mit Kugelkoordinaten gelernte Netz: keine Kante an der Linie.](../img/naht-pazifik.png)
 
-Mit Länge und Breite hat das Netz an der 180°-Linie eine sichtbare **Naht**: Die Höhe springt dort, obwohl das Gelände auf beiden Seiten weitergeht. Entlang der ganzen Linie vom Süd- zum Nordpol beträgt der Sprung im Mittel 675 m. Mit Kugelkoordinaten verschwindet er fast vollständig: im Mittel 2 m.
+Mit Länge und Breite hat das Netz an der 180°-Linie eine sichtbare **Naht**: Die Höhe springt dort, obwohl das Gelände auf beiden Seiten weitergeht. Entlang der ganzen Linie vom Süd- zum Nordpol beträgt der Sprung im Mittel 690 m. Mit Kugelkoordinaten verschwindet er fast vollständig: im Mittel 0,2 m.
 
-Beide Netze haben dieselbe Größe und sind gleich lange trainiert.
+Beide Netze sind fast gleich groß (50 049 und 50 177 Gewichte) und gleich lange trainiert.
 
 ## Ausprobieren
 
-1. In der Seitenleiste unter *2 · Network* die Vorlage *Plain MLP (fails on purpose)* wählen und *Architecture details* aufklappen.
-2. Ganz oben steht *Coordinate input*. Voreingestellt ist `xyz` – die Kugelkoordinaten aus diesem Kapitel. Die Alternative `lonlat` gibt Länge und Breite direkt ins Netz.
+Wählen Sie in der Seitenleiste unter **2 · Network** die Vorlage **Plain MLP (fails on purpose)** und klappen Sie **Architecture details** auf.
+
+Ganz oben steht **Coordinate input**. Voreingestellt ist `xyz` – die Kugelkoordinaten aus diesem Kapitel. Die Alternative `lonlat` gibt Länge und Breite direkt ins Netz.
 
    <img src="../img/app-koordinaten-eingabe.png" alt="Seitenleiste mit aufgeklappten Architecture details: Die Auswahl Coordinate input ist geöffnet und zeigt die beiden Möglichkeiten xyz und lonlat." width="300">
 
-3. Mit `lonlat` trainieren und im Reiter *Maps & Error* die Fehlerkarte am rechten und linken Rand ansehen. Dann mit `xyz` trainieren und vergleichen.
-4. Im Reiter *Globe 3D* lässt sich die Erde drehen. Den Regler *View direction (longitude)* auf 180 stellen: Dann schaut man direkt auf die Naht.
+Trainieren Sie zum Vergleich erst einmal mit `lonlat` – das ist das Netz aus Kapitel 2 – und sehen Sie sich im Reiter *Maps & Error* die Fehlerkarte am rechten und linken Rand an.
+
+Trainieren Sie dann erneut mit `xyz` und vergleichen Sie. Der gewichtete RMSE sinkt dabei von rund 700 m auf rund 600 m (siehe [Anhang](anhang-messungen.md)).
+
+Im Reiter *Globe 3D* lässt sich die Erde drehen. Stellen Sie den Regler *View direction (longitude)* auf 180: Dann schauen Sie direkt auf die Naht.
 
 ## Ideen zum Weiterprobieren
 

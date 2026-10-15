@@ -165,6 +165,6 @@ For the tilted plane it is a compromise: it fits the large areas at the equator 
 
 ---
 
-[Overview](README.md) · Back: [Chapter 2 · Training the neural network](02-training.md) · Next: [Chapter 4 · The Earth is a sphere](../de/04-kugelkoordinaten.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 2 · Training the neural network](02-training.md) · Next: [Chapter 4 · The Earth is a sphere](04-kugelkoordinaten.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*
