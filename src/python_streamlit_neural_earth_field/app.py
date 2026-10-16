@@ -38,6 +38,9 @@ RESOLUTIONS = {
     "2160 × 4320 · 0.083° · ~9 km": 2160,
 }
 DEFAULT_RESOLUTION = "1080 × 2160 · 0.17° · ~19 km"
+# Online (shared CPU, throttled when busy for long): coarser grids and lighter training
+CLOUD_RESOLUTIONS = list(RESOLUTIONS)[:3]
+CLOUD_DEFAULT_RESOLUTION = "360 × 720 · 0.5° · ~56 km"
 
 
 def fmt_ratio(r: float) -> str:
@@ -65,16 +68,21 @@ def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
     st.sidebar.title("🌍 Neural Elevation Field")
 
     if cloud_mode():
-        st.sidebar.info(
-            "**Online version** on a shared CPU without GPU: training takes several minutes, "
-            "so the default is 1 000 steps. For full speed, run the app on your own computer – "
-            "see the [README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field)."
+        st.sidebar.warning(
+            "**Online version with much less data.** It runs on a shared CPU without GPU, so "
+            "it uses grids of at most 540 × 1080 cells (default 360 × 720 – a ninth of the "
+            "2.3 million cells of the full 1080 × 2160 grid) and lighter training. File sizes, "
+            "compression ratios and errors therefore differ from the tutorial. For the full "
+            "data, run the app on your own computer – see the "
+            "[README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field)."
         )
     st.sidebar.subheader("1 · Data")
     st.sidebar.caption("Source: ETOPO 2022 global relief model (NOAA NCEI), 1 arc-minute")
 
     res_label = st.sidebar.select_slider(
-        "Grid resolution", options=list(RESOLUTIONS), value=DEFAULT_RESOLUTION
+        "Grid resolution",
+        options=CLOUD_RESOLUTIONS if cloud_mode() else list(RESOLUTIONS),
+        value=CLOUD_DEFAULT_RESOLUTION if cloud_mode() else DEFAULT_RESOLUTION,
     )
     grid = get_grid(RESOLUTIONS[res_label])
 
@@ -136,10 +144,15 @@ def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
 
     st.sidebar.subheader("3 · Training")
     tcfg = TrainConfig()
-    tcfg.steps = st.sidebar.slider("Steps", 200, 30000, 1000 if cloud_mode() else 4000, 200)
+    if cloud_mode():
+        tcfg.steps = st.sidebar.slider("Steps", 200, 2000, 1000, 200)
+    else:
+        tcfg.steps = st.sidebar.slider("Steps", 200, 30000, 4000, 200)
     tcfg.batch_size = int(
         st.sidebar.select_slider(
-            "Points per step", [4096, 8192, 16384, 32768, 65536, 131072], value=32768
+            "Points per step",
+            [4096, 8192, 16384] if cloud_mode() else [4096, 8192, 16384, 32768, 65536, 131072],
+            value=8192 if cloud_mode() else 32768,
         )
     )
     tcfg.lr = st.sidebar.select_slider(
@@ -499,10 +512,13 @@ def tab_rate(grid: ElevationGrid) -> None:
         "shows what you get at each point."
     )
     c1, c2, c3 = st.columns(3)
-    steps = int(c1.select_slider("Steps per network", [300, 600, 1000, 2000], value=600))
-    widths = c2.multiselect("Network widths", [16, 24, 32, 48, 64, 96, 128, 192, 256],
-                            default=[16, 32, 64, 128])
-    with_context = c3.checkbox("Also with context field (90 × 180)", value=True)
+    cloud = cloud_mode()
+    steps = int(c1.select_slider("Steps per network",
+                                 [300, 600] if cloud else [300, 600, 1000, 2000], value=600))
+    widths = c2.multiselect("Network widths",
+                            [16, 32, 64, 128] if cloud else [16, 24, 32, 48, 64, 96, 128, 192, 256],
+                            default=[16, 64] if cloud else [16, 32, 64, 128])
+    with_context = c3.checkbox("Also with context field (90 × 180)", value=not cloud)
     run = st.button("Compute curve", type="primary")
 
     if run and widths:

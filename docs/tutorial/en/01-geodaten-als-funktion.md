@@ -185,7 +185,7 @@ To do so, the app combines blocks of cells and takes their mean; the result is s
 
 ## Try it out
 
-If you just want to look at the app first, it is also online: <https://python-app-neural-earth-field.streamlit.app>. There it runs on a shared CPU without a graphics unit; training the standard example with 1 000 steps takes about 4 minutes. For the experiments in the following chapters, it is better to install the app on your computer.
+If you just want to look at the app first, it is also online: <https://python-app-neural-earth-field.streamlit.app>. There it runs on a shared CPU without a graphics unit and therefore works with much less data: the grid has at most 540 × 1080 cells (default 360 × 720, a ninth of the standard grid), and training is shorter. File sizes, compression ratios and errors therefore differ from the numbers in this tutorial. For the experiments in the following chapters, it is better to install the app on your computer.
 
 ### Install the app
 

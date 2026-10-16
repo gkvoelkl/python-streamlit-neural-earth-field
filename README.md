@@ -70,7 +70,7 @@ uv run streamlit run app.py
 The app opens in the browser. On the first start it looks for the elevation data
 (ETOPO 2022, 456 MB) and asks whether it may download it – this happens only once.
 
-- **Online without installing:** [python-app-neural-earth-field.streamlit.app](https://python-app-neural-earth-field.streamlit.app) – on a shared CPU without GPU, so training takes a few minutes.
+- **Online without installing:** [python-app-neural-earth-field.streamlit.app](https://python-app-neural-earth-field.streamlit.app) – on a shared CPU without GPU, with much less data (coarser grids, lighter training).
 - **Tutorial:** [website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/en/) · [Markdown](docs/tutorial/en/README.md)
 - **Details:** data download, the three tricks, results, tests → [README_en.md](README_en.md)
 
@@ -119,7 +119,7 @@ uv run streamlit run app.py
 Die App öffnet sich im Browser. Beim ersten Start sucht sie die Höhendaten
 (ETOPO 2022, 456 MB) und fragt, ob sie sie herunterladen darf – das geschieht nur einmal.
 
-- **Online ohne Installation:** [python-app-neural-earth-field.streamlit.app](https://python-app-neural-earth-field.streamlit.app) – auf einer geteilten CPU ohne GPU, das Training dauert deshalb einige Minuten.
+- **Online ohne Installation:** [python-app-neural-earth-field.streamlit.app](https://python-app-neural-earth-field.streamlit.app) – auf einer geteilten CPU ohne GPU, mit erheblich weniger Daten (gröbere Raster, leichteres Training).
 - **Tutorial:** [Website](https://gkvoelkl.github.io/python-streamlit-neural-earth-field/) · [Markdown](docs/tutorial/de/README.md)
 - **Details:** Daten herunterladen, die drei Kniffe, Ergebnisse, Tests → [README_de.md](README_de.md)
 

@@ -185,7 +185,7 @@ Dafür fasst die App Blöcke von Zellen zusammen und nimmt deren Mittelwert; das
 
 ## Ausprobieren
 
-Wer die App erst einmal ansehen möchte, findet sie auch online: <https://python-app-neural-earth-field.streamlit.app>. Dort rechnet sie auf einer geteilten CPU ohne Grafikchip; das Training des Standardbeispiels dauert mit 1 000 Schritten etwa 4 Minuten. Für die Experimente der folgenden Kapitel installieren Sie die App besser auf Ihrem Rechner.
+Wer die App erst einmal ansehen möchte, findet sie auch online: <https://python-app-neural-earth-field.streamlit.app>. Dort rechnet sie auf einer geteilten CPU ohne Grafikchip und arbeitet deshalb mit erheblich weniger Daten: Das Raster hat höchstens 540 × 1080 Zellen (voreingestellt 360 × 720, ein Neuntel des Standardgitters), und das Training ist kürzer. Dateigrößen, Kompressionsraten und Fehler weichen darum von den Zahlen in diesem Tutorial ab. Für die Experimente der folgenden Kapitel installieren Sie die App besser auf Ihrem Rechner.
 
 ### App installieren
 

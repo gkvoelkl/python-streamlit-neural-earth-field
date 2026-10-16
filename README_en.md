@@ -18,7 +18,7 @@ uv sync
 uv run streamlit run app.py
 ```
 
-**Online without installing:** <https://python-app-neural-earth-field.streamlit.app> – on a shared CPU without GPU, so training takes a few minutes (see [below](#gpu-and-online-version)).
+**Online without installing:** <https://python-app-neural-earth-field.streamlit.app> – on a shared CPU without GPU and therefore with much less data: coarser grids (default 360 × 720) and lighter training (see [below](#gpu-and-online-version)).
 
 **Tutorial:** a step-by-step tutorial without program code, written in German and
 being translated into English: [Deutsch](docs/tutorial/de/README.md) ·
@@ -51,8 +51,10 @@ as described at [pytorch.org](https://pytorch.org/get-started/locally/).
 The online version at <https://python-app-neural-earth-field.streamlit.app> runs from the folder [`cloud/`](cloud/README.md) on Streamlit Community
 Cloud: PyTorch for the CPU only, and the elevation grids, already averaged down, come from the
 release [`data-v1`](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/tag/data-v1)
-instead of the 456 MB ETOPO file. On the shared CPU, 1 000 training steps of the standard
-example take about 4 minutes. Local installs are not affected.
+instead of the 456 MB ETOPO file. Because Community Cloud throttles apps that keep the CPU
+busy for long, the online version uses much less data: grids of at most 540 × 1080 cells
+(default 360 × 720, a ninth of the standard grid), 8 192 points and at most 2 000 steps per
+training run. Its numbers therefore differ from the tutorial. Local installs are not affected.
 
 ## What the app shows
 

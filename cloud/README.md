@@ -5,8 +5,10 @@ live at <https://python-app-neural-earth-field.streamlit.app>.
 Local installs don't use it.
 
 - `streamlit_app.py` is the entry point to choose in Community Cloud. It switches the app to
-  its online mode (`NEURAL_EARTH_CLOUD=1`): no download prompt, 1 000 training steps by
-  default and a note that training runs on a shared CPU.
+  its online mode (`NEURAL_EARTH_CLOUD=1`), because Community Cloud throttles apps that keep
+  the CPU busy for long: no download prompt, grids up to 540 × 1080 (default 360 × 720),
+  8 192 points and at most 2 000 steps per training run, a shorter rate-distortion curve,
+  one CPU core, and a note that the online version uses much less data than the tutorial.
 - `requirements.txt` installs PyTorch for the CPU only. Community Cloud reads the dependency
   file next to the entry point first, so it takes this one instead of `uv.lock`.
 - The elevation grids, already averaged down from ETOPO 2022 (NOAA NCEI,
