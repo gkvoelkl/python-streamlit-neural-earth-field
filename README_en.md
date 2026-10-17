@@ -130,7 +130,9 @@ uv run --group docs mkdocs build --strict
 
 The workflow `.github/workflows/docs.yml` publishes it on GitHub Pages on every
 push to `main`. English versions of the diagrams are generated from the German
-SVGs with `uv run python docs/tutorial/tools/translate_svg.py`.
+SVGs with `uv run python docs/tutorial/tools/translate_svg.py`; for figures that
+exist only as PNG, `uv run --with matplotlib python docs/tutorial/tools/translate_png.py`
+replaces the texts.
 
 ## Tests
 
@@ -141,7 +143,8 @@ uv run pytest
 They check the things that would otherwise break silently: that the loading snippet
 from the Export tab really yields the same field, that the spherical coordinates
 have no seam at ±180°, that the context field hits the grid value at its nodes,
-and that its bytes end up in the compression ratio.
+that its bytes end up in the compression ratio, and that the data download and the
+online version fetch and reuse the right files.
 
 ## Context
 
@@ -155,14 +158,18 @@ for learning: the trade-off is visible, not hidden.
 ## Structure
 
 ```
+app.py          entry point for `streamlit run app.py`
 src/python_streamlit_neural_earth_field/
-  data.py       ETOPO loading, block-mean downsampling, area weights
+  data.py       ETOPO download and loading, block-mean downsampling, area weights
   encoding.py   lon/lat → unit sphere, Fourier features, spherical harmonics
   model.py      NeuralField (MLP / SIREN / context field), size bookkeeping
   training.py   overfitting loop as a generator, area-weighted sampling
   metrics.py    RMSE, weighted RMSE, MAE, PSNR, R², compression ratio
   viz.py        3D globe, maps, error plots, rate-distortion
   app.py        Streamlit interface
+tests/          pytest tests
+cloud/          online version for Streamlit Community Cloud
+docs/tutorial/  tutorial in German (de/) and English (en/), figures, tools
 ```
 
 ## References
@@ -181,4 +188,5 @@ src/python_streamlit_neural_earth_field/
 
 MIT, see [LICENSE](LICENSE). The ETOPO 2022 data are provided by NOAA NCEI
 (DOI [10.25921/fd45-gt74](https://doi.org/10.25921/fd45-gt74)) and are not part of
-this repository.
+this repository; the grids averaged from them for the online version are attached to
+the release [data-v1](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/tag/data-v1).

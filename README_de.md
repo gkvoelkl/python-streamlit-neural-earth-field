@@ -134,7 +134,9 @@ uv run --group docs mkdocs build --strict
 
 Der Workflow `.github/workflows/docs.yml` veröffentlicht sie bei jedem Push auf
 `main` über GitHub Pages. Die englischen Fassungen der Diagramme entstehen aus den
-deutschen SVGs mit `uv run python docs/tutorial/tools/translate_svg.py`.
+deutschen SVGs mit `uv run python docs/tutorial/tools/translate_svg.py`; bei Abbildungen,
+die es nur als PNG gibt, ersetzt `uv run --with matplotlib python docs/tutorial/tools/translate_png.py`
+die Texte.
 
 ## Tests
 
@@ -145,7 +147,8 @@ uv run pytest
 Sie prüfen die Dinge, die sonst unbemerkt kaputtgehen würden: dass das Ladebeispiel
 aus dem Reiter *Export* wirklich dasselbe Feld ergibt, dass die Kugelkoordinaten
 keine Naht bei ±180° haben, dass das Kontextfeld an seinen Gitterpunkten den Wert
-des Gitters trifft und dass seine Bytes in die Kompressionsrate eingehen.
+des Gitters trifft, dass seine Bytes in die Kompressionsrate eingehen und dass der
+Download der Daten und die Online-Fassung die richtigen Dateien holen und wiederverwenden.
 
 ## Einordnung
 
@@ -159,14 +162,18 @@ Beispiel lehrreich: Die Abwägung ist sichtbar und nicht versteckt.
 ## Aufbau
 
 ```
+app.py          Startdatei für `streamlit run app.py`
 src/python_streamlit_neural_earth_field/
-  data.py       ETOPO laden, auf Blockmittel verkleinern, Flächengewichte
+  data.py       ETOPO herunterladen und laden, auf Blockmittel verkleinern, Flächengewichte
   encoding.py   lon/lat → Einheitskugel, Fourier-Features, Kugelflächenfunktionen
   model.py      NeuralField (MLP / SIREN / Kontextfeld), Größenbuchhaltung
   training.py   Overfitting-Schleife als Generator, flächengewichtete Auswahl
   metrics.py    RMSE, gewichteter RMSE, MAE, PSNR, R², Kompressionsrate
   viz.py        3D-Globus, Karten, Fehlerdiagramme, Rate-Distortion
   app.py        Streamlit-Oberfläche
+tests/          Tests mit pytest
+cloud/          Online-Fassung für die Streamlit Community Cloud
+docs/tutorial/  Tutorial auf Deutsch (de/) und Englisch (en/), Abbildungen, Werkzeuge
 ```
 
 ## Quellen
@@ -185,4 +192,5 @@ src/python_streamlit_neural_earth_field/
 
 MIT, siehe [LICENSE](LICENSE). Die Daten von ETOPO 2022 stellt NOAA NCEI bereit
 (DOI [10.25921/fd45-gt74](https://doi.org/10.25921/fd45-gt74)); sie sind nicht Teil
-dieses Repositorys.
+dieses Repositorys. Die daraus gemittelten Raster für die Online-Fassung hängen am
+Release [data-v1](https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/tag/data-v1).
