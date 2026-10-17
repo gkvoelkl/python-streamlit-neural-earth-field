@@ -1,6 +1,8 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 10 · Abfragen und exportieren
 
+*[English version](../en/10-abfragen-und-exportieren.md)*
+
 ![Auf einem Holztisch steht ein offener Pappkarton, aus dem Aiko, ein leuchtendes neuronales Netz, fröhlich mit beiden Armen winkt. Daneben drückt Chester mit blauer Kappe ein kleines Versandetikett an den Karton. Rechts steht eine Erdkugel aus Mosaiksteinen, im Hintergrund ein Regal mit weiteren Paketen.](../img/kapitel-10-chester.jpg)
 
 **Inhalt:**
@@ -9,15 +11,17 @@
 * Warum feiner abfragen keine zusätzlichen Einzelheiten liefert
 * Das Netz als Datei speichern – in float32 oder float16 – und was float16 kostet
 
+Dieses Kapitel ergänzt die Kapitel 1 bis 5. Sie können es auch überspringen.
+
 ## Ausgangspunkt
 
-Nach dem Training steckt die Erde in 82 561 Gewichten. Bisher hat die App mit diesen Gewichten nur das Trainingsgitter nachgerechnet, um Karten und Fehler zu zeigen.
+Nach dem Training steckt die Erde in **82 561** Gewichten. Bisher hat die App mit diesen Gewichten nur das Trainingsgitter nachgerechnet, um Karten und Fehler zu zeigen.
 
 Zwei Dinge fehlen noch, damit das Netz wirklich die Datei ersetzt: Man muss es nach jeder beliebigen Stelle fragen können, und man muss es speichern und weitergeben können.
 
-## Das Netz an einer beliebigen Stelle fragen
+## Das Netz an einer beliebigen Stelle nach der Höhe fragen
 
-Das Netz ist eine Funktion (Kapitel 1). Man gibt eine Länge und eine Breite hinein und bekommt eine Höhe heraus. Dazwischen passiert, was die Kapitel 3 bis 5 beschrieben haben: Die Koordinate wird zum Punkt (x, y, z) auf der Kugel, daraus werden 256 Wellen der Fourier-Features, und die laufen durch die vier Schichten des Netzes.
+Das neuronale Netz ist eine Funktion (Kapitel 1). Es bekommt eine Länge und eine Breite als Eingabe und liefert daraus eine Höhe als Ergebnis. Dazwischen passiert, was die Kapitel 3 bis 5 beschrieben haben: Die Koordinate wird zum Punkt (x, y, z) auf der Kugel, daraus werden 256 Wellen der Fourier-Features, und die laufen durch die vier Schichten des Netzes.
 
 Nirgends in dieser Rechnung kommt das Gitter vor. Das Netz kennt keine Zeilen und Spalten. Es rechnet für 47,421° Nord genauso wie für 47,4° oder 47,42137°.
 
@@ -29,7 +33,9 @@ Ein paar Abfragen beim Standardbeispiel, nach 4 000 Trainingsschritten:
 | Challengertief im Marianengraben | 142,2° O · 11,35° N | −10 935 m | −9 816 m | −9 369 m | −9 268 m |
 | Zugspitze | 10,985° O · 47,421° N | 2 962 m | 1 250 m | 1 475 m | 1 323 m |
 
-Das sieht zunächst erschreckend aus: Der Mount Everest ist über 4 000 m zu niedrig. Der größte Teil davon liegt aber nicht am Netz, sondern schon am Gitter. Eine Zelle im Trainingsgitter ist etwa 19 km breit, und ihr Wert ist der Mittelwert aller Höhen in dieser Fläche (Kapitel 1). Darin liegen der Gipfel, die Flanken und die Täler darum herum – im Mittel 5 776 m. Das Netz hat diesen Mittelwert gelernt, nicht den Gipfel, und rundet ihn zusätzlich noch etwas ab.
+Das sieht zunächst erschreckend aus: Der Mount Everest ist über 4 000 m zu niedrig. Das liegt aber nicht allein am neuronalen Netz: Den größten Teil davon, gut 3 000 m, verliert der Gipfel schon im Trainingsgitter.
+
+Eine Zelle im Trainingsgitter ist etwa 19 km breit, und ihr Wert ist der Mittelwert aller Höhen in dieser Fläche (Kapitel 1). Darin liegen der Gipfel, die Flanken und die Täler darum herum – im Mittel 5 776 m. Das Netz hat diesen Mittelwert gelernt, nicht den Gipfel, und rundet ihn zusätzlich noch etwas ab.
 
 Bei der Zugspitze sieht man das noch deutlicher: Selbst im feineren Gitter mit 9 km breiten Zellen bleibt von 2 962 m nicht einmal die Hälfte übrig. Einzelne Gipfel sind für ein Gitter dieser Auflösung zu schmal.
 
@@ -57,7 +63,7 @@ Die App nennt den Reiter, in dem man das ausprobiert, *Super-Resolution*. Gemein
 
 Nützlich ist das feine Abfragen trotzdem. Man kann Höhen genau an den Stellen ausrechnen, die man braucht – entlang einer Wanderroute, an den Messpunkten einer Wetterstation oder auf einem Gitter in jeder beliebigen Auflösung –, ohne vorher ein Raster umrechnen zu müssen.
 
-## Das Netz als Datei
+## Das neuronale Netz als Datei
 
 Damit jemand anderes das Netz nutzen kann, muss es in eine Datei. In dieser Datei steht alles, was man zum Nachrechnen der Höhen braucht:
 
@@ -69,7 +75,7 @@ Damit jemand anderes das Netz nutzen kann, muss es in eine Datei. In dieser Date
 
 Was *nicht* in der Datei steht: die Zufallsmatrix der Fourier-Features. Sie entsteht beim Laden neu aus dem Startwert, der im Bauplan steht (Kapitel 5).
 
-Die App speichert das im Format von PyTorch, der Bibliothek, mit der das Netz rechnet. Die Datei hat die Endung `.pt`. Für das Standardbeispiel ist sie 334 527 Byte groß, also 326,7 KB. Das sind gut 4 KB mehr als die 330 256 Byte, mit denen Kapitel 1 gerechnet hat: Die Datei enthält zusätzlich Namen für jede Schicht und etwas Verwaltung. Die Kompressionsrate zählt diese Verwaltung nicht mit, denn sie hängt nur vom Dateiformat ab und nicht vom Verfahren.
+Die App speichert das im Format von **PyTorch**, der Bibliothek, mit der das Netz rechnet. Die Datei hat die Endung `.pt`. Für das Standardbeispiel ist sie 334 527 Byte groß, also 326,7 KB. Das sind gut 4 KB mehr als die 330 256 Byte, mit denen Kapitel 1 gerechnet hat: Die Datei enthält zusätzlich Namen für jede Schicht und etwas Verwaltung. Die Kompressionsrate zählt diese Verwaltung nicht mit, denn sie hängt nur vom Dateiformat ab und nicht vom Verfahren.
 
 ## float32 oder float16
 
@@ -98,7 +104,7 @@ Die Dateigrößen sind hier wie in Kapitel 1 ohne die Verwaltung des Dateiformat
 
 **Beim Kontextfeld wächst die Rate weniger.** Das Kontextfeld ist schon in ganzen Metern mit 2 Byte gespeichert und wird durch float16 nicht kleiner. Nur das Netz schrumpft, die Rate steigt deshalb nur von 13 auf 24.
 
-**Beim SIREN ist float16 deutlich teurer.** Die Abweichungen sind etwa 25-mal so groß wie beim Fourier-MLP, im schlimmsten Fall 239 m. Der Grund steht in Kapitel 7: Der SIREN multipliziert in jeder Schicht die Summe mit ω₀ = 30, bevor der Sinus kommt. Ein kleiner Rundungsfehler in einem Gewicht wird dadurch 30-mal größer und verschiebt die Welle spürbar – und das von Schicht zu Schicht. Insgesamt steigt der Fehler zwar nur um einen Meter, aber an einzelnen Stellen springt die Höhe um mehr als 200 m.
+**Beim SIREN-Netz ist float16 deutlich teurer.** Die Abweichungen sind etwa 25-mal so groß wie beim Fourier-MLP, im schlimmsten Fall 239 m. Der Grund steht in Kapitel 7: Das SIREN-Netz multipliziert in jeder Schicht die Summe mit ω₀ = 30, bevor der Sinus kommt. Ein kleiner Rundungsfehler in einem Gewicht wird dadurch 30-mal größer und verschiebt die Welle spürbar – und das von Schicht zu Schicht. Insgesamt steigt der Fehler zwar nur um einen Meter, aber an einzelnen Stellen springt die Höhe um mehr als 200 m.
 
 Noch kleiner würde die Datei mit 8 Bit oder weniger pro Gewicht. Dann reicht einfaches Runden nach dem Training aber nicht mehr; das Netz muss schon beim Training lernen, mit den gröberen Zahlen zurechtzukommen. [Kapitel 11](11-einordnung-und-ausblick.md) kommt darauf zurück.
 
@@ -110,21 +116,23 @@ Eine Vorsicht gehört dazu: Das Dateiformat `.pt` kann beim Laden nicht nur Zahl
 
 ## Ausprobieren
 
-1. Das Standardbeispiel trainieren: Vorlage *Fourier MLP (recommended)*, *Steps* 4 000, dann *Train*. Die beiden Reiter dieses Kapitels zeigen erst nach einem Training etwas.
-2. Den Reiter *Super-Resolution* öffnen. Dort lassen sich vier Dinge einstellen:
-   - *Longitude (centre)* und *Latitude (centre)* – die Mitte des Ausschnitts, voreingestellt 10° Ost und 46° Nord, also die Alpen,
-   - *Window [°]* – wie viele Grad der Ausschnitt breit und hoch ist, 2 bis 90,
-   - *Points per axis* – wie viele Punkte das Netz pro Richtung abfragt, 128 bis 512.
+Trainieren Sie das Standardbeispiel: Vorlage **Fourier MLP (recommended)**, **Steps** 4 000, dann **Train**. Die beiden Reiter dieses Kapitels zeigen erst nach einem Training etwas.
 
-   ![Die Einstellungen im Reiter Super-Resolution: Longitude (centre) 10,00, Latitude (centre) 46,00, Window 20 Grad, Points per axis 256.](../img/app-abfrage-einstellungen.png)
+Öffnen Sie den Reiter **Super-Resolution**. Dort lassen sich vier Dinge einstellen:
 
-3. Die beiden Karten vergleichen. Links das Trainingsgitter in diesem Ausschnitt, bei 20° sind das 120 × 120 Zellen. Rechts das Netz, auf 256 × 256 Punkten abgefragt. Die rechte Karte ist feiner gerastert, aber weicher – Küsten und Gebirge sind verwaschen.
+- **Longitude (centre)** und **Latitude (centre)** – die Mitte des Ausschnitts, voreingestellt 10° Ost und 46° Nord, also die Alpen,
+- **Window [°]** – wie viele Grad der Ausschnitt breit und hoch ist, 2 bis 90,
+- **Points per axis** – wie viele Punkte das Netz pro Richtung abfragt, 128 bis 512.
 
-   ![Zwei Karten von Mitteleuropa und dem Mittelmeer, jeweils 0° bis 20° Ost und 36° bis 56° Nord. Links das Trainingsgitter mit 120 × 120 Zellen: scharfe Küsten, der Alpenbogen mit weißen Gipfeln, Sardinien, Korsika und Italien klar erkennbar. Rechts das Netz auf 256 × 256 Punkten: glatte Farbflächen, die Alpen als weicher brauner Rücken, Küsten und Inseln verschwommen.](../img/app-abfrage-karten.png)
+![Die Einstellungen im Reiter Super-Resolution: Longitude (centre) 10,00, Latitude (centre) 46,00, Window 20 Grad, Points per axis 256.](../img/app-abfrage-einstellungen.png)
 
-4. Den Reiter *Export* öffnen. Oben stehen drei Zahlen: die Größe des Rasters, die Datei in float32 und die Datei in float16, jeweils mit der Kompressionsrate darunter. Mit den beiden Knöpfen darunter lassen sich die Dateien herunterladen.
+Vergleichen Sie die beiden Karten. Links das Trainingsgitter in diesem Ausschnitt, bei 20° sind das 120 × 120 Zellen. Rechts das Netz, auf 256 × 256 Punkten abgefragt. Die rechte Karte ist feiner gerastert, aber weicher – Küsten und Gebirge sind verwaschen.
 
-   ![Der Reiter Export für das Standardbeispiel: Raw grid (int16) 4.4 MB, Model float32 326.7 KB mit Rate 14, Model float16 165.4 KB mit Rate 28, darunter die Knöpfe Weights float32 (.pt) und Weights float16 (.pt).](../img/app-export.png)
+![Zwei Karten von Mitteleuropa und dem Mittelmeer, jeweils 0° bis 20° Ost und 36° bis 56° Nord. Links das Trainingsgitter mit 120 × 120 Zellen: scharfe Küsten, der Alpenbogen mit weißen Gipfeln, Sardinien, Korsika und Italien klar erkennbar. Rechts das Netz auf 256 × 256 Punkten: glatte Farbflächen, die Alpen als weicher brauner Rücken, Küsten und Inseln verschwommen.](../img/app-abfrage-karten.png)
+
+Öffnen Sie dann den Reiter **Export**. Oben stehen drei Zahlen: die Größe des Rasters, die Datei in float32 und die Datei in float16, jeweils mit der Kompressionsrate darunter. Mit den beiden Knöpfen darunter lassen sich die Dateien herunterladen.
+
+![Der Reiter Export für das Standardbeispiel: Raw grid (int16) 4.4 MB, Model float32 326.7 KB mit Rate 14, Model float16 165.4 KB mit Rate 28, darunter die Knöpfe Weights float32 (.pt) und Weights float16 (.pt).](../img/app-export.png)
 
 ## Ideen zum Weiterprobieren
 
@@ -142,6 +150,6 @@ Eine Vorsicht gehört dazu: Das Dateiformat `.pt` kann beim Laden nicht nur Zahl
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 9 · Rate und Fehler messen](09-rate-und-fehler.md) · Weiter: [Kapitel 11 · Einordnung und Ausblick](11-einordnung-und-ausblick.md)
+[Übersicht](README.md) · Zurück: [Kapitel 9 · Kompressionsrate und Fehler messen](09-rate-und-fehler.md) · Weiter: [Kapitel 11 · Einordnung und Ausblick](11-einordnung-und-ausblick.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

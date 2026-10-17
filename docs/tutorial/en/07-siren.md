@@ -100,7 +100,7 @@ The SIREN network draws coasts and mountain ranges more sharply but has a fine, 
 
 The SIREN network has only three inputs and can therefore have more neurons per layer for the same file size. With 4 000 training steps on the standard grid, the SIREN network reaches a weighted RMSE of 233 m on average over three runs, *Fourier MLP (recommended)* 245 m. The SIREN network varies more, though: its three runs are 31 m apart, those of the Fourier network only 5 m. All values are in the [appendix with the measurements](../de/anhang-messungen.md) (German).
 
-**What to keep in mind when saving:** Because ω₀ = 30 amplifies every small change of the weights, a SIREN network reacts more sensitively to rounding than a network with kinks. This matters when saving with fewer digits – more on that in [chapter 10](../de/10-abfragen-und-exportieren.md) (German).
+**What to keep in mind when saving:** Because ω₀ = 30 amplifies every small change of the weights, a SIREN network reacts more sensitively to rounding than a network with kinks. This matters when saving with fewer digits – more on that in [chapter 10](10-abfragen-und-exportieren.md).
 
 ## Try it out
 

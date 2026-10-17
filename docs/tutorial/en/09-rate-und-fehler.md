@@ -141,6 +141,6 @@ Below the curve is a table with parameters, file size, rate, weighted RMSE and P
 
 ---
 
-[Overview](README.md) · Back: [Chapter 8 · The context field](08-kontextfeld.md) · Next: [Chapter 10 · Querying and exporting](../de/10-abfragen-und-exportieren.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 8 · The context field](08-kontextfeld.md) · Next: [Chapter 10 · Querying and exporting](10-abfragen-und-exportieren.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

@@ -342,5 +342,13 @@
     "schwingt auf und ab": "swings up and down",
     "Mit dem Knick setzt das Netz seine Form aus geraden Stücken zusammen (Kapitel 3).": "With the kink, the network builds its shape from straight pieces (chapter 3).",
     "Mit dem Sinus besteht jedes Neuron selbst aus Wellen – das Netz kann kurze Wellen direkt bilden, ganz ohne Fourier-Features (Kapitel 5).": "With the sine, every neuron itself consists of waves – the network can form short waves directly, without any Fourier features (chapter 5)."
+  },
+  "abfrage-profil.svg": {
+    "Alpenprofil: feineres Gitter, Trainingsgitter und das sehr fein abgefragte Netz": "Alpine profile: finer grid, training grid and the very finely queried network",
+    "Feiner abfragen heißt nicht: mehr Einzelheiten": "Querying more finely does not mean: more detail",
+    "Höhenprofil bei 46,4° Nord von 2° bis 18° Ost. Das Netz ist auf 1080 × 2160 trainiert und hier alle 1/60° abgefragt.": "Elevation profile at 46.4° north from 2° to 18° east. The network is trained on 1080 × 2160 and queried here every 1/60°.",
+    "feineres Gitter 2160 × 4320 (nicht trainiert)": "finer grid 2160 × 4320 (not trained)",
+    "Netz, alle 1/60° abgefragt": "network, queried every 1/60°",
+    "Trainingsgitter 1080 × 2160": "training grid 1080 × 2160"
   }
 }
