@@ -193,7 +193,7 @@ Everything else is **extensions and deep dives**. They build on chapters 1 to 5 
 - [Chapter 6 · Spherical harmonics](06-kugelflaechenfunktionen.md) – an ordered set of patterns that fits the sphere exactly
 - [Chapter 7 · SIREN](07-siren.md) – neurons that compute with a sine themselves
 - [Chapter 8 · The context field](08-kontextfeld.md) – a coarse grid provides the continents, the network only learns the details
-- [Chapter 9 · Measuring rate and error](../de/09-rate-und-fehler.md) – comparing file size and accuracy of different networks fairly
+- [Chapter 9 · Measuring compression ratio and error](09-rate-und-fehler.md) – comparing file size and accuracy of different networks fairly
 - [Chapter 10 · Querying and exporting](../de/10-abfragen-und-exportieren.md) – querying elevations at any location and passing the network on as a file
 - [Chapter 11 · Context and outlook](../de/11-einordnung-und-ausblick.md) – where the method stands in research and how it continues with points, lines and areas
 - [Appendix · Measurements](../de/anhang-messungen.md) – all results in one place

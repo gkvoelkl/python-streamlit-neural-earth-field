@@ -1,6 +1,6 @@
 # Tutorial: Geodaten in neuronalen Netzen speichern
 
-*[English version](../en/README.md) – Kapitel 1 bis 8 sind übersetzt, die übrigen folgen.*
+*[English version](../en/README.md) – Kapitel 1 bis 9 sind übersetzt, die übrigen folgen.*
 
 Dieses Tutorial zeigt Schritt für Schritt, wie man das Höhenmodell der ganzen Erde in die Gewichte eines kleinen neuronalen Netzes packt – und warum die Gewichte dann die Datei sind. Jedes Kapitel verbindet eine Idee mit Experimenten in der Begleit-App aus diesem Repo. Programmcode zeigt das Tutorial bewusst nicht – wer hineinschauen will, findet alles im Ordner `src/`.
 
@@ -43,7 +43,7 @@ Die folgenden Kapitel bauen auf den Kapiteln 1 bis 5 auf. Sie lassen sich je nac
 6. [Kugelflächenfunktionen](06-kugelflaechenfunktionen.md)
 7. [SIREN](07-siren.md)
 8. [Das Kontextfeld](08-kontextfeld.md)
-9. [Rate und Fehler messen](09-rate-und-fehler.md)
+9. [Kompressionsrate und Fehler messen](09-rate-und-fehler.md)
 10. [Abfragen und exportieren](10-abfragen-und-exportieren.md)
 11. [Einordnung und Ausblick](11-einordnung-und-ausblick.md)
 

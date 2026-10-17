@@ -1,17 +1,21 @@
 # Geodaten in neuronalen Netzen speichern
-# Kapitel 9 · Kompresions-Rate und Fehler messen
+# Kapitel 9 · Kompressionsrate und Fehler messen
+
+*[English version](../en/09-rate-und-fehler.md)*
 
 ![Unter einer Schreibtischlampe steht eine alte Balkenwaage aus Messing. Auf der linken Waagschale steht Aiko, ein leuchtendes neuronales Netz, und breitet die Arme aus; auf der rechten liegt ein Stapel gefalteter Landkarten. Rechts prüft Chester mit blauer Kappe die Waage durch eine Lupe; vorn auf dem Tisch liegt eine aufgeschlagene Karte.](../img/kapitel-09-chester.jpg)
 
 **Inhalt:**
 
 * Warum eine einzelne Zahl nicht reicht, um ein Kompressionsverfahren zu beurteilen
-* Wie man eine Kompressions-Rate-Distortion-Kurve erzeugt und liest
+* Wie man eine Rate-Distortion-Kurve erzeugt und liest
 * Was PSNR bedeutet
+
+Dieses Kapitel ergänzt die Kapitel 1 bis 5 und nutzt das Kontextfeld aus Kapitel 8. Sie können es auch überspringen.
 
 ## Ausgangspunkt
 
-In den bisherigen Kapiteln stand bei jedem Netz eine Kompressionsrate und ein Fehler. Das Standardbeispiel etwa ist 14-mal kleiner als das Raster und liegt im Mittel rund 250 m daneben.
+In den bisherigen Kapiteln standen bei jedem Netz eine Kompressionsrate und ein Fehler. Das Standardbeispiel etwa ist 14-mal kleiner als das Raster und liegt im Mittel rund 250 m daneben.
 
 Ob das gut ist, lässt sich so nicht sagen. Ein größeres neuronales Netz wäre genauer, aber die Datei wäre größer. Ein kleineres Netz spart mehr, macht aber größere Fehler. Jede Kompression ist eine Abwägung zwischen diesen beiden Zielen.
 
@@ -21,7 +25,7 @@ Ein ehrlicher Vergleich zeigt deshalb nicht einen Punkt, sondern eine ganze Kurv
 
 Für jedes Netz gibt es zwei Kennzahlen, die beide schon bekannt sind:
 
-- **Kompressions-Rate:** die Kompressionsrate aus Kapitel 1 – Rohgröße des Rasters geteilt durch die Größe der Datei. Höher heißt: kleinere Datei.
+- **Rate:** die Kompressionsrate aus Kapitel 1 – Rohgröße des Rasters geteilt durch die Größe der Datei. Höher heißt: kleinere Datei.
 - **Fehler:** der flächengewichtete RMSE aus Kapitel 2 – um wie viele Meter das Netz im Mittel danebenliegt, mit den Polgebieten nach ihrer echten Fläche gewichtet. Niedriger heißt: genauer.
 
 In der Fachsprache heißt der Fehler bei der Kompression *distortion* (Verzerrung). Die Kurve, die beide Zahlen gegeneinander aufträgt, heißt deshalb **Rate-Distortion-Kurve**. Der Begriff stammt aus der Informationstheorie von Claude Shannon [1].
@@ -103,20 +107,23 @@ Huang und Hoefler, die Vorlage dieser Tutorial-Reihe, beurteilen ihr Verfahren e
 
 ## Ausprobieren
 
-1. In der Seitenleiste unter *1 · Data* die Auflösung wählen. Die Kurve verwendet dieses Gitter. Die Vorlage unter *2 · Network* spielt dagegen keine Rolle: Die Kurve nutzt eigene Einstellungen mit 4 Schichten und σ = 8.
-2. Den Reiter *Rate & Error* öffnen. Dort lassen sich drei Dinge einstellen:
-   - *Steps per network* – Trainingsschritte für jedes Netz, 300 bis 2 000 (voreingestellt 600).
-   - *Network widths* – die Netzbreiten, die als Punkte in die Kurve eingehen, von 16 bis 256 Neuronen (voreingestellt 16, 32, 64 und 128).
-   - *Also with context field (90 × 180)* – zusätzlich eine zweite Kurve mit Kontextfeld.
+Wählen Sie in der Seitenleiste unter **1 · Data** die Auflösung. Die Kurve verwendet dieses Gitter. Die Vorlage unter **2 · Network** spielt dagegen keine Rolle: Die Kurve nutzt eigene Einstellungen mit 4 Schichten und σ = 8.
 
-   ![Die Einstellungen im Reiter Rate & Error: Steps per network 600, Network widths 16, 32, 64 und 128, Also with context field (90 × 180) eingeschaltet, darunter der Knopf Compute curve.](../img/app-rate-einstellungen.png)
+Öffnen Sie den Reiter **Rate & Error**. Dort lassen sich drei Dinge einstellen:
 
-3. Auf *Compute curve* klicken. Die App trainiert nun ein Netz nach dem anderen; ein Balken zeigt den Fortschritt. Mit den Voreinstellungen sind es acht Netze. Auf einem Mac mit Apple-Grafikchip dauert das gut eine Minute, ohne Grafikchip deutlich länger.
-4. Die Kurve ansehen. Die Zahl an jedem Punkt ist die Netzbreite.
+- *Steps per network* – Trainingsschritte für jedes Netz, 300 bis 2 000 (voreingestellt 600).
+- *Network widths* – die Netzbreiten, die als Punkte in die Kurve eingehen, von 16 bis 256 Neuronen (voreingestellt 16, 32, 64 und 128).
+- *Also with context field (90 × 180)* – zusätzlich eine zweite Kurve mit Kontextfeld.
 
-   ![Die Rate-Distortion-Kurve in der App mit den Voreinstellungen: blau ohne Kontextfeld, von 346 m bei Breite 128 bis 2 279 m bei Breite 16; orange mit Kontextfeld, von 265 m bis 442 m. Rechts unten der Hinweis bottom right would be ideal.](../img/app-rate-kurve.png)
+![Die Einstellungen im Reiter Rate & Error: Steps per network 600, Network widths 16, 32, 64 und 128, Also with context field (90 × 180) eingeschaltet, darunter der Knopf Compute curve.](../img/app-rate-einstellungen.png)
 
-5. Unter der Kurve steht eine Tabelle mit Parametern, Dateigröße, Rate, gewichtetem RMSE und PSNR für jedes Netz.
+Klicken Sie auf **Compute curve**. Die App trainiert nun ein Netz nach dem anderen; ein Balken zeigt den Fortschritt. Mit den Voreinstellungen sind es acht Netze. Auf einem Mac mit Apple-Grafikchip dauert das gut eine Minute, ohne Grafikchip deutlich länger.
+
+Sehen Sie sich dann die Kurve an. Die Zahl an jedem Punkt ist die Netzbreite.
+
+![Die Rate-Distortion-Kurve in der App mit den Voreinstellungen: blau ohne Kontextfeld, von 346 m bei Breite 128 bis 2 279 m bei Breite 16; orange mit Kontextfeld, von 265 m bis 442 m. Rechts unten der Hinweis bottom right would be ideal.](../img/app-rate-kurve.png)
+
+Unter der Kurve steht eine Tabelle mit Parametern, Dateigröße, Rate, gewichtetem RMSE und PSNR für jedes Netz.
 
 ## Ideen zum Weiterprobieren
 

@@ -31,7 +31,7 @@ nav:
       - 6 · Kugelflächenfunktionen: 06-kugelflaechenfunktionen.md
       - 7 · SIREN: 07-siren.md
       - 8 · Das Kontextfeld: 08-kontextfeld.md
-      - 9 · Rate und Fehler messen: 09-rate-und-fehler.md
+      - 9 · Kompressionsrate und Fehler messen: 09-rate-und-fehler.md
       - 10 · Abfragen und exportieren: 10-abfragen-und-exportieren.md
       - 11 · Einordnung und Ausblick: 11-einordnung-und-ausblick.md
   - Anhang · Messungen: anhang-messungen.md
@@ -83,7 +83,7 @@ plugins:
             Ergänzungen und Vertiefungen: Extensions and deep dives
             6 · Kugelflächenfunktionen: 6 · Spherical harmonics
             8 · Das Kontextfeld: 8 · The context field
-            9 · Rate und Fehler messen: 9 · Measuring rate and error
+            9 · Kompressionsrate und Fehler messen: 9 · Measuring compression ratio and error
             10 · Abfragen und exportieren: 10 · Querying and exporting
             11 · Einordnung und Ausblick: 11 · Context and outlook
             Anhang · Messungen: Appendix · Measurements

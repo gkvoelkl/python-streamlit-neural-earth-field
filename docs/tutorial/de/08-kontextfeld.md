@@ -145,6 +145,6 @@ Trainieren Sie dann und sehen Sie sich im Reiter **Maps & Error** die Fehlerkart
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 7 · SIREN](07-siren.md) · Weiter: [Kapitel 9 · Rate und Fehler messen](09-rate-und-fehler.md)
+[Übersicht](README.md) · Zurück: [Kapitel 7 · SIREN](07-siren.md) · Weiter: [Kapitel 9 · Kompressionsrate und Fehler messen](09-rate-und-fehler.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

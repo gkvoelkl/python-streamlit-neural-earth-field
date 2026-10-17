@@ -118,7 +118,7 @@ The app offers three resolutions. The finer the context field, the more detail i
 | 90 × 180 | 2° | 31.6 KB | 355 KB | 12.8 | 185 m |
 | 180 × 360 | 1° | 126.6 KB | 450 KB | 10.1 | 167 m |
 
-Even the very coarse context field 45 × 90 with only 7.9 KB reduces the error by a sixth. Each doubling of the resolution quadruples the size of the context field but brings less and less. How to present such trade-offs between file size and error systematically is shown in [chapter 9](../de/09-rate-und-fehler.md) (German).
+Even the very coarse context field 45 × 90 with only 7.9 KB reduces the error by a sixth. Each doubling of the resolution quadruples the size of the context field but brings less and less. How to present such trade-offs between file size and error systematically is shown in [chapter 9](09-rate-und-fehler.md).
 
 ## Try it out
 
@@ -136,7 +136,7 @@ Then train and look at the error map in the **Maps & Error** tab. Where are the 
 
 - Set the resolution of the context field to 45 and to 180. How much larger does the file get, and how much more accurate the map?
 - For the preset *Fourier MLP, very small*, switch on the context field 180 × 360. The context field is then almost three times as large as the network. Which of the two now provides most of the detail?
-- In the *Rate & Error* tab, switch on the comparison *Also with context field (90 × 180)* – more on this in [chapter 9](../de/09-rate-und-fehler.md) (German).
+- In the *Rate & Error* tab, switch on the comparison *Also with context field (90 × 180)* – more on this in [chapter 9](09-rate-und-fehler.md).
 
 ## Further reading
 
@@ -145,6 +145,6 @@ Then train and look at the error map in the **Maps & Error** tab. Where are the 
 
 ---
 
-[Overview](README.md) · Back: [Chapter 7 · SIREN](07-siren.md) · Next: [Chapter 9 · Measuring rate and error](../de/09-rate-und-fehler.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 7 · SIREN](07-siren.md) · Next: [Chapter 9 · Measuring compression ratio and error](09-rate-und-fehler.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*
