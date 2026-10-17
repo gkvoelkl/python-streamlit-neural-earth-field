@@ -1339,5 +1339,552 @@
       "en": "patterns – the Earth becomes sharper.",
       "size": 17
     }
+  ],
+  "profil-siren.png": [
+    {
+      "box": [
+        86,
+        15,
+        820,
+        41
+      ],
+      "bold": true,
+      "de": "SIREN lernt die kurzen Wellen ohne Fourier-Features",
+      "en": "SIREN learns the short waves without Fourier features"
+    },
+    {
+      "box": [
+        86,
+        55,
+        1130,
+        79
+      ],
+      "de": "Alpenprofil bei 46,4° N in voller ETOPO-Auflösung (grau), gelernt von drei etwa gleich großen Netzen · Höhen in m",
+      "en": "Alpine profile at 46.4° N in full ETOPO resolution (grey), learned by three networks of about the same size · elevations in m"
+    },
+    {
+      "box": [
+        132,
+        98,
+        560,
+        120
+      ],
+      "size": 17,
+      "de": "nach 50 Schritten · Fehler 478 m",
+      "en": "after 50 steps · error 478 m"
+    },
+    {
+      "box": [
+        584,
+        98,
+        1010,
+        120
+      ],
+      "size": 17,
+      "de": "nach 500 Schritten · Fehler 386 m",
+      "en": "after 500 steps · error 386 m"
+    },
+    {
+      "box": [
+        1036,
+        98,
+        1460,
+        120
+      ],
+      "size": 17,
+      "de": "nach 3 000 Schritten · Fehler 334 m",
+      "en": "after 3 000 steps · error 334 m"
+    },
+    {
+      "box": [
+        132,
+        383,
+        560,
+        405
+      ],
+      "size": 17,
+      "de": "nach 50 Schritten · Fehler 197 m",
+      "en": "after 50 steps · error 197 m"
+    },
+    {
+      "box": [
+        584,
+        383,
+        1010,
+        405
+      ],
+      "size": 17,
+      "de": "nach 500 Schritten · Fehler 64 m",
+      "en": "after 500 steps · error 64 m"
+    },
+    {
+      "box": [
+        1036,
+        383,
+        1460,
+        405
+      ],
+      "size": 17,
+      "de": "nach 3 000 Schritten · Fehler 20 m",
+      "en": "after 3 000 steps · error 20 m"
+    },
+    {
+      "box": [
+        132,
+        669,
+        560,
+        690
+      ],
+      "size": 17,
+      "de": "nach 50 Schritten · Fehler 352 m",
+      "en": "after 50 steps · error 352 m"
+    },
+    {
+      "box": [
+        584,
+        669,
+        1010,
+        690
+      ],
+      "size": 17,
+      "de": "nach 500 Schritten · Fehler 99 m",
+      "en": "after 500 steps · error 99 m"
+    },
+    {
+      "box": [
+        1036,
+        669,
+        1460,
+        690
+      ],
+      "size": 17,
+      "de": "nach 3 000 Schritten · Fehler 6 m",
+      "en": "after 3 000 steps · error 6 m"
+    },
+    {
+      "box": [
+        58,
+        108,
+        82,
+        356
+      ],
+      "rotate": 90,
+      "bold": true,
+      "align": "centre",
+      "de": "Einfaches Netz (Knick)",
+      "en": "Simple network (kink)"
+    },
+    {
+      "box": [
+        58,
+        379,
+        82,
+        655
+      ],
+      "rotate": 90,
+      "bold": true,
+      "align": "centre",
+      "de": "Fourier-Features (Kap. 5)",
+      "en": "Fourier features (ch. 5)"
+    },
+    {
+      "box": [
+        58,
+        725,
+        82,
+        880
+      ],
+      "rotate": 90,
+      "bold": true,
+      "align": "centre",
+      "de": "SIREN (Sinus)",
+      "en": "SIREN (sine)"
+    },
+    {
+      "box": [
+        169,
+        916,
+        206,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "4° O",
+      "en": "4° E"
+    },
+    {
+      "box": [
+        276,
+        916,
+        312,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "8° O",
+      "en": "8° E"
+    },
+    {
+      "box": [
+        379,
+        916,
+        423,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "12° O",
+      "en": "12° E"
+    },
+    {
+      "box": [
+        485,
+        916,
+        530,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "16° O",
+      "en": "16° E"
+    },
+    {
+      "box": [
+        621,
+        916,
+        658,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "4° O",
+      "en": "4° E"
+    },
+    {
+      "box": [
+        728,
+        916,
+        764,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "8° O",
+      "en": "8° E"
+    },
+    {
+      "box": [
+        831,
+        916,
+        875,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "12° O",
+      "en": "12° E"
+    },
+    {
+      "box": [
+        937,
+        916,
+        982,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "16° O",
+      "en": "16° E"
+    },
+    {
+      "box": [
+        1073,
+        916,
+        1110,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "4° O",
+      "en": "4° E"
+    },
+    {
+      "box": [
+        1180,
+        916,
+        1216,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "8° O",
+      "en": "8° E"
+    },
+    {
+      "box": [
+        1283,
+        916,
+        1328,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "12° O",
+      "en": "12° E"
+    },
+    {
+      "box": [
+        1389,
+        916,
+        1434,
+        934
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "16° O",
+      "en": "16° E"
+    }
+  ],
+  "siren-startbelegung.png": [
+    {
+      "box": [
+        86,
+        6,
+        1200,
+        36
+      ],
+      "bold": true,
+      "de": "Ohne die richtige Startbelegung lernt SIREN auswendig – und rauscht dazwischen",
+      "en": "Without the right initialisation, SIREN memorises – and is noisy in between"
+    },
+    {
+      "box": [
+        86,
+        50,
+        840,
+        76
+      ],
+      "de": "Training nur auf jedem zweiten Punkt des Alpenprofils, Ausschnitt 10° bis 11,5° O",
+      "en": "Training on every second point of the Alpine profile only, section 10° to 11.5° E"
+    },
+    {
+      "box": [
+        102,
+        104,
+        640,
+        125
+      ],
+      "size": 17,
+      "de": "mit Startbelegung nach Sitzmann",
+      "en": "with initialisation after Sitzmann"
+    },
+    {
+      "box": [
+        102,
+        126,
+        640,
+        149
+      ],
+      "size": 17,
+      "de": "Fehler auf Trainingspunkten 4 m · dazwischen 116 m",
+      "en": "error on training points 4 m · in between 116 m"
+    },
+    {
+      "box": [
+        798,
+        104,
+        1300,
+        125
+      ],
+      "size": 17,
+      "de": "ohne diese Startbelegung",
+      "en": "without this initialisation"
+    },
+    {
+      "box": [
+        798,
+        126,
+        1300,
+        149
+      ],
+      "size": 17,
+      "de": "Fehler auf Trainingspunkten 0 m · dazwischen 923 m",
+      "en": "error on training points 0 m · in between 923 m"
+    },
+    {
+      "box": [
+        1183,
+        162,
+        1462,
+        183
+      ],
+      "size": 15,
+      "de": "Netz, fein abgefragt",
+      "en": "network, finely queried"
+    },
+    {
+      "box": [
+        1183,
+        185,
+        1462,
+        205
+      ],
+      "size": 15,
+      "de": "Trainingspunkte",
+      "en": "training points"
+    },
+    {
+      "box": [
+        1183,
+        207,
+        1462,
+        228
+      ],
+      "size": 15,
+      "de": "Punkte dazwischen (nicht trainiert)",
+      "en": "points in between (not trained)"
+    },
+    {
+      "box": [
+        30,
+        200,
+        53,
+        420
+      ],
+      "rotate": 90,
+      "align": "centre",
+      "de": "Höhe [m]",
+      "en": "Elevation [m]"
+    },
+    {
+      "box": [
+        105,
+        464,
+        163,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "10,0° O",
+      "en": "10.0° E"
+    },
+    {
+      "box": [
+        307,
+        464,
+        365,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "10,5° O",
+      "en": "10.5° E"
+    },
+    {
+      "box": [
+        509,
+        464,
+        566,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "11,0° O",
+      "en": "11.0° E"
+    },
+    {
+      "box": [
+        711,
+        464,
+        768,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "11,5° O",
+      "en": "11.5° E"
+    },
+    {
+      "box": [
+        802,
+        464,
+        860,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "10,0° O",
+      "en": "10.0° E"
+    },
+    {
+      "box": [
+        1004,
+        464,
+        1061,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "10,5° O",
+      "en": "10.5° E"
+    },
+    {
+      "box": [
+        1206,
+        464,
+        1263,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "11,0° O",
+      "en": "11.0° E"
+    },
+    {
+      "box": [
+        1407,
+        464,
+        1465,
+        482
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "11,5° O",
+      "en": "11.5° E"
+    }
+  ],
+  "europa-siren.png": [
+    {
+      "box": [
+        26,
+        6,
+        720,
+        36
+      ],
+      "bold": true,
+      "de": "Europa: Fourier-Features und SIREN im Vergleich",
+      "en": "Europe: Fourier features and SIREN compared"
+    },
+    {
+      "box": [
+        26,
+        54,
+        990,
+        79
+      ],
+      "de": "Standardbeispiel 1080 × 2160, je 4 000 Schritte · Fourier MLP 82 561 Gewichte, SIREN 78 081 Gewichte",
+      "en": "Standard example 1080 × 2160, 4 000 steps each · Fourier MLP 82 561 weights, SIREN 78 081 weights"
+    },
+    {
+      "box": [
+        546,
+        85,
+        840,
+        108
+      ],
+      "bold": true,
+      "de": "Fourier-Features (Kap. 5)",
+      "en": "Fourier features (ch. 5)"
+    }
   ]
 }

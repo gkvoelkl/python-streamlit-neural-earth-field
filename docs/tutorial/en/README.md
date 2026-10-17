@@ -1,6 +1,6 @@
 # Tutorial: Storing geodata in neural networks
 
-*[Deutsche Fassung](../de/README.md) · The tutorial was written in German. Chapters 1 to 6 are translated; the other chapters follow and link to the German original until then.*
+*[Deutsche Fassung](../de/README.md) · The tutorial was written in German. Chapters 1 to 7 are translated; the other chapters follow and link to the German original until then.*
 
 This tutorial shows step by step how to pack the elevation model of the entire Earth into the weights of a small neural network – and why the weights then are the file. Each chapter combines an idea with experiments in the companion app in this repository. The tutorial deliberately shows no program code – if you want to look inside, everything is in the `src/` folder.
 
@@ -41,7 +41,7 @@ Chapter 5 completes the core of the tutorial.
 The following chapters build on chapters 1 to 5. Read or skip them as you like.
 
 6. [Spherical harmonics](06-kugelflaechenfunktionen.md)
-7. SIREN – [German](../de/07-siren.md)
+7. [SIREN](07-siren.md)
 8. The context field – [German](../de/08-kontextfeld.md)
 9. Measuring rate and error – [German](../de/09-rate-und-fehler.md)
 10. Querying and exporting – [German](../de/10-abfragen-und-exportieren.md)

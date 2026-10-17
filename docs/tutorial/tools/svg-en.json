@@ -329,5 +329,18 @@
     "kurze Welle": "short wave",
     "Summe": "Sum",
     "An jeder Stelle werden die Höhen der drei Wellen addiert – die gestrichelte Linie zeigt das an einem Beispielpunkt. Umgekehrt lässt sich jedes Profil so zerlegen.": "At every point the heights of the three waves are added – the dashed line shows this at one example point. Conversely, every profile can be split up this way."
+  },
+  "knick-sinus.svg": {
+    "Zwei Aktivierungsfunktionen: Knick (ReLU) und Sinus": "Two activation functions: kink (ReLU) and sine",
+    "Zwei Arten, die Summe eines Neurons weiterzugeben": "Two ways of passing on a neuron's sum",
+    "Links der Knick aus Kapitel 3, rechts ein Sinus wie bei SIREN – gleiche Eingabe, verschiedene Antwort": "On the left the kink from chapter 3, on the right a sine as in SIREN – same input, different response",
+    "Knick (ReLU)": "Kink (ReLU)",
+    "negativ wird 0, positiv bleibt": "negative becomes 0, positive stays",
+    "Summe": "Sum",
+    "Ausgabe": "Output",
+    "Sinus (SIREN)": "Sine (SIREN)",
+    "schwingt auf und ab": "swings up and down",
+    "Mit dem Knick setzt das Netz seine Form aus geraden Stücken zusammen (Kapitel 3).": "With the kink, the network builds its shape from straight pieces (chapter 3).",
+    "Mit dem Sinus besteht jedes Neuron selbst aus Wellen – das Netz kann kurze Wellen direkt bilden, ganz ohne Fourier-Features (Kapitel 5).": "With the sine, every neuron itself consists of waves – the network can form short waves directly, without any Fourier features (chapter 5)."
   }
 }

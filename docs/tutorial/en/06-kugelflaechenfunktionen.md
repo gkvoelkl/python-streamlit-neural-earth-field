@@ -118,6 +118,6 @@ Then choose the preset **Spherical harmonics (L = 16)**, train and compare the r
 
 ---
 
-[Overview](README.md) · Back: [Chapter 5 · Elevations as waves](05-fourier-features.md) · Next: [Chapter 7 · SIREN](../de/07-siren.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 5 · Elevations as waves](05-fourier-features.md) · Next: [Chapter 7 · SIREN](07-siren.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*
