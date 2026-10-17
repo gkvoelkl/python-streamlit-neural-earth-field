@@ -88,7 +88,7 @@ The random stripes from chapter 5 are more economical here. They do not cover ev
 | number of inputs for short waves | small (e.g. 256) | grows very quickly |
 | computing effort | low | high, especially for large *L* |
 
-Which variant matches the elevations better depends on the network size and the degree. For networks of the same size the two are close: with 4 000 training steps on the standard grid, *Spherical harmonics (L = 16)* reaches a weighted RMSE of 241 m, *Fourier MLP (recommended)* 245 m. The linear model up to degree 40 reaches 631 m with only 6.6 KB – more accurate than the simple network from chapter 2 with 706 m, which is 30 times as large. All values are in the [appendix with the measurements](../de/anhang-messungen.md) (German).
+Which variant matches the elevations better depends on the network size and the degree. For networks of the same size the two are close: with 4 000 training steps on the standard grid, *Spherical harmonics (L = 16)* reaches a weighted RMSE of 241 m, *Fourier MLP (recommended)* 245 m. The linear model up to degree 40 reaches 631 m with only 6.6 KB – more accurate than the simple network from chapter 2 with 706 m, which is 30 times as large. All values are in the [appendix with the measurements](anhang-messungen.md).
 
 ## Try it out
 

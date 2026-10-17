@@ -100,7 +100,7 @@ At the very top is **Coordinate input**. The default is `xyz` – the spherical 
 
 For comparison, first train with `lonlat` – that is the network from chapter 2 – and look at the error map at the right and left edges in the *Maps & Error* tab.
 
-Then train again with `xyz` and compare. The weighted RMSE drops from around 700 m to around 600 m (see the [appendix](../de/anhang-messungen.md), German).
+Then train again with `xyz` and compare. The weighted RMSE drops from around 700 m to around 600 m (see the [appendix](anhang-messungen.md)).
 
 In the *Globe 3D* tab the Earth can be turned. Set the *View direction (longitude)* slider to 180: then you look straight at the seam.
 

@@ -1,6 +1,6 @@
 # Tutorial: Storing geodata in neural networks
 
-*[Deutsche Fassung](../de/README.md) · The tutorial was written in German. Chapters 1 to 10 are translated; the other chapters follow and link to the German original until then.*
+*[Deutsche Fassung](../de/README.md) · The tutorial was written in German. Chapters 1 to 10 and the appendix are translated; chapter 11 follows and links to the German original until then.*
 
 This tutorial shows step by step how to pack the elevation model of the entire Earth into the weights of a small neural network – and why the weights then are the file. Each chapter combines an idea with experiments in the companion app in this repository. The tutorial deliberately shows no program code – if you want to look inside, everything is in the `src/` folder.
 
@@ -49,7 +49,7 @@ The following chapters build on chapters 1 to 5. Read or skip them as you like.
 
 **Appendix**
 
-- Measurements – [German](../de/anhang-messungen.md)
+- [Measurements](anhang-messungen.md)
 
 ---
 

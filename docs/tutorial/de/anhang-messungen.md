@@ -1,6 +1,8 @@
 # Geodaten in neuronalen Netzen speichern
 # Anhang · Messungen
 
+*[English version](../en/anhang-messungen.md)*
+
 **Inhalt:**
 
 * Alle Vorlagen der App und die Netze aus den Kapiteln 3 bis 5 im Vergleich, gemessen unter gleichen Bedingungen
@@ -49,7 +51,7 @@ Beim gewichteten RMSE steht der Mittelwert der drei Läufe, in Klammern der klei
 
 **Das Kontextfeld ist der größte einzelne Gewinn.** Mit 355 KB ist *Fourier MLP + context field* so genau wie *Fourier MLP, large* mit 1 542 KB (186 m gegen 185 m) – bei einem knappen Viertel der Dateigröße. Das bestätigt den Vergleich aus Kapitel 8.
 
-**Ähnlich große Netze liegen nah beieinander.** *Fourier MLP (recommended)*, *Spherical harmonics (L = 16)* und *SIREN* sind zwischen 305 KB und 339 KB groß und liegen zwischen 233 m und 245 m. Der SIREN ist im Mittel am genauesten, schwankt aber am stärksten: Seine drei Läufe liegen 31 m auseinander, die der anderen beiden nur 2 bis 5 m.
+**Ähnlich große Netze liegen nah beieinander.** *Fourier MLP (recommended)*, *Spherical harmonics (L = 16)* und *SIREN* sind zwischen 305 KB und 339 KB groß und liegen zwischen 233 m und 245 m. Das SIREN-Netz ist im Mittel am genauesten, schwankt aber am stärksten: Seine drei Läufe liegen 31 m auseinander, die der anderen beiden nur 2 bis 5 m.
 
 **Das lineare Modell mit L = 40 ist winzig.** Mit 6,6 KB erreicht es eine Rate von 693 und ist dabei genauer als das Netz mit 4 Schichten aus Kapitel 3, das 30-mal so groß ist. Die Kugelflächenfunktionen bis Grad 40 enthalten aber keine Welle kürzer als etwa 1 000 km (Kapitel 6); feiner kann es nicht werden.
 
@@ -73,7 +75,7 @@ Dieselben Netze, nach dem Training auf float16 gerundet (Kapitel 10). Mittelwert
 | *SIREN (sine activation)* | 153 KB | 30 | 233,3 m | 233,7 m |
 | *Fourier MLP + context field* | 193 KB | 24 | 186,2 m | 186,2 m |
 
-Bei keinem Netz ändert sich der gewichtete RMSE um mehr als einen halben Meter. Nur beim SIREN ist überhaupt ein Unterschied zu sehen, wie in Kapitel 10 beschrieben. Für die Dateigröße sind Mittelwert, Standardabweichung und Startwert weiter mit je 4 Byte gezählt; beim Runden für die Fehlermessung wurden auch sie auf float16 gerundet.
+Bei keinem Netz ändert sich der gewichtete RMSE um mehr als einen halben Meter. Nur beim SIREN-Netz ist überhaupt ein Unterschied zu sehen, wie in Kapitel 10 beschrieben. Für die Dateigröße sind Mittelwert, Standardabweichung und Startwert weiter mit je 4 Byte gezählt; beim Runden für die Fehlermessung wurden auch sie auf float16 gerundet.
 
 ## Messungen aus den Kapiteln
 
@@ -82,7 +84,7 @@ Einige Kapitel enthalten eigene Messungen für eine bestimmte Frage. Sie wurden 
 | Kapitel | Frage | Einstellungen |
 |---|---|---|
 | [5](05-fourier-features.md) | *spectral bias* am Alpenprofil: einfaches Netz gegen Fourier-Features nach 50, 500 und 3 000 Schritten | nur das Profil bei 46,4° Nord, nicht die ganze Erde |
-| [7](07-siren.md) | SIREN mit und ohne Startbelegung nach Sitzmann | nur jeder zweite Punkt des Alpenprofils trainiert, die anderen zur Kontrolle |
+| [7](07-siren.md) | SIREN-Netz mit und ohne Startbelegung nach Sitzmann | nur jeder zweite Punkt des Alpenprofils trainiert, die anderen zur Kontrolle |
 | [8](08-kontextfeld.md) | Kontextfeld bei gleicher Dateigröße; Auflösung des Kontextfelds | 1080 × 2160, 4 000 Schritte; Netze ohne Kontextfeld etwas breiter für gleiche Dateigröße |
 | [9](09-rate-und-fehler.md) | Rate-Distortion-Kurve | 1080 × 2160, neun Netzbreiten von 16 bis 256, 4 Schichten, σ = 8, 2 000 und 600 Schritte; Fehler auf 200 000 Zellen |
 | [10](10-abfragen-und-exportieren.md) | float16 auf dem ganzen Gitter; Abfragen an einzelnen Orten; feiner abfragen gegen das Gitter 2160 × 4320 | 1080 × 2160, 4 000 Schritte |
@@ -99,13 +101,13 @@ Aus der Entwicklung stammt eine Messung auf dem feinsten Gitter der App, 2160 ×
 | Fourier MLP, σ = 8 | 322 KB | 57 | 311 m | 35,3 dB |
 | + Kontextfeld 90 × 180 | 355 KB | 51 | 257 m | 36,9 dB |
 | + Kontextfeld 180 × 360 | 450 KB | 41 | 233 m | 37,8 dB |
-| SIREN | 305 KB | 60 | 258 m | 36,8 dB |
+| SIREN-Netz | 305 KB | 60 | 258 m | 36,8 dB |
 
-Die Raten sind viermal so hoch wie auf dem Standardgitter, weil das Raster viermal so groß ist, das Netz aber gleich bleibt. Der Fehler ist größer, denn das feinere Gitter enthält mehr Einzelheiten. In dieser kurzen Messung liegt der SIREN etwa gleichauf mit dem Kontextfeld 90 × 180; auf dem Standardgitter mit 4 000 Schritten ist das Kontextfeld deutlich besser (186 m gegen 233 m).
+Die Raten sind viermal so hoch wie auf dem Standardgitter, weil das Raster viermal so groß ist, das Netz aber gleich bleibt. Der Fehler ist größer, denn das feinere Gitter enthält mehr Einzelheiten. In dieser kurzen Messung liegt das SIREN-Netz etwa gleichauf mit dem Kontextfeld 90 × 180; auf dem Standardgitter mit 4 000 Schritten ist das Kontextfeld deutlich besser (186 m gegen 233 m).
 
 ## Selbst nachmessen
 
-Alle Netze der Haupttabelle lassen sich in der App nachrechnen: Vorlage wählen, *Steps* auf 4 000 lassen, *Train*. Die Fehlermaße stehen danach im Reiter *Training*, Dateigröße und Rate im Reiter *Idea & Budget*. Auf einem Rechner ohne Grafikchip dauert ein Lauf deutlich länger; für einen ersten Eindruck reicht das Gitter 360 × 720 mit 1 000 Schritten.
+Alle Netze der Haupttabelle lassen sich in der App nachrechnen: Wählen Sie die Vorlage, lassen Sie *Steps* auf 4 000 und klicken Sie auf *Train*. Die Fehlermaße stehen danach im Reiter *Training*, Dateigröße und Rate im Reiter *Idea & Budget*. Auf einem Rechner ohne Grafikchip dauert ein Lauf deutlich länger; für einen ersten Eindruck reicht das Gitter 360 × 720 mit 1 000 Schritten. Die Online-Fassung der App eignet sich zum Nachmessen nicht: Sie rechnet mit höchstens 540 × 1080 Zellen und kürzerem Training.
 
 Ein einzelner Lauf in der App wird nicht genau dieselben Zahlen liefern wie hier, weil die Startgewichte vom Zufall abhängen. Er sollte aber in der Nähe der angegebenen Spanne liegen.
 

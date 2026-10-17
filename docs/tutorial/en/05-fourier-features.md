@@ -125,7 +125,7 @@ The networks from chapters 2 to 5 in comparison. Stored are the weights (4 bytes
 | 5 | Fourier features + 4 layers | 82 561 | 323 KB | 7.1 % | 14 |
 | – | **Elevation grid (original)** | – | **4.4 MB** | 100 % | 1 |
 
-The more weights, the larger the file – but the more detail the network can represent. The first two networks are tiny but hardly reproduce the Earth (chapter 3). How well the individual networks actually hit the elevations is collected in the [appendix with the measurements](../de/anhang-messungen.md) (German).
+The more weights, the larger the file – but the more detail the network can represent. The first two networks are tiny but hardly reproduce the Earth (chapter 3). How well the individual networks actually hit the elevations is collected in the [appendix with the measurements](anhang-messungen.md).
 
 ## σ: how fast the waves are
 
@@ -196,7 +196,7 @@ Everything else is **extensions and deep dives**. They build on chapters 1 to 5 
 - [Chapter 9 · Measuring compression ratio and error](09-rate-und-fehler.md) – comparing file size and accuracy of different networks fairly
 - [Chapter 10 · Querying and exporting](10-abfragen-und-exportieren.md) – querying elevations at any location and passing the network on as a file
 - [Chapter 11 · Context and outlook](../de/11-einordnung-und-ausblick.md) – where the method stands in research and how it continues with points, lines and areas
-- [Appendix · Measurements](../de/anhang-messungen.md) – all results in one place
+- [Appendix · Measurements](anhang-messungen.md) – all results in one place
 
 ---
 
