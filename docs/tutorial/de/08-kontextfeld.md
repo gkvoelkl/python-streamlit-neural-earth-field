@@ -1,18 +1,25 @@
+# Geodaten in neuronalen Netzen speichern
 # Kapitel 8 · Das Kontextfeld
+
+*[English version](../en/08-kontextfeld.md)*
 
 ![Chester mit blauer Kappe malt mit einem feinen Pinsel Einzelheiten auf eine große Erdkugel in einem hellen Atelier; daneben hält Aiko, ein leuchtendes neuronales Netz, die Farbpalette.](../img/kapitel-08-chester.jpg)
 
-**Inhalt:** Statt die ganze Erde aus dem Nichts zu lernen, bekommt das neuronal Netz eine sehr grobe Höhenkarte mit und lernt dazu, was noch fehlt. 
+**Inhalt:**
 
-Diese grobe Karte kostet zusätzlichen Speicher.
+* Wie eine sehr grobe Höhenkarte dem Netz die Kontinente und Ozeanbecken abnimmt
+* Warum diese Karte in die Dateigröße gehört
+* Ob sich der zusätzliche Speicher lohnt
+
+Statt die ganze Erde aus dem Nichts zu lernen, bekommt das neuronale Netz eine sehr grobe Höhenkarte mit und lernt dazu nur, was noch fehlt. Diese grobe Karte kostet zusätzlichen Speicher. Dieses Kapitel ergänzt Kapitel 5. Sie können es auch überspringen.
 
 ## Ausgangspunkt
 
-Bisher muss das Netz alle Höhen der Erde komplett lernen: die Kontinente und Ozeanbecken genauso wie die Gebirge und Täler. Die Höhen der Erde schwanken dabei gewaltig, vom Marianengraben bis zum Himalaya ist eine große Höhendiffernz.
+Bisher muss das Netz alle Höhen der Erde komplett lernen: die Kontinente und Ozeanbecken genauso wie die Gebirge und Täler. Die Höhen der Erde schwanken dabei gewaltig: Zwischen dem tiefsten Punkt des Marianengrabens und dem Gipfel des Mount Everest liegen fast 20 km.
 
-Ein großer Teil dieser Schwankung ist aber leicht zu beschreiben: Hier liegt ein Kontinent, dort ein tiefes Becken im Meer. Dafür braucht man keine feine Auflösung. 
+Ein großer Teil dieser Schwankung ist aber leicht zu beschreiben: Hier liegt ein Kontinent, dort ein tiefes Becken im Meer. Dafür braucht man keine feine Auflösung.
 
-Die Idee dieses Kapitels: Diese groben Formen liefert man dem neuronalen Netz fertig mit, und diese kümmert sich nur noch um den Rest.
+Die Idee dieses Kapitels: Diese groben Formen liefert man dem neuronalen Netz fertig mit, und dieses kümmert sich nur noch um den Rest.
 
 ## Das Kontextfeld
 
@@ -22,7 +29,7 @@ Das **Kontextfeld** ist eine sehr grobe Höhenkarte der Erde. In der Vorlage der
 
 Die Abbildung zeigt das am Beispiel der Alpen:
 
-1. **Original:** die Höhen des Standardbeispiels. Die weißen Gitterlinien teilen die Karte in Zellen von 2° × 2°.
+1. **Original:** die Höhen des Standardgitters. Die weißen Gitterlinien teilen die Karte in Zellen von 2° × 2°.
 2. **Kontextfeld:** Für jede Zelle wird nur eine Zahl gespeichert, der Mittelwert aller Höhen in der Zelle. Er gehört zum Gitterpunkt in der Zellmitte. Die Zelle mit dem Alpenhauptkamm bekommt so 1 520 m, obwohl ihr höchster Gipfel, der Ortler, 3 905 m hoch ist – Täler und Gipfel gleichen sich im Mittel aus.
 3. **Dazwischen verbunden:** Für einen Ort zwischen den Gitterpunkten werden die Werte der vier nächsten Gitterpunkte gemischt, je näher, desto stärker. So entstehen keine Stufen an den Zellgrenzen, sondern eine weiche Fläche.
 
@@ -98,7 +105,7 @@ Für drei Netzgrößen, jeweils mit gleicher Dateigröße:
 
 Als Fehler steht hier der flächengewichtete RMSE aus Kapitel 2. Bei den Netzen ohne Kontextfeld wurden die Schichten etwas breiter gemacht (70 statt 48, 136 statt 128 und 260 statt 256 Neuronen), damit die Datei genauso groß ist. Jede Zeile ist ein einzelner Trainingslauf mit 4 000 Schritten; die Werte schwanken von Lauf zu Lauf etwas.
 
-Bei allen drei Größen gewinnt das Kontextfeld, und zwar deutlich: Das Standardnetz mit Kontextfeld (355 KB) ist genauso genau wie das große Netz ohne Kontextfeld (1 542 KB, 184 m) – bei weniger als einem Viertel der Dateigröße.
+Bei allen drei Größen gewinnt das Kontextfeld, und zwar deutlich: Das Standardnetz mit Kontextfeld (355 KB) ist genauso genau wie das große Netz *Fourier MLP, large* ohne Kontextfeld (1 542 KB, laut Anhang 185 m im Mittel von drei Läufen) – bei weniger als einem Viertel der Dateigröße.
 
 ### Wie fein sollte das Kontextfeld sein?
 
@@ -115,13 +122,15 @@ Schon das sehr grobe Kontextfeld 45 × 90 mit nur 7,9 KB senkt den Fehler um ein
 
 ## Ausprobieren
 
-1. In der Seitenleiste unter *2 · Network* die Vorlage *Fourier MLP + context field* wählen und *Architecture details* aufklappen.
-2. Ganz unten ist *Provide coarse context field* eingeschaltet. Darunter legt *Context field resolution* fest, wie viele Gitterpunkte das Kontextfeld von Nord nach Süd hat: 45, 90 oder 180.
+Wählen Sie in der Seitenleiste unter **2 · Network** die Vorlage **Fourier MLP + context field** und klappen Sie **Architecture details** auf.
+
+Ganz unten ist **Provide coarse context field** eingeschaltet. Darunter legt **Context field resolution** fest, wie viele Gitterpunkte das Kontextfeld von Nord nach Süd hat: 45, 90 oder 180.
 
    <img src="../img/app-kontextfeld-einstellungen.png" alt="Ausschnitt der Seitenleiste: Neurons per layer 128, Provide coarse context field eingeschaltet, Context field resolution 90 auf einer Skala von 45 bis 180." width="300">
 
-3. Im Reiter *Idea & Budget* die Dateigröße mit der Vorlage *Fourier MLP (recommended)* vergleichen.
-4. Trainieren und im Reiter *Maps & Error* die Fehlerkarte ansehen. Wo liegen die größten Fehler jetzt?
+Vergleichen Sie im Reiter **Idea & Budget** die Dateigröße mit der Vorlage **Fourier MLP (recommended)**.
+
+Trainieren Sie dann und sehen Sie sich im Reiter **Maps & Error** die Fehlerkarte an. Wo liegen die größten Fehler jetzt?
 
 ## Ideen zum Weiterprobieren
 

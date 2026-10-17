@@ -132,6 +132,6 @@ The Andes come out sharply in the SIREN network. On flat land, however, the grai
 
 ---
 
-[Overview](README.md) · Back: [Chapter 6 · Spherical harmonics](06-kugelflaechenfunktionen.md) · Next: [Chapter 8 · The context field](../de/08-kontextfeld.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 6 · Spherical harmonics](06-kugelflaechenfunktionen.md) · Next: [Chapter 8 · The context field](08-kontextfeld.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

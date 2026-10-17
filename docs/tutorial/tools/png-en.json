@@ -1886,5 +1886,422 @@
       "de": "Fourier-Features (Kap. 5)",
       "en": "Fourier features (ch. 5)"
     }
+  ],
+  "kontextfeld-gitter.png": [
+    {
+      "box": [
+        30,
+        9,
+        680,
+        38
+      ],
+      "bold": true,
+      "de": "Das Kontextfeld 90 × 180 am Beispiel der Alpen",
+      "en": "The context field 90 × 180 using the example of the Alps"
+    },
+    {
+      "box": [
+        30,
+        50,
+        1110,
+        75
+      ],
+      "de": "Weiße Linien: Gitterlinien alle 2° · Punkte: Gitterpunkte des Kontextfelds (Zellmitten) · Zahlen: gespeicherte Höhe in m",
+      "en": "White lines: grid lines every 2° · dots: grid points of the context field (cell centres) · numbers: stored elevation in m"
+    },
+    {
+      "box": [
+        639,
+        85,
+        1100,
+        108
+      ],
+      "bold": true,
+      "de": "2 · Kontextfeld: Mittelwert je Zelle",
+      "en": "2 · Context field: mean per cell"
+    },
+    {
+      "box": [
+        1183,
+        85,
+        1640,
+        108
+      ],
+      "bold": true,
+      "de": "3 · Dazwischen verbunden",
+      "en": "3 · Connected in between"
+    },
+    {
+      "box": [
+        132,
+        587,
+        169,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "4° O",
+      "en": "4° E"
+    },
+    {
+      "box": [
+        240,
+        587,
+        277,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "8° O",
+      "en": "8° E"
+    },
+    {
+      "box": [
+        345,
+        587,
+        390,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "12° O",
+      "en": "12° E"
+    },
+    {
+      "box": [
+        453,
+        587,
+        498,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "16° O",
+      "en": "16° E"
+    },
+    {
+      "box": [
+        676,
+        587,
+        713,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "4° O",
+      "en": "4° E"
+    },
+    {
+      "box": [
+        785,
+        587,
+        822,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "8° O",
+      "en": "8° E"
+    },
+    {
+      "box": [
+        890,
+        587,
+        935,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "12° O",
+      "en": "12° E"
+    },
+    {
+      "box": [
+        998,
+        587,
+        1043,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "16° O",
+      "en": "16° E"
+    },
+    {
+      "box": [
+        1221,
+        587,
+        1258,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "4° O",
+      "en": "4° E"
+    },
+    {
+      "box": [
+        1330,
+        587,
+        1366,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "8° O",
+      "en": "8° E"
+    },
+    {
+      "box": [
+        1434,
+        587,
+        1479,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "12° O",
+      "en": "12° E"
+    },
+    {
+      "box": [
+        1543,
+        587,
+        1588,
+        603
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "16° O",
+      "en": "16° E"
+    }
+  ],
+  "kontextfeld-welt.png": [
+    {
+      "box": [
+        15,
+        5,
+        880,
+        33
+      ],
+      "bold": true,
+      "de": "Das Kontextfeld liefert die Großform, das Netz nur noch den Rest",
+      "en": "The context field provides the large-scale form, the network only the rest"
+    },
+    {
+      "box": [
+        15,
+        59,
+        770,
+        84
+      ],
+      "de": "Standardbeispiel 1080 × 2160 · Rest: rot = höher als das Kontextfeld, blau = tiefer",
+      "en": "Standard grid 1080 × 2160 · rest: red = higher than the context field, blue = lower"
+    },
+    {
+      "box": [
+        15,
+        119,
+        260,
+        143
+      ],
+      "bold": true,
+      "de": "Kontextfeld 90 × 180",
+      "en": "Context field 90 × 180",
+      "size": 17
+    },
+    {
+      "box": [
+        567,
+        119,
+        850,
+        143
+      ],
+      "bold": true,
+      "de": "Rest, den das Netz lernt",
+      "en": "Rest that the network learns",
+      "size": 17
+    },
+    {
+      "box": [
+        1120,
+        119,
+        1300,
+        143
+      ],
+      "bold": true,
+      "de": "Höhe (Original)",
+      "en": "Elevation (original)",
+      "size": 17
+    }
+  ],
+  "kontextfeld-profil.png": [
+    {
+      "box": [
+        80,
+        11,
+        740,
+        41
+      ],
+      "bold": true,
+      "de": "Alpenprofil bei 46,4° N mit Kontextfeld 90 × 180",
+      "en": "Alpine profile at 46.4° N with context field 90 × 180"
+    },
+    {
+      "box": [
+        80,
+        45,
+        520,
+        69
+      ],
+      "de": "Höhen aus dem Standardbeispiel 1080 × 2160",
+      "en": "Elevations from the standard grid 1080 × 2160"
+    },
+    {
+      "box": [
+        108,
+        84,
+        420,
+        104
+      ],
+      "de": "Kontextfeld: alle 2° ein Wert",
+      "en": "Context field: one value every 2°"
+    },
+    {
+      "box": [
+        166,
+        122,
+        330,
+        142
+      ],
+      "size": 15,
+      "de": "Höhe (Original)",
+      "en": "Elevation (original)"
+    },
+    {
+      "box": [
+        166,
+        146,
+        620,
+        166
+      ],
+      "size": 15,
+      "de": "Kontextfeld (zwischen den Gitterpunkten verbunden)",
+      "en": "Context field (connected between the grid points)"
+    },
+    {
+      "box": [
+        166,
+        170,
+        330,
+        188
+      ],
+      "size": 15,
+      "de": "Stützstellen alle 2°",
+      "en": "Grid points every 2°"
+    },
+    {
+      "box": [
+        108,
+        449,
+        600,
+        470
+      ],
+      "de": "Rest = Höhe − Kontextfeld: das lernt das Netz",
+      "en": "Rest = elevation − context field: this is what the network learns"
+    },
+    {
+      "box": [
+        247,
+        693,
+        284,
+        710
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "4° O",
+      "en": "4° E"
+    },
+    {
+      "box": [
+        558,
+        693,
+        594,
+        710
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "8° O",
+      "en": "8° E"
+    },
+    {
+      "box": [
+        864,
+        693,
+        909,
+        710
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "12° O",
+      "en": "12° E"
+    },
+    {
+      "box": [
+        1175,
+        693,
+        1220,
+        710
+      ],
+      "align": "centre",
+      "size": 13,
+      "de": "16° O",
+      "en": "16° E"
+    }
+  ],
+  "europa-kontextfeld.png": [
+    {
+      "box": [
+        29,
+        6,
+        650,
+        36
+      ],
+      "bold": true,
+      "de": "Europa: Fourier MLP ohne und mit Kontextfeld",
+      "en": "Europe: Fourier MLP without and with context field"
+    },
+    {
+      "box": [
+        29,
+        54,
+        480,
+        78
+      ],
+      "de": "Standardbeispiel 1080 × 2160, je 4 000 Schritte",
+      "en": "Standard example 1080 × 2160, 4 000 steps each"
+    },
+    {
+      "box": [
+        563,
+        85,
+        870,
+        108
+      ],
+      "bold": true,
+      "de": "ohne Kontextfeld · 323 KB",
+      "en": "without context field · 323 KB"
+    },
+    {
+      "box": [
+        1065,
+        85,
+        1500,
+        108
+      ],
+      "bold": true,
+      "de": "mit Kontextfeld 90 × 180 · 355 KB",
+      "en": "with context field 90 × 180 · 355 KB"
+    }
   ]
 }
