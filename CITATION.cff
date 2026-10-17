@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this app or tutorial, please cite it as below."
+title: "The Earth as a Neural Field"
+abstract: >-
+  The elevation model of the whole Earth (ETOPO 2022), stored in the weights
+  of a small neural network: a Streamlit app to train and inspect the network,
+  and a step-by-step tutorial in German and English on storing geodata in
+  neural networks (implicit neural representations).
+type: software
+authors:
+  - given-names: Gerhard
+    family-names: Völkl
+license: MIT
+repository-code: "https://github.com/gkvoelkl/python-streamlit-neural-earth-field"
+url: "https://gkvoelkl.github.io/python-streamlit-neural-earth-field/"
+keywords:
+  - neural fields
+  - implicit neural representation
+  - geospatial
+  - elevation
+  - compression
+  - PyTorch
+  - Streamlit
+  - tutorial
+  - GeoAI
