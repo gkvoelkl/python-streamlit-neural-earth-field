@@ -106,7 +106,7 @@ As in chapter 1, the file sizes here are calculated without the bookkeeping of t
 
 **For the SIREN network, float16 is considerably more expensive.** The deviations are about 25 times as large as for the Fourier MLP, 239 m in the worst case. The reason is in chapter 7: the SIREN network multiplies the sum by ω₀ = 30 in every layer before the sine comes. A small rounding error in a weight thus becomes 30 times larger and noticeably shifts the wave – and that from layer to layer. Overall, the error rises by only one metre, but at individual places the elevation jumps by more than 200 m.
 
-The file would become even smaller with 8 bits or fewer per weight. Then simple rounding after training is no longer enough; the network has to learn to cope with the coarser numbers already during training. [Chapter 11](../de/11-einordnung-und-ausblick.md) (German) comes back to this.
+The file would become even smaller with 8 bits or fewer per weight. Then simple rounding after training is no longer enough; the network has to learn to cope with the coarser numbers already during training. [Chapter 11](11-einordnung-und-ausblick.md) comes back to this.
 
 ## Passing the file on
 
@@ -150,6 +150,6 @@ Then open the **Export** tab. At the top are three numbers: the size of the grid
 
 ---
 
-[Overview](README.md) · Back: [Chapter 9 · Measuring compression ratio and error](09-rate-und-fehler.md) · Next: [Chapter 11 · Context and outlook](../de/11-einordnung-und-ausblick.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 9 · Measuring compression ratio and error](09-rate-und-fehler.md) · Next: [Chapter 11 · Context and outlook](11-einordnung-und-ausblick.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

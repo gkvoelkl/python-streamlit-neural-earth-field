@@ -1,6 +1,8 @@
 # Geodaten in neuronalen Netzen speichern
 # Kapitel 11 · Einordnung und Ausblick
 
+*[English version](../en/11-einordnung-und-ausblick.md)*
+
 ![Abendsonne über einem weiten Tal. Auf einem dicken Ast steht Aiko, ein leuchtendes neuronales Netz, und breitet die Arme aus; daneben sitzt Chester mit blauer Kappe und zeigt mit der Pfote in die Ferne. Im Tal leuchten viele kleine Lichtpunkte, leuchtende Wege schlängeln sich zwischen Bäumen hindurch, und Felder sind durch Ränder voneinander getrennt.](../img/kapitel-11-chester.jpg)
 
 **Inhalt:**
@@ -11,7 +13,7 @@
 
 ## Ausgangspunkt
 
-Zehn Kapitel lang ging es um ein einziges Raster: die Höhen der Erde. Das Standardbeispiel speichert 2 332 800 Höhenwerte in 82 561 Gewichten, 14-mal kleiner als das Raster, mit float16 sogar 28-mal (Kapitel 10). Dafür liegt es im Mittel rund 245 m daneben; mit Kontextfeld sind es 191 m (Kapitel 8).
+Zehn Kapitel lang ging es um ein einziges Raster: die Höhen der Erde. Das Standardbeispiel speichert 2 332 800 Höhenwerte in 82 561 Gewichten, 14-mal kleiner als das Raster, mit float16 sogar 28-mal (Kapitel 10). Dafür liegt es im Mittel rund 245 m daneben; mit Kontextfeld sind es rund 186 m (Kapitel 8 und Anhang).
 
 Dieses letzte Kapitel ordnet das ein und schaut über das Raster hinaus. Denn viele Geodaten sind gar keine Raster, sondern Punkte, Linien und Flächen.
 

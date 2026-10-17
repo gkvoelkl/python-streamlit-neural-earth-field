@@ -22,7 +22,7 @@ uv run streamlit run app.py
 **Online ohne Installation:** <https://python-app-neural-earth-field.streamlit.app> – auf einer geteilten CPU ohne GPU und deshalb mit erheblich weniger Daten: gröbere Raster (voreingestellt 360 × 720) und leichteres Training (siehe [unten](#gpu-und-online-fassung)).
 
 **Tutorial:** ein Schritt-für-Schritt-Tutorial ohne Programmcode, auf Deutsch
-geschrieben und in Übersetzung ins Englische: [Deutsch](docs/tutorial/de/README.md) ·
+geschrieben und vollständig ins Englische übersetzt: [Deutsch](docs/tutorial/de/README.md) ·
 [English](docs/tutorial/en/README.md). Es erscheint auch als Website:
 <https://gkvoelkl.github.io/python-streamlit-neural-earth-field/>.
 

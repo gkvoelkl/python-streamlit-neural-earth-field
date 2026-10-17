@@ -53,8 +53,8 @@ exactly this one dataset: **the weights are the file**.
   through training, network architecture, spherical coordinates and Fourier
   features to the context field and an outlook on vector data. No program code,
   but diagrams, worked examples and screenshots – for readers who know neural
-  networks at most from introductions. Written in German, with an English
-  translation in progress.
+  networks at most from introductions. Written in German and fully translated
+  into English.
 
 ### Getting started
 
@@ -102,8 +102,8 @@ einen Datensatz trainiert: **Die Gewichte sind die Datei.**
   Funktion über Training, Netzarchitektur, Kugelkoordinaten und Fourier-Features
   bis zum Kontextfeld und einem Ausblick auf Vektordaten. Ohne Programmcode,
   dafür mit Diagrammen, Rechenbeispielen und Screenshots – für alle, die
-  neuronale Netze höchstens aus Einführungen kennen. Auf Deutsch geschrieben,
-  die englische Übersetzung entsteht gerade.
+  neuronale Netze höchstens aus Einführungen kennen. Auf Deutsch geschrieben
+  und vollständig ins Englische übersetzt.
 
 ### Loslegen
 

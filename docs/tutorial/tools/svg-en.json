@@ -350,5 +350,30 @@
     "feineres Gitter 2160 × 4320 (nicht trainiert)": "finer grid 2160 × 4320 (not trained)",
     "Netz, alle 1/60° abgefragt": "network, queried every 1/60°",
     "Trainingsgitter 1080 × 2160": "training grid 1080 × 2160"
+  },
+  "vektor-zu-feld.svg": {
+    "Punkte, Linie und Fläche als Felder": "Points, line and area as fields",
+    "Aus Vektordaten werden Felder": "Vector data become fields",
+    "Jeder Ort bekommt einen Wert – dann lässt sich das Feld wie die Höhen mit einem Netz f(lon, lat) speichern.": "Every place gets a value – then the field can be stored with a network f(lon, lat) like the elevations.",
+    "Punkte → Dichte": "Points → density",
+    "Wie viele Beobachtungen liegen in der Nähe?": "How many observations are nearby?",
+    "Linie → Abstand": "Line → distance",
+    "Wie weit ist es bis zum Fluss?": "How far is it to the river?",
+    "Fläche → Abstand mit Vorzeichen": "Area → signed distance",
+    "innen negativ, außen positiv, Rand = 0": "inside negative, outside positive, edge = 0",
+    "innen": "inside",
+    "außen": "outside",
+    "Orange bzw. gestrichelt: die ursprünglichen Vektordaten. Farbe: der Wert des Feldes an jedem Ort.": "Orange or dashed: the original vector data. Colour: the value of the field at each place.",
+    "Aus dem Feld gewinnt man die Geometrie zurück: die Gipfel der Dichte, die Nulllinie des Abstands, den Rand bei Abstand 0.": "From the field you recover the geometry: the peaks of the density, the zero line of the distance, the edge at distance 0."
+  },
+  "kueste-aus-feld.svg": {
+    "Küstenlinie als Null-Meter-Linie: aus dem Trainingsgitter und aus dem Netz": "Coastline as the zero-metre line: from the training grid and from the network",
+    "Eine Linie aus dem Feld: die Küste als 0-m-Linie": "A line from the field: the coast as the 0 m line",
+    "Mitteleuropa und Mittelmeer, 0° bis 20° Ost, 36° bis 56° Nord. Gezeichnet ist überall die Linie, an der die Höhe 0 m ist.": "Central Europe and the Mediterranean, 0° to 20° east, 36° to 56° north. Drawn everywhere is the line where the elevation is 0 m.",
+    "Trainingsgitter 1080 × 2160": "Training grid 1080 × 2160",
+    "120 × 120 Zellen, Werte der Tabelle": "120 × 120 cells, values of the table",
+    "Netz (Standardbeispiel)": "Network (standard example)",
+    "alle 1/24° abgefragt, 481 × 481 Punkte": "queried every 1/24°, 481 × 481 points",
+    "Die Küste des Netzes ist glatt und rund. Kleine Inseln und Buchten fehlen, an flachen Küsten entstehen dafür Seen, die es nicht gibt.": "The network's coast is smooth and round. Small islands and bays are missing; instead, lakes that do not exist appear at flat coasts."
   }
 }
