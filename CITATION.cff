@@ -7,6 +7,8 @@ abstract: >-
   and a step-by-step tutorial in German and English on storing geodata in
   neural networks (implicit neural representations).
 type: software
+version: "1.0.0"
+date-released: "2026-10-17"
 authors:
   - given-names: Gerhard
     family-names: Völkl

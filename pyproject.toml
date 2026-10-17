@@ -1,6 +1,6 @@
 [project]
 name = "python-streamlit-neural-earth-field"
-version = "0.1.0"
+version = "1.0.0"
 description = "The Earth as a neural field: compressing global elevation data into network weights"
 readme = "README.md"
 authors = [
