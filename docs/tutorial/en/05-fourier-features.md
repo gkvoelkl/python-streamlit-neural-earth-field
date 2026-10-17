@@ -190,7 +190,7 @@ That is exactly what is in the app's preset *Fourier MLP (recommended)*.
 
 Everything else is **extensions and deep dives**. They build on chapters 1 to 5 but can be read individually or skipped as you like. They are available in German so far:
 
-- [Chapter 6 · Spherical harmonics](../de/06-kugelflaechenfunktionen.md) – an ordered set of patterns that fits the sphere exactly
+- [Chapter 6 · Spherical harmonics](06-kugelflaechenfunktionen.md) – an ordered set of patterns that fits the sphere exactly
 - [Chapter 7 · SIREN](../de/07-siren.md) – neurons that compute with a sine themselves
 - [Chapter 8 · The context field](../de/08-kontextfeld.md) – a coarse grid provides the continents, the network only learns the details
 - [Chapter 9 · Measuring rate and error](../de/09-rate-und-fehler.md) – comparing file size and accuracy of different networks fairly
@@ -200,6 +200,6 @@ Everything else is **extensions and deep dives**. They build on chapters 1 to 5 
 
 ---
 
-[Overview](README.md) · Back: [Chapter 4 · The Earth is a sphere](04-kugelkoordinaten.md) · Next: [Chapter 6 · Spherical harmonics](../de/06-kugelflaechenfunktionen.md) *(German; English translation in progress)*
+[Overview](README.md) · Back: [Chapter 4 · The Earth is a sphere](04-kugelkoordinaten.md) · Next: [Chapter 6 · Spherical harmonics](06-kugelflaechenfunktionen.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

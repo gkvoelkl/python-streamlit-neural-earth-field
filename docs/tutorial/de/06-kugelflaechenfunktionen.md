@@ -1,8 +1,17 @@
+# Geodaten in neuronalen Netzen speichern
 # Kapitel 6 · Kugelflächenfunktionen
+
+*[English version](../en/06-kugelflaechenfunktionen.md)*
 
 ![Chester mit blauer Kappe setzt mit einer Pinzette Mosaiksteine in eine Erdkugel aus vielen blauen, grünen und ockerfarbenen Kacheln. Links steht Aiko, ein leuchtendes neuronales Netz, vor einem Sortierkasten; auf dem Tisch liegen weitere Mosaiksteine.](../img/kapitel-06-chester.jpg)
 
-**Inhalt:** Die Streifenmuster aus Kapitel 5 sind zufällig gewählt. Es gibt aber auch einen festen, geordneten Satz von Mustern, der genau zur Kugel passt: die sogenannte Kugelflächenfunktionen. Dieses Kapitel ist eine Vertiefung. Sie können es gerne überspringen.
+**Inhalt:**
+
+* Welcher feste, geordnete Satz von Mustern genau zur Kugel passt
+* Wie sich die Erde aus diesen Kugelflächenfunktionen zusammensetzen lässt
+* Warum sie für feine Einzelheiten teuer werden
+
+Dieses Kapitel ergänzt Kapitel 5. Sie können es auch überspringen.
 
 ## Ausgangspunkt
 
@@ -79,19 +88,21 @@ Die zufälligen Streifen aus Kapitel 5 sind da sparsamer. Sie decken nicht jede 
 | Zahl der Eingaben für kurze Wellen | gering (z. B. 256) | wächst sehr schnell |
 | Rechenaufwand | gering | hoch, vor allem bei großem *L* |
 
-Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Grad ab. Die Ergebnisse stehen im [Anhang mit den Messungen](anhang-messungen.md).
+Welche Variante die Höhen besser trifft, hängt von der Netzgröße und vom Grad ab. Bei gleich großen Netzen liegen beide nah beieinander: Mit 4 000 Trainingsschritten auf dem Standardgitter erreicht *Spherical harmonics (L = 16)* einen gewichteten RMSE von 241 m, *Fourier MLP (recommended)* 245 m. Das lineare Modell bis Grad 40 kommt mit nur 6,6 KB auf 631 m – genauer als das einfache Netz aus Kapitel 2 mit 706 m, das 30-mal so groß ist. Alle Werte stehen im [Anhang mit den Messungen](anhang-messungen.md).
 
 ## Ausprobieren
 
-1. In der Seitenleiste unter *2 · Network* die Vorlage *Spherical harmonic expansion (L = 40, linear)* wählen und *Architecture details* aufklappen.
-2. Unter *Positional encoding* steht jetzt `spherical`. Der Regler *Maximum degree L* legt den höchsten Grad fest. Darunter zeigt die App die Zahl der Muster und die kürzeste Welle. *Hidden layers* steht auf 0: ein lineares Modell.
+Wählen Sie in der Seitenleiste unter **2 · Network** die Vorlage **Spherical harmonic expansion (L = 40, linear)** und klappen Sie **Architecture details** auf.
+
+Unter **Positional encoding** steht jetzt `spherical`. Der Regler **Maximum degree L** legt den höchsten Grad fest. Darunter zeigt die App die Zahl der Muster und die kürzeste Welle. **Hidden layers** steht auf 0: ein lineares Modell.
 
    <img src="../img/app-kugelflaechen-einstellungen.png" alt="Seitenleiste mit aufgeklappten Architecture details: Vorlage Spherical harmonic expansion, Positional encoding spherical, Maximum degree L 40, darunter 1681 features und finest wavelength ungefähr 1,000 km, Hidden layers 0 und der Hinweis Linear model." width="300">
 
-3. Trainieren und im Reiter *Maps & Error* das Ergebnis ansehen. Es sollte ähnlich aussehen wie die Karte „bis Grad 40“ oben.
-4. Dann die Vorlage *Spherical harmonics (L = 16)* wählen, trainieren und mit *Fourier MLP (recommended)* aus Kapitel 5 vergleichen.
+Trainieren Sie und sehen Sie sich das Ergebnis im Reiter **Maps & Error** an. Es sollte ähnlich aussehen wie die Karte „bis Grad 40“ oben.
 
-**Hinweis zur Rechenzeit:** Bei großem Grad wird das Training langsam, weil für jeden Ort sehr viele Muster berechnet werden müssen. Mit *L* = 40 dauert ein Trainingsschritt ein Vielfaches eines Schritts mit Fourier-Features. Für erste Versuche lohnt sich ein kleineres *L* oder eine kleinere *Grid resolution*.
+Wählen Sie dann die Vorlage **Spherical harmonics (L = 16)**, trainieren Sie und vergleichen Sie das Ergebnis mit **Fourier MLP (recommended)** aus Kapitel 5.
+
+**Hinweis zur Rechenzeit:** Bei großem Grad wird das Training langsam, weil für jeden Ort sehr viele Muster berechnet werden müssen. Auf einem Apple M4 dauern 4 000 Schritte mit *L* = 40 etwa 5 Minuten, mit *L* = 16 knapp 2 Minuten; *Fourier MLP (recommended)* braucht dafür gut 1 Minute. Für erste Versuche lohnt sich ein kleineres *L* oder eine kleinere *Grid resolution*.
 
 ## Ideen zum Weiterprobieren
 
