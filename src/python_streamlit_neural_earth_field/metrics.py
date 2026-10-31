@@ -17,13 +17,13 @@ class Scores:
     psnr_db: float
     r2: float
 
-    def to_dict(self) -> dict[str, float]:
+    def to_dict(self, unit: str = "m") -> dict[str, float]:
         return {
-            "RMSE [m]": self.rmse,
-            "MAE [m]": self.mae,
-            "weighted RMSE [m]": self.weighted_rmse,
-            "weighted MAE [m]": self.weighted_mae,
-            "max. error [m]": self.max_abs,
+            f"RMSE [{unit}]": self.rmse,
+            f"MAE [{unit}]": self.mae,
+            f"weighted RMSE [{unit}]": self.weighted_rmse,
+            f"weighted MAE [{unit}]": self.weighted_mae,
+            f"max. error [{unit}]": self.max_abs,
             "PSNR [dB]": self.psnr_db,
             "R²": self.r2,
         }

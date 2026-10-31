@@ -26,6 +26,7 @@ GRID_URL = (
     "https://github.com/gkvoelkl/python-streamlit-neural-earth-field/releases/download/"
     "data-v1/etopo_{ny}.npz"
 )
+EARTH_RADIUS_KM = 6371.0
 BYTES_PER_SAMPLE = 2  # whole metres fit int16; ETOPO itself stores float32, so this is conservative
 
 
@@ -99,12 +100,14 @@ def download_etopo(
 
 @dataclass
 class ElevationGrid:
-    """A regular lon/lat grid with elevations in metres."""
+    """A regular lon/lat grid with elevations in metres -- or another quantity on the globe."""
 
     lon: np.ndarray  # (nx,)  cell centres in degrees, -180..180
     lat: np.ndarray  # (ny,)  cell centres in degrees, -90..90
     z: np.ndarray  # (ny, nx) elevation in metres, float32
     source: str = "unknown"
+    quantity: str = "Elevation"
+    unit: str = "m"
 
     @property
     def ny(self) -> int:
@@ -129,7 +132,7 @@ class ElevationGrid:
 
     @property
     def km_per_cell(self) -> float:
-        return 2 * np.pi * 6371.0 / 360.0 * self.degrees_per_cell
+        return 2 * np.pi * EARTH_RADIUS_KM / 360.0 * self.degrees_per_cell
 
     def lat_weights(self) -> np.ndarray:
         """cos(lat) -- area weight of a grid cell, as in the papers' 'weighted RMSE'."""
@@ -151,7 +154,10 @@ class ElevationGrid:
         z = self.z[: ny * fy, : nx * fx].reshape(ny, fy, nx, fx).mean(axis=(1, 3))
         lat = self.lat[: ny * fy].reshape(ny, fy).mean(axis=1)
         lon = self.lon[: nx * fx].reshape(nx, fx).mean(axis=1)
-        return ElevationGrid(lon=lon, lat=lat, z=z.astype(np.float32), source=self.source)
+        return ElevationGrid(
+            lon=lon, lat=lat, z=z.astype(np.float32), source=self.source,
+            quantity=self.quantity, unit=self.unit,
+        )
 
 
 def thin(lon: np.ndarray, lat: np.ndarray, values: np.ndarray, max_ny: int):

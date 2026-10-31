@@ -14,6 +14,30 @@ import streamlit as st
 import torch
 
 from . import viz
+from .coast import (
+    CoastScores,
+    download_natural_earth,
+    load_coast_distance,
+    load_coastline,
+    natural_earth_available,
+)
+from .embedding import (
+    ENCODERS,
+    NEEDS_ELEVATION_NETWORK,
+    SATCLIP_MB,
+    SATCLIP_URL,
+    TEMPERATURE_MB,
+    TEMPERATURE_URL,
+    HeadConfig,
+    download,
+    encode,
+    fit_and_predict,
+    load_temperature,
+    sample_places,
+    satclip_path,
+    temperature_path,
+    weighted_rmse,
+)
 from .data import (
     ETOPO_BYTES,
     ETOPO_URL,
@@ -26,6 +50,23 @@ from .data import (
     thin,
 )
 from .metrics import Compression, evaluate, human_bytes
+from .ortho import (
+    ATTRIBUTION,
+    ORTHO_PRESETS,
+    PLACES,
+    TILE,
+    TILE_MB,
+    OrthoTrainConfig,
+    build_ortho_field,
+    download_tile,
+    image_psnr,
+    jpeg_at_size,
+    load_orthophoto,
+    tile_path,
+    train_ortho,
+)
+from .ortho import RESOLUTIONS as ORTHO_RESOLUTIONS
+from . import buildings as lod2
 from .model import PRESETS, FieldConfig, NeuralField, build_field
 from .training import TrainConfig, pick_device, train
 
@@ -41,6 +82,8 @@ DEFAULT_RESOLUTION = "1080 × 2160 · 0.17° · ~19 km"
 # Online (shared CPU, throttled when busy for long): coarser grids and lighter training
 CLOUD_RESOLUTIONS = list(RESOLUTIONS)[:3]
 CLOUD_DEFAULT_RESOLUTION = "360 × 720 · 0.5° · ~56 km"
+ELEVATION = "Elevation (ETOPO 2022)"
+COAST = "Distance to the coast (Natural Earth)"
 
 
 def fmt_ratio(r: float) -> str:
@@ -54,6 +97,36 @@ def fmt_int(n: float) -> str:
 @st.cache_data(show_spinner="Loading elevation grid …")
 def get_grid(target_ny: int) -> ElevationGrid:
     return load_etopo(target_ny)
+
+
+@st.cache_data(show_spinner="Computing the distance to the coast …")
+def get_coast_grid(target_ny: int) -> ElevationGrid:
+    return load_coast_distance(target_ny)
+
+
+@st.cache_resource(show_spinner="Loading the coastline …")
+def get_coastline():
+    return load_coastline()
+
+
+def require_natural_earth() -> None:
+    """The coastline is small (about 3 MB): online it is fetched directly, locally the app asks."""
+    if natural_earth_available():
+        return
+    if not cloud_mode():
+        st.info(
+            "**The coastline is missing.** This dataset is computed from the land polygons and "
+            "coastlines of Natural Earth (1:50 million, public domain, about **3 MB**). "
+            "May the app download them now?"
+        )
+        if not st.button("Download Natural Earth (3 MB)", type="primary"):
+            st.stop()
+    try:
+        with st.spinner("Downloading Natural Earth …"):
+            download_natural_earth()
+    except (httpx.HTTPError, OSError) as error:
+        st.error(f"The download failed: {error}")
+        st.stop()
 
 
 def make_field(cfg: FieldConfig, grid: ElevationGrid) -> NeuralField:
@@ -77,14 +150,43 @@ def sidebar() -> tuple[ElevationGrid, FieldConfig, TrainConfig, str, bool]:
             "[README](https://github.com/gkvoelkl/python-streamlit-neural-earth-field)."
         )
     st.sidebar.subheader("1 · Data")
-    st.sidebar.caption("Source: ETOPO 2022 global relief model (NOAA NCEI), 1 arc-minute")
+    dataset = st.sidebar.radio(
+        "Dataset", [ELEVATION, COAST],
+        help="The distance to the coast turns vector data – the coastline – into a field: "
+             "positive on land, negative at sea, zero exactly on the coast.",
+    )
+    if dataset == ELEVATION:
+        st.sidebar.caption("Source: ETOPO 2022 global relief model (NOAA NCEI), 1 arc-minute")
+    else:
+        st.sidebar.caption(
+            "Source: Natural Earth 1:50 million, land polygons and coastlines. "
+            "Distance in km to the nearest coast, land +, sea −."
+        )
 
     res_label = st.sidebar.select_slider(
         "Grid resolution",
         options=CLOUD_RESOLUTIONS if cloud_mode() else list(RESOLUTIONS),
         value=CLOUD_DEFAULT_RESOLUTION if cloud_mode() else DEFAULT_RESOLUTION,
     )
-    grid = get_grid(RESOLUTIONS[res_label])
+    if dataset == ELEVATION:
+        grid = get_grid(RESOLUTIONS[res_label])
+    else:
+        require_natural_earth()
+        grid = get_coast_grid(RESOLUTIONS[res_label])
+        limit = st.sidebar.select_slider(
+            "Limit the distance to", ["no limit", 1000, 500, 200, 100, 50, 25, 10, 1],
+            value="no limit",
+            format_func=lambda v: v if isinstance(v, str) else (
+                "± 1 km (≈ land/sea mask)" if v == 1 else f"± {v} km"
+            ),
+            help="Far from the coast, the exact distance hardly matters for the coastline. "
+                 "Cut off there, the network can spend its weights near the coast – but it "
+                 "no longer knows the distance beyond the limit.",
+        )
+        if not isinstance(limit, str):
+            grid = replace(
+                grid, z=np.clip(grid.z, -limit, limit), source=f"{grid.source} · limited to ± {limit} km"
+            )
 
     st.sidebar.subheader("2 · Network")
     preset_name = st.sidebar.selectbox("Preset", list(PRESETS))
@@ -191,6 +293,14 @@ def budget_panel(grid: ElevationGrid, field: NeuralField) -> Compression:
 
 
 def tab_idea(grid: ElevationGrid, field: NeuralField) -> None:
+    if grid.unit != "m":
+        st.info(
+            "**Dataset: distance to the coast.** The coastline is vector data – a list of "
+            "points. To store it in a neural field, it first becomes a field: for every cell "
+            "the distance to the nearest coast in km, **positive on land, negative at sea**. "
+            "The coast is the line where this field is 0. The *Coastline* tab recovers it "
+            "from the trained network and compares it with the original."
+        )
     st.markdown(
         """
 ### The idea in one sentence
@@ -213,7 +323,7 @@ This is ordinary machine learning turned upside down:
     comp = budget_panel(grid, field)
     st.caption(
         f"Source: {grid.source} · cell size ≈ {grid.km_per_cell:.0f} km · "
-        f"elevations from {grid.z.min():.0f} m to {grid.z.max():.0f} m"
+        f"values from {grid.z.min():,.0f} {grid.unit} to {grid.z.max():,.0f} {grid.unit}"
     )
     st.info(
         f"This network has to explain **{fmt_int(comp.points_per_parameter)} grid points per "
@@ -307,18 +417,19 @@ def tab_training(grid, cfg, tcfg, device_label, start) -> None:
             rmses.append(p.scores.rmse)
             bar.progress(
                 p.step / p.total,
-                text=f"Step {p.step}/{p.total} · RMSE {p.scores.rmse:,.1f} m · "
+                text=f"Step {p.step}/{p.total} · RMSE {p.scores.rmse:,.1f} {grid.unit} · "
                      f"{p.elapsed_s:.0f} s",
             )
             with metric_slot.container():
                 m = p.scores
                 a, b, c, d = st.columns(4)
-                a.metric("RMSE", f"{m.rmse:,.1f} m")
-                b.metric("weighted RMSE", f"{m.weighted_rmse:,.1f} m")
-                c.metric("MAE", f"{m.mae:,.1f} m")
+                a.metric("RMSE", f"{m.rmse:,.1f} {grid.unit}")
+                b.metric("weighted RMSE", f"{m.weighted_rmse:,.1f} {grid.unit}")
+                c.metric("MAE", f"{m.mae:,.1f} {grid.unit}")
                 d.metric("R²", f"{m.r2:.4f}")
             chart_slot.plotly_chart(
-                viz.loss_curve(steps, rmses), use_container_width=True, key=f"loss{p.step}"
+                viz.loss_curve(steps, rmses, unit=grid.unit), use_container_width=True,
+                key=f"loss{p.step}",
             )
 
         with st.spinner("Reconstructing the full grid …"):
@@ -326,10 +437,10 @@ def tab_training(grid, cfg, tcfg, device_label, start) -> None:
             scores = evaluate(grid.z, recon, grid.cell_weights())
         st.session_state.update(
             field=field, recon=recon, scores=scores, history=(steps, rmses),
-            grid_shape=(grid.ny, grid.nx), trained_cfg=cfg,
+            grid_shape=(grid.ny, grid.nx), grid_source=grid.source, trained_cfg=cfg,
         )
         st.success(
-            "Done – the *Globe*, *Maps* and *Super-Resolution* tabs show the result."
+            "Done – the *Globe*, *Maps*, *Super-Resolution* and *Coastline* tabs show the result."
         )
         return
 
@@ -344,19 +455,22 @@ def tab_training(grid, cfg, tcfg, device_label, start) -> None:
 
     st.caption("Result of the last training run (full grid)")
     scores = st.session_state.scores
-    items = list(scores.to_dict().items())
+    items = list(scores.to_dict(grid.unit).items())
     for row in (items[:4], items[4:]):
         cols = st.columns(4)
         for col, (name, value) in zip(cols, row):
             col.metric(name, f"{value:,.4f}" if abs(value) < 10 else f"{value:,.1f}")
     steps, rmses = st.session_state.history
-    st.plotly_chart(viz.loss_curve(steps, rmses), use_container_width=True)
+    st.plotly_chart(viz.loss_curve(steps, rmses, unit=grid.unit), use_container_width=True)
     budget_panel(grid, st.session_state.field)
 
 
 def _require_result(grid: ElevationGrid) -> np.ndarray | None:
     if "field" not in st.session_state:
         st.info("Train first.")
+        return None
+    if st.session_state.get("grid_source", grid.source) != grid.source:
+        st.warning("The dataset has changed since training – please retrain or switch back.")
         return None
     if st.session_state.grid_shape != (grid.ny, grid.nx):
         st.warning(
@@ -373,7 +487,13 @@ def tab_globe(grid: ElevationGrid) -> None:
         return
 
     c1, c2, c3 = st.columns([2, 1, 1])
-    exaggeration = c1.slider("Vertical exaggeration", 1, 200, 40, help="1 = true to scale (and flat).")
+    if grid.unit == "m":
+        exaggeration = c1.slider(
+            "Vertical exaggeration", 1, 200, 40, help="1 = true to scale (and flat)."
+        )
+    else:
+        exaggeration = 0
+        c1.caption("A distance is not a height – the globes are shown without relief.")
     max_rows = c2.select_slider("Display grid", [90, 180, 240, 360], value=180)
     camera_lon = c3.slider("View direction (longitude)", -180, 180, 10)
 
@@ -385,14 +505,15 @@ def tab_globe(grid: ElevationGrid) -> None:
     with left:
         st.plotly_chart(
             viz.globe(display.lon, display.lat, display.z, title="Original (grid data)",
-                      exaggeration=exaggeration, zmin=zmin, zmax=zmax, camera_lon=camera_lon),
+                      exaggeration=exaggeration, zmin=zmin, zmax=zmax, camera_lon=camera_lon,
+                      unit=grid.unit),
             use_container_width=True,
         )
     with right:
         st.plotly_chart(
             viz.globe(recon_display.lon, recon_display.lat, recon_display.z,
                       title="Neural field", exaggeration=exaggeration,
-                      zmin=zmin, zmax=zmax, camera_lon=camera_lon),
+                      zmin=zmin, zmax=zmax, camera_lon=camera_lon, unit=grid.unit),
             use_container_width=True,
         )
     st.caption(
@@ -420,21 +541,22 @@ def tab_maps(grid: ElevationGrid) -> None:
     with left:
         st.plotly_chart(
             viz.elevation_map(truth_view.lon, truth_view.lat, truth_view.z,
-                              title="Original", zmin=zmin, zmax=zmax),
+                              title="Original", zmin=zmin, zmax=zmax, unit=grid.unit),
             use_container_width=True,
         )
     with right:
         st.plotly_chart(
             viz.elevation_map(recon_view.lon, recon_view.lat, recon_view.z,
-                              title="Reconstruction", zmin=zmin, zmax=zmax),
+                              title="Reconstruction", zmin=zmin, zmax=zmax, unit=grid.unit),
             use_container_width=True,
         )
 
     a, b = st.columns([3, 2])
     with a:
-        st.plotly_chart(viz.error_map(err_lon, err_lat, err_view), use_container_width=True)
+        st.plotly_chart(viz.error_map(err_lon, err_lat, err_view, unit=grid.unit),
+                        use_container_width=True)
     with b:
-        st.plotly_chart(viz.error_histogram(err), use_container_width=True)
+        st.plotly_chart(viz.error_histogram(err, unit=grid.unit), use_container_width=True)
     if truth_view.ny < grid.ny:
         st.caption(
             f"The maps are thinned to {truth_view.ny} × {truth_view.nx} for drawing "
@@ -442,13 +564,20 @@ def tab_maps(grid: ElevationGrid) -> None:
             f"full {grid.ny} × {grid.nx} grid."
         )
 
-    st.markdown(
-        "**What to look for:** the error almost never sits in the open ocean, but along "
-        "coasts, ocean trenches and mountain ridges – wherever the elevation changes "
-        "sharply over a short distance. Those high frequencies are exactly what compression costs."
-    )
+    if grid.unit == "m":
+        st.markdown(
+            "**What to look for:** the error almost never sits in the open ocean, but along "
+            "coasts, ocean trenches and mountain ridges – wherever the elevation changes "
+            "sharply over a short distance. Those high frequencies are exactly what compression costs."
+        )
+    else:
+        st.markdown(
+            "**What to look for:** the distance has kinks – along the coast, where the sign "
+            "changes, and on the lines exactly halfway between two coasts. Small islands far "
+            "out at sea create whole circles in the field. The error sits on these kinks."
+        )
     with st.expander("Detailed numbers"):
-        scores = st.session_state.scores.to_dict()
+        scores = st.session_state.scores.to_dict(grid.unit)
         st.dataframe(
             {"Metric": list(scores), "Value": [f"{v:,.3f}" for v in scores.values()]},
             use_container_width=True, hide_index=True,
@@ -487,13 +616,13 @@ def tab_superres(grid: ElevationGrid) -> None:
         st.plotly_chart(
             viz.elevation_map(grid.lon[j0:j1], grid.lat[i0:i1], patch,
                               title=f"Training grid ({patch.shape[0]} × {patch.shape[1]})",
-                              zmin=zmin, zmax=zmax),
+                              zmin=zmin, zmax=zmax, unit=grid.unit),
             use_container_width=True,
         )
     with right:
         st.plotly_chart(
             viz.elevation_map(lon_q, lat_q, fine, title=f"Field queried ({n} × {n})",
-                              zmin=zmin, zmax=zmax),
+                              zmin=zmin, zmax=zmax, unit=grid.unit),
             use_container_width=True,
         )
     st.warning(
@@ -503,6 +632,373 @@ def tab_superres(grid: ElevationGrid) -> None:
         "without re-gridding (e.g. as a data loader that delivers grids of arbitrary "
         "resolution)."
     )
+
+
+def tab_coastline(grid: ElevationGrid) -> None:
+    recon = _require_result(grid)
+    if recon is None:
+        return
+    if not natural_earth_available():
+        st.info(
+            "The comparison needs the coastline of Natural Earth (1:50 million, about 3 MB)."
+        )
+        if st.button("Download Natural Earth (3 MB)", key="ne-coast-tab"):
+            with st.spinner("Downloading Natural Earth …"):
+                download_natural_earth()
+            st.rerun()
+        return
+    truth = get_coast_grid(grid.ny)
+    coastline = get_coastline()
+    scores = CoastScores.compare(truth, recon > 0)
+    field: NeuralField = st.session_state.field
+
+    st.markdown(
+        "Where the field is exactly **0**, the network puts the coast – the 0 m line for "
+        "elevations, the line of zero distance for the distance to the coast. Here it is "
+        "compared with the true coastline of Natural Earth."
+    )
+    a, b, c, d = st.columns(4)
+    a.metric("Correct side", f"{scores.correct_side:.1%}",
+             help="Share of the Earth's area where the network says land on land and sea at sea.")
+    b.metric("… in coastal cells", f"{scores.correct_side_at_coast:.1%}",
+             help="The same, only for the cells through which the true coastline runs.")
+    c.metric("Coast offset (median)", f"{scores.offset_median_km:,.1f} km",
+             help="How far the cells of the recovered coast are from the true coastline.")
+    d.metric("Coast offset (90 %)", f"{scores.offset_p90_km:,.0f} km",
+             help="90 % of the recovered coast lies at most this far from the true coastline.")
+    st.caption(
+        f"For comparison: even the grid itself puts its coast cells up to half a cell "
+        f"(≈ {grid.km_per_cell / 2:.0f} km) away from the true line."
+    )
+
+    e, f, g = st.columns(3)
+    e.metric("Coastline as vector data", human_bytes(coastline.raw_bytes),
+             help="Every point of the coastline as a pair of float32 numbers.")
+    e.caption(f"{fmt_int(coastline.n_points)} points × 2 numbers × 4 bytes")
+    f.metric("Network", human_bytes(field.stored_bytes(4)))
+    f.caption(f"{fmt_int(field.n_parameters())} parameters · float32")
+    g.metric("Grid of the field (int16)", human_bytes(grid.raw_bytes))
+    g.caption(f"{grid.ny} × {grid.nx} cells × 2 bytes")
+
+    c1, c2, c3 = st.columns(3)
+    lon_c = c1.number_input("Longitude (centre)", -180.0, 180.0, 10.0, 1.0, key="coast-lon")
+    lat_c = c2.number_input("Latitude (centre)", -89.0, 89.0, 46.0, 1.0, key="coast-lat")
+    span = float(c3.select_slider("Window [°]", [5, 10, 20, 45, 90], value=20, key="coast-span"))
+    i0 = int(np.searchsorted(grid.lat, lat_c - span / 2))
+    i1 = max(i0 + 2, int(np.searchsorted(grid.lat, lat_c + span / 2)))
+    j0 = int(np.searchsorted(grid.lon, lon_c - span))
+    j1 = max(j0 + 2, int(np.searchsorted(grid.lon, lon_c + span)))
+    lon, lat = grid.lon[j0:j1], grid.lat[i0:i1]
+    lines = [
+        line for line in coastline.coast
+        if line[:, 0].max() >= lon[0] and line[:, 0].min() <= lon[-1]
+        and line[:, 1].max() >= lat[0] and line[:, 1].min() <= lat[-1]
+    ]
+    st.plotly_chart(
+        viz.coastline_map(lon, lat, grid.z[i0:i1, j0:j1], recon[i0:i1, j0:j1], lines,
+                          unit=grid.unit),
+        use_container_width=True,
+    )
+    st.caption(
+        "Background: the training grid. Black: the coastline of Natural Earth. "
+        "Orange: where the network's field is 0."
+    )
+
+
+@st.cache_data(show_spinner="Loading the temperatures …")
+def get_temperature():
+    return load_temperature()
+
+
+def tab_encoder() -> None:
+    st.markdown(
+        "A **location encoder** turns a place into a list of numbers. It is not meant to store "
+        "one field but to be **transferred**: a small second network learns a new task from these "
+        "numbers. The task here is the **mean annual air temperature** on land, learned from only a "
+        "few places and checked on all the others."
+    )
+    if cloud_mode():
+        st.info("This tab needs two downloads and only runs in the local version of the app.")
+        return
+    missing = [(p, url, mb, label) for p, url, mb, label in (
+        (temperature_path(), TEMPERATURE_URL, TEMPERATURE_MB,
+         "temperatures of the University of Delaware (no restrictions)"),
+        (satclip_path(), SATCLIP_URL, SATCLIP_MB, "pretrained SatCLIP encoder (MIT licence)"),
+    ) if not p.exists()]
+    if missing:
+        total = sum(m[2] for m in missing)
+        st.info("**Missing data:** " + " and ".join(f"the {m[3]}, about {m[2]} MB" for m in missing) + ".")
+        if not st.button(f"Download ({total} MB)", type="primary", key="encoder-download"):
+            return
+        try:
+            for path, url, _, label in missing:
+                with st.spinner(f"Downloading the {label} …"):
+                    download(path, url)
+        except (httpx.HTTPError, OSError) as error:
+            st.error(f"The download failed: {error}")
+            return
+        st.rerun()
+
+    data = get_temperature()
+    field = st.session_state.get("field")
+    has_elevation = field is not None and st.session_state.get("grid_source", "").startswith("ETOPO")
+    available = [e for e in ENCODERS if has_elevation or e not in NEEDS_ELEVATION_NETWORK]
+
+    c1, c2, c3 = st.columns([1, 5, 1])
+    n = c1.select_slider("Training places", [100, 300, 1000, 3000, 10000], value=1000, key="encoder-n")
+    # a new key once the elevation network is there, so that its two inputs are selected as well
+    chosen = c2.multiselect("Inputs", available, default=available, key=f"encoder-inputs-{len(available)}")
+    seed = int(c3.number_input("Seed", 0, 99, 0, key="encoder-seed"))
+    if not has_elevation:
+        st.caption(
+            "Train an elevation network (dataset *Elevation (ETOPO 2022)*) to add its hidden layer "
+            "and its elevation as inputs."
+        )
+    if st.button("Compare", type="primary", key="encoder-run", disabled=not chosen):
+        train_idx = sample_places(data, n, seed)
+        results = {}
+        bar = st.progress(0.0)
+        for k, name in enumerate(chosen):
+            features = encode(name, data.lonlat, field)
+            results[name] = fit_and_predict(features, data.celsius, train_idx, HeadConfig(seed=seed))
+            bar.progress((k + 1) / len(chosen), text=name)
+        bar.empty()
+        st.session_state.encoder_results = (train_idx, results)
+
+    if "encoder_results" not in st.session_state:
+        return
+    train_idx, results = st.session_state.encoder_results
+    if any(len(v) != data.n for v in results.values()):  # from an older version of the data
+        del st.session_state.encoder_results
+        return
+    test = np.ones(data.n, dtype=bool)
+    test[train_idx] = False
+    w = data.weights
+    rmse = {k: weighted_rmse(data.celsius[test], v[test], w[test]) for k, v in results.items()}
+    baseline = weighted_rmse(data.celsius[test], np.full(test.sum(), np.average(data.celsius[train_idx])), w[test])
+    st.plotly_chart(viz.encoder_bars(list(rmse), list(rmse.values()), baseline), use_container_width=True)
+    st.caption(
+        f"{fmt_int(len(train_idx))} training places, {fmt_int(test.sum())} places to check. "
+        "Each input feeds the same small network (2 hidden layers of 64 neurons, 2 000 steps)."
+    )
+
+    shown = st.selectbox("Map for", list(results), key="encoder-map")
+    lon, lat, truth = data.grid()
+    _, _, pred = data.grid(results[shown])
+    a, b = st.columns(2)
+    a.plotly_chart(viz.temperature_map(lon, lat, truth, title="Measured (University of Delaware, 1981–2010)",
+                                       points=data.lonlat[train_idx]), use_container_width=True)
+    b.plotly_chart(viz.temperature_map(lon, lat, pred, title=f"Predicted from {shown}"),
+                   use_container_width=True)
+    _, _, err = data.grid(results[shown] - data.celsius)
+    st.plotly_chart(viz.error_map(lon, lat, err, title="Error (prediction − measured)", unit="°C"),
+                    use_container_width=True)
+
+
+@st.cache_data(show_spinner="Loading the orthophoto …")
+def get_orthophoto(n: int):
+    return load_orthophoto(n)
+
+
+def _error_image(truth: np.ndarray, pred: np.ndarray, gain: float = 4.0) -> np.ndarray:
+    """Mean absolute error over the three colours, brightened: black = exact."""
+    err = np.abs(truth.astype(np.float32) - pred.astype(np.float32)).mean(axis=-1) * gain
+    return np.clip(err, 0, 255).astype(np.uint8)
+
+
+def tab_ortho() -> None:
+    st.markdown(
+        "An **aerial photo** as a neural field: f(E, N) → (R, G, B). The tile covers 1 km × 1 km "
+        "of the old town of **Regensburg**. A kilometre is flat for all practical purposes, so the "
+        "network gets map coordinates in metres (ETRS89 / UTM 32N) instead of a point on the globe."
+    )
+    if cloud_mode():
+        st.info("This tab needs a download and a lot of computing time; it only runs in the local version of the app.")
+        return
+    if not tile_path().exists():
+        st.info(f"**Missing data:** the orthophoto tile {TILE} (DOP40), about {TILE_MB} MB.")
+        if not st.button(f"Download ({TILE_MB} MB)", type="primary", key="ortho-download"):
+            return
+        try:
+            with st.spinner("Downloading the orthophoto …"):
+                download_tile()
+        except (httpx.HTTPError, OSError) as error:
+            st.error(f"The download failed: {error}")
+            return
+        st.rerun()
+
+    c1, c2, c3, c4 = st.columns(4)
+    n = c1.selectbox("Pixels", list(ORTHO_RESOLUTIONS), index=1, key="ortho-n",
+                     format_func=lambda k: f"{k} × {k} · {ORTHO_RESOLUTIONS[k]} m")
+    preset = c2.selectbox("Network", list(ORTHO_PRESETS), index=1, key="ortho-preset")
+    steps = int(c3.select_slider("Steps", [300, 1000, 3000, 6000], value=1000, key="ortho-steps"))
+    device_label = c4.selectbox("Device", ["auto", "cpu", "mps"], key="ortho-device")
+    photo = get_orthophoto(n)
+    cfg = ORTHO_PRESETS[preset]
+    field = build_ortho_field(cfg, photo)
+    st.caption(
+        f"{fmt_int(photo.n_pixels)} pixels × 3 colours = {human_bytes(photo.raw_bytes)} uncompressed · "
+        f"network: {fmt_int(field.n_parameters())} weights = {human_bytes(field.stored_bytes())} in float16 · "
+        f"Data: {ATTRIBUTION}"
+    )
+
+    if st.button("Train", type="primary", key="ortho-train"):
+        device = pick_device(device_label)
+        bar = st.progress(0.0, text="Starting …")
+        for p in train_ortho(field, photo, OrthoTrainConfig(steps=steps), device):
+            bar.progress(p.step / p.total,
+                         text=f"Step {p.step}/{p.total} · PSNR {p.psnr_db:.1f} dB · {p.elapsed_s:.0f} s")
+        bar.empty()
+        with st.spinner("Drawing the image from the network …"):
+            image = field.render(photo)
+        st.session_state.ortho = dict(field=field, image=image, n=n, preset=preset, steps=steps,
+                                      seconds=p.elapsed_s)
+
+    result = st.session_state.get("ortho")
+    if result is None:
+        return
+    if result["n"] != n:
+        st.warning(f"The resolution has changed since training – please retrain or switch back to {result['n']} pixels.")
+        return
+    field, image = result["field"], result["image"]
+    size = field.stored_bytes()
+    jpeg, jpeg_bytes, quality = jpeg_at_size(photo.rgb, size)
+
+    a, b, c, d = st.columns(4)
+    a.metric("PSNR of the network", f"{image_psnr(photo.rgb, image):.1f} dB")
+    b.metric("File size (float16)", human_bytes(size))
+    c.metric("Compression ratio", f"{photo.raw_bytes / size:,.0f} : 1")
+    d.metric(f"JPEG of the same size (quality {quality})", f"{image_psnr(photo.rgb, jpeg):.1f} dB")
+    st.caption(
+        f"{result['preset']} network, {fmt_int(result['steps'])} steps, {result['seconds']:.0f} s. "
+        "PSNR: the higher, the closer to the original; +6 dB halves the error."
+    )
+
+    a, b, c = st.columns(3)
+    a.image(photo.rgb, caption="Original (DOP40)", use_container_width=True)
+    b.image(image, caption="Network", use_container_width=True)
+    c.image(jpeg, caption=f"JPEG, {human_bytes(jpeg_bytes)}", use_container_width=True)
+
+    st.markdown("**Zoom in:** 100 m × 100 m around a landmark")
+    place = st.selectbox("Detail", list(PLACES), key="ortho-place")
+    rows, cols = photo.crop(*PLACES[place], 100)
+    a, b, c, d = st.columns(4)
+    a.image(photo.rgb[rows, cols], caption="Original", use_container_width=True)
+    b.image(image[rows, cols], caption="Network", use_container_width=True)
+    c.image(jpeg[rows, cols], caption="JPEG", use_container_width=True)
+    d.image(_error_image(photo.rgb[rows, cols], image[rows, cols]),
+            caption="Error of the network (×4, black = exact)", use_container_width=True)
+
+
+@st.cache_data(show_spinner="Reading the building models and computing the distance field …")
+def get_building_grid(res: float):
+    return lod2.load_building_grid(res)
+
+
+@st.cache_data(show_spinner="Building the surface …")
+def _building_surface(field: np.ndarray, res: float, step: int):
+    return lod2.surface(field, res, step)
+
+
+def tab_buildings() -> None:
+    st.markdown(
+        "**Buildings** as a neural field in three dimensions: f(E, N, H) → distance to the nearest wall or "
+        "roof, negative inside (like the coast in the Coastline tab). The area is 300 m × 300 m around the "
+        "**cathedral of Regensburg**, 120 m high. The surface of the buildings is where the distance is 0."
+    )
+    if cloud_mode():
+        st.info("This tab needs a large download and a lot of computing time; it only runs in the local version of the app.")
+        return
+    if not lod2.tile_path().exists():
+        st.info(f"**Missing data:** the LoD2 building models of tile {lod2.TILE} (2 km × 2 km), about {lod2.TILE_MB} MB.")
+        if not st.button(f"Download ({lod2.TILE_MB} MB)", type="primary", key="lod2-download"):
+            return
+        try:
+            with st.spinner("Downloading the building models …"):
+                lod2.download_tile()
+        except (httpx.HTTPError, OSError) as error:
+            st.error(f"The download failed: {error}")
+            return
+        st.rerun()
+
+    c1, c2, c3, c4, c5 = st.columns(5)
+    res = c1.selectbox("Voxel size", [2.0, 1.0], index=1, key="lod2-res", format_func=lambda r: f"{r:g} m")
+    preset = c2.selectbox("Network", list(lod2.BUILDING_PRESETS), index=1, key="lod2-preset")
+    limit = c3.selectbox("Limit the distance to", [2.0, 5.0, 10.0, 20.0], index=1, key="lod2-limit",
+                         format_func=lambda v: f"±{v:g} m")
+    steps = int(c4.select_slider("Steps", [300, 1000, 3000, 6000], value=1000, key="lod2-steps"))
+    device_label = c5.selectbox("Device", ["auto", "cpu", "mps"], key="lod2-device")
+    grid = get_building_grid(res)
+    cfg = replace(lod2.BUILDING_PRESETS[preset], limit_m=limit)
+    field = lod2.build_building_field(cfg, grid)
+    nz, ny, nx = grid.shape
+    st.caption(
+        f"{grid.n_buildings} buildings · {fmt_int(grid.n_points)} corner points · CityGML {human_bytes(grid.gml_bytes)} · "
+        f"grid {nx} × {ny} × {nz} = {fmt_int(grid.n_voxels)} voxels · network: {fmt_int(field.n_parameters())} weights = "
+        f"{human_bytes(field.stored_bytes())} in float16 · Data: {lod2.ATTRIBUTION}"
+    )
+
+    if st.button("Train", type="primary", key="lod2-train"):
+        device = pick_device(device_label)
+        bar = st.progress(0.0, text="Starting …")
+        for p in lod2.train_building_field(field, grid, lod2.BuildingTrainConfig(steps=steps), device):
+            bar.progress(p.step / p.total,
+                         text=f"Step {p.step}/{p.total} · right side {100 * p.correct_side:.1f} % · {p.elapsed_s:.0f} s")
+        bar.empty()
+        with st.spinner("Evaluating the network on every voxel …"):
+            predicted = field.render(grid)
+            scores = lod2.BuildingScores.compare(grid, predicted, limit)
+        st.session_state.lod2 = dict(field=field, predicted=predicted, scores=scores, res=res, preset=preset,
+                                     steps=steps, limit=limit, seconds=p.elapsed_s)
+
+    result = st.session_state.get("lod2")
+    if result is None:
+        return
+    if result["res"] != res:
+        st.warning(f"The voxel size has changed since training – please retrain or switch back to {result['res']:g} m.")
+        return
+    field, predicted, scores = result["field"], result["predicted"], result["scores"]
+    size = field.stored_bytes()
+    a, b, c, d = st.columns(4)
+    a.metric("Volume overlap (IoU)", f"{scores.iou:.2f}")
+    b.metric("Surface offset (median)", f"{scores.offset_median_m:.1f} m")
+    c.metric("Surface offset (90 %)", f"{scores.offset_p90_m:.1f} m")
+    d.metric("Network vs CityGML", f"{human_bytes(size)} · {grid.gml_bytes / size:,.0f} : 1")
+    st.caption(
+        f"{result['preset']} network, ±{result['limit']:g} m, {fmt_int(result['steps'])} steps, {result['seconds']:.0f} s. "
+        f"Right side of the surface: {100 * scores.correct_side:.1f} % of all voxels. IoU: the volume both see as "
+        "building, divided by the volume at least one of them sees as building – 1 is perfect. Surface offset: "
+        "how far the network's surface lies from the true one."
+    )
+
+    step = 2 if res < 2 else 1
+    ground = float(grid.height[0])
+    zmax = 60.0  # houses are 10 to 25 m high; the cathedral's towers stay dark above 60 m
+    a, b = st.columns(2)
+    with a:
+        verts, faces = _building_surface(grid.sdf, res, step)
+        st.plotly_chart(viz.building_mesh(lod2.mesh_enh(grid, verts), faces, ground=ground, zmax=zmax,
+                                          title="LoD2 building models"), use_container_width=True)
+    with b:
+        verts, faces = _building_surface(predicted, res, step)
+        if len(verts):
+            st.plotly_chart(viz.building_mesh(lod2.mesh_enh(grid, verts), faces, ground=ground, zmax=zmax,
+                                              title="Network"), use_container_width=True)
+        else:
+            st.info("The network has no surface yet – train longer.")
+
+    st.markdown("**Horizontal slice** through the distance field")
+    level = st.slider("Height above the lowest ground", 1, int(grid.height[-1] - grid.height[0]) - 1, 10,
+                      key="lod2-level", format="%d m")
+    k = int(np.argmin(np.abs(grid.height - (grid.height[0] - res / 2 + level))))
+    a, b = st.columns(2)
+    a.plotly_chart(viz.distance_slice(grid.east, grid.north, grid.sdf[k], limit=result["limit"], title="LoD2"),
+                   use_container_width=True)
+    b.plotly_chart(viz.distance_slice(grid.east, grid.north, predicted[k], limit=result["limit"], title="Network"),
+                   use_container_width=True)
+    st.caption("Red inside, blue outside, white near a wall or a roof; the black line is the 0-level, i.e. the walls "
+               "at this height. Small black rings in the network's slice are crumbs: places just above a low roof "
+               "where the network's noise crosses 0.")
 
 
 def tab_rate(grid: ElevationGrid) -> None:
@@ -549,18 +1045,22 @@ def tab_rate(grid: ElevationGrid) -> None:
                 rows.append({
                     "Variant": name, "Width": width, "Parameters": field.n_parameters(),
                     "File size": field.stored_bytes(4), "Ratio": comp.ratio,
-                    "weighted RMSE [m]": last.scores.weighted_rmse, "PSNR [dB]": last.scores.psnr_db,
+                    f"weighted RMSE [{grid.unit}]": last.scores.weighted_rmse,
+                    "PSNR [dB]": last.scores.psnr_db,
                 })
         bar.empty()
         st.session_state.rd_rows = rows
+        st.session_state.rd_unit = grid.unit
 
     rows = st.session_state.get("rd_rows")
     if not rows:
         return
-    st.plotly_chart(viz.rate_distortion(rows), use_container_width=True)
+    unit = st.session_state.get("rd_unit", "m")
+    key = f"weighted RMSE [{unit}]"
+    st.plotly_chart(viz.rate_distortion(rows, unit=unit), use_container_width=True)
     st.dataframe(
         [{**r, "File size": human_bytes(r["File size"]), "Ratio": fmt_ratio(r["Ratio"]),
-          "weighted RMSE [m]": round(r["weighted RMSE [m]"], 1), "PSNR [dB]": round(r["PSNR [dB]"], 1)}
+          key: round(r[key], 1), "PSNR [dB]": round(r["PSNR [dB]"], 1)}
          for r in rows],
         use_container_width=True, hide_index=True,
     )
@@ -699,10 +1199,12 @@ def main() -> None:
     grid, cfg, tcfg, device_label, start = sidebar()
 
     st.title("The Earth as a Neural Field")
-    st.caption("f(lon, lat) → elevation · the weights are the compressed data")
+    st.caption(f"f(lon, lat) → {grid.quantity.lower()} · the weights are the compressed data")
 
     labels = ["💡 Idea & Budget", "📉 Training", "🌐 Globe 3D", "🗺️ Maps & Error",
-              "🔍 Super-Resolution", "📐 Rate & Error", "💾 Export"]
+              "🔍 Super-Resolution", "🏖️ Coastline", "🧭 Location Encoder", "🛩️ Orthophoto", "🏛️ Buildings 3D",
+              "📐 Rate & Error",
+              "💾 Export"]
     # Each press of Train gives the tab bar a new key, so it is created afresh and
     # opens on the Training tab. Otherwise the tabs keep the user's choice and don't
     # rerun the app – a rerun would abort a training that is still running.
@@ -721,6 +1223,14 @@ def main() -> None:
     with tabs[4]:
         tab_superres(grid)
     with tabs[5]:
-        tab_rate(grid)
+        tab_coastline(grid)
     with tabs[6]:
+        tab_encoder()
+    with tabs[7]:
+        tab_ortho()
+    with tabs[8]:
+        tab_buildings()
+    with tabs[9]:
+        tab_rate(grid)
+    with tabs[10]:
         tab_export(grid)
