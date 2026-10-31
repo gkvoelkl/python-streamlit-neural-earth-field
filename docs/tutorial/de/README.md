@@ -47,6 +47,12 @@ Die folgenden Kapitel bauen auf den Kapiteln 1 bis 5 auf. Sie lassen sich je nac
 10. [Abfragen und exportieren](10-abfragen-und-exportieren.md)
 11. [Einordnung und Ausblick](11-einordnung-und-ausblick.md)
 
+### Vektordaten
+
+Diese Kapitel setzen den Ausblick aus Kapitel 11 in die Praxis um: Punkte, Linien und Flächen als Feld.
+
+12. [Die Küste als Abstandsfeld](12-kueste-als-abstandsfeld.md)
+
 **Anhang**
 
 - [Messungen](anhang-messungen.md)

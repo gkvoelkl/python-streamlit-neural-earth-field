@@ -34,6 +34,8 @@ nav:
       - 9 · Kompressionsrate und Fehler messen: 09-rate-und-fehler.md
       - 10 · Abfragen und exportieren: 10-abfragen-und-exportieren.md
       - 11 · Einordnung und Ausblick: 11-einordnung-und-ausblick.md
+  - Vektordaten:
+      - 12 · Die Küste als Abstandsfeld: 12-kueste-als-abstandsfeld.md
   - Anhang · Messungen: anhang-messungen.md
 
 theme:
@@ -86,6 +88,8 @@ plugins:
             9 · Kompressionsrate und Fehler messen: 9 · Measuring compression ratio and error
             10 · Abfragen und exportieren: 10 · Querying and exporting
             11 · Einordnung und Ausblick: 11 · Context and outlook
+            Vektordaten: Vector data
+            12 · Die Küste als Abstandsfeld: 12 · The coast as a distance field
             Anhang · Messungen: Appendix · Measurements
 
 markdown_extensions:

@@ -41,6 +41,11 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 The app averages it down to the chosen working resolution (180 × 360 to 2160 × 4320)
 and caches it under `data/cache/`.
 
+The *Coastline*, *Location Encoder*, *Orthophoto* and *Buildings 3D* tabs need
+further freely available data (Natural Earth, air temperature from the University
+of Delaware, SatCLIP, orthophotos and 3D building models of the Bavarian surveying
+administration). The app asks each time before it downloads anything.
+
 ## GPU and online version
 
 `uv sync` installs PyTorch from PyPI. On a Mac it uses the Apple graphics unit (MPS), on
@@ -65,12 +70,16 @@ training run. Its numbers therefore differ from the tutorial. Local installs are
 | **Globe 3D** | Original and reconstruction as two rotatable spheres |
 | **Maps & Error** | Elevation maps, error map, error histogram |
 | **Super-Resolution** | Query the field at arbitrarily fine coordinates |
+| **Coastline** | The coast as the network's 0 line over the Natural Earth coastline |
+| **Location Encoder** | Places as vectors of numbers: different encoders learn the air temperature |
+| **Orthophoto** | An aerial photo in UTM as a field f(E, N) → (R, G, B) |
+| **Buildings 3D** | Buildings as a signed distance in three dimensions |
 | **Rate & Error** | Rate-distortion curve across several network sizes |
 | **Export** | Weights as `.pt` in float32 / float16, with a loading example |
 
 <p align="center">
   <img src="./docs/tutorial/img/app-uebersicht.jpg" alt="The app after start-up: on the left the sidebar with data source, grid resolution, network preset and training settings; on the right the Idea &amp; Budget tab with the tab bar above it." width="820">
-  <br><sub><em>The app after start-up: settings in the sidebar, seven tabs for budget, training and results.</em></sub>
+  <br><sub><em>The app after start-up: settings in the sidebar, tabs for budget, training and results.</em></sub>
 </p>
 
 ## The three tricks
@@ -161,6 +170,10 @@ for learning: the trade-off is visible, not hidden.
 app.py          entry point for `streamlit run app.py`
 src/python_streamlit_neural_earth_field/
   data.py       ETOPO download and loading, block-mean downsampling, area weights
+  coast.py      distance to the coast from Natural Earth
+  embedding.py  location encoders and transfer to the air temperature
+  ortho.py      orthophoto as a field in UTM
+  buildings.py  buildings as a 3D distance field
   encoding.py   lon/lat → unit sphere, Fourier features, spherical harmonics
   model.py      NeuralField (MLP / SIREN / context field), size bookkeeping
   training.py   overfitting loop as a generator, area-weighted sampling

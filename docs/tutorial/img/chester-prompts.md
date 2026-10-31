@@ -329,3 +329,28 @@ into the distance. No text, no numbers, no music notes, no logos except on the c
 ```
 
 Ausgewählt: Bild 3 von 4 (Image 3.0, 2K HD, 16:9). Keine Musiknoten. Im Tal Lichtpunkte, leuchtende Wege und Felder mit Rändern – das passt zu Punkten, Linien und Flächen. Aiko steht statt zu sitzen; Bäume mit Blättern wie leuchtende Netze hat keine Variante gezeigt. In Variante 2 standen im Tal Laternen in Aikos Form.
+
+## Kapitel 12 · `kapitel-12-chester.jpg`
+
+Idee: Titel „Die Küste als Abstandsfeld“ – Chester misst an einer Küste mit einem Maßband den Abstand vom Wasser. Parallel zur Küste ziehen sich leuchtende Linien über Land und Wasser, wie Höhenlinien des Abstands. Zwei Referenzbilder: `chester-referenz.png` (Chester) und `kapitel-11-chester.jpg` (Aiko, voriges Kapitel); die Reihenfolge, die Kling anzeigt, beim Hochladen prüfen und die Nummern im Prompt anpassen.
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a sunny, gently curving coastline with a sandy
+beach, a few rocks and green grassy dunes behind it, the calm turquoise sea in front.
+The glowing character stands at the waterline and holds the end of a long yellow
+measuring tape. Chester stands further up on the dunes, pulls the tape tight with both
+paws and looks at it concentrated and pleased. Softly glowing thin lines run parallel to
+the coastline, both across the land and across the water, evenly spaced like ripples
+spreading out from the shore. Wide composition seen slightly from above, both characters
+in sharp focus. No text, no numbers, no music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 1 von 4 (Image 3.0, 2K HD, 16:9). Diesmal zeigte Kling die Referenzbilder in der Reihenfolge des Hochladens: Bild 1 `chester-referenz.png`, Bild 2 `kapitel-11-chester.jpg` – der Prompt passte unverändert. Die leuchtenden Linien liegen in allen Varianten nur auf dem Wasser, nicht auf dem Land; Chester sitzt, statt zu stehen. Der Stil ist etwas heller als in den früheren Kapiteln.

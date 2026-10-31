@@ -89,6 +89,7 @@ Einige Kapitel enthalten eigene Messungen für eine bestimmte Frage. Sie wurden 
 | [9](09-rate-und-fehler.md) | Rate-Distortion-Kurve | 1080 × 2160, neun Netzbreiten von 16 bis 256, 4 Schichten, σ = 8, 2 000 und 600 Schritte; Fehler auf 200 000 Zellen |
 | [10](10-abfragen-und-exportieren.md) | float16 auf dem ganzen Gitter; Abfragen an einzelnen Orten; feiner abfragen gegen das Gitter 2160 × 4320 | 1080 × 2160, 4 000 Schritte |
 | [11](11-einordnung-und-ausblick.md) | Land oder Meer: Anteil der Erdoberfläche auf der richtigen Seite der 0-m-Linie | Netz aus Kapitel 10 |
+| [12](12-kueste-als-abstandsfeld.md) | Küste aus dem Höhennetz gegen das Abstandsnetz; Begrenzung des Abstands; Fourier MLP, SIREN und Kontextfeld: richtige Seite, Küstenzellen, Küstenversatz | 1080 × 2160, 4 000 Schritte, Abstand zur Küstenlinie von Natural Earth 1:50 Mio. |
 
 Die Zahlen in den Kapiteln weichen deshalb um einige Meter von der Haupttabelle ab. Zum Beispiel hat das Standardbeispiel in Kapitel 10 einen gewichteten RMSE von 245 m, *Fourier MLP + context field* 191 m statt 186 m; in Kapitel 8 stehen 245 m und 185 m. Solche Unterschiede liegen im Bereich der Schwankung von Lauf zu Lauf.
 
@@ -113,6 +114,6 @@ Ein einzelner Lauf in der App wird nicht genau dieselben Zahlen liefern wie hier
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 11 · Einordnung und Ausblick](11-einordnung-und-ausblick.md)
+[Übersicht](README.md) · Zurück: [Kapitel 12 · Die Küste als Abstandsfeld](12-kueste-als-abstandsfeld.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*
