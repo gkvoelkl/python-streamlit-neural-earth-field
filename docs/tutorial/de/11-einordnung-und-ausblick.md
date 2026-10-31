@@ -117,6 +117,6 @@ Beiden Wegen gemeinsam ist der Grundgedanke dieser Reihe: Statt Geodaten als Tab
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 10 · Abfragen und exportieren](10-abfragen-und-exportieren.md) · Weiter: [Anhang · Messungen](anhang-messungen.md)
+[Übersicht](README.md) · Zurück: [Kapitel 10 · Abfragen und exportieren](10-abfragen-und-exportieren.md) · Weiter: [Kapitel 12 · Die Küste als Abstandsfeld](12-kueste-als-abstandsfeld.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

@@ -117,6 +117,6 @@ Common to both approaches is the basic idea of this series: instead of treating 
 
 ---
 
-[Overview](README.md) · Back: [Chapter 10 · Querying and exporting](10-abfragen-und-exportieren.md) · Next: [Appendix · Measurements](anhang-messungen.md)
+[Overview](README.md) · Back: [Chapter 10 · Querying and exporting](10-abfragen-und-exportieren.md) · Next: [Chapter 12 · The coast as a distance field](12-kueste-als-abstandsfeld.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

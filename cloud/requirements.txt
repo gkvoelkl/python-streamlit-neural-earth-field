@@ -9,3 +9,4 @@ streamlit==1.64.0
 numpy==2.5.3
 plotly==7.1.0
 httpx==0.28.1
+scipy==1.18.1

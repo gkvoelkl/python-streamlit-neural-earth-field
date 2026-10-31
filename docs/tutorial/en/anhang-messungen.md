@@ -89,6 +89,7 @@ Some chapters contain their own measurements for a particular question. They wer
 | [9](09-rate-und-fehler.md) | rate-distortion curve | 1080 × 2160, nine network widths from 16 to 256, 4 layers, σ = 8, 2 000 and 600 steps; error on 200 000 cells |
 | [10](10-abfragen-und-exportieren.md) | float16 on the whole grid; queries at individual places; querying more finely against the grid 2160 × 4320 | 1080 × 2160, 4 000 steps |
 | [11](11-einordnung-und-ausblick.md) | land or sea: share of the Earth's surface on the correct side of the 0 m line | network from chapter 10 |
+| [12](12-kueste-als-abstandsfeld.md) | coast from the elevation network against the distance network; limiting the distance; Fourier MLP, SIREN and context field: correct side, coastal cells, coast offset | 1080 × 2160, 4 000 steps, distance to the Natural Earth coastline 1:50 million |
 
 The numbers in the chapters therefore differ from the main table by a few metres. For example, the standard example in chapter 10 has a weighted RMSE of 245 m, *Fourier MLP + context field* 191 m instead of 186 m; chapter 8 gives 245 m and 185 m. Such differences are within the variation from run to run.
 
@@ -113,6 +114,6 @@ A single run in the app will not give exactly the same numbers as here, because 
 
 ---
 
-[Overview](README.md) · Back: [Chapter 11 · Context and outlook](11-einordnung-und-ausblick.md)
+[Overview](README.md) · Back: [Chapter 12 · The coast as a distance field](12-kueste-als-abstandsfeld.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

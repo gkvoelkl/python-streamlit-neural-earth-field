@@ -47,6 +47,12 @@ The following chapters build on chapters 1 to 5. Read or skip them as you like.
 10. [Querying and exporting](10-abfragen-und-exportieren.md)
 11. [Context and outlook](11-einordnung-und-ausblick.md)
 
+### Vector data
+
+These chapters put the outlook from chapter 11 into practice: points, lines and areas as a field.
+
+12. [The coast as a distance field](12-kueste-als-abstandsfeld.md)
+
 **Appendix**
 
 - [Measurements](anhang-messungen.md)

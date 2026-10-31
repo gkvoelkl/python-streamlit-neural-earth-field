@@ -42,6 +42,11 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 Die App mittelt es auf die gewählte Arbeitsauflösung (180 × 360 bis 2160 × 4320)
 und legt das Ergebnis unter `data/cache/` ab.
 
+Die Reiter *Coastline*, *Location Encoder*, *Orthophoto* und *Buildings 3D* brauchen
+weitere, frei verfügbare Daten (Natural Earth, Lufttemperatur der University of
+Delaware, SatCLIP, Orthofotos und 3D-Gebäudemodelle der Bayerischen
+Vermessungsverwaltung). Die App fragt jeweils, bevor sie etwas herunterlädt.
+
 ## GPU und Online-Fassung
 
 `uv sync` installiert PyTorch von PyPI. Auf dem Mac rechnet es auf dem Apple-Grafikchip (MPS),
@@ -67,12 +72,16 @@ Installationen betrifft das nicht.
 | **Globe 3D** | Original und Rekonstruktion als zwei drehbare Kugeln |
 | **Maps & Error** | Höhenkarten, Fehlerkarte, Histogramm der Fehler |
 | **Super-Resolution** | das Feld an beliebig feinen Koordinaten abfragen |
+| **Coastline** | die Küste als 0-Linie des Netzes über der Küstenlinie von Natural Earth |
+| **Location Encoder** | Orte als Zahlenvektoren: verschiedene Encoder lernen die Lufttemperatur |
+| **Orthophoto** | ein Luftbild in UTM als Feld f(E, N) → (R, G, B) |
+| **Buildings 3D** | Gebäude als vorzeichenbehafteter Abstand in drei Dimensionen |
 | **Rate & Error** | Rate-Distortion-Kurve über mehrere Netzgrößen |
 | **Export** | Gewichte als `.pt` in float32 / float16, mit Ladebeispiel |
 
 <p align="center">
   <img src="./docs/tutorial/img/app-uebersicht.jpg" alt="Die App nach dem Start: links die Seitenleiste mit Datenquelle, Gitterauflösung, Netz-Vorlage und Trainingseinstellungen; rechts der Reiter Idea &amp; Budget, darüber die Leiste mit allen Reitern." width="820">
-  <br><sub><em>Die App nach dem Start: Einstellungen in der Seitenleiste, sieben Reiter für Budget, Training und Ergebnisse.</em></sub>
+  <br><sub><em>Die App nach dem Start: Einstellungen in der Seitenleiste, Reiter für Budget, Training und Ergebnisse.</em></sub>
 </p>
 
 ## Die drei Kniffe
@@ -165,6 +174,10 @@ Beispiel lehrreich: Die Abwägung ist sichtbar und nicht versteckt.
 app.py          Startdatei für `streamlit run app.py`
 src/python_streamlit_neural_earth_field/
   data.py       ETOPO herunterladen und laden, auf Blockmittel verkleinern, Flächengewichte
+  coast.py      Abstand zur Küste aus Natural Earth
+  embedding.py  Location Encoder und Übertragung auf die Lufttemperatur
+  ortho.py      Orthofoto als Feld in UTM
+  buildings.py  Gebäude als 3D-Abstandsfeld
   encoding.py   lon/lat → Einheitskugel, Fourier-Features, Kugelflächenfunktionen
   model.py      NeuralField (MLP / SIREN / Kontextfeld), Größenbuchhaltung
   training.py   Overfitting-Schleife als Generator, flächengewichtete Auswahl

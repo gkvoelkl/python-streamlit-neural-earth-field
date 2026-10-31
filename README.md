@@ -48,13 +48,13 @@ exactly this one dataset: **the weights are the file**.
   training, the live error curve, original and reconstruction as two rotatable
   globes, error maps, queries at any coordinate, a rate-distortion curve and the
   export of the weights in float32 or float16.
-- **A matching tutorial** – eleven chapters and an appendix with measurements,
+- **A matching tutorial** – twelve chapters and an appendix with measurements,
   each linking an idea to an experiment in the app: from the grid as a function
   through training, network architecture, spherical coordinates and Fourier
-  features to the context field and an outlook on vector data. No program code,
-  but diagrams, worked examples and screenshots – for readers who know neural
-  networks at most from introductions. Written in German and fully translated
-  into English.
+  features to the context field, an outlook on vector data and the coast as a
+  distance field. No program code, but diagrams, worked examples and screenshots
+  – for readers who know neural networks at most from introductions. Written in
+  German and fully translated into English.
 
 ### Getting started
 
@@ -97,13 +97,13 @@ einen Datensatz trainiert: **Die Gewichte sind die Datei.**
   dem Training, die Fehlerkurve live, Original und Rekonstruktion als zwei
   drehbare Globen, Fehlerkarten, Abfragen an beliebigen Koordinaten, eine
   Rate-Distortion-Kurve und den Export der Gewichte in float32 oder float16.
-- **Ein passendes Tutorial** – elf Kapitel und ein Anhang mit Messungen, jedes
+- **Ein passendes Tutorial** – zwölf Kapitel und ein Anhang mit Messungen, jedes
   Kapitel verbindet eine Idee mit einem Experiment in der App: vom Raster als
   Funktion über Training, Netzarchitektur, Kugelkoordinaten und Fourier-Features
-  bis zum Kontextfeld und einem Ausblick auf Vektordaten. Ohne Programmcode,
-  dafür mit Diagrammen, Rechenbeispielen und Screenshots – für alle, die
-  neuronale Netze höchstens aus Einführungen kennen. Auf Deutsch geschrieben
-  und vollständig ins Englische übersetzt.
+  bis zum Kontextfeld, einem Ausblick auf Vektordaten und der Küste als
+  Abstandsfeld. Ohne Programmcode, dafür mit Diagrammen, Rechenbeispielen und
+  Screenshots – für alle, die neuronale Netze höchstens aus Einführungen kennen.
+  Auf Deutsch geschrieben und vollständig ins Englische übersetzt.
 
 ### Loslegen
 
