@@ -66,7 +66,16 @@ from .ortho import (
     train_ortho,
 )
 from .ortho import RESOLUTIONS as ORTHO_RESOLUTIONS
-from .splat import SPLAT_PRESETS, SplatTrainConfig, build_gaussian_image, train_splat
+from .splat import (
+    SPLAT_PRESETS,
+    VOLUME_PRESETS,
+    SplatTrainConfig,
+    VolumeTrainConfig,
+    build_gaussian_image,
+    build_gaussian_volume,
+    train_gaussian_volume,
+    train_splat,
+)
 from . import buildings as lod2
 from .model import PRESETS, FieldConfig, NeuralField, build_field
 from .training import TrainConfig, pick_device, train
@@ -913,14 +922,22 @@ def _ellipse_overlay(image: np.ndarray, model, n: int, rows: slice, cols: slice,
 
 
 def tab_splat() -> None:
+    if cloud_mode():
+        st.info("This tab needs downloads and a lot of computing time; it only runs in the local version of the app.")
+        return
+    what = st.radio("Store", ["Aerial photo (2D)", "Buildings (3D)"], horizontal=True, key="splat-what")
+    if what == "Aerial photo (2D)":
+        _splat_photo()
+    else:
+        _splat_buildings()
+
+
+def _splat_photo() -> None:
     st.markdown(
         "The same **aerial photo** as in the Orthophoto tab, stored without a network: as many small coloured "
         "**Gaussians**. Each one has a centre, two widths, a rotation and a colour – eight numbers – and adds its "
         "colour to the pixels around it. The image is the sum of all of them (2D Gaussian splatting)."
     )
-    if cloud_mode():
-        st.info("This tab needs a download and a lot of computing time; it only runs in the local version of the app.")
-        return
     if not tile_path().exists():
         st.info(f"**Missing data:** the orthophoto tile {TILE} (DOP40), about {TILE_MB} MB – "
                 "download it in the Orthophoto tab.")
@@ -1003,6 +1020,83 @@ def get_building_grid(res: float):
 @st.cache_data(show_spinner="Building the surface …")
 def _building_surface(field: np.ndarray, res: float, step: int):
     return lod2.surface(field, res, step)
+
+
+def _splat_buildings() -> None:
+    st.markdown(
+        "The **buildings** of the Buildings 3D tab as many small **3D Gaussians**: eight numbers each again – a "
+        "centre, three widths, a turn about the vertical and a strength. They add up *how much building* there is "
+        "at every voxel; where the sum exceeds ½, the voxel counts as inside. The Gaussians start at random voxels "
+        "inside the buildings, as 3D Gaussian splatting starts from a point cloud."
+    )
+    if not lod2.tile_path().exists():
+        st.info(f"**Missing data:** the LoD2 building models of tile {lod2.TILE}, about {lod2.TILE_MB} MB – "
+                "download them in the Buildings 3D tab.")
+        return
+    c1, c2, c3, c4 = st.columns(4)
+    res = c1.selectbox("Voxel size", [2.0, 1.0], index=1, key="vol-res", format_func=lambda r: f"{r:g} m")
+    preset = c2.selectbox("Gaussians", list(VOLUME_PRESETS), index=1, key="vol-preset",
+                          format_func=lambda k: f"{k} · {fmt_int(VOLUME_PRESETS[k].n_gaussians)}")
+    steps = int(c3.select_slider("Steps", [100, 300, 1000], value=300, key="vol-steps"))
+    device_label = c4.selectbox("Device", ["auto", "cpu", "mps"], key="vol-device")
+    grid = get_building_grid(res)
+    model = build_gaussian_volume(VOLUME_PRESETS[preset], grid)
+    st.caption(
+        f"{grid.n_buildings} buildings · CityGML {human_bytes(grid.gml_bytes)} · {fmt_int(grid.n_voxels)} voxels · "
+        f"{fmt_int(model.n_gaussians)} Gaussians × 8 numbers = {human_bytes(model.stored_bytes())} in float16 "
+        f"(the size of the {preset} network in the Buildings 3D tab) · Data: {lod2.ATTRIBUTION}"
+    )
+
+    if st.button("Train", type="primary", key="vol-train"):
+        device = pick_device(device_label)
+        bar = st.progress(0.0, text="Starting …")
+        for p in train_gaussian_volume(model, grid, VolumeTrainConfig(steps=steps), device):
+            bar.progress(p.step / p.total,
+                         text=f"Step {p.step}/{p.total} · right side {100 * p.correct_side:.2f} % · {p.elapsed_s:.0f} s")
+        bar.empty()
+        with st.spinner("Adding up the Gaussians on every voxel …"):
+            predicted = model.render(grid)
+            scores = lod2.BuildingScores.compare(grid, predicted, 0.5)
+        st.session_state.vol = dict(model=model, predicted=predicted, scores=scores, res=res, preset=preset,
+                                    steps=steps, seconds=p.elapsed_s)
+
+    result = st.session_state.get("vol")
+    if result is None:
+        return
+    if result["res"] != res:
+        st.warning(f"The voxel size has changed since training – please retrain or switch back to {result['res']:g} m.")
+        return
+    model, predicted, scores = result["model"], result["predicted"], result["scores"]
+    size = model.stored_bytes()
+    a, b, c, d = st.columns(4)
+    a.metric("Volume overlap (IoU)", f"{scores.iou:.2f}")
+    b.metric("Surface offset (median)", f"{scores.offset_median_m:.1f} m")
+    c.metric("Surface offset (90 %)", f"{scores.offset_p90_m:.1f} m")
+    network = st.session_state.get("lod2")
+    if network is not None and network["res"] == res and network["preset"] == result["preset"]:
+        d.metric(f"{network['preset']} network (Buildings 3D tab)", f"IoU {network['scores'].iou:.2f}")
+    else:
+        d.metric("Gaussians vs CityGML", f"{human_bytes(size)} · {grid.gml_bytes / size:,.0f} : 1")
+    st.caption(
+        f"{fmt_int(model.n_gaussians)} Gaussians ({result['preset']}), {fmt_int(result['steps'])} steps, "
+        f"{result['seconds']:.0f} s. Train the {result['preset']} network in the Buildings 3D tab with the same "
+        "voxel size to compare both at the same file size."
+    )
+
+    step = 2 if res < 2 else 1
+    ground = float(grid.height[0])
+    a, b = st.columns(2)
+    with a:
+        verts, faces = _building_surface(grid.sdf, res, step)
+        st.plotly_chart(viz.building_mesh(lod2.mesh_enh(grid, verts), faces, ground=ground, zmax=60.0,
+                                          title="LoD2 building models"), use_container_width=True)
+    with b:
+        verts, faces = _building_surface(predicted, res, step)
+        if len(verts):
+            st.plotly_chart(viz.building_mesh(lod2.mesh_enh(grid, verts), faces, ground=ground, zmax=60.0,
+                                              title="Gaussians"), use_container_width=True)
+        else:
+            st.info("The Gaussians have no surface yet – train longer.")
 
 
 def tab_buildings() -> None:

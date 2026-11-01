@@ -8,12 +8,18 @@ import numpy as np
 import pytest
 import torch
 
+from python_streamlit_neural_earth_field.buildings import BuildingGrid
 from python_streamlit_neural_earth_field.ortho import Orthophoto, image_psnr
 from python_streamlit_neural_earth_field.splat import (
     SPLAT_PRESETS,
+    VOLUME_PRESETS,
     SplatConfig,
     SplatTrainConfig,
+    VolumeConfig,
+    VolumeTrainConfig,
     build_gaussian_image,
+    build_gaussian_volume,
+    train_gaussian_volume,
     train_splat,
 )
 
@@ -71,3 +77,65 @@ def test_training_improves_the_image_and_renders_uint8():
     assert image.dtype == np.uint8 and image.shape == photo.rgb.shape
     assert image_psnr(photo.rgb, image) > max(before, 22.0)
     assert math.isfinite(progress[-1].psnr_db)
+
+
+# --------------------------------------------------------------------------- 3D
+
+
+def _grid(res: float = 1.0) -> BuildingGrid:
+    """A 24 m × 24 m × 12 m block with one house of 8 m × 6 m × 7 m, corner at E 726 000, N 5 434 000, H 330."""
+    n_xy, n_z = int(24 / res), int(12 / res)
+    east = 726_000 + res * (np.arange(n_xy) + 0.5)
+    north = 5_434_024 - res * (np.arange(n_xy) + 0.5)
+    height = 330 + res * (np.arange(n_z) + 0.5)
+    z, y, x = np.meshgrid(height - 330, north - 5_434_000, east - 726_000, indexing="ij")
+    inside = (x > 6) & (x < 14) & (y > 10) & (y < 16) & (z < 7)
+    return BuildingGrid(inside, np.where(inside, -1.0, 1.0).astype(np.float32), east, north, height, 1, 8, 100)
+
+
+def test_volume_presets_match_the_file_sizes_of_the_networks():
+    from python_streamlit_neural_earth_field.buildings import BUILDING_PRESETS, build_building_field
+
+    grid = _grid()
+    for name, cfg in VOLUME_PRESETS.items():
+        network = build_building_field(BUILDING_PRESETS[name], grid).stored_bytes()
+        assert build_gaussian_volume(cfg, grid).stored_bytes() == pytest.approx(network, rel=0.001)
+
+
+def test_volume_starts_inside_the_buildings_and_draws_them():
+    grid = _grid()
+    model = build_gaussian_volume(VolumeConfig(n_gaussians=60), grid)
+    c = model.centre.detach().numpy()
+    assert np.all((c[:, 0] > 5) & (c[:, 0] < 15) & (c[:, 1] > 9) & (c[:, 1] < 17) & (c[:, 2] < 8))
+    field = model.render(grid)
+    assert field.shape == grid.shape
+    assert field[grid.inside].mean() < field[~grid.inside].mean()  # more building where the house is
+
+
+def test_gradient_in_pieces_is_the_full_gradient():
+    grid = _grid()
+    model = build_gaussian_volume(VolumeConfig(n_gaussians=40), grid)
+    target = torch.from_numpy(grid.inside).float()
+    # all at once
+    occ = torch.zeros(grid.inside.size).index_add(0, *[t.flatten() for t in model._window(slice(None), grid.shape, 1.0)])
+    torch.mean((occ - target.flatten()) ** 2).backward()
+    full = model.centre.grad.clone()
+    # in pieces, as in training
+    model.zero_grad()
+    residual = (2 * (model.occupancy(grid.shape, 1.0) - target) / target.numel()).flatten()
+    for part in (slice(0, 15), slice(15, 40)):
+        flat, weight = model._window(part, grid.shape, 1.0)
+        (residual[flat] * weight).sum().backward()
+    assert torch.allclose(model.centre.grad, full, atol=1e-7)
+
+
+def test_volume_training_puts_more_voxels_on_the_right_side():
+    grid = _grid()
+    model = build_gaussian_volume(VolumeConfig(n_gaussians=40), grid)
+    progress = list(train_gaussian_volume(model, grid, VolumeTrainConfig(steps=60, eval_every=20),
+                                          torch.device("cpu")))
+    assert progress[-1].step == 60
+    assert progress[-1].correct_side > progress[0].correct_side
+    pred = model.render(grid) < 0
+    iou = (pred & grid.inside).sum() / (pred | grid.inside).sum()
+    assert iou > 0.8
