@@ -20,3 +20,6 @@ ToDo.md
 
 # Marketing material, kept locally
 docs/marketing/
+
+# Claude Code settings and worktrees, kept locally
+.claude/
