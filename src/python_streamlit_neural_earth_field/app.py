@@ -77,6 +77,7 @@ from .splat import (
     train_splat,
 )
 from . import buildings as lod2
+from . import climate
 from .model import PRESETS, FieldConfig, NeuralField, build_field
 from .training import TrainConfig, pick_device, train
 
@@ -1200,6 +1201,113 @@ def tab_buildings() -> None:
                "where the network's noise crosses 0.")
 
 
+@st.cache_data(show_spinner="Reading the GISTEMP anomalies …")
+def get_climate():
+    return climate.load_climate()
+
+
+@st.cache_data(show_spinner="Fitting a straight line to every cell …")
+def _climate_baseline():
+    grid = get_climate()
+    return climate.ClimateScores.compare(grid, climate.line_per_cell(grid))
+
+
+def tab_climate() -> None:
+    st.markdown(
+        "**Monthly temperature anomalies since 1950** as one neural field f(x, y, z, t): for every 2° cell and every "
+        "month, how much warmer or colder it was than the mean of 1951–1980 (GISTEMP v4). The place enters as a point "
+        "on the sphere, the date as a fourth input, and the season as a point on a circle so that December lies next "
+        "to January."
+    )
+    if cloud_mode():
+        st.info("This tab needs a large download; it only runs in the local version of the app.")
+        return
+    if not climate.gistemp_path().exists():
+        st.info(f"**Missing data:** GISTEMP v4 monthly anomalies (1200 km smoothing), about {climate.GISTEMP_MB} MB.")
+        if not st.button(f"Download ({climate.GISTEMP_MB} MB)", type="primary", key="climate-download"):
+            return
+        try:
+            with st.spinner("Downloading GISTEMP …"):
+                climate.download_gistemp()
+        except (httpx.HTTPError, OSError) as error:
+            st.error(f"The download failed: {error}")
+            return
+        st.rerun()
+
+    grid = get_climate()
+    c1, c2, c3 = st.columns(3)
+    preset = c1.selectbox("Network", list(climate.CLIMATE_PRESETS), index=1, key="climate-preset")
+    steps = int(c2.select_slider("Steps", [500, 2000, 6000], value=2000, key="climate-steps"))
+    device_label = c3.selectbox("Device", ["auto", "cpu", "mps"], key="climate-device")
+    field = climate.build_climate_field(climate.CLIMATE_PRESETS[preset], grid)
+    last = grid.year_of(grid.n_months - 1)
+    st.caption(
+        f"{fmt_int(grid.n_months)} months (January {grid.start_year} to {int(last)}) × {grid.lat.size} × {grid.lon.size} "
+        f"cells = {fmt_int(grid.anomaly.size)} values = {human_bytes(grid.raw_bytes)} as int16 · network: "
+        f"{fmt_int(field.n_parameters())} weights = {human_bytes(field.stored_bytes())} in float16 · "
+        f"ratio {grid.raw_bytes / field.stored_bytes():,.0f} : 1 · Data: {climate.ATTRIBUTION}"
+    )
+
+    if st.button("Train", type="primary", key="climate-train"):
+        device = pick_device(device_label)
+        bar = st.progress(0.0, text="Starting …")
+        for p in climate.train_climate(field, grid, climate.ClimateTrainConfig(steps=steps), device):
+            bar.progress(p.step / p.total, text=f"Step {p.step}/{p.total} · RMSE {p.rmse:.2f} °C · {p.elapsed_s:.0f} s")
+        bar.empty()
+        with st.spinner("Evaluating the network on every cell and month …"):
+            predicted = field.render(grid)
+            scores = climate.ClimateScores.compare(grid, predicted)
+        st.session_state.climate = dict(field=field, predicted=predicted, scores=scores, preset=preset, steps=steps,
+                                        seconds=p.elapsed_s)
+
+    result = st.session_state.get("climate")
+    if result is None:
+        return
+    field, predicted, scores = result["field"], result["predicted"], result["scores"]
+    base = _climate_baseline()
+    a, b, c, d = st.columns(4)
+    a.metric("Single months (RMSE)", f"{scores.rmse_month:.2f} °C", delta=f"line: {base.rmse_month:.2f} °C",
+             delta_color="off", delta_arrow="off")
+    b.metric("Global annual means", f"{scores.rmse_global_year:.3f} °C", delta=f"line: {base.rmse_global_year:.3f} °C",
+             delta_color="off", delta_arrow="off")
+    c.metric("Trend map 1950–2025", f"{scores.rmse_trend:.3f} °C/decade", delta=f"line: {base.rmse_trend:.3f}",
+             delta_color="off", delta_arrow="off")
+    d.metric("Compression ratio", f"{grid.raw_bytes / field.stored_bytes():,.0f} : 1",
+             delta=f"{human_bytes(field.stored_bytes())}", delta_color="off", delta_arrow="off")
+    st.caption(
+        f"{result['preset']} network, {fmt_int(result['steps'])} steps, {result['seconds']:.0f} s. All errors area-weighted. "
+        "“line”: for comparison, every cell stored as its mean plus a straight line through time – two numbers per cell, "
+        f"{human_bytes(grid.lat.size * grid.lon.size * 4)}. The mean warming 1950–2025 is {scores.mean_trend:.2f} °C per decade."
+    )
+
+    years, truth = grid.annual()
+    _, pred = grid.annual(np.where(grid.valid, predicted, np.nan))
+    _, line = grid.annual(np.where(grid.valid, climate.line_per_cell(grid), np.nan))
+    st.markdown("**Global annual mean**")
+    st.plotly_chart(viz.global_series(years, {"GISTEMP": grid.global_mean(truth), "Network": grid.global_mean(pred),
+                                              "Line per cell": grid.global_mean(line)}), use_container_width=True)
+
+    st.markdown("**Warming 1950–2025** in °C per decade, from the annual means")
+    a, b = st.columns(2)
+    a.plotly_chart(viz.anomaly_map(grid.lon, grid.lat, grid.trend(), limit=0.6, unit="°C/dec", title="GISTEMP"),
+                   use_container_width=True)
+    b.plotly_chart(viz.anomaly_map(grid.lon, grid.lat, grid.trend(np.where(grid.valid, predicted, np.nan)), limit=0.6,
+                                   unit="°C/dec", title="Network"), use_container_width=True)
+
+    st.markdown("**A single month**")
+    c1, c2 = st.columns([3, 1])
+    year = c1.slider("Year", grid.start_year, int(last), 2015, key="climate-year")
+    month = c2.selectbox("Month", list(range(1, 13)), index=11, key="climate-month",
+                         format_func=lambda m: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+                                                "Nov", "Dec"][m - 1])
+    k = min((year - grid.start_year) * 12 + month - 1, grid.n_months - 1)
+    a, b = st.columns(2)
+    a.plotly_chart(viz.anomaly_map(grid.lon, grid.lat, grid.anomaly[k], limit=5, title="GISTEMP"),
+                   use_container_width=True)
+    b.plotly_chart(viz.anomaly_map(grid.lon, grid.lat, np.where(grid.valid[k], predicted[k], np.nan), limit=5,
+                                   title="Network"), use_container_width=True)
+
+
 def tab_rate(grid: ElevationGrid) -> None:
     st.markdown(
         "Compression is always a trade-off: **file size versus error**. This "
@@ -1402,7 +1510,7 @@ def main() -> None:
 
     labels = ["💡 Idea & Budget", "📉 Training", "🌐 Globe 3D", "🗺️ Maps & Error",
               "🔍 Super-Resolution", "🏖️ Coastline", "🧭 Location Encoder", "🛩️ Orthophoto", "🫧 Gaussian Splatting",
-              "🏛️ Buildings 3D",
+              "🏛️ Buildings 3D", "🌡️ Climate",
               "📐 Rate & Error",
               "💾 Export"]
     # Each press of Train gives the tab bar a new key, so it is created afresh and
@@ -1433,6 +1541,8 @@ def main() -> None:
     with tabs[9]:
         tab_buildings()
     with tabs[10]:
-        tab_rate(grid)
+        tab_climate()
     with tabs[11]:
+        tab_rate(grid)
+    with tabs[12]:
         tab_export(grid)

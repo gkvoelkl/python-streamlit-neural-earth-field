@@ -448,3 +448,31 @@ def distance_slice(east: np.ndarray, north: np.ndarray, d: np.ndarray, *, limit:
         xaxis=dict(showticklabels=False), yaxis=dict(showticklabels=False, scaleanchor="x"),
     )
     return fig
+
+
+def anomaly_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, limit: float, unit: str = "°C",
+                title: str = "", height: int = 320) -> go.Figure:
+    """Warmer in red, colder in blue, symmetric around 0; NaN (no data) stays white."""
+    fig = go.Figure(go.Heatmap(
+        x=lon, y=lat, z=z, colorscale="RdBu", reversescale=True, zmin=-limit, zmax=limit,
+        colorbar=dict(title=unit, thickness=12),
+        hovertemplate=f"%{{x:.0f}}°, %{{y:.0f}}° → %{{z:+.2f}} {unit}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=title or None, height=height, margin=dict(l=40, r=10, t=36 if title else 10, b=30),
+        yaxis=dict(scaleanchor="x", scaleratio=1, title="Latitude", range=[-90, 90], constrain="domain"),
+        xaxis=dict(title="Longitude", range=[-180, 180], constrain="domain"),
+    )
+    return fig
+
+
+def global_series(years: np.ndarray, series: dict[str, np.ndarray], height: int = 320) -> go.Figure:
+    """Global annual mean anomalies of several sources, one line each (the first one bold)."""
+    fig = go.Figure()
+    styles = [dict(color="#1f2933", width=3), dict(color="#e8833a", width=2), dict(color="#2b6cb0", width=2, dash="dot")]
+    for (name, values), line in zip(series.items(), styles):
+        fig.add_trace(go.Scatter(x=years, y=values, mode="lines", name=name, line=line,
+                                 hovertemplate=f"%{{x}}: %{{y:+.2f}} °C<extra>{name}</extra>"))
+    fig.update_layout(height=height, margin=dict(l=50, r=10, t=10, b=40), yaxis=dict(title="°C, against 1951–1980"),
+                      xaxis=dict(title="Year"), legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0))
+    return fig
