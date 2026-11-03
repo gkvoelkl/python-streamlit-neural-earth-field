@@ -66,6 +66,16 @@ from .ortho import (
     train_ortho,
 )
 from .ortho import RESOLUTIONS as ORTHO_RESOLUTIONS
+from .splat import (
+    SPLAT_PRESETS,
+    VOLUME_PRESETS,
+    SplatTrainConfig,
+    VolumeTrainConfig,
+    build_gaussian_image,
+    build_gaussian_volume,
+    train_gaussian_volume,
+    train_splat,
+)
 from . import buildings as lod2
 from .model import PRESETS, FieldConfig, NeuralField, build_field
 from .training import TrainConfig, pick_device, train
@@ -890,6 +900,118 @@ def tab_ortho() -> None:
             caption="Error of the network (×4, black = exact)", use_container_width=True)
 
 
+def _ellipse_overlay(image: np.ndarray, model, n: int, rows: slice, cols: slice, scale: int = 4) -> np.ndarray:
+    """The detail enlarged, with every Gaussian whose centre lies in it drawn as an ellipse of one width."""
+    from PIL import Image, ImageDraw
+
+    crop = Image.fromarray(image[rows, cols]).resize(
+        ((cols.stop - cols.start) * scale, (rows.stop - rows.start) * scale), Image.NEAREST)
+    draw = ImageDraw.Draw(crop)
+    with torch.no_grad():
+        cx = ((model.centre[:, 0] + 1) / 2 * n).cpu().numpy() - cols.start
+        cy = ((1 - model.centre[:, 1]) / 2 * n).cpu().numpy() - rows.start
+        w = (model.width() / 2 * n).cpu().numpy()
+        angle = model.angle.cpu().numpy()
+    t = np.linspace(0, 2 * np.pi, 24)
+    keep = (cx >= 0) & (cx < cols.stop - cols.start) & (cy >= 0) & (cy < rows.stop - rows.start)
+    for x, y, (a, b), phi in zip(cx[keep], cy[keep], w[keep], angle[keep]):
+        ex = a * np.cos(t) * np.cos(phi) - b * np.sin(t) * np.sin(phi) + x
+        ey = a * np.cos(t) * np.sin(phi) + b * np.sin(t) * np.cos(phi) + y
+        draw.line(list(zip(ex * scale, ey * scale)) + [(ex[0] * scale, ey[0] * scale)], fill=(255, 220, 0), width=1)
+    return np.asarray(crop)
+
+
+def tab_splat() -> None:
+    if cloud_mode():
+        st.info("This tab needs downloads and a lot of computing time; it only runs in the local version of the app.")
+        return
+    what = st.radio("Store", ["Aerial photo (2D)", "Buildings (3D)"], horizontal=True, key="splat-what")
+    if what == "Aerial photo (2D)":
+        _splat_photo()
+    else:
+        _splat_buildings()
+
+
+def _splat_photo() -> None:
+    st.markdown(
+        "The same **aerial photo** as in the Orthophoto tab, stored without a network: as many small coloured "
+        "**Gaussians**. Each one has a centre, two widths, a rotation and a colour – eight numbers – and adds its "
+        "colour to the pixels around it. The image is the sum of all of them (2D Gaussian splatting)."
+    )
+    if not tile_path().exists():
+        st.info(f"**Missing data:** the orthophoto tile {TILE} (DOP40), about {TILE_MB} MB – "
+                "download it in the Orthophoto tab.")
+        return
+
+    c1, c2, c3, c4 = st.columns(4)
+    n = c1.selectbox("Pixels", list(ORTHO_RESOLUTIONS), index=1, key="splat-n",
+                     format_func=lambda k: f"{k} × {k} · {ORTHO_RESOLUTIONS[k]} m")
+    preset = c2.selectbox("Gaussians", list(SPLAT_PRESETS), index=0, key="splat-preset",
+                          format_func=lambda k: f"{k} · {fmt_int(SPLAT_PRESETS[k].grid ** 2)}")
+    steps = int(c3.select_slider("Steps", [300, 1000, 3000], value=1000, key="splat-steps"))
+    device_label = c4.selectbox("Device", ["auto", "cpu", "mps"], key="splat-device")
+    photo = get_orthophoto(n)
+    model = build_gaussian_image(SPLAT_PRESETS[preset], photo)
+    st.caption(
+        f"{fmt_int(photo.n_pixels)} pixels × 3 colours = {human_bytes(photo.raw_bytes)} uncompressed · "
+        f"{fmt_int(model.n_gaussians)} Gaussians × 8 numbers = {human_bytes(model.stored_bytes())} in float16 "
+        f"(about the size of the {preset} network in the Orthophoto tab) · Data: {ATTRIBUTION}"
+    )
+
+    if st.button("Train", type="primary", key="splat-train"):
+        device = pick_device(device_label)
+        bar = st.progress(0.0, text="Starting …")
+        for p in train_splat(model, photo, SplatTrainConfig(steps=steps), device):
+            bar.progress(p.step / p.total,
+                         text=f"Step {p.step}/{p.total} · PSNR {p.psnr_db:.1f} dB · {p.elapsed_s:.0f} s")
+        bar.empty()
+        st.session_state.splat = dict(model=model, image=model.render(photo), n=n, preset=preset,
+                                      steps=steps, seconds=p.elapsed_s)
+
+    result = st.session_state.get("splat")
+    if result is None:
+        return
+    if result["n"] != n:
+        st.warning(f"The resolution has changed since training – please retrain or switch back to {result['n']} pixels.")
+        return
+    model, image = result["model"], result["image"]
+    size = model.stored_bytes()
+    jpeg, jpeg_bytes, quality = jpeg_at_size(photo.rgb, size)
+
+    a, b, c, d = st.columns(4)
+    a.metric("PSNR of the Gaussians", f"{image_psnr(photo.rgb, image):.1f} dB")
+    b.metric("File size (float16)", human_bytes(size))
+    network = st.session_state.get("ortho")
+    if network is not None and network["n"] == n and network["preset"] == result["preset"]:
+        c.metric(f"{network['preset']} network (Orthophoto tab)", f"{image_psnr(photo.rgb, network['image']):.1f} dB")
+    else:
+        c.metric("Compression ratio", f"{photo.raw_bytes / size:,.0f} : 1")
+    d.metric(f"JPEG of the same size (quality {quality})", f"{image_psnr(photo.rgb, jpeg):.1f} dB")
+    st.caption(
+        f"{fmt_int(model.n_gaussians)} Gaussians ({result['preset']}), {fmt_int(result['steps'])} steps, "
+        f"{result['seconds']:.0f} s. Train the {result['preset']} network in the Orthophoto tab with the same "
+        "pixels to compare all three at the same file size."
+    )
+
+    a, b, c = st.columns(3)
+    a.image(photo.rgb, caption="Original (DOP40)", use_container_width=True)
+    b.image(image, caption="Gaussians", use_container_width=True)
+    c.image(jpeg, caption=f"JPEG, {human_bytes(jpeg_bytes)}", use_container_width=True)
+
+    st.markdown("**Zoom in:** 100 m × 100 m around a landmark")
+    place = st.selectbox("Detail", list(PLACES), key="splat-place")
+    rows, cols = photo.crop(*PLACES[place], 100)
+    a, b, c, d = st.columns(4)
+    a.image(photo.rgb[rows, cols], caption="Original", use_container_width=True)
+    b.image(image[rows, cols], caption="Gaussians", use_container_width=True)
+    c.image(jpeg[rows, cols], caption="JPEG", use_container_width=True)
+    d.image(_error_image(photo.rgb[rows, cols], image[rows, cols]),
+            caption="Error of the Gaussians (×4, black = exact)", use_container_width=True)
+    st.image(_ellipse_overlay(image, model, n, rows, cols), width=560,
+             caption="The Gaussians in this detail, each drawn as an ellipse one width across: "
+                     "long and thin along edges, round and large on even areas.")
+
+
 @st.cache_data(show_spinner="Reading the building models and computing the distance field …")
 def get_building_grid(res: float):
     return lod2.load_building_grid(res)
@@ -898,6 +1020,83 @@ def get_building_grid(res: float):
 @st.cache_data(show_spinner="Building the surface …")
 def _building_surface(field: np.ndarray, res: float, step: int):
     return lod2.surface(field, res, step)
+
+
+def _splat_buildings() -> None:
+    st.markdown(
+        "The **buildings** of the Buildings 3D tab as many small **3D Gaussians**: eight numbers each again – a "
+        "centre, three widths, a turn about the vertical and a strength. They add up *how much building* there is "
+        "at every voxel; where the sum exceeds ½, the voxel counts as inside. The Gaussians start at random voxels "
+        "inside the buildings, as 3D Gaussian splatting starts from a point cloud."
+    )
+    if not lod2.tile_path().exists():
+        st.info(f"**Missing data:** the LoD2 building models of tile {lod2.TILE}, about {lod2.TILE_MB} MB – "
+                "download them in the Buildings 3D tab.")
+        return
+    c1, c2, c3, c4 = st.columns(4)
+    res = c1.selectbox("Voxel size", [2.0, 1.0], index=1, key="vol-res", format_func=lambda r: f"{r:g} m")
+    preset = c2.selectbox("Gaussians", list(VOLUME_PRESETS), index=1, key="vol-preset",
+                          format_func=lambda k: f"{k} · {fmt_int(VOLUME_PRESETS[k].n_gaussians)}")
+    steps = int(c3.select_slider("Steps", [100, 300, 1000], value=300, key="vol-steps"))
+    device_label = c4.selectbox("Device", ["auto", "cpu", "mps"], key="vol-device")
+    grid = get_building_grid(res)
+    model = build_gaussian_volume(VOLUME_PRESETS[preset], grid)
+    st.caption(
+        f"{grid.n_buildings} buildings · CityGML {human_bytes(grid.gml_bytes)} · {fmt_int(grid.n_voxels)} voxels · "
+        f"{fmt_int(model.n_gaussians)} Gaussians × 8 numbers = {human_bytes(model.stored_bytes())} in float16 "
+        f"(the size of the {preset} network in the Buildings 3D tab) · Data: {lod2.ATTRIBUTION}"
+    )
+
+    if st.button("Train", type="primary", key="vol-train"):
+        device = pick_device(device_label)
+        bar = st.progress(0.0, text="Starting …")
+        for p in train_gaussian_volume(model, grid, VolumeTrainConfig(steps=steps), device):
+            bar.progress(p.step / p.total,
+                         text=f"Step {p.step}/{p.total} · right side {100 * p.correct_side:.2f} % · {p.elapsed_s:.0f} s")
+        bar.empty()
+        with st.spinner("Adding up the Gaussians on every voxel …"):
+            predicted = model.render(grid)
+            scores = lod2.BuildingScores.compare(grid, predicted, 0.5)
+        st.session_state.vol = dict(model=model, predicted=predicted, scores=scores, res=res, preset=preset,
+                                    steps=steps, seconds=p.elapsed_s)
+
+    result = st.session_state.get("vol")
+    if result is None:
+        return
+    if result["res"] != res:
+        st.warning(f"The voxel size has changed since training – please retrain or switch back to {result['res']:g} m.")
+        return
+    model, predicted, scores = result["model"], result["predicted"], result["scores"]
+    size = model.stored_bytes()
+    a, b, c, d = st.columns(4)
+    a.metric("Volume overlap (IoU)", f"{scores.iou:.2f}")
+    b.metric("Surface offset (median)", f"{scores.offset_median_m:.1f} m")
+    c.metric("Surface offset (90 %)", f"{scores.offset_p90_m:.1f} m")
+    network = st.session_state.get("lod2")
+    if network is not None and network["res"] == res and network["preset"] == result["preset"]:
+        d.metric(f"{network['preset']} network (Buildings 3D tab)", f"IoU {network['scores'].iou:.2f}")
+    else:
+        d.metric("Gaussians vs CityGML", f"{human_bytes(size)} · {grid.gml_bytes / size:,.0f} : 1")
+    st.caption(
+        f"{fmt_int(model.n_gaussians)} Gaussians ({result['preset']}), {fmt_int(result['steps'])} steps, "
+        f"{result['seconds']:.0f} s. Train the {result['preset']} network in the Buildings 3D tab with the same "
+        "voxel size to compare both at the same file size."
+    )
+
+    step = 2 if res < 2 else 1
+    ground = float(grid.height[0])
+    a, b = st.columns(2)
+    with a:
+        verts, faces = _building_surface(grid.sdf, res, step)
+        st.plotly_chart(viz.building_mesh(lod2.mesh_enh(grid, verts), faces, ground=ground, zmax=60.0,
+                                          title="LoD2 building models"), use_container_width=True)
+    with b:
+        verts, faces = _building_surface(predicted, res, step)
+        if len(verts):
+            st.plotly_chart(viz.building_mesh(lod2.mesh_enh(grid, verts), faces, ground=ground, zmax=60.0,
+                                              title="Gaussians"), use_container_width=True)
+        else:
+            st.info("The Gaussians have no surface yet – train longer.")
 
 
 def tab_buildings() -> None:
@@ -1202,7 +1401,8 @@ def main() -> None:
     st.caption(f"f(lon, lat) → {grid.quantity.lower()} · the weights are the compressed data")
 
     labels = ["💡 Idea & Budget", "📉 Training", "🌐 Globe 3D", "🗺️ Maps & Error",
-              "🔍 Super-Resolution", "🏖️ Coastline", "🧭 Location Encoder", "🛩️ Orthophoto", "🏛️ Buildings 3D",
+              "🔍 Super-Resolution", "🏖️ Coastline", "🧭 Location Encoder", "🛩️ Orthophoto", "🫧 Gaussian Splatting",
+              "🏛️ Buildings 3D",
               "📐 Rate & Error",
               "💾 Export"]
     # Each press of Train gives the tab bar a new key, so it is created afresh and
@@ -1229,8 +1429,10 @@ def main() -> None:
     with tabs[7]:
         tab_ortho()
     with tabs[8]:
-        tab_buildings()
+        tab_splat()
     with tabs[9]:
-        tab_rate(grid)
+        tab_buildings()
     with tabs[10]:
+        tab_rate(grid)
+    with tabs[11]:
         tab_export(grid)

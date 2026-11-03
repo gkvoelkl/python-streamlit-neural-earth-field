@@ -41,7 +41,7 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 The app averages it down to the chosen working resolution (180 × 360 to 2160 × 4320)
 and caches it under `data/cache/`.
 
-The *Coastline*, *Location Encoder*, *Orthophoto* and *Buildings 3D* tabs need
+The *Coastline*, *Location Encoder*, *Orthophoto*, *Gaussian Splatting* and *Buildings 3D* tabs need
 further freely available data (Natural Earth, air temperature from the University
 of Delaware, SatCLIP, orthophotos and 3D building models of the Bavarian surveying
 administration). The app asks each time before it downloads anything.
@@ -73,6 +73,7 @@ training run. Its numbers therefore differ from the tutorial. Local installs are
 | **Coastline** | The coast as the network's 0 line over the Natural Earth coastline |
 | **Location Encoder** | Places as vectors of numbers: different encoders learn the air temperature |
 | **Orthophoto** | An aerial photo in UTM as a field f(E, N) → (R, G, B) |
+| **Gaussian Splatting** | The same aerial photo without a network, as many small coloured Gaussians |
 | **Buildings 3D** | Buildings as a signed distance in three dimensions |
 | **Rate & Error** | Rate-distortion curve across several network sizes |
 | **Export** | Weights as `.pt` in float32 / float16, with a loading example |
@@ -173,6 +174,7 @@ src/python_streamlit_neural_earth_field/
   coast.py      distance to the coast from Natural Earth
   embedding.py  location encoders and transfer to the air temperature
   ortho.py      orthophoto as a field in UTM
+  splat.py      orthophoto as 2D Gaussians (Gaussian splatting)
   buildings.py  buildings as a 3D distance field
   encoding.py   lon/lat → unit sphere, Fourier features, spherical harmonics
   model.py      NeuralField (MLP / SIREN / context field), size bookkeeping
