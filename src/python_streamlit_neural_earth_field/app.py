@@ -1471,12 +1471,12 @@ def tab_stations() -> None:
     if result is None or result["quantity"] != quantity or result["seed"] != seed:
         return
     cols = st.columns(len(result["rows"]) + 1)
-    cols[0].metric("Mean of the training stations", f"{result['mean']:.2f} °C", delta="RMSE at the test stations",
-                   delta_color="off", delta_arrow="off")
+    cols[0].metric("Mean only", f"{result['mean']:.2f} °C", delta="RMSE", delta_color="off", delta_arrow="off")
     for col, r in zip(cols[1:], result["rows"]):
         col.metric(r["method"], f"{r['rmse']:.2f} °C", delta=f"MAE {r['mae']:.2f} °C", delta_color="off",
                    delta_arrow="off")
-    st.caption("RMSE: root mean square error at the test stations; MAE: mean absolute error. Network: "
+    st.caption("Large number: root mean square error (RMSE) at the test stations; below it the mean absolute error "
+               "(MAE). “Mean only”: every test station gets the mean of the training stations. Network: "
                f"{fmt_int(result['steps'])} steps.")
 
     grid = get_germany_grid()
