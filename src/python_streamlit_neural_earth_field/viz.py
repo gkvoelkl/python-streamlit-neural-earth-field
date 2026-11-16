@@ -476,7 +476,7 @@ def land_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, colorscale: str
     ))
     fig.update_layout(
         title=title or None, height=height, margin=dict(l=40, r=10, t=36 if title else 10, b=30),
-        yaxis=dict(scaleanchor="x", scaleratio=1, title="Latitude", range=[-60, 85], constrain="domain"),
+        yaxis=dict(scaleanchor="x", scaleratio=1, title="Latitude", range=[-90, 85], constrain="domain"),
         xaxis=dict(title="Longitude", range=[-180, 180], constrain="domain"),
         plot_bgcolor="#eef4fb",
     )
