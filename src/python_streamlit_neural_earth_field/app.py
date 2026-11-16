@@ -79,6 +79,7 @@ from .splat import (
 from . import buildings as lod2
 from . import atlas
 from . import climate
+from . import stations as dwd
 from .model import PRESETS, FieldConfig, NeuralField, build_field
 from .training import TrainConfig, pick_device, train
 
@@ -1404,6 +1405,95 @@ def tab_atlas() -> None:
                     use_container_width=True)
 
 
+@st.cache_data(show_spinner="Reading the DWD stations …")
+def get_stations():
+    return dwd.load_stations()
+
+
+@st.cache_data(show_spinner="Reading the heights of Germany from ETOPO …")
+def get_germany_grid():
+    return dwd.germany_grid(get_stations())
+
+
+STATION_QUANTITIES = {"Temperature 1991–2020": "°C", "Warming since 1961–1990": "°C"}
+
+
+def tab_stations() -> None:
+    st.markdown(
+        "**A temperature map of Germany from weather stations.** About 1,100 DWD stations give the mean annual "
+        "temperature 1991–2020. A fifth of them is put aside as **test stations**; every method learns from the "
+        "rest and is checked where it has seen nothing. Compared: inverse distance weighting (IDW), kriging, kriging "
+        "with the station height, and a small neural field f(x, y) – with and without the height."
+    )
+    if cloud_mode() and dwd.missing():
+        st.info("This tab needs a download; it only runs in the local version of the app.")
+        return
+    if dwd.missing():
+        st.info("**Missing data:** DWD multi-annual means of the temperature at the stations, 1961–1990 and "
+                "1991–2020 (four small text files, together under 1 MB).")
+        if not st.button("Download (< 1 MB)", type="primary", key="stations-download"):
+            return
+        try:
+            with st.spinner("Downloading …"):
+                dwd.download()
+        except (httpx.HTTPError, OSError) as error:
+            st.error(f"The download failed: {error}")
+            return
+        st.rerun()
+
+    stations = get_stations()
+    c1, c2, c3, c4 = st.columns([2, 1, 1, 2])
+    quantity = c1.selectbox("Quantity", list(STATION_QUANTITIES), key="stations-quantity")
+    seed = int(c2.number_input("Split", 0, 99, 0, key="stations-seed",
+                               help="Which stations are put aside for the test (random, a fifth of them)."))
+    steps = int(c3.select_slider("Network steps", [100, 300, 1000, 3000], value=1000, key="stations-steps"))
+    shown = c4.selectbox("Map", dwd.METHODS, index=4, key="stations-method")
+    warming = quantity.startswith("Warming")
+    use = np.where(np.isfinite(stations.old))[0] if warming else np.arange(stations.n)
+    values = (stations.warming if warming else stations.temperature)[use]
+    train, test = dwd.split(len(use), seed=seed)
+    xy, height = stations.xy[use], stations.height[use]
+    st.caption(f"{fmt_int(len(use))} stations: {fmt_int(len(train))} for training, {fmt_int(len(test))} for the "
+               f"test · network: {fmt_int(dwd.StationNet(dwd.StationNetConfig(), True).n_parameters())} weights · "
+               f"Data: {dwd.ATTRIBUTION}")
+
+    if st.button("Compare", type="primary", key="stations-run"):
+        cfg = dwd.StationNetConfig(steps=steps)
+        rows = []
+        with st.spinner("Kriging, training the networks …"):
+            for m in dwd.METHODS:
+                p = dwd.predict(m, xy[train], height[train], values[train], xy[test], height[test], cfg)
+                rows.append(dict(method=m, rmse=dwd.rmse(p, values[test]), mae=dwd.mae(p, values[test]), pred=p))
+        st.session_state.stations = dict(rows=rows, quantity=quantity, seed=seed, steps=steps,
+                                         mean=dwd.rmse(np.full(len(test), values[train].mean()), values[test]))
+
+    result = st.session_state.get("stations")
+    if result is None or result["quantity"] != quantity or result["seed"] != seed:
+        return
+    cols = st.columns(len(result["rows"]) + 1)
+    cols[0].metric("Mean of the training stations", f"{result['mean']:.2f} °C", delta="RMSE at the test stations",
+                   delta_color="off", delta_arrow="off")
+    for col, r in zip(cols[1:], result["rows"]):
+        col.metric(r["method"], f"{r['rmse']:.2f} °C", delta=f"MAE {r['mae']:.2f} °C", delta_color="off",
+                   delta_arrow="off")
+    st.caption("RMSE: root mean square error at the test stations; MAE: mean absolute error. Network: "
+               f"{fmt_int(result['steps'])} steps.")
+
+    grid = get_germany_grid()
+    with st.spinner(f"Drawing the map with {shown} …"):
+        cfg = dwd.StationNetConfig(steps=result["steps"])
+        z = dwd.predict(shown, xy[train], height[train], values[train], grid.points, grid.height.ravel(), cfg)
+    z = np.where(grid.inside, z.reshape(grid.height.shape), np.nan)
+    err = next(r["pred"] for r in result["rows"] if r["method"] == shown) - values[test]
+    lims = (0.4, 1.8) if warming else (5.0, 12.0)
+    st.plotly_chart(viz.germany_map(grid.lon, grid.lat, z, zmin=lims[0], zmax=lims[1], unit="°C",
+                                    title=f"{shown} – {quantity}",
+                                    points=(stations.lon[use][test], stations.lat[use][test], err)),
+                    use_container_width=True)
+    st.caption("The dots are the test stations, coloured by the error of the method there: red too warm, blue too "
+               "cold. The map is only drawn within 20 km of a station.")
+
+
 def tab_rate(grid: ElevationGrid) -> None:
     st.markdown(
         "Compression is always a trade-off: **file size versus error**. This "
@@ -1606,7 +1696,7 @@ def main() -> None:
 
     labels = ["💡 Idea & Budget", "📉 Training", "🌐 Globe 3D", "🗺️ Maps & Error",
               "🔍 Super-Resolution", "🏖️ Coastline", "🧭 Location Encoder", "🛩️ Orthophoto", "🫧 Gaussian Splatting",
-              "🏛️ Buildings 3D", "🌡️ Climate", "🌦️ Climate Atlas",
+              "🏛️ Buildings 3D", "🌡️ Climate", "🌦️ Climate Atlas", "📍 Stations",
               "📐 Rate & Error",
               "💾 Export"]
     # Each press of Train gives the tab bar a new key, so it is created afresh and
@@ -1641,6 +1731,8 @@ def main() -> None:
     with tabs[11]:
         tab_atlas()
     with tabs[12]:
-        tab_rate(grid)
+        tab_stations()
     with tabs[13]:
+        tab_rate(grid)
+    with tabs[14]:
         tab_export(grid)

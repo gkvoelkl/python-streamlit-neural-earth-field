@@ -483,6 +483,33 @@ def land_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, colorscale: str
     return fig
 
 
+def germany_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, zmin: float, zmax: float, unit: str,
+                colorscale: str = "RdYlBu", reverse: bool = True, title: str = "",
+                points: tuple[np.ndarray, np.ndarray, np.ndarray] | None = None, height: int = 480) -> go.Figure:
+    """A map of Germany (NaN outside), optionally with stations as dots coloured by ``points[2]`` (error, ±)."""
+    fig = go.Figure(go.Heatmap(
+        x=lon, y=lat, z=z, colorscale=colorscale, reversescale=reverse, zmin=zmin, zmax=zmax,
+        colorbar=dict(title=unit, thickness=12, x=1.0),
+        hovertemplate=f"%{{x:.2f}}° E, %{{y:.2f}}° N → %{{z:.2f}} {unit}<extra></extra>",
+    ))
+    if points is not None:
+        px, py, err = points
+        fig.add_trace(go.Scatter(
+            x=px, y=py, mode="markers", name="test stations",
+            marker=dict(size=7, color=err, colorscale="RdBu", reversescale=True, cmin=-1.5, cmax=1.5,
+                        line=dict(width=0.6, color="#1f2933"),
+                        colorbar=dict(title="error °C", thickness=10, x=1.16)),
+            hovertemplate="error %{marker.color:+.2f} °C<extra></extra>", showlegend=False,
+        ))
+    fig.update_layout(
+        title=title or None, height=height, margin=dict(l=40, r=10, t=36 if title else 10, b=30),
+        yaxis=dict(scaleanchor="x", scaleratio=1 / np.cos(np.deg2rad(51)), title="Latitude", constrain="domain"),
+        xaxis=dict(title="Longitude", constrain="domain"),
+        plot_bgcolor="#eef4fb",
+    )
+    return fig
+
+
 def global_series(years: np.ndarray, series: dict[str, np.ndarray], height: int = 320) -> go.Figure:
     """Global annual mean anomalies of several sources, one line each (the first one bold)."""
     fig = go.Figure()
