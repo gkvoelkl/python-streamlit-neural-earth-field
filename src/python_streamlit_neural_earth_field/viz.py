@@ -466,6 +466,23 @@ def anomaly_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, limit: float
     return fig
 
 
+def land_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, colorscale: str, zmin: float, zmax: float,
+             unit: str, title: str = "", reverse: bool = False, height: int = 320) -> go.Figure:
+    """Any quantity on land (NaN at sea), with its own colour scale."""
+    fig = go.Figure(go.Heatmap(
+        x=lon, y=lat, z=z, colorscale=colorscale, reversescale=reverse, zmin=zmin, zmax=zmax,
+        colorbar=dict(title=unit, thickness=12),
+        hovertemplate=f"%{{x:.2f}}°, %{{y:.2f}}° → %{{z:.1f}} {unit}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=title or None, height=height, margin=dict(l=40, r=10, t=36 if title else 10, b=30),
+        yaxis=dict(scaleanchor="x", scaleratio=1, title="Latitude", range=[-60, 85], constrain="domain"),
+        xaxis=dict(title="Longitude", range=[-180, 180], constrain="domain"),
+        plot_bgcolor="#eef4fb",
+    )
+    return fig
+
+
 def global_series(years: np.ndarray, series: dict[str, np.ndarray], height: int = 320) -> go.Figure:
     """Global annual mean anomalies of several sources, one line each (the first one bold)."""
     fig = go.Figure()

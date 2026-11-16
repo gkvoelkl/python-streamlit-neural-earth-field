@@ -77,6 +77,7 @@ from .splat import (
     train_splat,
 )
 from . import buildings as lod2
+from . import atlas
 from . import climate
 from .model import PRESETS, FieldConfig, NeuralField, build_field
 from .training import TrainConfig, pick_device, train
@@ -1308,6 +1309,101 @@ def tab_climate() -> None:
                                    title="Network"), use_container_width=True)
 
 
+@st.cache_data(show_spinner="Reading temperature, precipitation and elevation …")
+def get_atlas():
+    return atlas.load_atlas()
+
+
+# colour scale, reversed, lower and upper end of the map per quantity
+ATLAS_COLOURS = {"Temperature": ("RdYlBu", True, -30.0, 35.0), "Precipitation": ("YlGnBu", False, 0.0, 300.0),
+                 "Elevation": ("Earth", False, 0.0, 5000.0)}
+
+
+def tab_atlas() -> None:
+    st.markdown(
+        "**Several climate quantities in one network.** For every 0.5° land cell the network gives 25 numbers: the mean "
+        "temperature of each month, the mean precipitation of each month and the elevation (1981–2010). Does one "
+        "network with 25 outputs beat three separate networks of the same total size? And how do you weigh degrees "
+        "against millimetres against metres?"
+    )
+    if cloud_mode():
+        st.info("This tab needs a download; it only runs in the local version of the app.")
+        return
+    if atlas.missing():
+        st.info(f"**Missing data:** University of Delaware monthly means for {' and '.join(atlas.missing()).lower()}, "
+                f"about {atlas.FILE_MB} MB each.")
+        if not st.button("Download", type="primary", key="atlas-download"):
+            return
+        try:
+            with st.spinner("Downloading …"):
+                atlas.download()
+        except (httpx.HTTPError, OSError) as error:
+            st.error(f"The download failed: {error}")
+            return
+        st.rerun()
+
+    data = get_atlas()
+    c1, c2, c3, c4, c5 = st.columns([1, 2, 1.3, 1, 1])
+    preset = c1.selectbox("Network", list(atlas.ATLAS_PRESETS), index=1, key="atlas-preset")
+    layout = c2.selectbox("Layout", atlas.LAYOUTS, key="atlas-layout")
+    scaling = c3.selectbox("Scaling", atlas.SCALINGS, key="atlas-scaling")
+    steps = int(c4.select_slider("Steps", [500, 2000, 6000], value=2000, key="atlas-steps"))
+    device_label = c5.selectbox("Device", ["auto", "cpu", "mps"], key="atlas-device")
+    field = atlas.AtlasField(atlas.ATLAS_PRESETS[preset], layout)
+    widths = " / ".join(str(w) for w in field.widths().values())
+    st.caption(
+        f"{fmt_int(data.n)} land cells × 25 numbers (12 + 12 + 1) = {fmt_int(data.n * 25)} values = "
+        f"{human_bytes(data.raw_bytes)} as int16 · network: {fmt_int(field.n_parameters())} weights "
+        f"(hidden width {widths}) = {human_bytes(field.stored_bytes())} in float16 · "
+        f"ratio {data.raw_bytes / field.stored_bytes():,.1f} : 1 · Data: {atlas.ATTRIBUTION}"
+    )
+
+    if st.button("Train", type="primary", key="atlas-train"):
+        device = pick_device(device_label)
+        scaler = atlas.Scaler(scaling).fit(data)
+        bar = st.progress(0.0, text="Starting …")
+        for p in atlas.train_atlas(field, data, scaler, atlas.AtlasTrainConfig(steps=steps), device):
+            bar.progress(p.step / p.total, text=f"Step {p.step}/{p.total} · loss {p.loss:.4f} · {p.elapsed_s:.0f} s")
+        bar.empty()
+        predicted = field.predict(data, scaler)
+        st.session_state.atlas = dict(field=field, predicted=predicted, scores=atlas.AtlasScores.compare(data, predicted),
+                                      preset=preset, layout=layout, scaling=scaling, steps=steps, seconds=p.elapsed_s)
+
+    result = st.session_state.get("atlas")
+    if result is None:
+        return
+    field, predicted, scores = result["field"], result["predicted"], result["scores"]
+    cols = st.columns(4)
+    for col, q in zip(cols, atlas.QUANTITIES):
+        col.metric(q, f"{scores.rmse[q]:,.1f} {atlas.UNITS[q]}", delta="RMSE, area-weighted", delta_color="off",
+                   delta_arrow="off")
+    cols[3].metric("Compression ratio", f"{data.raw_bytes / field.stored_bytes():,.1f} : 1",
+                   delta=human_bytes(field.stored_bytes()), delta_color="off", delta_arrow="off")
+    st.caption(f"{result['preset']} · {result['layout']} · {result['scaling']} · {fmt_int(result['steps'])} steps · "
+               f"{result['seconds']:.0f} s. Temperature and precipitation: error over all twelve months.")
+
+    st.markdown("**Maps**")
+    c1, c2 = st.columns([2, 1])
+    q = c1.radio("Quantity", atlas.QUANTITIES, horizontal=True, key="atlas-quantity")
+    month = c2.selectbox("Month", list(range(12)), index=6, key="atlas-month", format_func=lambda m: atlas.MONTHS[m],
+                         disabled=q == "Elevation")
+    k = 0 if q == "Elevation" else month
+    scale, reverse, zmin, zmax = ATLAS_COLOURS[q]
+    truth, net = data.values(q)[:, k], predicted[q][:, k]
+    lon, lat, z_true = data.grid(truth)
+    _, _, z_net = data.grid(net)
+    _, _, z_err = data.grid(net - truth)
+    unit = atlas.UNITS[q]
+    a, b = st.columns(2)
+    a.plotly_chart(viz.land_map(lon, lat, z_true, colorscale=scale, reverse=reverse, zmin=zmin, zmax=zmax, unit=unit,
+                                title="Data"), use_container_width=True)
+    b.plotly_chart(viz.land_map(lon, lat, z_net, colorscale=scale, reverse=reverse, zmin=zmin, zmax=zmax, unit=unit,
+                                title="Network"), use_container_width=True)
+    limit = float(np.nanpercentile(np.abs(z_err), 99)) or 1.0
+    st.plotly_chart(viz.anomaly_map(lon, lat, z_err, limit=limit, unit=unit, title="Network − data"),
+                    use_container_width=True)
+
+
 def tab_rate(grid: ElevationGrid) -> None:
     st.markdown(
         "Compression is always a trade-off: **file size versus error**. This "
@@ -1510,7 +1606,7 @@ def main() -> None:
 
     labels = ["💡 Idea & Budget", "📉 Training", "🌐 Globe 3D", "🗺️ Maps & Error",
               "🔍 Super-Resolution", "🏖️ Coastline", "🧭 Location Encoder", "🛩️ Orthophoto", "🫧 Gaussian Splatting",
-              "🏛️ Buildings 3D", "🌡️ Climate",
+              "🏛️ Buildings 3D", "🌡️ Climate", "🌦️ Climate Atlas",
               "📐 Rate & Error",
               "💾 Export"]
     # Each press of Train gives the tab bar a new key, so it is created afresh and
@@ -1543,6 +1639,8 @@ def main() -> None:
     with tabs[10]:
         tab_climate()
     with tabs[11]:
-        tab_rate(grid)
+        tab_atlas()
     with tabs[12]:
+        tab_rate(grid)
+    with tabs[13]:
         tab_export(grid)
