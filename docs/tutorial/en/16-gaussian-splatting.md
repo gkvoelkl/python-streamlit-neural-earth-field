@@ -183,6 +183,6 @@ At the top, choose **Buildings (3D)**, then *Voxel size* 1 m, *Gaussians* Medium
 
 ---
 
-[Overview](README.md) · Back: [Chapter 15 · Buildings as a 3D field](15-gebaeude-als-3d-feld.md) · Next: [Chapter 17 · Time series: warming since 1950](17-zeitreihen.md)
+[Overview](README.md) · Back: [Chapter 15 · Buildings as a 3D field](15-gebaeude-als-3d-feld.md) · Next: [Appendix · Measurements](anhang-messungen.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

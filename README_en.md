@@ -73,7 +73,7 @@ training run. Its numbers therefore differ from the tutorial. Local installs are
 | **Coastline** | The coast as the network's 0 line over the Natural Earth coastline |
 | **Location Encoder** | Places as vectors of numbers: different encoders learn the air temperature |
 | **Orthophoto** | An aerial photo in UTM as a field f(E, N) → (R, G, B) |
-| **Gaussian Splatting** | The same aerial photo without a network, as many small coloured Gaussians |
+| **Gaussian Splatting** | The aerial photo and the buildings without a network, as many small Gaussians |
 | **Buildings 3D** | Buildings as a signed distance in three dimensions |
 | **Rate & Error** | Rate-distortion curve across several network sizes |
 | **Export** | Weights as `.pt` in float32 / float16, with a loading example |

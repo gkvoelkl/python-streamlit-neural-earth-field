@@ -52,6 +52,15 @@ The following chapters build on chapters 1 to 5. Read or skip them as you like.
 These chapters put the outlook from chapter 11 into practice: points, lines and areas as a field.
 
 12. [The coast as a distance field](12-kueste-als-abstandsfeld.md)
+13. [Location encoders as embeddings](13-location-encoder.md)
+
+### Orthophotos and 3D
+
+These chapters leave the sphere: one square kilometre of Regensburg's old town as an aerial photo and as buildings in three dimensions.
+
+14. [Orthophotos in UTM](14-orthofotos-in-utm.md)
+15. [Buildings as a 3D field](15-gebaeude-als-3d-feld.md)
+16. [Gaussian splatting](16-gaussian-splatting.md)
 
 **Appendix**
 
