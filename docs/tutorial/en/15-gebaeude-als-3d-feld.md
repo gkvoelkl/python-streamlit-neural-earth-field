@@ -202,7 +202,7 @@ The voxel grid is even clearer. Packed, it is only 38 KB, smaller than any netwo
 
 What the network offers is something else. It is a function that can be queried at any point, even between the voxels, without first unpacking a grid or searching through polygons. A single query answers: does this point lie in a building? How far is it to the nearest wall – up to the limit of ±5 m? Such questions are asked, for example, by programs that plan the flight of a drone through a city. And the surface is smooth instead of stepped like the voxels.
 
-In research this representation is widespread for individual shapes. DeepSDF learns distance fields for furniture, cars and aeroplanes, and usually one network for many shapes at once [5]. *Occupancy networks* learn, instead of the distance, only the question "inside or outside?" [10]. Chapter 21 takes up this idea: one shared network for many tiles.
+In research this representation is widespread for individual shapes. DeepSDF learns distance fields for furniture, cars and aeroplanes, and usually one network for many shapes at once [5]. *Occupancy networks* learn, instead of the distance, only the question "inside or outside?" [10]. A later chapter takes up this idea: one shared network for many tiles.
 
 ## Try it out
 

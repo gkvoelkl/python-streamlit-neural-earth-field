@@ -202,7 +202,7 @@ Noch deutlicher ist das Würfelgitter. Gepackt ist es nur 38 KB groß, kleiner a
 
 Was das Netz bietet, ist etwas anderes. Es ist eine Funktion, die man an jedem Punkt abfragen kann, auch zwischen den Würfeln, ohne vorher ein Gitter zu entpacken oder Vielecke zu durchsuchen. Eine einzige Abfrage beantwortet: Liegt dieser Punkt in einem Gebäude? Wie weit ist es bis zur nächsten Wand – bis zur Grenze von ±5 m? Solche Fragen stellen etwa Programme, die den Flug einer Drohne durch eine Stadt planen. Und die Oberfläche ist glatt statt treppenförmig wie die Würfel.
 
-In der Forschung ist diese Darstellung für einzelne Formen weit verbreitet. DeepSDF lernt Abstandsfelder für Möbel, Autos und Flugzeuge, und meist ein Netz für viele Formen zugleich [5]. *Occupancy Networks* lernen statt des Abstands nur die Frage „innen oder außen?“ [10]. Kapitel 21 greift diese Idee auf: ein gemeinsames Netz für viele Kacheln.
+In der Forschung ist diese Darstellung für einzelne Formen weit verbreitet. DeepSDF lernt Abstandsfelder für Möbel, Autos und Flugzeuge, und meist ein Netz für viele Formen zugleich [5]. *Occupancy Networks* lernen statt des Abstands nur die Frage „innen oder außen?“ [10]. Ein späteres Kapitel greift diese Idee auf: ein gemeinsames Netz für viele Kacheln.
 
 ## Ausprobieren
 
