@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 940 500" width="940" height="500" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="PSNR über der Dateigröße für die drei Netze und für JPEG">
+<rect width="940" height="500" rx="12" fill="#ffffff"/>
+<text x="28.0" y="40.0" font-size="19" fill="#1f2933" text-anchor="start" font-weight="600">JPEG liegt bei jeder Größe über den Netzen</text>
+<text x="28.0" y="64.0" font-size="13.5" fill="#5f6b7a" text-anchor="start">Kachel Regensburg, 1 250 × 1 250 Pixel, Netze in float16. Small und Medium mit 1 000 Schritten: Mittel aus 3 Läufen.</text>
+<line x1="90" x2="640" y1="420.0" y2="420.0" stroke="#e4e7eb"/>
+<text x="82.0" y="424.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">18</text>
+<line x1="90" x2="640" y1="366.7" y2="366.7" stroke="#e4e7eb"/>
+<text x="82.0" y="370.7" font-size="11.5" fill="#5f6b7a" text-anchor="end">22</text>
+<line x1="90" x2="640" y1="313.3" y2="313.3" stroke="#e4e7eb"/>
+<text x="82.0" y="317.3" font-size="11.5" fill="#5f6b7a" text-anchor="end">26</text>
+<line x1="90" x2="640" y1="260.0" y2="260.0" stroke="#e4e7eb"/>
+<text x="82.0" y="264.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">30</text>
+<line x1="90" x2="640" y1="206.7" y2="206.7" stroke="#e4e7eb"/>
+<text x="82.0" y="210.7" font-size="11.5" fill="#5f6b7a" text-anchor="end">34</text>
+<line x1="90" x2="640" y1="153.3" y2="153.3" stroke="#e4e7eb"/>
+<text x="82.0" y="157.3" font-size="11.5" fill="#5f6b7a" text-anchor="end">38</text>
+<line x1="90" x2="640" y1="100.0" y2="100.0" stroke="#e4e7eb"/>
+<text x="82.0" y="104.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">42</text>
+<text x="82.0" y="88.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">dB</text>
+<line x1="90.0" x2="90.0" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="90.0" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">50 KB</text>
+<line x1="169.6" x2="169.6" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="169.6" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">100 KB</text>
+<line x1="295.8" x2="295.8" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="295.8" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">300 KB</text>
+<line x1="434.2" x2="434.2" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="434.2" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">1 MB</text>
+<line x1="560.4" x2="560.4" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="560.4" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">3 MB</text>
+<text x="365.0" y="462.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">Dateigröße (logarithmisch)</text>
+<line x1="608.9" x2="608.9" y1="100" y2="420" stroke="#e8833a" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="602.9" y="410.0" font-size="11.5" fill="#e8833a" text-anchor="end">unkomprimiert 4,5 MB</text>
+<polyline points="96.9,365.4 149.8,329.0 181.2,310.7 202.7,298.9 222.2,288.1 243.7,275.9 261.0,265.6 275.5,256.7 293.2,245.5 315.0,229.7 337.2,212.6 362.6,191.3 378.9,176.3 392.8,162.9 412.7,145.7" fill="none" stroke="#9aa5b1" stroke-width="2.4"/>
+<circle cx="96.9" cy="365.4" r="3" fill="#9aa5b1"/>
+<circle cx="149.8" cy="329.0" r="3" fill="#9aa5b1"/>
+<circle cx="181.2" cy="310.7" r="3" fill="#9aa5b1"/>
+<circle cx="202.7" cy="298.9" r="3" fill="#9aa5b1"/>
+<circle cx="222.2" cy="288.1" r="3" fill="#9aa5b1"/>
+<circle cx="243.7" cy="275.9" r="3" fill="#9aa5b1"/>
+<circle cx="261.0" cy="265.6" r="3" fill="#9aa5b1"/>
+<circle cx="275.5" cy="256.7" r="3" fill="#9aa5b1"/>
+<circle cx="293.2" cy="245.5" r="3" fill="#9aa5b1"/>
+<circle cx="315.0" cy="229.7" r="3" fill="#9aa5b1"/>
+<circle cx="337.2" cy="212.6" r="3" fill="#9aa5b1"/>
+<circle cx="362.6" cy="191.3" r="3" fill="#9aa5b1"/>
+<circle cx="378.9" cy="176.3" r="3" fill="#9aa5b1"/>
+<circle cx="392.8" cy="162.9" r="3" fill="#9aa5b1"/>
+<circle cx="412.7" cy="145.7" r="3" fill="#9aa5b1"/>
+<circle cx="224.9" cy="372.9" r="3.5" fill="#2b9348" fill-opacity="0.85"/>
+<circle cx="224.9" cy="352.8" r="5" fill="#2b9348" fill-opacity="0.85"/>
+<circle cx="224.9" cy="340.6" r="6.5" fill="#2b9348" fill-opacity="0.85"/>
+<line x1="224.9" x2="224.9" y1="372.9" y2="340.6" stroke="#2b9348" stroke-width="1.5"/>
+<circle cx="383.5" cy="343.7" r="3.5" fill="#2b6cb0" fill-opacity="0.85"/>
+<circle cx="383.5" cy="312.7" r="5" fill="#2b6cb0" fill-opacity="0.85"/>
+<circle cx="383.5" cy="287.5" r="6.5" fill="#2b6cb0" fill-opacity="0.85"/>
+<line x1="383.5" x2="383.5" y1="343.7" y2="287.5" stroke="#2b6cb0" stroke-width="1.5"/>
+<circle cx="542.5" cy="331.5" r="3.5" fill="#7c5cbf" fill-opacity="0.85"/>
+<circle cx="542.5" cy="288.4" r="5" fill="#7c5cbf" fill-opacity="0.85"/>
+<circle cx="542.5" cy="236.8" r="6.5" fill="#7c5cbf" fill-opacity="0.85"/>
+<line x1="542.5" x2="542.5" y1="331.5" y2="236.8" stroke="#7c5cbf" stroke-width="1.5"/>
+<text x="670.0" y="104.0" font-size="12" fill="#1f2933" text-anchor="start" font-weight="600">Verfahren</text>
+<text x="900.0" y="104.0" font-size="12" fill="#1f2933" text-anchor="end" font-weight="600">1 000 · 3 000 · 6 000</text>
+<circle cx="678" cy="126" r="5" fill="#2b9348"/>
+<text x="692.0" y="130.0" font-size="12.5" fill="#1f2933" text-anchor="start">Small · 162 KB</text>
+<text x="900.0" y="147.0" font-size="12" fill="#5f6b7a" text-anchor="end">21,5 · 23,0 · 24,0 dB</text>
+<circle cx="678" cy="166" r="5" fill="#2b6cb0"/>
+<text x="692.0" y="170.0" font-size="12.5" fill="#1f2933" text-anchor="start">Medium · 644 KB</text>
+<text x="900.0" y="187.0" font-size="12" fill="#5f6b7a" text-anchor="end">23,7 · 26,1 · 27,9 dB</text>
+<circle cx="678" cy="206" r="5" fill="#7c5cbf"/>
+<text x="692.0" y="210.0" font-size="12.5" fill="#1f2933" text-anchor="start">Large · 2,5 MB</text>
+<text x="900.0" y="227.0" font-size="12" fill="#5f6b7a" text-anchor="end">24,6 · 27,9 · 31,7 dB</text>
+<line x1="670" x2="686" y1="246" y2="246" stroke="#9aa5b1" stroke-width="2.4"/>
+<text x="692.0" y="250.0" font-size="12.5" fill="#1f2933" text-anchor="start">JPEG, Qualität 5 bis 95</text>
+<text x="670.0" y="290.0" font-size="12" fill="#5f6b7a" text-anchor="start">Kleiner Punkt: 1 000 Schritte,</text>
+<text x="670.0" y="308.0" font-size="12" fill="#5f6b7a" text-anchor="start">großer Punkt: 6 000 Schritte.</text>
+</svg>

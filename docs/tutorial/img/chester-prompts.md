@@ -354,3 +354,166 @@ in sharp focus. No text, no numbers, no music notes, no logos except on the cap.
 ```
 
 Ausgewählt: Bild 1 von 4 (Image 3.0, 2K HD, 16:9). Diesmal zeigte Kling die Referenzbilder in der Reihenfolge des Hochladens: Bild 1 `chester-referenz.png`, Bild 2 `kapitel-11-chester.jpg` – der Prompt passte unverändert. Die leuchtenden Linien liegen in allen Varianten nur auf dem Wasser, nicht auf dem Land; Chester sitzt, statt zu stehen. Der Stil ist etwas heller als in den früheren Kapiteln.
+
+## Kapitel 13 · `kapitel-13-chester.jpg`
+
+Idee: Titel „Location Encoder als Embedding“ – ein Ort wird zu einer Kette von Zahlen. Chester steht auf einem großen alten Holzglobus und zeigt auf einen Ort; von dort steigt eine Kette bunt leuchtender Perlen auf (das Embedding). Aiko fängt sie auf und hält ein Thermometer (die neue Aufgabe: Temperatur). Zwei Referenzbilder: `chester-referenz.png` (Chester) und `kapitel-12-chester.jpg` (Aiko, voriges Kapitel); die Reihenfolge, die Kling anzeigt, beim Hochladen prüfen und die Nummern im Prompt anpassen.
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a cosy old study with warm afternoon light.
+A large antique wooden globe stands in the middle. Chester stands on top of the globe
+and points with one paw at a spot on it. From exactly that spot a long string of many
+small beads rises into the air in a gentle curve; each bead glows in a different soft
+colour. The glowing character stands next to the globe, catches the end of the bead
+string with one hand and holds a small old-fashioned thermometer in the other hand,
+looking at it curiously. Wide composition, both characters in sharp focus.
+No text, no numbers, no music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 3 von 4 (Image 3.0, 2K HD, 16:9, erzeugt am 19. Oktober 2026). Kling zeigte die Referenzbilder in der Reihenfolge des Hochladens (Bild 1 `chester-referenz.png`, Bild 2 `kapitel-12-chester.jpg`). Chester zeigt nicht auf den Globus, sondern hockt darauf und hält die Perlenkette selbst; die Kette endet an Aikos Thermometer. Die Schrift auf der Kappe ist unleserlich. Variante 2 hatte ein zweites Eichhörnchen mit Kappe. Das Original (2720 × 1536 PNG) wurde direkt von Kling geladen und auf 1600 px verkleinert.
+
+## Kapitel 14 · `kapitel-14-chester.jpg`
+
+Idee: Titel „Orthofotos in UTM“ – Chester und Aiko schweben im Korb eines Heißluftballons über einer Altstadt mit roten Dächern, einem Dom mit zwei Türmen und einer alten Steinbrücke über einen breiten Fluss (Regensburg, ohne den Namen zu nennen). Chester fotografiert senkrecht nach unten; über der Stadt liegt ein zartes, leuchtendes Quadratgitter (das Koordinatengitter). Aiko hält ein großes quadratisches Foto der Stadt von oben. Zwei Referenzbilder: `chester-referenz.png` (Chester) und `kapitel-13-chester.jpg` (Aiko, voriges Kapitel); die Reihenfolge, die Kling anzeigt, beim Hochladen prüfen und die Nummern im Prompt anpassen.
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a sunny summer morning high above an old
+European town with red tiled roofs, a large Gothic cathedral with two tall spires and a
+long old stone arch bridge across a wide river. Chester and the glowing character float
+above the town in the wicker basket of a colourful hot-air balloon. Chester leans over
+the edge and points a big camera straight down at the town. The glowing character holds
+up a large square photo that shows the town seen from directly above, and compares it
+proudly with the view below. A very faint glowing square grid lies over the town like a
+map grid. Wide composition seen from the side and slightly above the basket, both
+characters in sharp focus, the town clearly visible below. No text, no numbers, no
+music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 3 von 4 (Image 3.0, 2K HD, 16:9, erzeugt am 19. Oktober 2026). Kling zeigte die Referenzbilder in der Reihenfolge des Hochladens (Bild 1 `chester-referenz.png`, Bild 2 `kapitel-13-chester.jpg`), der Prompt passte unverändert. Nur diese Variante hat das leuchtende Quadratgitter (über der Landschaft hinter der Stadt); beide sitzen im Korb eines bunten Ballons, Dom mit zwei Türmen und Steinbrücke im Hintergrund. Chester hält die Kamera waagrecht statt nach unten (in keiner Variante senkrecht), Aikos Foto ist eher eine Schrägansicht, die Schrift auf der Kappe ist unleserlich. Variante 1 hatte trotz des Verbots Musiknoten. Das Original (2720 × 1536 PNG) wurde direkt von Kling geladen und auf 1600 px verkleinert.
+
+## Kapitel 15 · `kapitel-15-chester.jpg`
+
+Idee: Titel „Gebäude als 3D-Feld“ – Chester und Aiko bauen auf einer Werkbank ein Modell eines gotischen Doms mit zwei Türmen und ein paar Altstadthäusern mit Satteldächern. Die eine Hälfte des Modells ist aus Stein, die andere Hälfte entsteht aus vielen kleinen, leuchtenden, durchscheinenden Würfeln (Voxel). Chester setzt mit einer Pinzette einen Würfel auf eine Turmspitze, Aiko reicht ihm einen weiteren. Über dem Modell schwebt ein feines, leuchtendes 3D-Gitter. Zwei Referenzbilder: `chester-referenz.png` (Chester) und `kapitel-14-chester.jpg` (Aiko, voriges Kapitel); die Reihenfolge, die Kling anzeigt, beim Hochladen prüfen und die Nummern im Prompt anpassen.
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a cosy workshop at night, warm lamp light. On a
+wooden workbench stands a large scale model of an old town: a Gothic cathedral with two
+tall pointed spires and a few small houses with steep red gable roofs. The left half of
+the model is made of carved sandstone; the right half is built from hundreds of tiny
+translucent cubes that glow softly in amber and blue, forming exactly the same shapes.
+Chester stands on the workbench and carefully places one glowing cube on top of a spire
+with a pair of tweezers. The glowing character stands next to him and holds up the next
+glowing cube. A very faint glowing three-dimensional grid of thin lines fills the air
+above the model. Wide composition seen slightly from above, both characters in sharp
+focus. No text, no numbers, no music notes, no logos except on the cap.
+```
+
+Ausgewählt: Bild 1 der zweiten Runde (Variante 5 von 8; Image 3.0, 2K HD, 16:9, erzeugt am 20. Oktober 2026; zwei Runden mit demselben Prompt). Kling zeigte die Referenzbilder beide Male in der Reihenfolge des Hochladens (Bild 1 `chester-referenz.png`, Bild 2 `kapitel-14-chester.jpg`). Links ein kleiner Dom aus Sandstein, rechts ein großer Dom mit Haus aus durchscheinendem, von innen leuchtendem Material auf einem Sockel aus Würfeln; Chester hält mit der Pinzette einen leuchtenden Würfel hoch, Aiko steht zwischen ihm und dem Stein-Dom; über den Turmspitzen ein leuchtender Ring mit Stern. Der rechte Dom besteht nur unten sichtbar aus Würfeln, Aiko hält keinen Würfel, kein 3D-Gitter (in keiner der acht Varianten), Schrift auf der Kappe unleserlich. In anderen Varianten: Aiko doppelt (1) oder eine echte Eichel neben Aiko (6). Das Original (2720 × 1536 PNG) wurde direkt von Kling geladen und auf 1600 px verkleinert.
+
+## Kapitel 16 · `kapitel-16-chester.jpg`
+
+Idee: Titel „Gaussian Splatting: Luftbild und Gebäude als Gaußglocken“ – Chester malt mit einer Airbrush-Pistole ein Luftbild der Altstadt (Fluss, Steinbrücke, rote Dächer) auf eine große Leinwand. Das Bild besteht nicht aus Strichen, sondern aus vielen weichen, ovalen, leicht leuchtenden Farbflecken, die sich überlappen: von Nahem Flecken, von Weitem ein Bild (2D-Teil). Daneben hält Aiko ein kleines Modell des Doms mit zwei Türmen, das ganz aus schwebenden, durchscheinenden, ovalen Glaskörpern in Bernstein und Blau zusammengesetzt ist (3D-Teil). Zwei Referenzbilder: `chester-referenz.png` (Chester) und `kapitel-15-chester.jpg` (Aiko, voriges Kapitel); die Reihenfolge, die Kling anzeigt, beim Hochladen prüfen und die Nummern im Prompt anpassen.
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a bright, cosy painter's studio with a large
+window and warm afternoon light. On a wooden easel stands a big canvas. Chester stands
+in front of it and paints with an airbrush spray gun. The picture on the canvas is an
+aerial view of an old town seen from directly above: red tiled roofs, a wide river and
+a long old stone arch bridge. The picture is not made of brush strokes but of hundreds
+of soft, oval, slightly glowing blobs of colour of different sizes, some round, some
+long and thin along the edges of roofs and the bridge, overlapping each other – up close
+blobs, from afar a clear picture. A few fresh blobs are flying from the airbrush to the
+canvas. Next to the easel the glowing character proudly holds up a small model of a
+Gothic cathedral with two pointed towers, built entirely from many small floating,
+translucent, oval glass-like blobs glowing in soft amber and blue. Wide composition,
+both characters in sharp focus. No text, no numbers, no music notes, no logos except on
+the cap.
+```
+
+Zweite Runde (gleiche Referenzbilder, Prompt geschärft: Leinwand fast fertig und nur aus ovalen Flecken, Aiko hält den Dom aus ovalen Glasperlen hoch):
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a bright, cosy painter's studio with warm
+afternoon light. On the left a big canvas on a wooden easel, almost finished: it shows
+an aerial view of an old town seen from directly above, with red tiled roofs, a wide
+blue-green river and a long stone arch bridge across it. The whole picture is made only
+of hundreds of soft, slightly blurry oval spots of paint in many sizes, overlapping like
+a pointillist painting with oval dots: small long thin ovals along the bridge, the
+riverbanks and the roof edges, big round soft ovals on the water. Chester stands in front
+of the canvas and sprays one more glowing oval spot onto it with an airbrush spray gun.
+On the right, the glowing character stands on a small table and holds up with both arms
+a small model of a Gothic cathedral with two pointed towers; the model is made entirely
+of many floating, translucent, glowing oval glass beads in amber and light blue, with
+gaps between them, so you can see that it is built from ovals. Wide composition, both
+characters and the canvas in sharp focus. No text, no numbers, no music notes, no logos
+except on the cap.
+```
+
+Ausgewählt: Variante 1 der zweiten Runde (Image 3.0, 2K HD, 16:9, erzeugt am 1. November 2026; zwei Runden, 8 Varianten, 8 Credits). Kling zeigte die Referenzbilder in der Reihenfolge des Hochladens (Bild 1 `chester-referenz.png`, Bild 2 `kapitel-15-chester.jpg`). Chester sprüht mit der Airbrush einen Strahl aus gelben ovalen Flecken auf ein gemaltes Luftbild mit Fluss, Bogenbrücke, roten Dächern und zwei Kirchtürmen; Aiko steht in der Mitte, rechts auf einem Tisch ein leuchtender, durchscheinender Dom mit zwei Türmen. Das Luftbild ist gemalt statt aus ovalen Flecken (in keiner Variante), Aiko hält den Dom nicht (in keiner Variante), der Dom wirkt wie aus Eis statt aus Ovalen; Schrift auf der Kappe unleserlich. In der ersten Runde war die Leinwand meist leer oder ein 3D-Stadtplan; in der zweiten Runde Variante 2 mit doppeltem Aiko. Das Original (2720 × 1536 PNG) wurde direkt von Kling geladen und auf 1600 px verkleinert.
+
+## Kapitel 17 · `kapitel-17-chester.jpg`
+
+Idee: Titel „Zeitreihen f(lon, lat, t): Erwärmung seit 1950“ – die Zeit als vierte Eingabe. Chester dreht an der großen Messingkurbel einer altmodischen Zeitmaschine, die an einem Globus befestigt ist. Hinter dem Globus reiht sich eine lange Kette kleiner Globen wie Bilder eines Films in die Tiefe: die vorderen kühl blau, nach hinten immer wärmer orange und rot (Erwärmung). Aiko sitzt oben auf dem großen Globus und hält eine große Taschenuhr. Zwei Referenzbilder: `chester-referenz.png` (Chester) und `kapitel-16-chester.jpg` (Aiko, voriges Kapitel); die Reihenfolge, die Kling anzeigt, beim Hochladen prüfen und die Nummern im Prompt anpassen.
+
+```
+Two reference images. Image 1 shows Chester: a fox squirrel with golden-brown fur, a
+cream-white belly and big shiny dark eyes. He wears exactly the same cap as in image 1:
+a royal-blue baseball cap with a small orange and light-blue infinity logo and the word
+CHICAGO in small white letters on the front. Keep Chester's look and the 3D animated
+feature film style of image 1, cinematic lighting. Image 2 shows the small glowing
+character with thin cartoon arms and legs and small sneakers: a glossy brown scaly
+acorn-shaped cap with a short stem on a translucent, warm amber-glowing body with fine
+luminous lines inside, and a simple friendly face. It must look exactly like in image 2,
+no glasses, no other accessories. Scene: a cosy old observatory room with wooden floor
+and warm lamp light. In the middle stands a large antique globe on a brass stand, with
+a big brass crank and gears on its side like a small time machine. Chester stands next
+to it and turns the crank with both paws, concentrating. Behind the big globe, a long
+row of small floating globes recedes into the distance like the frames of a film strip:
+the nearest small globes are cool blue, and towards the back each one glows a little
+warmer, through yellow and orange to red. The glowing character sits on top of the big
+globe and holds up a large golden pocket watch, looking at it with curiosity. Wide
+composition, both characters in sharp focus. No text, no numbers, no music notes, no
+logos except on the cap.
+```
+
+Ausgewählt: Bild 4 von 4 (Image 3.0, 2K HD, 16:9, erzeugt am 7. November 2026; 4 Credits). Kling zeigte die Referenzbilder in der Reihenfolge des Hochladens (Bild 1 `chester-referenz.png`, Bild 2 `kapitel-16-chester.jpg`). Chester dreht eine kleine Messingkurbel mit Zahnrad am Globus, Aiko steht oben und hält eine goldene Taschenuhr; die Kugeln im Hintergrund hängen im Bogen von blau (links) bis rot (rechts) – keine Erdkugeln, eher Lampions. Kein Observatorium, eher ein dunkler Saal; Schrift auf der Kappe unleserlich. Variante 1 hatte Planeten mit Ringen, Variante 2 bunt gemischte Kugeln. Erster Versuch scheiterte: Nach abgelaufener Anmeldung reagierte der Knopf Generate nicht (keine Kostenanzeige „⚡4“), zwei Referenzbilder landeten als Uploads in der Galerie; nach neuer Anmeldung lief es. Das Original (2720 × 1536 PNG) wurde direkt von Kling geladen und auf 1600 px verkleinert.

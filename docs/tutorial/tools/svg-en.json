@@ -653,5 +653,68 @@
     "Trainingsschritte, Begrenzung ±5 m": "Training steps, limit ±5 m",
     "Medium, 3 000 Schritte": "Medium, 3 000 steps",
     "Begrenzung des Abstands": "Limit of the distance"
+  },
+  "splat-glocken.svg": {
+    "Drei Gaußglocken und ihre Summe": "Three Gaussians and their sum",
+    "Drei Glocken, ein Bild": "Three Gaussians, one image",
+    "Jede Glocke gibt ihre Farbe an die Pixel in ihrer Nähe ab – in der Mitte voll, nach außen immer weniger. Das Bild ist die Summe.": "Each Gaussian gives its colour to the pixels near it – fully in the middle, less and less further out. The image is the sum.",
+    "Gestrichelt: eine Breite um die Mitte": "Dashed: one width around the centre",
+    "rund und groß": "round and large",
+    "Mitte, zwei gleiche Breiten": "centre, two equal widths",
+    "lang und schmal": "long and thin",
+    "zwei verschiedene Breiten": "two different widths",
+    "lang und gedreht": "long and turned",
+    "dazu eine Drehung um 40°": "plus a turn of 40°",
+    "Summe": "Sum",
+    "wo sich Glocken überlappen, mischen sich die Farben": "where Gaussians overlap, the colours mix",
+    "Eine Glocke = 8 Zahlen": "One Gaussian = 8 numbers",
+    "Mitte (2) · zwei Breiten (2) · Drehung (1) · Farbe Rot, Grün, Blau (3)": "centre (2) · two widths (2) · rotation (1) · colour red, green, blue (3)",
+    "In der App: 10 201 bis 164 025 Glocken für die Kachel Regensburg.": "In the app: 10 201 to 164 025 Gaussians for the Regensburg tile."
+  },
+  "splat-training.svg": {
+    "Die Glocken an der Steinernen Brücke vor dem Training, nach 1 000 Schritten und das Original": "The Gaussians at the Stone Bridge before training, after 1 000 steps, and the original",
+    "Was das Training mit den Glocken macht": "What training does to the Gaussians",
+    "100 m × 100 m an der Steinernen Brücke, Vorlage Small. Gelb: jede Glocke als Ellipse, eine Breite um die Mitte.": "100 m × 100 m at the Stone Bridge, preset Small. Yellow: each Gaussian as an ellipse, one width around the centre.",
+    "Start": "Start",
+    "Glocken auf einem Gitter, Farbe vom Pixel darunter": "Gaussians on a grid, colour from the pixel below",
+    "Nach 1 000 Schritten": "After 1 000 steps",
+    "gewandert, gestreckt, gedreht, umgefärbt": "moved, stretched, turned, recoloured",
+    "Original": "Original",
+    "das Ziel des Trainings": "the goal of training"
+  },
+  "splat-messung.svg": {
+    "PSNR über der Dateigröße für JPEG, die drei Netze und die drei Vorlagen mit Gaußglocken": "PSNR against file size for JPEG, the three networks and the three Gaussian presets",
+    "Die Glocken schlagen das Netz – JPEG bleibt vorn": "The Gaussians beat the network – JPEG stays ahead",
+    "Kachel Regensburg, 1 250 × 1 250 Pixel, alles in float16. Netze aus Kapitel 14, Glocken je ein Lauf. PSNR des ganzen Bildes.": "Regensburg tile, 1 250 × 1 250 pixels, all in float16. Networks from chapter 14, Gaussians one run each. PSNR of the whole image.",
+    "Dateigröße (logarithmisch)": "File size (logarithmic)",
+    "unkomprimiert 4,5 MB": "uncompressed 4.5 MB",
+    "Verfahren": "Method",
+    "Glocken": "Gaussians",
+    "Netz": "Network",
+    "JPEG, Qualität 5 bis 95": "JPEG, quality 5 to 95",
+    "Kleines Zeichen: 1 000 Schritte,": "Small mark: 1 000 steps,",
+    "großes Zeichen: 3 000 Schritte.": "large mark: 3 000 steps."
+  },
+  "splat-bruecke.svg": {
+    "Ausschnitt an der Steinernen Brücke: Original, Netz, Gaußglocken und JPEG gleicher Größe": "Detail at the Stone Bridge: original, network, Gaussians and JPEG of the same size",
+    "Dieselben 150 m × 150 m, viermal gespeichert": "The same 150 m × 150 m, stored four times",
+    "Steinerne Brücke, 0,8 m pro Pixel. Netz und Glocken: Small, 1 000 Schritte. PSNR jeweils für das ganze Bild.": "Stone Bridge, 0.8 m per pixel. Network and Gaussians: Small, 1 000 steps. PSNR for the whole image each.",
+    "4,5 MB unkomprimiert": "4.5 MB uncompressed",
+    "Netz Small": "Network Small",
+    "Glocken Small": "Gaussians Small",
+    "JPEG, Qualität 26": "JPEG, quality 26"
+  },
+  "ortho-entzerrung.svg": {
+    "Luftbild in Zentralprojektion gegen Orthofoto in senkrechter Projektion": "Aerial photo in central projection against orthophoto in vertical projection",
+    "Warum ein Luftbild verzerrt ist – und ein Orthofoto nicht": "Why an aerial photo is distorted – and an orthophoto is not",
+    "Schnitt durch das Gelände mit einem Hügel und einem hohen Haus. Die blauen Punkte liegen in gleichen Abständen.": "Section through terrain with a hill and a tall house. The blue points are equally spaced.",
+    "Luftbild: alle Strahlen gehen durch die Kamera": "Aerial photo: all rays pass through the camera",
+    "Auf die Karte gelegt rücken hohe Punkte nach außen:": "Laid onto the map, high points move outwards:",
+    "der Hügel wird gedehnt, das Dach (rot) kippt vom Haus weg.": "the hill is stretched, the roof (red) tilts away from the house.",
+    "Orthofoto: jeder Punkt senkrecht nach unten": "Orthophoto: every point straight down",
+    "Mit einem Geländemodell entzerrt: gleiche Abstände": "Rectified with a terrain model: equal distances",
+    "im Gelände sind gleiche Abstände im Bild.": "on the ground are equal distances in the image.",
+    "Kamera": "Camera",
+    "Bild auf der Karte": "Image on the map"
   }
 }
