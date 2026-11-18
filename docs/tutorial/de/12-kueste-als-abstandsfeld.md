@@ -193,6 +193,6 @@ Zum Vergleich mit dem Höhennetz wählen Sie bei **Dataset** wieder **Elevation 
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 11 · Einordnung und Ausblick](11-einordnung-und-ausblick.md) · Weiter: [Anhang · Messungen](anhang-messungen.md)
+[Übersicht](README.md) · Zurück: [Kapitel 11 · Einordnung und Ausblick](11-einordnung-und-ausblick.md) · Weiter: [Kapitel 13 · Location Encoder als Embedding](13-location-encoder.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

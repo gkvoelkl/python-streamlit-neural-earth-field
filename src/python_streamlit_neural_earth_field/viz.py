@@ -448,3 +448,75 @@ def distance_slice(east: np.ndarray, north: np.ndarray, d: np.ndarray, *, limit:
         xaxis=dict(showticklabels=False), yaxis=dict(showticklabels=False, scaleanchor="x"),
     )
     return fig
+
+
+def anomaly_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, limit: float, unit: str = "°C",
+                title: str = "", height: int = 320) -> go.Figure:
+    """Warmer in red, colder in blue, symmetric around 0; NaN (no data) stays white."""
+    fig = go.Figure(go.Heatmap(
+        x=lon, y=lat, z=z, colorscale="RdBu", reversescale=True, zmin=-limit, zmax=limit,
+        colorbar=dict(title=unit, thickness=12),
+        hovertemplate=f"%{{x:.0f}}°, %{{y:.0f}}° → %{{z:+.2f}} {unit}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=title or None, height=height, margin=dict(l=40, r=10, t=36 if title else 10, b=30),
+        yaxis=dict(scaleanchor="x", scaleratio=1, title="Latitude", range=[-90, 90], constrain="domain"),
+        xaxis=dict(title="Longitude", range=[-180, 180], constrain="domain"),
+    )
+    return fig
+
+
+def land_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, colorscale: str, zmin: float, zmax: float,
+             unit: str, title: str = "", reverse: bool = False, height: int = 320) -> go.Figure:
+    """Any quantity on land (NaN at sea), with its own colour scale."""
+    fig = go.Figure(go.Heatmap(
+        x=lon, y=lat, z=z, colorscale=colorscale, reversescale=reverse, zmin=zmin, zmax=zmax,
+        colorbar=dict(title=unit, thickness=12),
+        hovertemplate=f"%{{x:.2f}}°, %{{y:.2f}}° → %{{z:.1f}} {unit}<extra></extra>",
+    ))
+    fig.update_layout(
+        title=title or None, height=height, margin=dict(l=40, r=10, t=36 if title else 10, b=30),
+        yaxis=dict(scaleanchor="x", scaleratio=1, title="Latitude", range=[-90, 85], constrain="domain"),
+        xaxis=dict(title="Longitude", range=[-180, 180], constrain="domain"),
+        plot_bgcolor="#eef4fb",
+    )
+    return fig
+
+
+def germany_map(lon: np.ndarray, lat: np.ndarray, z: np.ndarray, *, zmin: float, zmax: float, unit: str,
+                colorscale: str = "RdYlBu", reverse: bool = True, title: str = "",
+                points: tuple[np.ndarray, np.ndarray, np.ndarray] | None = None, height: int = 620) -> go.Figure:
+    """A map of Germany (NaN outside), optionally with stations as dots coloured by ``points[2]`` (error, ±)."""
+    fig = go.Figure(go.Heatmap(
+        x=lon, y=lat, z=z, colorscale=colorscale, reversescale=reverse, zmin=zmin, zmax=zmax,
+        colorbar=dict(title=unit, thickness=12, x=0.78),
+        hovertemplate=f"%{{x:.2f}}° E, %{{y:.2f}}° N → %{{z:.2f}} {unit}<extra></extra>",
+    ))
+    if points is not None:
+        px, py, err = points
+        fig.add_trace(go.Scatter(
+            x=px, y=py, mode="markers", name="test stations",
+            marker=dict(size=7, color=err, colorscale="RdBu", reversescale=True, cmin=-1.5, cmax=1.5,
+                        line=dict(width=0.6, color="#1f2933"),
+                        colorbar=dict(title="error °C", thickness=10, x=0.9)),
+            hovertemplate="error %{marker.color:+.2f} °C<extra></extra>", showlegend=False,
+        ))
+    fig.update_layout(
+        title=title or None, height=height, margin=dict(l=40, r=10, t=36 if title else 10, b=30),
+        yaxis=dict(scaleanchor="x", scaleratio=1 / np.cos(np.deg2rad(51)), title="Latitude", constrain="domain"),
+        xaxis=dict(title="Longitude", constrain="domain"),
+        plot_bgcolor="#eef4fb",
+    )
+    return fig
+
+
+def global_series(years: np.ndarray, series: dict[str, np.ndarray], height: int = 320) -> go.Figure:
+    """Global annual mean anomalies of several sources, one line each (the first one bold)."""
+    fig = go.Figure()
+    styles = [dict(color="#1f2933", width=3), dict(color="#e8833a", width=2), dict(color="#2b6cb0", width=2, dash="dot")]
+    for (name, values), line in zip(series.items(), styles):
+        fig.add_trace(go.Scatter(x=years, y=values, mode="lines", name=name, line=line,
+                                 hovertemplate=f"%{{x}}: %{{y:+.2f}} °C<extra>{name}</extra>"))
+    fig.update_layout(height=height, margin=dict(l=50, r=10, t=10, b=40), yaxis=dict(title="°C, against 1951–1980"),
+                      xaxis=dict(title="Year"), legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0))
+    return fig

@@ -41,10 +41,11 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 The app averages it down to the chosen working resolution (180 × 360 to 2160 × 4320)
 and caches it under `data/cache/`.
 
-The *Coastline*, *Location Encoder*, *Orthophoto* and *Buildings 3D* tabs need
-further freely available data (Natural Earth, air temperature from the University
-of Delaware, SatCLIP, orthophotos and 3D building models of the Bavarian surveying
-administration). The app asks each time before it downloads anything.
+The *Coastline*, *Location Encoder*, *Orthophoto*, *Gaussian Splatting*, *Buildings 3D*,
+*Climate*, *Climate Atlas* and *Stations* tabs need further freely available data
+(Natural Earth, air temperature and precipitation from the University of Delaware,
+SatCLIP, orthophotos and 3D building models of the Bavarian surveying administration,
+NASA's GISTEMP, station means of the Deutscher Wetterdienst). The app asks each time before it downloads anything.
 
 ## GPU and online version
 
@@ -73,7 +74,11 @@ training run. Its numbers therefore differ from the tutorial. Local installs are
 | **Coastline** | The coast as the network's 0 line over the Natural Earth coastline |
 | **Location Encoder** | Places as vectors of numbers: different encoders learn the air temperature |
 | **Orthophoto** | An aerial photo in UTM as a field f(E, N) → (R, G, B) |
+| **Gaussian Splatting** | The aerial photo and the buildings without a network, as many small Gaussians |
 | **Buildings 3D** | Buildings as a signed distance in three dimensions |
+| **Climate** | Monthly temperature anomalies since 1950 as one field f(x, y, z, t) |
+| **Climate Atlas** | Temperature, precipitation and elevation in one network with 25 outputs against three networks |
+| **Stations** | A temperature map of Germany from DWD stations: IDW, kriging and a network, checked at test stations |
 | **Rate & Error** | Rate-distortion curve across several network sizes |
 | **Export** | Weights as `.pt` in float32 / float16, with a loading example |
 
@@ -173,7 +178,11 @@ src/python_streamlit_neural_earth_field/
   coast.py      distance to the coast from Natural Earth
   embedding.py  location encoders and transfer to the air temperature
   ortho.py      orthophoto as a field in UTM
+  splat.py      orthophoto as 2D Gaussians (Gaussian splatting)
   buildings.py  buildings as a 3D distance field
+  climate.py    temperature anomalies (GISTEMP) as a field in space and time
+  atlas.py      temperature, precipitation and elevation as one network with 25 outputs
+  stations.py   weather stations: IDW, kriging and a small network, checked at test stations
   encoding.py   lon/lat → unit sphere, Fourier features, spherical harmonics
   model.py      NeuralField (MLP / SIREN / context field), size bookkeeping
   training.py   overfitting loop as a generator, area-weighted sampling

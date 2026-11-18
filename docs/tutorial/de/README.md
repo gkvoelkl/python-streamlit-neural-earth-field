@@ -52,6 +52,15 @@ Die folgenden Kapitel bauen auf den Kapiteln 1 bis 5 auf. Sie lassen sich je nac
 Diese Kapitel setzen den Ausblick aus Kapitel 11 in die Praxis um: Punkte, Linien und Flächen als Feld.
 
 12. [Die Küste als Abstandsfeld](12-kueste-als-abstandsfeld.md)
+13. [Location Encoder als Embedding](13-location-encoder.md)
+
+### Orthofotos und 3D
+
+Diese Kapitel verlassen die Kugel: ein Quadratkilometer der Regensburger Altstadt als Luftbild und als Gebäude in drei Dimensionen.
+
+14. [Orthofotos in UTM](14-orthofotos-in-utm.md)
+15. [Gebäude als 3D-Feld](15-gebaeude-als-3d-feld.md)
+16. [Gaussian Splatting](16-gaussian-splatting.md)
 
 **Anhang**
 

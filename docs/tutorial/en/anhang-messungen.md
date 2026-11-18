@@ -90,6 +90,10 @@ Some chapters contain their own measurements for a particular question. They wer
 | [10](10-abfragen-und-exportieren.md) | float16 on the whole grid; queries at individual places; querying more finely against the grid 2160 × 4320 | 1080 × 2160, 4 000 steps |
 | [11](11-einordnung-und-ausblick.md) | land or sea: share of the Earth's surface on the correct side of the 0 m line | network from chapter 10 |
 | [12](12-kueste-als-abstandsfeld.md) | coast from the elevation network against the distance network; limiting the distance; Fourier MLP, SIREN and context field: correct side, coastal cells, coast offset | 1080 × 2160, 4 000 steps, distance to the Natural Earth coastline 1:50 million |
+| [13](13-location-encoder.md) | six inputs for the same task: air temperature from 100, 1 000 and 10 000 training places, RMSE at all other land cells | University of Delaware temperature 1981–2010, 0.5°; small network 2 × 64, 2 000 steps; three runs per row |
+| [14](14-orthofotos-in-utm.md) | aerial photo as a network f(E, N) against JPEG of the same size: PSNR after 1 000, 3 000 and 6 000 steps | DOP40 orthophoto, 1 250 × 1 250 pixels; *Small* three runs, otherwise mostly one run |
+| [15](15-gebaeude-als-3d-feld.md) | buildings as a distance field: IoU and surface offset; limiting the distance | LoD2, 300 m × 300 m around the cathedral, 1 m grid; three runs per setting |
+| [16](16-gaussian-splatting.md) | Gaussians against network and JPEG at the same file size: PSNR of the aerial photo, IoU and offset of the buildings | as chapters 14 and 15; one run each |
 
 The numbers in the chapters therefore differ from the main table by a few metres. For example, the standard example in chapter 10 has a weighted RMSE of 245 m, *Fourier MLP + context field* 191 m instead of 186 m; chapter 8 gives 245 m and 185 m. Such differences are within the variation from run to run.
 
@@ -114,6 +118,6 @@ A single run in the app will not give exactly the same numbers as here, because 
 
 ---
 
-[Overview](README.md) · Back: [Chapter 12 · The coast as a distance field](12-kueste-als-abstandsfeld.md)
+[Overview](README.md) · Back: [Chapter 16 · Gaussian splatting](16-gaussian-splatting.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

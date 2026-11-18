@@ -90,6 +90,10 @@ Einige Kapitel enthalten eigene Messungen für eine bestimmte Frage. Sie wurden 
 | [10](10-abfragen-und-exportieren.md) | float16 auf dem ganzen Gitter; Abfragen an einzelnen Orten; feiner abfragen gegen das Gitter 2160 × 4320 | 1080 × 2160, 4 000 Schritte |
 | [11](11-einordnung-und-ausblick.md) | Land oder Meer: Anteil der Erdoberfläche auf der richtigen Seite der 0-m-Linie | Netz aus Kapitel 10 |
 | [12](12-kueste-als-abstandsfeld.md) | Küste aus dem Höhennetz gegen das Abstandsnetz; Begrenzung des Abstands; Fourier MLP, SIREN und Kontextfeld: richtige Seite, Küstenzellen, Küstenversatz | 1080 × 2160, 4 000 Schritte, Abstand zur Küstenlinie von Natural Earth 1:50 Mio. |
+| [13](13-location-encoder.md) | Sechs Eingaben für dieselbe Aufgabe: Lufttemperatur aus 100, 1 000 und 10 000 Trainingsorten, RMSE an allen übrigen Landzellen | Temperatur der University of Delaware 1981–2010, 0,5°; kleines Netz 2 × 64, 2 000 Schritte; drei Läufe je Zeile |
+| [14](14-orthofotos-in-utm.md) | Luftbild als Netz f(E, N) gegen JPEG gleicher Größe: PSNR nach 1 000, 3 000 und 6 000 Schritten | Orthofoto DOP40, 1 250 × 1 250 Pixel; *Small* drei Läufe, sonst meist ein Lauf |
+| [15](15-gebaeude-als-3d-feld.md) | Gebäude als Abstandsfeld: IoU und Versatz der Oberfläche; Begrenzung des Abstands | LoD2, 300 m × 300 m um den Dom, 1-m-Gitter; drei Läufe je Einstellung |
+| [16](16-gaussian-splatting.md) | Gaußglocken gegen Netz und JPEG bei gleicher Dateigröße: PSNR des Luftbilds, IoU und Versatz der Gebäude | wie Kapitel 14 und 15; je ein Lauf |
 
 Die Zahlen in den Kapiteln weichen deshalb um einige Meter von der Haupttabelle ab. Zum Beispiel hat das Standardbeispiel in Kapitel 10 einen gewichteten RMSE von 245 m, *Fourier MLP + context field* 191 m statt 186 m; in Kapitel 8 stehen 245 m und 185 m. Solche Unterschiede liegen im Bereich der Schwankung von Lauf zu Lauf.
 
@@ -114,6 +118,6 @@ Ein einzelner Lauf in der App wird nicht genau dieselben Zahlen liefern wie hier
 
 ---
 
-[Übersicht](README.md) · Zurück: [Kapitel 12 · Die Küste als Abstandsfeld](12-kueste-als-abstandsfeld.md)
+[Übersicht](README.md) · Zurück: [Kapitel 16 · Gaussian Splatting](16-gaussian-splatting.md)
 
 *Dieses Tutorial wurde von Gerhard Völkl unter Verwendung von Claude Code (Anthropic) erstellt. Es soll helfen, mehr über das Thema „Geodaten in neuronalen Netzen speichern“ zu lernen. Verbesserungsvorschläge gerne an gkvoelkl@nelson-games.de.*

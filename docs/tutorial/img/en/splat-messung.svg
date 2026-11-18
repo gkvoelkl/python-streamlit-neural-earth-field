@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 940 500" width="940" height="500" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="PSNR against file size for JPEG, the three networks and the three Gaussian presets">
+<rect width="940" height="500" rx="12" fill="#ffffff"/>
+<text x="28.0" y="40.0" font-size="19" fill="#1f2933" text-anchor="start" font-weight="600">The Gaussians beat the network – JPEG stays ahead</text>
+<text x="28.0" y="64.0" font-size="13.5" fill="#5f6b7a" text-anchor="start">Regensburg tile, 1 250 × 1 250 pixels, all in float16. Networks from chapter 14, Gaussians one run each. PSNR of the whole image.</text>
+<line x1="90" x2="640" y1="420.0" y2="420.0" stroke="#e4e7eb"/>
+<text x="82.0" y="424.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">18</text>
+<line x1="90" x2="640" y1="366.7" y2="366.7" stroke="#e4e7eb"/>
+<text x="82.0" y="370.7" font-size="11.5" fill="#5f6b7a" text-anchor="end">22</text>
+<line x1="90" x2="640" y1="313.3" y2="313.3" stroke="#e4e7eb"/>
+<text x="82.0" y="317.3" font-size="11.5" fill="#5f6b7a" text-anchor="end">26</text>
+<line x1="90" x2="640" y1="260.0" y2="260.0" stroke="#e4e7eb"/>
+<text x="82.0" y="264.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">30</text>
+<line x1="90" x2="640" y1="206.7" y2="206.7" stroke="#e4e7eb"/>
+<text x="82.0" y="210.7" font-size="11.5" fill="#5f6b7a" text-anchor="end">34</text>
+<line x1="90" x2="640" y1="153.3" y2="153.3" stroke="#e4e7eb"/>
+<text x="82.0" y="157.3" font-size="11.5" fill="#5f6b7a" text-anchor="end">38</text>
+<line x1="90" x2="640" y1="100.0" y2="100.0" stroke="#e4e7eb"/>
+<text x="82.0" y="104.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">42</text>
+<text x="82.0" y="88.0" font-size="11.5" fill="#5f6b7a" text-anchor="end">dB</text>
+<line x1="90.0" x2="90.0" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="90.0" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">50 KB</text>
+<line x1="169.6" x2="169.6" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="169.6" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">100 KB</text>
+<line x1="295.8" x2="295.8" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="295.8" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">300 KB</text>
+<line x1="434.2" x2="434.2" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="434.2" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">1 MB</text>
+<line x1="560.4" x2="560.4" y1="100" y2="420" stroke="#e4e7eb"/>
+<text x="560.4" y="440.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">3 MB</text>
+<text x="365.0" y="462.0" font-size="11.5" fill="#5f6b7a" text-anchor="middle">File size (logarithmic)</text>
+<line x1="608.9" x2="608.9" y1="100" y2="420" stroke="#e8833a" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="602.9" y="410.0" font-size="11.5" fill="#e8833a" text-anchor="end">uncompressed 4.5 MB</text>
+<polyline points="96.9,365.4 149.8,329.0 181.2,310.7 202.7,298.9 222.2,288.1 243.7,275.9 261.0,265.6 275.5,256.7 293.2,245.5 315.0,229.7 337.2,212.6 362.6,191.3 378.9,176.3 392.8,162.9 412.7,145.7" fill="none" stroke="#9aa5b1" stroke-width="2.4"/>
+<circle cx="96.9" cy="365.4" r="3" fill="#9aa5b1"/>
+<circle cx="149.8" cy="329.0" r="3" fill="#9aa5b1"/>
+<circle cx="181.2" cy="310.7" r="3" fill="#9aa5b1"/>
+<circle cx="202.7" cy="298.9" r="3" fill="#9aa5b1"/>
+<circle cx="222.2" cy="288.1" r="3" fill="#9aa5b1"/>
+<circle cx="243.7" cy="275.9" r="3" fill="#9aa5b1"/>
+<circle cx="261.0" cy="265.6" r="3" fill="#9aa5b1"/>
+<circle cx="275.5" cy="256.7" r="3" fill="#9aa5b1"/>
+<circle cx="293.2" cy="245.5" r="3" fill="#9aa5b1"/>
+<circle cx="315.0" cy="229.7" r="3" fill="#9aa5b1"/>
+<circle cx="337.2" cy="212.6" r="3" fill="#9aa5b1"/>
+<circle cx="362.6" cy="191.3" r="3" fill="#9aa5b1"/>
+<circle cx="378.9" cy="176.3" r="3" fill="#9aa5b1"/>
+<circle cx="392.8" cy="162.9" r="3" fill="#9aa5b1"/>
+<circle cx="412.7" cy="145.7" r="3" fill="#9aa5b1"/>
+<line x1="216.3" x2="216.3" y1="373.3" y2="353.3" stroke="#2b9348" stroke-width="1.2" stroke-dasharray="3 3"/>
+<circle cx="216.3" cy="373.3" r="3.5" fill="#ffffff" stroke="#2b9348" stroke-width="1.8"/>
+<circle cx="216.3" cy="353.3" r="5.5" fill="#ffffff" stroke="#2b9348" stroke-width="1.8"/>
+<line x1="231.1" x2="231.1" y1="359.3" y2="347.7" stroke="#2b9348" stroke-width="1.8"/>
+<polygon points="231.1,354.8 235.6,359.3 231.1,363.8 226.6,359.3" fill="#2b9348" fill-opacity="0.9"/>
+<polygon points="231.1,340.7 238.1,347.7 231.1,354.7 224.1,347.7" fill="#2b9348" fill-opacity="0.9"/>
+<line x1="375.4" x2="375.4" y1="344.0" y2="312.0" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="3 3"/>
+<circle cx="375.4" cy="344.0" r="3.5" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.8"/>
+<circle cx="375.4" cy="312.0" r="5.5" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.8"/>
+<line x1="391.4" x2="391.4" y1="314.4" y2="295.3" stroke="#2b6cb0" stroke-width="1.8"/>
+<polygon points="391.4,309.9 395.9,314.4 391.4,318.9 386.9,314.4" fill="#2b6cb0" fill-opacity="0.9"/>
+<polygon points="391.4,288.3 398.4,295.3 391.4,302.3 384.4,295.3" fill="#2b6cb0" fill-opacity="0.9"/>
+<line x1="534.1" x2="534.1" y1="332.0" y2="288.0" stroke="#7c5cbf" stroke-width="1.2" stroke-dasharray="3 3"/>
+<circle cx="534.1" cy="332.0" r="3.5" fill="#ffffff" stroke="#7c5cbf" stroke-width="1.8"/>
+<circle cx="534.1" cy="288.0" r="5.5" fill="#ffffff" stroke="#7c5cbf" stroke-width="1.8"/>
+<line x1="550.1" x2="550.1" y1="248.3" y2="215.7" stroke="#7c5cbf" stroke-width="1.8"/>
+<polygon points="550.1,243.8 554.6,248.3 550.1,252.8 545.6,248.3" fill="#7c5cbf" fill-opacity="0.9"/>
+<polygon points="550.1,208.7 557.1,215.7 550.1,222.7 543.1,215.7" fill="#7c5cbf" fill-opacity="0.9"/>
+<text x="670.0" y="104.0" font-size="12" fill="#1f2933" text-anchor="start" font-weight="600">Method</text>
+<text x="900.0" y="104.0" font-size="12" fill="#1f2933" text-anchor="end" font-weight="600">1 000 · 3 000</text>
+<text x="670.0" y="130" font-size="12.5" fill="#1f2933" text-anchor="start" font-weight="600">Small · 160 KB</text>
+<polygon points="678,138 683,143 678,148 673,143" fill="#2b9348"/>
+<text x="692.0" y="147" font-size="12" fill="#1f2933" text-anchor="start">Gaussians</text>
+<text x="900.0" y="147" font-size="12" fill="#5f6b7a" text-anchor="end">22.6 · 23.4 dB</text>
+<circle cx="678" cy="160" r="4" fill="#ffffff" stroke="#2b9348" stroke-width="1.8"/>
+<text x="692.0" y="164" font-size="12" fill="#1f2933" text-anchor="start">Network</text>
+<text x="900.0" y="164" font-size="12" fill="#5f6b7a" text-anchor="end">21.5 · 23.0 dB</text>
+<text x="670.0" y="192" font-size="12.5" fill="#1f2933" text-anchor="start" font-weight="600">Medium · 644 KB</text>
+<polygon points="678,200 683,205 678,210 673,205" fill="#2b6cb0"/>
+<text x="692.0" y="209" font-size="12" fill="#1f2933" text-anchor="start">Gaussians</text>
+<text x="900.0" y="209" font-size="12" fill="#5f6b7a" text-anchor="end">25.9 · 27.4 dB</text>
+<circle cx="678" cy="222" r="4" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.8"/>
+<text x="692.0" y="226" font-size="12" fill="#1f2933" text-anchor="start">Network</text>
+<text x="900.0" y="226" font-size="12" fill="#5f6b7a" text-anchor="end">23.7 · 26.1 dB</text>
+<text x="670.0" y="254" font-size="12.5" fill="#1f2933" text-anchor="start" font-weight="600">Large · 2.5 MB</text>
+<polygon points="678,262 683,267 678,272 673,267" fill="#7c5cbf"/>
+<text x="692.0" y="271" font-size="12" fill="#1f2933" text-anchor="start">Gaussians</text>
+<text x="900.0" y="271" font-size="12" fill="#5f6b7a" text-anchor="end">30.9 · 33.3 dB</text>
+<circle cx="678" cy="284" r="4" fill="#ffffff" stroke="#7c5cbf" stroke-width="1.8"/>
+<text x="692.0" y="288" font-size="12" fill="#1f2933" text-anchor="start">Network</text>
+<text x="900.0" y="288" font-size="12" fill="#5f6b7a" text-anchor="end">24.6 · 27.9 dB</text>
+<line x1="670" x2="686" y1="320" y2="320" stroke="#9aa5b1" stroke-width="2.4"/>
+<text x="692.0" y="324" font-size="12.5" fill="#1f2933" text-anchor="start">JPEG, quality 5 to 95</text>
+<text x="670.0" y="356" font-size="12" fill="#5f6b7a" text-anchor="start">Small mark: 1 000 steps,</text>
+<text x="670.0" y="374" font-size="12" fill="#5f6b7a" text-anchor="start">large mark: 3 000 steps.</text>
+</svg>
