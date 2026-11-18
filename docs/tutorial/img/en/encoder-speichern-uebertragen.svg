@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 450" width="940" height="450" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Storing versus transferring">
+<rect width="940" height="450" rx="12" fill="#ffffff"/>
+<text x="28.0" y="40.0" font-size="19" fill="#1f2933" text-anchor="start" font-weight="600">Storing or transferring</text>
+<text x="28.0" y="64.0" font-size="13.5" fill="#5f6b7a" text-anchor="start">Top: the elevation network from chapters 1 to 12. Bottom: a location encoder with a small second network.</text>
+<text x="28.0" y="100.0" font-size="15" fill="#2b6cb0" text-anchor="start" font-weight="600">Storing</text>
+<text x="28.0" y="118.0" font-size="12" fill="#5f6b7a" text-anchor="start">one network for exactly one field</text>
+<rect x="28" y="134" width="120" height="80" rx="10" fill="#f3f4f6" stroke="#e4e7eb" stroke-width="1.5"/>
+<text x="88.0" y="158.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">lon, lat</text>
+<text x="88.0" y="178.0" font-size="12" fill="#5f6b7a" text-anchor="middle">a place</text>
+<line x1="148" x2="192" y1="174" y2="174" stroke="#5f6b7a" stroke-width="1.8"/>
+<polygon points="200,174 191,169 191,179" fill="#5f6b7a"/>
+<rect x="200" y="134" width="420" height="80" rx="10" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.5"/>
+<text x="410.0" y="158.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">Elevation network</text>
+<text x="410.0" y="178.0" font-size="12" fill="#5f6b7a" text-anchor="middle">82 561 weights, trained on all</text>
+<text x="410.0" y="195.0" font-size="12" fill="#5f6b7a" text-anchor="middle">2.3 million cells of the grid</text>
+<line x1="620" x2="664" y1="174" y2="174" stroke="#5f6b7a" stroke-width="1.8"/>
+<polygon points="672,174 663,169 663,179" fill="#5f6b7a"/>
+<rect x="672" y="134" width="240" height="80" rx="10" fill="#f3f4f6" stroke="#e4e7eb" stroke-width="1.5"/>
+<text x="792.0" y="158.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">Elevation</text>
+<text x="792.0" y="178.0" font-size="12" fill="#5f6b7a" text-anchor="middle">exactly this one quantity</text>
+<text x="28.0" y="250.0" font-size="15" fill="#e8833a" text-anchor="start" font-weight="600">Transferring</text>
+<text x="28.0" y="268.0" font-size="12" fill="#5f6b7a" text-anchor="start">one encoder for many tasks</text>
+<rect x="28" y="284" width="120" height="80" rx="10" fill="#f3f4f6" stroke="#e4e7eb" stroke-width="1.5"/>
+<text x="88.0" y="308.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">lon, lat</text>
+<text x="88.0" y="328.0" font-size="12" fill="#5f6b7a" text-anchor="middle">a place</text>
+<line x1="148" x2="172" y1="324" y2="324" stroke="#5f6b7a" stroke-width="1.8"/>
+<polygon points="180,324 171,319 171,329" fill="#5f6b7a"/>
+<rect x="180" y="284" width="200" height="80" rx="10" fill="#fdf0e6" stroke="#e8833a" stroke-width="1.5"/>
+<text x="280.0" y="308.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">Location Encoder</text>
+<text x="280.0" y="328.0" font-size="12" fill="#5f6b7a" text-anchor="middle">fixed, trained beforehand</text>
+<text x="280.0" y="345.0" font-size="12" fill="#5f6b7a" text-anchor="middle">e.g. SatCLIP</text>
+<line x1="380" x2="404" y1="324" y2="324" stroke="#5f6b7a" stroke-width="1.8"/>
+<polygon points="412,324 403,319 403,329" fill="#5f6b7a"/>
+<rect x="412" y="284" width="110" height="80" rx="10" fill="#f3f4f6" stroke="#e4e7eb" stroke-width="1.5"/>
+<text x="467.0" y="308.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">256 numbers</text>
+<text x="467.0" y="328.0" font-size="12" fill="#5f6b7a" text-anchor="middle">the embedding</text>
+<line x1="522" x2="546" y1="324" y2="324" stroke="#5f6b7a" stroke-width="1.8"/>
+<polygon points="554,324 545,319 545,329" fill="#5f6b7a"/>
+<rect x="554" y="284" width="186" height="80" rx="10" fill="#e8f5ec" stroke="#2b9348" stroke-width="1.5"/>
+<text x="647.0" y="308.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">small network</text>
+<text x="647.0" y="328.0" font-size="12" fill="#5f6b7a" text-anchor="middle">learns the new task</text>
+<text x="647.0" y="345.0" font-size="12" fill="#5f6b7a" text-anchor="middle">from 1 000 places</text>
+<line x1="740" x2="764" y1="324" y2="324" stroke="#5f6b7a" stroke-width="1.8"/>
+<polygon points="772,324 763,319 763,329" fill="#5f6b7a"/>
+<rect x="772" y="284" width="140" height="80" rx="10" fill="#f3f4f6" stroke="#e4e7eb" stroke-width="1.5"/>
+<text x="842.0" y="308.0" font-size="14" fill="#1f2933" text-anchor="middle" font-weight="600">Temperature</text>
+<text x="842.0" y="328.0" font-size="12" fill="#5f6b7a" text-anchor="middle">or precipitation,</text>
+<text x="842.0" y="345.0" font-size="12" fill="#5f6b7a" text-anchor="middle">population, …</text>
+<text x="28.0" y="404.0" font-size="13" fill="#5f6b7a" text-anchor="start">The small network is new for every task; the encoder stays the same. It is good if the small network manages with</text>
+<text x="28.0" y="424.0" font-size="13" fill="#5f6b7a" text-anchor="start">few places – because similar places already have similar numbers.</text>
+</svg>

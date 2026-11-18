@@ -193,6 +193,6 @@ To compare with the elevation network, set **Dataset** back to **Elevation (ETOP
 
 ---
 
-[Overview](README.md) · Back: [Chapter 11 · Context and outlook](11-einordnung-und-ausblick.md) · Next: [Appendix · Measurements](anhang-messungen.md)
+[Overview](README.md) · Back: [Chapter 11 · Context and outlook](11-einordnung-und-ausblick.md) · Next: [Chapter 13 · Location encoders as embeddings](13-location-encoder.md)
 
 *This tutorial was created by Gerhard Völkl using Claude Code (Anthropic). It is meant to help you learn more about storing geodata in neural networks. Suggestions for improvement are welcome at gkvoelkl@nelson-games.de.*

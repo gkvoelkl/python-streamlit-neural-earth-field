@@ -75,7 +75,7 @@ Installationen betrifft das nicht.
 | **Coastline** | die Küste als 0-Linie des Netzes über der Küstenlinie von Natural Earth |
 | **Location Encoder** | Orte als Zahlenvektoren: verschiedene Encoder lernen die Lufttemperatur |
 | **Orthophoto** | ein Luftbild in UTM als Feld f(E, N) → (R, G, B) |
-| **Gaussian Splatting** | dasselbe Luftbild ohne Netz, als viele kleine farbige Gaußglocken |
+| **Gaussian Splatting** | Luftbild und Gebäude ohne Netz, als viele kleine Gaußglocken |
 | **Buildings 3D** | Gebäude als vorzeichenbehafteter Abstand in drei Dimensionen |
 | **Rate & Error** | Rate-Distortion-Kurve über mehrere Netzgrößen |
 | **Export** | Gewichte als `.pt` in float32 / float16, mit Ladebeispiel |

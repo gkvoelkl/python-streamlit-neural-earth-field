@@ -35,6 +35,11 @@ nav:
       - 11 · Einordnung und Ausblick: 11-einordnung-und-ausblick.md
   - Vektordaten:
       - 12 · Die Küste als Abstandsfeld: 12-kueste-als-abstandsfeld.md
+      - 13 · Location Encoder als Embedding: 13-location-encoder.md
+  - Orthofotos und 3D:
+      - 14 · Orthofotos in UTM: 14-orthofotos-in-utm.md
+      - 15 · Gebäude als 3D-Feld: 15-gebaeude-als-3d-feld.md
+      - 16 · Gaussian Splatting: 16-gaussian-splatting.md
   - Anhang · Messungen: anhang-messungen.md
 
 theme:
@@ -89,6 +94,11 @@ plugins:
             11 · Einordnung und Ausblick: 11 · Context and outlook
             Vektordaten: Vector data
             12 · Die Küste als Abstandsfeld: 12 · The coast as a distance field
+            13 · Location Encoder als Embedding: 13 · Location encoders as embeddings
+            Orthofotos und 3D: Orthophotos and 3D
+            14 · Orthofotos in UTM: 14 · Orthophotos in UTM
+            15 · Gebäude als 3D-Feld: 15 · Buildings as a 3D field
+            16 · Gaussian Splatting: 16 · Gaussian splatting
             Anhang · Messungen: Appendix · Measurements
 
 markdown_extensions:
