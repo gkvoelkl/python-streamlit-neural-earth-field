@@ -42,10 +42,11 @@ curl -L -o data/ETOPO_2022_v1_60s_N90W180_surface.nc \
 Die App mittelt es auf die gewählte Arbeitsauflösung (180 × 360 bis 2160 × 4320)
 und legt das Ergebnis unter `data/cache/` ab.
 
-Die Reiter *Coastline*, *Location Encoder*, *Orthophoto*, *Gaussian Splatting* und *Buildings 3D* brauchen
-weitere, frei verfügbare Daten (Natural Earth, Lufttemperatur der University of
-Delaware, SatCLIP, Orthofotos und 3D-Gebäudemodelle der Bayerischen
-Vermessungsverwaltung). Die App fragt jeweils, bevor sie etwas herunterlädt.
+Die Reiter *Coastline*, *Location Encoder*, *Orthophoto*, *Gaussian Splatting*, *Buildings 3D*,
+*Climate*, *Climate Atlas* und *Stations* brauchen weitere, frei verfügbare Daten
+(Natural Earth, Lufttemperatur und Niederschlag der University of Delaware, SatCLIP,
+Orthofotos und 3D-Gebäudemodelle der Bayerischen Vermessungsverwaltung, GISTEMP der
+NASA, Stationsmittel des Deutschen Wetterdienstes). Die App fragt jeweils, bevor sie etwas herunterlädt.
 
 ## GPU und Online-Fassung
 
@@ -77,6 +78,9 @@ Installationen betrifft das nicht.
 | **Orthophoto** | ein Luftbild in UTM als Feld f(E, N) → (R, G, B) |
 | **Gaussian Splatting** | Luftbild und Gebäude ohne Netz, als viele kleine Gaußglocken |
 | **Buildings 3D** | Gebäude als vorzeichenbehafteter Abstand in drei Dimensionen |
+| **Climate** | monatliche Temperaturabweichungen seit 1950 als ein Feld f(x, y, z, t) |
+| **Climate Atlas** | Temperatur, Niederschlag und Höhe in einem Netz mit 25 Ausgaben gegen drei Netze |
+| **Stations** | Temperaturkarte Deutschlands aus DWD-Stationen: IDW, Kriging und Netz, getestet an Teststationen |
 | **Rate & Error** | Rate-Distortion-Kurve über mehrere Netzgrößen |
 | **Export** | Gewichte als `.pt` in float32 / float16, mit Ladebeispiel |
 
@@ -180,6 +184,9 @@ src/python_streamlit_neural_earth_field/
   ortho.py      Orthofoto als Feld in UTM
   splat.py      Orthofoto als 2D-Gaußglocken (Gaussian Splatting)
   buildings.py  Gebäude als 3D-Abstandsfeld
+  climate.py    Temperaturabweichungen (GISTEMP) als Feld in Raum und Zeit
+  atlas.py      Temperatur, Niederschlag und Höhe als ein Netz mit 25 Ausgaben
+  stations.py   Wetterstationen: IDW, Kriging und kleines Netz, Test an Teststationen
   encoding.py   lon/lat → Einheitskugel, Fourier-Features, Kugelflächenfunktionen
   model.py      NeuralField (MLP / SIREN / Kontextfeld), Größenbuchhaltung
   training.py   Overfitting-Schleife als Generator, flächengewichtete Auswahl
